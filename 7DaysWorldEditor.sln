@@ -3,30 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "7DaysWorldEditor", "7DaysWorldEditor\7DaysWorldEditor.vcxproj", "{29022C09-D15E-49AF-8C9C-F2E55391D8BB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "7DaysWorldEditor", "7DaysWorldEditor\7DaysWorldEditor.vcxproj", "{5C90B0B8-447E-4899-8A2B-6370313578CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940} = {917836A4-0DDC-47BE-B930-1B3BFDF6C940}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cplus", "submodules\log4cplus\msvc14\log4cplus.vcxproj", "{917836A4-0DDC-47BE-B930-1B3BFDF6C940}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Unicode|x64 = Debug_Unicode|x64
+		Debug_Unicode|x86 = Debug_Unicode|x86
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release_Unicode|x64 = Release_Unicode|x64
+		Release_Unicode|x86 = Release_Unicode|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Debug|x64.ActiveCfg = Debug|x64
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Debug|x64.Build.0 = Debug|x64
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Debug|x86.ActiveCfg = Debug|Win32
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Debug|x86.Build.0 = Debug|Win32
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Release|x64.ActiveCfg = Release|x64
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Release|x64.Build.0 = Release|x64
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Release|x86.ActiveCfg = Release|Win32
-		{29022C09-D15E-49AF-8C9C-F2E55391D8BB}.Release|x86.Build.0 = Release|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug_Unicode|x64.ActiveCfg = Debug|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug_Unicode|x64.Build.0 = Debug|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug_Unicode|x86.ActiveCfg = Debug|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug_Unicode|x86.Build.0 = Debug|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug|x64.ActiveCfg = Debug|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug|x64.Build.0 = Debug|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Debug|x86.Build.0 = Debug|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release_Unicode|x64.ActiveCfg = Release|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release_Unicode|x64.Build.0 = Release|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release_Unicode|x86.ActiveCfg = Release|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release_Unicode|x86.Build.0 = Release|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x64.ActiveCfg = Release|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x64.Build.0 = Release|x64
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x86.ActiveCfg = Release|Win32
+		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x86.Build.0 = Release|Win32
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug_Unicode|x64.ActiveCfg = Debug_Unicode|x64
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug_Unicode|x64.Build.0 = Debug_Unicode|x64
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug_Unicode|x86.ActiveCfg = Debug_Unicode|Win32
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug_Unicode|x86.Build.0 = Debug_Unicode|Win32
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x64.ActiveCfg = Debug|x64
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x64.Build.0 = Debug|x64
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x86.ActiveCfg = Debug|Win32
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x86.Build.0 = Debug|Win32
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release_Unicode|x64.ActiveCfg = Release_Unicode|x64
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release_Unicode|x64.Build.0 = Release_Unicode|x64
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release_Unicode|x86.ActiveCfg = Release_Unicode|Win32
+		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release_Unicode|x86.Build.0 = Release_Unicode|Win32
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x64.ActiveCfg = Release|x64
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x64.Build.0 = Release|x64
 		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x86.ActiveCfg = Release|Win32
