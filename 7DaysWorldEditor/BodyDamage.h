@@ -1,0 +1,37 @@
+#pragma once
+
+class BinaryMemoryReader;
+
+class BodyDamage {
+
+public:
+	int *bodyDamageVersion;
+
+	short *chest;
+	bool *crippledLeftLeg;
+	bool *crippledRightLeg;
+	bool *dismemberedHead;
+	bool *dismemberedLeftLowerArm;
+	bool *dismemberedLeftLowerLeg;
+	bool *dismemberedLeftUpperArm;
+	bool *dismemberedLeftUpperLeg;
+	bool *dismemberedRightLowerArm;
+	bool *dismemberedRightLowerLeg;
+	bool *dismemberedRightUpperArm;
+	bool *dismemberedRightUpperLeg;
+	short *head;
+	short *leftLowerArm;
+	short *leftLowerLeg;
+	short *leftUpperArm;
+	short *leftUpperLeg;
+	short *rightLowerArm;
+	short *rightLowerLeg;
+	short *rightUpperArm;
+	short *rightUpperLeg;
+
+	void read(BinaryMemoryReader &reader);
+
+	BodyDamage();
+	~BodyDamage();
+};
+
