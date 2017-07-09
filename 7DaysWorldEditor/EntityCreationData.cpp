@@ -2,6 +2,7 @@
 
 #include "BinaryMemoryReader.h"
 #include "BodyDamage.h"
+#include "EntityStats.h"
 #include "ItemStack.h"
 #include "TileEntity.h"
 #include "Utils.h"
@@ -23,7 +24,8 @@ EntityCreationData *EntityCreationData::read(BinaryMemoryReader *const reader) {
 	reader->read<float>(&rot.z);
 
 	reader->read<bool>(&onGround);
-
+	
+	bodyDamage = new BodyDamage();
 	bodyDamage->read(reader);
 
 	// Given that this class is used for both players and all other
@@ -32,7 +34,10 @@ EntityCreationData *EntityCreationData::read(BinaryMemoryReader *const reader) {
 	// for the players anyway.
 	reader->read<bool>(&isStatsNotNull);
 
-	//TODO
+	if (*isStatsNotNull) {
+		stats = new EntityStats();
+		stats->read(reader);
+	}
 
 	reader->read<short>(&deathTime);
 

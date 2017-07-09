@@ -17,7 +17,7 @@ TileEntityLootContainer *TileEntityLootContainer::read(BinaryMemoryReader *const
 
 	short *itemsLength;
 	reader->read<short>(&itemsLength);
-	*itemsLength = std::min((int)*itemsLength, *ad.x * *ad.y);
+	*itemsLength = std::min((int)*itemsLength, (*ad.x * *ad.y));
 
 	reader->readMultipleComplex<ItemStack, short>(items, itemsLength);
 	reader->read<bool>(&bPlayerStorage);

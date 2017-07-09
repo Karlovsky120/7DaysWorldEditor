@@ -4,6 +4,7 @@
 
 class BinaryMemoryReader;
 class BodyDamage;
+class EntityStats;
 class ItemStack;
 class TileEntity;
 
@@ -25,6 +26,9 @@ public:
 	BodyDamage *bodyDamage;
 
 	bool *isStatsNotNull;
+
+	EntityStats *stats;
+
 	short *deathTime;
 
 	TileEntity *lootContainer;
@@ -43,7 +47,6 @@ public:
 
 	unsigned char *entityData;
 	bool *isTraderEntity;
-
 
 	EntityCreationData *read(BinaryMemoryReader *const reader);
 
