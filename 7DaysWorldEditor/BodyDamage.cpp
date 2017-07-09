@@ -2,38 +2,37 @@
 
 #include "BinaryMemoryReader.h"
 
+BodyDamage *BodyDamage::read(BinaryMemoryReader *const reader) {
+	reader->read<int>(&bodyDamageVersion);
 
-void BodyDamage::read(BinaryMemoryReader &reader) {
-	reader.readInt32(&bodyDamageVersion);
+	reader->read<short>(&leftUpperLeg);
+	reader->read<short>(&rightUpperLeg);
+	reader->read<short>(&leftUpperArm);
+	reader->read<short>(&rightUpperArm);
+	reader->read<short>(&chest);
+	reader->read<short>(&head);
 
-	reader.readInt16(&leftUpperLeg);
-	reader.readInt16(&rightUpperLeg);
-	reader.readInt16(&leftUpperArm);
-	reader.readInt16(&rightUpperArm);
-	reader.readInt16(&chest);
-	reader.readInt16(&head);
+	reader->read<bool>(&dismemberedLeftUpperArm);
+	reader->read<bool>(&dismemberedRightUpperArm);
+	reader->read<bool>(&dismemberedHead);
+	reader->read<bool>(&dismemberedRightUpperLeg);
+	reader->read<bool>(&crippledRightLeg);
 
-	reader.readBoolean(&dismemberedLeftUpperArm);
-	reader.readBoolean(&dismemberedRightUpperArm);
-	reader.readBoolean(&dismemberedHead);
-	reader.readBoolean(&dismemberedRightUpperLeg);
-	reader.readBoolean(&crippledRightLeg);
+	reader->read<short>(&leftLowerLeg);
+	reader->read<short>(&rightLowerLeg);
+	reader->read<short>(&leftLowerArm);
+	reader->read<short>(&rightLowerArm);
 
-	reader.readInt16(&leftLowerLeg);
-	reader.readInt16(&rightLowerLeg);
-	reader.readInt16(&leftLowerArm);
-	reader.readInt16(&rightLowerArm);
+	reader->read<bool>(&dismemberedLeftLowerArm);
+	reader->read<bool>(&dismemberedRightLowerArm);
+	reader->read<bool>(&dismemberedLeftLowerArm);
+	reader->read<bool>(&dismemberedRightLowerArm);
 
-	reader.readBoolean(&dismemberedLeftLowerArm);
-	reader.readBoolean(&dismemberedRightLowerArm);
-	reader.readBoolean(&dismemberedLeftLowerArm);
-	reader.readBoolean(&dismemberedRightLowerArm);
+	reader->read<bool>(&dismemberedLeftUpperLeg);
+	reader->read<bool>(&crippledLeftLeg);
 
-	reader.readBoolean(&dismemberedLeftUpperLeg);
-	reader.readBoolean(&crippledLeftLeg);
+	return this;
 }
 
 BodyDamage::BodyDamage() {}
-
-
 BodyDamage::~BodyDamage() {}

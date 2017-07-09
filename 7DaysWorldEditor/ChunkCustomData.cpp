@@ -2,22 +2,20 @@
 
 #include "BinaryMemoryReader.h"
 
-void ChunkCustomData::read(BinaryMemoryReader &reader) {
-	reader.readString(&key);
-	reader.readUInt64(&expiresInWorldTime);
-	reader.readBoolean(&isSavedToNetwork);
+ChunkCustomData *ChunkCustomData::read(BinaryMemoryReader *const reader) {
+	reader->read<std::string>(&key);
+	reader->read<unsigned _int64>(&expiresInWorldTime);
+	reader->read<bool>(&isSavedToNetwork);
 
 	unsigned short *dataLength;
-	reader.readUInt16(&dataLength);
+	reader->read<unsigned short>(&dataLength);
 
 	if (*dataLength > 0) {
-		reader.readBytes((unsigned char **)&data, *dataLength);
+		reader->readBytes((unsigned char **)&data, *dataLength);
 	}
+
+	return this;
 }
 
-ChunkCustomData::ChunkCustomData() {
-}
-
-
-ChunkCustomData::~ChunkCustomData() {
-}
+ChunkCustomData::ChunkCustomData() {}
+ChunkCustomData::~ChunkCustomData() {}

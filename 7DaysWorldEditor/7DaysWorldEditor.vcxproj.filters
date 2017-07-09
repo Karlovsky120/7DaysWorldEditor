@@ -13,10 +13,201 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\RegionFile">
+      <UniqueIdentifier>{42519c5d-37e2-416c-99d8-0f5ee9db2e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RegionFile">
+      <UniqueIdentifier>{7b75ffd2-55f4-4c32-ae56-2af000c5bb51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RegionIO">
+      <UniqueIdentifier>{7915a5ed-cf76-4f97-bfd5-300349d739fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RegionIO">
+      <UniqueIdentifier>{e59e1a42-0086-4726-8894-3bfdb4ecd2f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BodyDamage.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkBlockChannel.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkBlockLayer.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkCustomData.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityCreationData.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="RegionFile.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Unzip.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Zip.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemStack.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemValue.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntity.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityCampfire.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityForge.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityLootContainer.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecure.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecureDoor.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecureLootContainer.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySign.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityTrader.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TraderData.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityVendingMachine.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Recipe.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="RecipeQueueItem.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityWorkstation.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyDamage.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkBlockChannel.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkBlockLayer.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkCustomData.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityCreationData.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="RegionFile.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFileReader.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFileWriter.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMemoryReader.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Unzip.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Zip.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemStack.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemValue.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntity.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityCampfire.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityForge.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityLootContainer.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecure.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecureDoor.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecureLootContainer.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySign.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityTrader.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TraderData.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityVendingMachine.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Recipe.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="RecipeQueueItem.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityWorkstation.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4cplus.ini" />
   </ItemGroup>
 </Project>

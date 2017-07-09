@@ -6,6 +6,8 @@
 #include "ChunkBlockLayer.h"
 #include "ChunkCustomData.h"
 #include "EntityCreationData.h"
+#include "EntitySpawner.h"
+#include "TileEntity.h"
 
 #include "Unzip.h"
 #include "Zip.h"
@@ -15,105 +17,90 @@
 
 #include <fstream>
 
+extern log4cplus::Logger mainLog;
+extern std::string currentDirectory;
+
 bool Chunk::unzipChunk(std::vector<unsigned char> &zipped, std::vector<unsigned char> &unzipped) {
 
-	std::fstream bin("D:\\bin.zip", std::ios::out | std::ios::binary);
-	bin.write((char *)&zipped[8], zipped.capacity() - 8);
-	bin.close();
+	{ //DEBUG
+		std::fstream bin(currentDirectory + "bin.zip", std::ios::out | std::ios::binary);
+		bin.write((char *)&zipped[8], zipped.capacity() - 8);
+		bin.close();
+	}
 
 	// Those 8 bytes are metadata we no longer need.
+	#pragma warning(suppress: 4267) // Conversion from size_t to unsigned int - file will never be that large
 	HZIP hz = OpenZip(&zipped[8], zipped.capacity() - 8, 0);
 
 	ZIPENTRY ze;
 	ZRESULT result = GetZipItem(hz, 0, &ze);
 
-	log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("main"));
-
 	if (result != ZR_OK) {
-		LOG4CPLUS_ERROR(logger, LOG4CPLUS_TEXT("Failed to open zip file within the region file."));
+		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to open zip file within the region file."));
 
 		CloseZip(hz);
 		return false;
 	}
 
+	#pragma warning(suppress: 4267) // Conversion from size_t to unsigned int - file will never be that large
 	result = UnzipItem(hz, 0, &unzipped[0], unzipped.size());
 	CloseZip(hz);
 
 	if (result == ZR_OK) {
 		unzipped.resize(ze.unc_size);
 
-		std::fstream bin("D:\\bin.unzip", std::ios::out | std::ios::binary);
-		bin.write((char *)&unzipped[0], unzipped.capacity());
-		bin.close();
-	}
-
-	else {
-		LOG4CPLUS_ERROR(logger, LOG4CPLUS_TEXT("Failed to unzip zip file within the region file."));
-	}
-
-	return result == ZR_OK;
-	
-
-	/*std::vector<unsigned char> outBuffer2(1024 * 1024);
-
-	HZIP hz2 = CreateZip(&outBuffer2[0], 1024 * 1024, 0);
-	result = ZipAdd(hz2, ze.name, &output[0], ze.unc_size);
-	result = GetZipItem(hz2, 0, &ze);
-
-
-	void** array;
-	array = (void**)malloc(10000 * sizeof(void*));
-
-	unsigned long length;
-
-	ZipGetMemory(hz2, array, &length);
-
-	CloseZip(hz2);
-
-	std::fstream bin2("D:\\bin2.zip", std::ios::out | std::ios::binary);
-	bin2.write((char *)&outBuffer2[0], length);
-	bin2.close();*/
-}
-
-bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
-	memoryStart = (int)&unzipped[0];
-	memoryEnd = (int)&unzipped[unzipped.size()-1];
-
-	BinaryMemoryReader reader(unzipped);
-
-	reader.readInt32(&xm);
-	reader.readInt32(&mm);
-	reader.readInt32(&rm);
-
-	reader.readUInt64(&savedInWorldTicks);
-
-	cbl.resize(64);
-
-	for (int i = 0; i < 64; ++i) {
-		bool *flag;
-		reader.readBoolean(&flag);
-
-		if (*flag) {
-			cbl[i].read(reader);
+		{ //DEBUG
+			std::fstream bin(currentDirectory + "\bin.unzip", std::ios::out | std::ios::binary);
+			bin.write((char *)&unzipped[0], unzipped.capacity());
+			bin.close();
 		}
 	}
 
-	cbc.read(reader);
+	else {
+		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to unzip zip file within the region file."));
+	}
+
+	return result == ZR_OK;
+}
+
+bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
+	readMemoryStart = &unzipped[0];
+	readMemoryEnd = &unzipped[unzipped.size()-1];
+
+	BinaryMemoryReader reader(unzipped);
+
+	reader.read<int>(&xm);
+	reader.read<int>(&mm);
+	reader.read<int>(&rm);
+
+	reader.read<unsigned _int64>(&savedInWorldTicks);
+
+	for (int i = 0; i < 64; ++i) {
+		bool *flag;
+		reader.read<bool>(&flag);
+
+		if (*flag) {
+			ChunkBlockLayer *cbLayer = new ChunkBlockLayer();
+			cbl.push_back(cbLayer->read(&reader));
+		}
+	}
+
+	cbc.read(&reader);
 
 	reader.readBytes((unsigned char**)&im[0], 256);
 	reader.readBytes((unsigned char**)&terrainHeight[0], 256);
 	reader.readBytes((unsigned char**)&biomeID[0], 256);
 	reader.readBytes((unsigned char**)&biomeIntentsity[0], 1536);
 
-	reader.readByte(&dominantBiome);
-	reader.readByte(&areaMasterDominantBiome);
+	reader.read<unsigned char>(&dominantBiome);
+	reader.read<unsigned char>(&areaMasterDominantBiome);
 
 	unsigned short *customDataCount;
-	reader.readUInt16(&customDataCount);
+	reader.read<unsigned short>(&customDataCount);
 
 	for (int j = 0; j < *customDataCount; ++j) {
-		ChunkCustomData *customData;
-		customData->read(reader);
+		ChunkCustomData *customData = new ChunkCustomData();
+		customData->read(&reader);
 		chunkCustomDataMap[customData->key] = customData;
 	}
 
@@ -121,59 +108,58 @@ bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
 	reader.readBytes((unsigned char **)&jr[0], 256);
 	reader.readBytes((unsigned char **)&fr[0], 256);
 
-	cm.read(reader);
-	vm.read(reader);
-	gm.read(reader);
-	km.read(reader);
+	cm.read(&reader);
+	vm.read(&reader);
+	gm.read(&reader);
+	km.read(&reader);
 
-	reader.readBoolean(&needsLightCalculation);
+	reader.read<bool>(&needsLightCalculation);
 
-	int *entityCount;
-	reader.readInt32(&entityCount);
-
-	for (int k = 0; k < *entityCount; ++k) {
-		EntityCreationData *entityCreationData;
-		entityCreationData->read(reader);
-		entityCreationDataList.push_back(entityCreationData);
-	}
+	reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList);
 
 	int *tileEntityCount;
-	reader.readInt32(&tileEntityCount);
+	reader.read<int>(&tileEntityCount);
 
 	for (int l = 0; l < *tileEntityCount; ++l) {
+		int* entityType;
+		reader.read<int>(&entityType);
+		TileEntity *tileEntity = TileEntity::instantiate((TileEntityType)*entityType);
+		tileEntity->read(&reader);
 
+		tileEntityDictionary[&tileEntity->localChunkPosition] = tileEntity;
 	}
 
 	unsigned short *entitySpawerCount;
-	reader.readUInt16(&entitySpawerCount);
+	reader.read<unsigned short>(&entitySpawerCount);
 
-	for (int m = 0; m < *entitySpawerCount; ++m) {
+	reader.read<unsigned char>(&entitySpawnerSaveVersion);
 
-	}
+	reader.readMultipleComplex<EntitySpawner, unsigned char>(entitySpawnerList);
 
 	bool *flag2;
-	reader.readBoolean(&flag2);
+	reader.read<bool>(&flag2);
 
 	if (*flag2) {
-		ur.resize(16);
-
 		for (int n = 0; n < 16; ++n) {
-			reader.readUInt16(&ur[n]);
+			unsigned short *urShort;
+			reader.read<unsigned short>(&urShort);
+			ur.push_back(urShort);
 		}
 	}
 
-	return false;
+	return true;
 }
 
 bool Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
 	
 	// Header of the PKZIP file will always have unzipped size stored on bytes 22 to 26.
+	// 22 + 8 bytes of metadata before the start of the PKZIP is 30.
 	// We fetch it as to know how big the buffer has to be.
 	int *unzippedSize = nullptr;
 
 	BinaryMemoryReader reader(zipped);
 	reader.seek(30, 0);
-	reader.readInt32(&unzippedSize);
+	reader.read<int>(&unzippedSize);
 	
 	std::vector<unsigned char> unzipped(*unzippedSize);
 
@@ -184,18 +170,6 @@ bool Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
 	}
 
 	return false;
-}
-
-void Chunk::deletePointer(void *pointer) {
-	if ((int)pointer <= memoryStart && (int)pointer >= memoryEnd) {
-		delete pointer;
-	}
-}
-
-void Chunk::deleteArray(void *pointer) {
-	if ((int)pointer <= memoryStart && (int)pointer >= memoryEnd) {
-		delete[] pointer;
-	}
 }
 
 Chunk::Chunk() {}

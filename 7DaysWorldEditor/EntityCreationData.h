@@ -1,11 +1,13 @@
 #pragma once
 
-#include "BodyDamage.h"
 #include "Coordinate.h"
 
-class BodyDamage;
-
 class BinaryMemoryReader;
+class BodyDamage;
+class ItemStack;
+class TileEntity;
+
+enum SpawnerSource { Unindentified, Biome, StaticSpawner, Dynamic };
 
 class EntityCreationData {
 public:
@@ -20,12 +22,30 @@ public:
 
 	bool *onGround;
 
-	BodyDamage bodyDamage;
+	BodyDamage *bodyDamage;
 
 	bool *isStatsNotNull;
 	short *deathTime;
 
-	void read(BinaryMemoryReader &reader);
+	TileEntity *lootContainer;
+	Coordinate<int> homePosition;
+
+	short *unknownD;
+	SpawnerSource spawnerSource;
+
+	int *belongsPlayerId;
+	ItemStack *itemStack;
+
+	unsigned int *blockValueRawData;
+
+	Coordinate<int> blockPosition;
+	Coordinate<float> fallTreeDir;
+
+	unsigned char *entityData;
+	bool *isTraderEntity;
+
+
+	EntityCreationData *read(BinaryMemoryReader *const reader);
 
 	EntityCreationData();
 	~EntityCreationData();

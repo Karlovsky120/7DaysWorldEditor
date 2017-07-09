@@ -10,53 +10,64 @@
 #include "log4cplus\logger.h"
 #include "log4cplus\loggingmacros.h"
 
+extern log4cplus::Logger mainLog;
+
 RegionFile::RegionFile() {}
 
 void RegionFile::read(std::string path, const int rX, const int rZ) {
 
 	path = path.append("\\r.").append(std::to_string(rX)).append(".").append(std::to_string(rZ)).append(".7rg");
 
-	BinaryFileReader reader(path);
+	BinaryFileReader reader;
 
-	timeStamps.reserve(1024);
-	zippedChunks.reserve(1024);
+	if (reader.open(path)) {
 
-	for (int i = 0; i < 1024; ++i) {
-		reader.seek(4 + 4 * i, std::ios_base::beg);
+		timeStamps.reserve(1024);
+		zippedChunks.reserve(1024);
 
-		unsigned short offset;
-		reader.readUInt16(&offset);
+		for (int i = 0; i < 1024; ++i) {
+			reader.seek(4 + 4 * i, std::ios_base::beg);
 
-		if (offset != 0) {
-			reader.seek(4100 + 4 * i, std::ios_base::beg);
+			unsigned short offset;
 
-			int timeStamp;
-			reader.readInt32(&timeStamp);
-			timeStamps.push_back(timeStamp);
+			reader.readUInt16(&offset);
 
-			reader.seek(offset * 4096 + 4, std::ios_base::beg);
+			if (offset != 0) {
+				reader.seek(4100 + 4 * i, std::ios_base::beg);
 
-			int length;
-			reader.readInt32(&length);
+				int timeStamp;
+				reader.readInt32(&timeStamp);
+				timeStamps.push_back(timeStamp);
 
-			reader.seek(1, std::ios_base::cur);
+				reader.seek(offset * 4096 + 4, std::ios_base::beg);
 
-			std::vector<unsigned char> chunkData;
-			chunkData.resize(length);
-			reader.readBytes(&chunkData[0], length);
-			zippedChunks.push_back(chunkData);
+				int length;
+				reader.readInt32(&length);
+
+				reader.seek(1, std::ios_base::cur);
+
+				std::vector<unsigned char> chunkData;
+				chunkData.resize(length);
+				reader.readBytes(&chunkData[0], length);
+				zippedChunks.push_back(chunkData);
+			}
+
+			else {
+				// This chunk hasn't been generated yet.
+
+				// We push zero to the timeStamp.
+				timeStamps.push_back(0);
+
+				// We create a vector, resize it to zero and push it to zippedChunks.
+				std::vector<unsigned char> chunkData(0);
+				zippedChunks.push_back(chunkData);
+			}
 		}
-
-		else {
-			// This chunk hasn't been generated yet.
-
-			// We push zero to the timeStamp.
-			timeStamps.push_back(0);
-
-			// We create a vector, resize it to zero and push it to zippedChunks.
-			std::vector<unsigned char> chunkData(0);
-			zippedChunks.push_back(chunkData);
-		}
+	}
+	else {
+		std::stringstream error;
+		error << "Failed to open region file " << rX << "." << rZ << ".7rg @ " << path;
+		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT(error.str()));
 	}
 }
 

@@ -29,7 +29,7 @@ public:
 	short *rightUpperArm;
 	short *rightUpperLeg;
 
-	void read(BinaryMemoryReader &reader);
+	BodyDamage *read(BinaryMemoryReader *const reader);
 
 	BodyDamage();
 	~BodyDamage();

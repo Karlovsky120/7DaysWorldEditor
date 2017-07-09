@@ -1,25 +1,33 @@
+#include <log4cplus/configurator.h>
+#include <log4cplus/fileappender.h>
+#include <log4cplus/initializer.h>
+#include <log4cplus/layout.h>
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
-#include <log4cplus/configurator.h>
-#include <log4cplus/initializer.h>
 
-/*#include "RegionFile.h"
-#include "Chunk.h"*/
+#include "RegionFile.h"
+#include "Chunk.h"
 
-int main()
+
+log4cplus::Logger mainLog;
+std::string currentDirectory;
+
+int main(int argc, char* argv[])
 {
+	std::string argv_str(argv[0]);
+	currentDirectory = argv_str.substr(0, argv_str.find_last_of("\\")) + "\\";
+	
+
+	//Initialize main log
 	log4cplus::Initializer initializer;
+	log4cplus::PropertyConfigurator::doConfigure("log4cplus.ini");
 
-	log4cplus::BasicConfigurator config;
-	config.configure();
+	mainLog = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("mainLog"));
+	LOG4CPLUS_INFO(mainLog, LOG4CPLUS_TEXT("Execution started!"));
+	
+	RegionFile region(currentDirectory + "Dummy152b8\\Region", -4, -3);
 
-	log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("main"));
-	LOG4CPLUS_INFO(logger, LOG4CPLUS_TEXT("Execution started!"));
-
-	/*RegionFile region("C:\\Users\\Karlovsky120\\Documents\\Visual Studio 2015\\Projects\\7DaysWorldEditor\\Test data\\Dummy15.2b8\\Region", 1, 0);
-
+	region.write(currentDirectory + "Dummy15.2b8");
 	Chunk *chunk = new Chunk();
 	region.getChunk(*chunk, 16, 16);
-	delete chunk;
-	region.write("C:\\Users\\Karlovsky120\\Documents\\Visual Studio 2015\\Projects\\7DaysWorldEditor\\Test data\\Dummy15.2b8\\Region\\Stored");*/
 }

@@ -8,11 +8,11 @@ class ChunkBlockLayer
 {
 
 public:
-	unsigned char *oh;
+	unsigned char oh[1024];
 	unsigned char *jh;
-	unsigned char *fh;
+	unsigned char fh[3072];
 
-	void read(BinaryMemoryReader &reader);
+	ChunkBlockLayer *read(BinaryMemoryReader *const reader);
 
 	ChunkBlockLayer();
 	~ChunkBlockLayer();

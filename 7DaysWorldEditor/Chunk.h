@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ChunkBlockChannel.h"
+#include "Coordinate.h"
 
 #include <map>
 #include <vector>
@@ -8,19 +9,19 @@
 class ChunkBlockLayer;
 class ChunkCustomData;
 class EntityCreationData;
+class EntitySpawner;
+class TileEntity;
 
 class string;
 
 class Chunk
 {
 private:
-	int memoryStart;
-	int memoryEnd;
+	unsigned char *readMemoryStart;
+	unsigned char *readMemoryEnd;
 
 	bool unzipChunk(std::vector<unsigned char> &zipped, std::vector<unsigned char> &unzipped);
 	bool readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped);
-	void deletePointer(void *pointer);
-	void deleteArray(void *pointer);
 
 public:
 	int *xm;
@@ -29,7 +30,7 @@ public:
 
 	unsigned _int64 *savedInWorldTicks;
 
-	std::vector<ChunkBlockLayer> cbl;
+	std::vector<ChunkBlockLayer *> cbl;
 
 	ChunkBlockChannel cbc;
 
@@ -56,9 +57,11 @@ public:
 
 	std::vector<EntityCreationData *> entityCreationDataList;
 
-	//std::map<Coordinate *, TileEntity *> tileEntityDictionary;
+	std::map<Coordinate<int> *, TileEntity *> tileEntityDictionary;
 
-	//std::vector<EntitySpawner *> entitiySpawnerList;
+	unsigned char *entitySpawnerSaveVersion;
+
+	std::vector<EntitySpawner *> entitySpawnerList;
 
 	std::vector<unsigned short *> ur;
 

@@ -55,7 +55,7 @@ public:
 	}
 
 	inline void readUInt16(unsigned short *data) {
-		baseStream.read((char*)data, 2);
+		baseStream.read((char *)data, 2);
 	}
 
 	inline void readUInt32(unsigned int *data) {
@@ -70,8 +70,13 @@ public:
 		baseStream.seekg(amount, seekStart);
 	}
 
-	BinaryFileReader(std::string const& path) {
+	inline bool open(std::string const& path) {
 		baseStream.open(path, std::ios::binary | std::ios::in);
+
+		return baseStream.good();
+	}
+
+	BinaryFileReader() {
 	}
 
 	~BinaryFileReader() {
@@ -81,17 +86,3 @@ public:
 	BinaryFileReader(const BinaryFileReader&) = delete;
 	BinaryFileReader& operator=(const BinaryFileReader&) = delete;
 };
-
-
-/*
-//std::vector<unsigned char> stream;
-long position = 0;
-
-inline void readBoolean(bool *data) {
-
-	*data = stream[position] > 0;
-
-	//data = reinterpret_cast<bool*>(&stream[position]);
-	++position;
-
-	//baseStream.read((char*)data, 1);*/
