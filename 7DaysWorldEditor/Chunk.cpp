@@ -50,9 +50,9 @@ bool Chunk::unzipChunk(std::vector<unsigned char> &zipped, std::vector<unsigned 
 		unzipped.resize(ze.unc_size);
 
 		{ //DEBUG
-			std::fstream bin(currentDirectory + "\bin.unzip", std::ios::out | std::ios::binary);
-			bin.write((char *)&unzipped[0], unzipped.capacity());
-			bin.close();
+			std::fstream bout(currentDirectory + "bin.hex", std::ios::out | std::ios::binary);
+			bout.write((char *)&unzipped[0], unzipped.capacity());
+			bout.close();
 		}
 	}
 
@@ -120,7 +120,7 @@ bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
 	int *tileEntityCount;
 	reader.read<int>(&tileEntityCount);
 
-	for (int l = 0; l < *tileEntityCount; ++l) {
+	for (int k = 0; k < *tileEntityCount; ++k) {
 		int* entityType;
 		reader.read<int>(&entityType);
 		TileEntity *tileEntity = TileEntity::instantiate((TileEntityType)*entityType);
@@ -131,10 +131,9 @@ bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
 
 	unsigned short *entitySpawerCount;
 	reader.read<unsigned short>(&entitySpawerCount);
-
 	reader.read<unsigned char>(&entitySpawnerSaveVersion);
 
-	reader.readMultipleComplex<EntitySpawner, unsigned char>(entitySpawnerList);
+	reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawerCount);
 
 	bool *flag2;
 	reader.read<bool>(&flag2);
@@ -146,6 +145,8 @@ bool Chunk::readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped) {
 			ur.push_back(urShort);
 		}
 	}
+
+	bool t = reader.stream.capacity() == reader.position;
 
 	return true;
 }

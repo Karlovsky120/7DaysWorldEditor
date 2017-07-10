@@ -9,6 +9,8 @@ MultiBuffPrefabAttachmentDescriptor *MultiBuffPrefabAttachmentDescriptor::read(B
 	reader->read<float>(&TTL);
 	reader->read<bool>(&firstPerson);
 	reader->read<bool>(&thirdPerson);
+
+	return this;
 }
 
 MultiBuffPrefabAttachmentDescriptor::MultiBuffPrefabAttachmentDescriptor() {}

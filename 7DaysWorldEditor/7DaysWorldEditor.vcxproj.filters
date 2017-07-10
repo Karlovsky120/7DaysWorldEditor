@@ -105,68 +105,68 @@
     <ClCompile Include="TileEntityWorkstation.cpp">
       <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
-    <ClCompile Include="EntitySpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Buff.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffModifier.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="BuffDescriptor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffModifier.cpp">
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="BuffTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityStats.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiBuffVariable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierMax.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierModifyValue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierMulValue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierSetValue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierValueOT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffTimerNull.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="BuffTimerDuration.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffTimerNull.cpp">
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="BuffTimerScheduled.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySpawner.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityStats.cpp">
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="MultiBuff.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="MultiBuffAction.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="MultiBuffPrefabAttachmentDescriptor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiBuffVariable.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Stat.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifier.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifierMax.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifierModifyValue.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifierMulValue.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifierSetValue.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatModifierValueOT.cpp">
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,68 +257,68 @@
     <ClInclude Include="TileEntityWorkstation.h">
       <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
-    <ClInclude Include="EntitySpawner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Buff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffModifier.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="BuffDescriptor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffModifier.h">
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="BuffTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityStats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiBuffVariable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierMax.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierModifyValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierMulValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierSetValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierValueOT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffTimerNull.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="BuffTimerDuration.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffTimerNull.h">
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="BuffTimerScheduled.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySpawner.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityStats.h">
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="MultiBuff.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="MultiBuffAction.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiBuffVariable.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifier.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifierMax.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifierModifyValue.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifierMulValue.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifierSetValue.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="StatModifierValueOT.h">
+      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

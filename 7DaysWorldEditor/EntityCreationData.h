@@ -35,10 +35,11 @@ public:
 	Coordinate<int> homePosition;
 
 	short *unknownD;
-	SpawnerSource spawnerSource;
+	unsigned char *spawnerSource;
 
 	int *belongsPlayerId;
 	ItemStack *itemStack;
+	char *someSByte;
 
 	unsigned int *blockValueRawData;
 

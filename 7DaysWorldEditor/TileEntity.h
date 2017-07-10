@@ -4,7 +4,7 @@
 
 class BinaryMemoryReader;
 
-enum TileEntityType { NoneType , Campfire = 5, Forge, Loot, SecureDoor, SecureLoot, Sign, Trader, VendingMachine, Workstation };
+enum TileEntityType { NoneType , Loot = 5, Trader, VendingMachine, Forge, Campfire, SecureLoot, SecureDoor, Workstation, Sign };
 
 class TileEntity
 {

@@ -13,7 +13,7 @@ ItemValue *ItemValue::read(BinaryMemoryReader *const reader)
 	unsigned char *partNumber;
 	reader->read<unsigned char>(&partNumber);
 
-	if (partNumber != 0) {
+	if (*partNumber != 0) {
 		for (int i = 0; i < *partNumber; ++i) {
 			bool *exists;
 			reader->read<bool>(&exists);

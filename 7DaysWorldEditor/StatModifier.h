@@ -34,7 +34,7 @@ public:
 	StatModifier();
 	~StatModifier();
 
-private:
+protected:
 	void virtual readMore(BinaryMemoryReader *const reader);
 
 };

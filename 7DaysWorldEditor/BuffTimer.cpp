@@ -14,7 +14,7 @@ BuffTimer * BuffTimer::read(BinaryMemoryReader * const reader) {
 	BuffTimer *timer = new BuffTimer();
 	timer->buffTimerVersion = buffTimerVersion;
 	timer->buffTimerClassId = buffTimerClassId;
-	timer->read(reader);
+	timer->readMore(reader);
 
 	return timer;
 }

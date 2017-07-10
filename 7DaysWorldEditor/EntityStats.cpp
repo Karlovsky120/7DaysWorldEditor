@@ -2,14 +2,13 @@
 
 #include "BinaryMemoryReader.h"
 #include "Buff.h"
+#include "MultiBuffVariable.h"
 #include "Stat.h"
 
 EntityStats *EntityStats::read(BinaryMemoryReader * const reader)
 {
 	reader->read<int>(&statsVersion);
-	int *categoryFlagsEnum;
-	reader->read<int>(&categoryFlagsEnum);
-	*buffCategoryFlags = (BuffCategoryFlags)*categoryFlagsEnum;
+	reader->read<int>(&buffCategoryFlags);
 
 	reader->readMultipleSimple<int, int>(immunity);
 
@@ -43,7 +42,13 @@ EntityStats *EntityStats::read(BinaryMemoryReader * const reader)
 	}
 
 	int *multiBuffVariableCount;
-
+	reader->read<int>(&multiBuffVariableCount);
+	for (int j = 0; j < *multiBuffVariableCount; ++j) {
+		std::string *key;
+		reader->read<std::string>(&key);
+		MultiBuffVariable *variable = new MultiBuffVariable();
+		multiBuffVariableMap[key] = variable->read(reader);
+	}
 
 	return this;
 }

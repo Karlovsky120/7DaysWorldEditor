@@ -15,6 +15,8 @@ TileEntityVendingMachine *TileEntityVendingMachine::read(BinaryMemoryReader *con
 
 	reader->readMultipleSimple<std::string, int>(kd);
 
+	reader->read<unsigned _int64>(&bd);
+
 	traderData.read(reader);
 
 	if (*traderData.traderID == 5) {

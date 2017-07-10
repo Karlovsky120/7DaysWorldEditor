@@ -12,15 +12,15 @@ class EntitySpawner
 public:
 	unsigned char *version;
 	Coordinate<int> position;
-	Coordinate<unsigned short> size;
+	Coordinate<short> size;
 	unsigned short *triggerDiameter;
 	std::string *entitySpawnerClassName;
 
-	unsigned short *totalSpawnedThisWave;
+	short *totalSpawnedThisWave;
 	float *timeDelayToNextWave;
 	float *timeDelayBetweenSpawns;
 
-	unsigned short *idVersion;
+	unsigned char *idVersion;
 
 	std::vector<int *> entitySpawnedIdList;
 

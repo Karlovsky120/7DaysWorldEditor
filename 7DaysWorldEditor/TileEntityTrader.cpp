@@ -3,7 +3,6 @@
 #include "BinaryMemoryReader.h"
 
 TileEntityTrader *TileEntityTrader::read(BinaryMemoryReader *const reader) {
-
 	TileEntity::read(reader);
 
 	reader->read<int>(&version);

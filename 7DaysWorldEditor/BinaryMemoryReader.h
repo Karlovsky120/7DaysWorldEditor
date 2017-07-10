@@ -15,12 +15,13 @@
 			position += sizeof(T);
 		}
 
+		template <typename T>
 		inline void read(std::string **data) {
-			unsigned char length = stream[position];
+			unsigned char *length = &stream[position];
 			++position;
 
-			*data = (std::string*)&stream[position];
-			position += length;
+			*data = new std::string((const char *)&stream[position], (size_t)*length);
+			position += *length;
 		}
 
 		inline void readBytes(unsigned char **data, int count) {
@@ -40,14 +41,14 @@
 		}
 
 		template<typename T, typename C>
-		inline void readMultipleSimple(std::vector<T *> listOfTs) {
+		inline void readMultipleSimple(std::vector<T *> &listOfTs) {
 			C *counter;
 			read<C>(&counter);
 			readMultipleSimple(listOfTs, counter);
 		}
 
 		template<typename T, typename C>
-		inline void readMultipleSimple(std::vector<T *> listOfTs, C *counter) {
+		inline void readMultipleSimple(std::vector<T *> &listOfTs, C *counter) {
 			for (C i = 0; i < *counter; ++i) {
 				T *item;
 				read(&item);
@@ -56,14 +57,14 @@
 		}
 
 		template<typename T, typename C>
-		inline void readMultipleComplex(std::vector<T *> listOfTs) {
+		inline void readMultipleComplex(std::vector<T *> &listOfTs) {
 			C *counter;
 			read<C>(&counter);
 			readMultipleComplex(listOfTs, counter);
 		}
 
 		template<typename T, typename C>
-		inline void readMultipleComplex(std::vector<T *> listOfTs, C *counter) {
+		inline void readMultipleComplex(std::vector<T *> &listOfTs, C *counter) {
 			for (C i = 0; i < *counter; ++i) {
 				T *item = new T();
 				listOfTs.push_back(item->read(this));

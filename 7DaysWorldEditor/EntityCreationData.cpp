@@ -56,14 +56,13 @@ EntityCreationData *EntityCreationData::read(BinaryMemoryReader *const reader) {
 	reader->read<int>(&homePosition.z);
 
 	reader->read<short>(&unknownD);
-	unsigned char *sourceType;
-	reader->read<unsigned char>(&sourceType);
-	spawnerSource = (SpawnerSource)*sourceType;
+	reader->read<unsigned char>(&spawnerSource);
 
 	if (*entityClass == Utils::getMonoHash("item")) {
 		reader->read<int>(&belongsPlayerId);
 		itemStack = new ItemStack();
 		itemStack->read(reader);
+		reader->read<char>(&someSByte);
 	} else if (*entityClass == Utils::getMonoHash("fallingBlock")) {
 		reader->read<unsigned int>(&blockValueRawData);
 	} else if (*entityClass == Utils::getMonoHash("fallingTree")) {
@@ -74,11 +73,12 @@ EntityCreationData *EntityCreationData::read(BinaryMemoryReader *const reader) {
 		reader->read<float>(&fallTreeDir.x);
 		reader->read<float>(&fallTreeDir.y);
 		reader->read<float>(&fallTreeDir.z);
-	} else {
+	} else if (*entityClass == Utils::getMonoHash("playerMale")
+		|| *entityClass == Utils::getMonoHash("playerFemale")) {
 		// This code should not be reached, this reads the
 		// player profile which should not be present here.
 	}
-
+	
 	unsigned short *entityDataLength;
 	reader->read<unsigned short>(&entityDataLength);
 

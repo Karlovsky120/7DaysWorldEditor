@@ -34,7 +34,7 @@ class EntityStats
 {
 public:
 	int *statsVersion;
-	BuffCategoryFlags *buffCategoryFlags;
+	int *buffCategoryFlags;
 
 	std::vector<int *> immunity;
 	std::map<unsigned short *, StatModifier *> idTable;
@@ -51,10 +51,8 @@ public:
 
 	float *waterLevel;
 
-
-	std::map<std::string *, MultiBuffVariable *> multiBuffVariableDictionary;
 	std::vector<Buff *> buffList;
-
+	std::map<std::string *, MultiBuffVariable *> multiBuffVariableMap;
 
 	EntityStats *read(BinaryMemoryReader *const reader);
 
