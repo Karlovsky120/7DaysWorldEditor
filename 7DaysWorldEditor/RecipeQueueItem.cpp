@@ -4,31 +4,29 @@
 #include "ItemValue.h"
 #include "Recipe.h"
 
-RecipeQueueItem *RecipeQueueItem::read(BinaryMemoryReader *const reader) {
+void RecipeQueueItem::read(BinaryMemoryReader &reader) {
 
-	bool *isRecipeNotNull;
-	reader->read<bool>(&isRecipeNotNull);
-	if (*isRecipeNotNull) {
-		recipe = new Recipe();
-		recipe->read(reader);
+	bool isRecipeNotNull;
+	reader.read<bool>(isRecipeNotNull);
+
+	if (isRecipeNotNull) {
+		recipe.read(reader);
 	}
 
-	reader->read<float>(&craftingTimeLeft);
-	reader->read<int>(&multiplier);
-	reader->read<bool>(&isCrafting);
+	reader.read<float>(craftingTimeLeft);
+	reader.read<int>(multiplier);
+	reader.read<bool>(isCrafting);
 
-	bool *isRepairItemNotNull;
-	reader->read<bool>(&isRepairItemNotNull);
-	if (*isRepairItemNotNull) {
-		repairItem = new ItemValue();
-		repairItem->read(reader);
-		reader->read<int>(&amountToRepair);
+	bool isRepairItemNotNull;
+	reader.read<bool>(isRepairItemNotNull);
+
+	if (isRepairItemNotNull) {
+		repairItem.read(reader);
+		reader.read<int>(amountToRepair);
 	}
 
-	reader->read<int>(&quality);
-	reader->read<int>(&startingEntityId);
-
-	return this;
+	reader.read<int>(quality);
+	reader.read<int>(startingEntityId);
 }
 
 RecipeQueueItem::RecipeQueueItem() {}

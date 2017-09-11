@@ -6,21 +6,20 @@
 
 class BinaryMemoryReader;
 
-class TraderData
-{
+class TraderData {
 public:
 
-	int *traderID;
-	unsigned _int64 *lastInventoryUpdate;
-	unsigned char *fileVersion;
+	int traderID;
+	unsigned _int64 lastInventoryUpdate;
+	unsigned char fileVersion;
 
-	std::vector<ItemStack *> *primaryInventory;
-	std::vector<std::vector<ItemStack *> *> tierItemGroups;
+	std::vector<ItemStack> primaryInventory;
+	std::vector<std::vector<ItemStack>> tierItemGroups;
 
-	int *availableMoney;
-	std::vector<char *> jj;
+	int availableMoney;
+	std::vector<char> jj;
 
-	TraderData *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	TraderData();
 	~TraderData();

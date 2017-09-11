@@ -1,18 +1,32 @@
 #pragma once
 
-#include <vector>
+#include <map>
 
 class BinaryMemoryReader;
-class CBCLayer;
 
-class ChunkBlockChannel
-{
+template <int bytesPerValue = 1>
+class ChunkBlockChannel {
 public:
-	std::vector<unsigned char *> cbcLayer;
-	std::vector<unsigned char *> jj;
+	std::map<unsigned int, std::array<unsigned char, bytesPerValue * 1024>> cbcLayer;
+	std::map<unsigned int, std::array<unsigned char, bytesPerValue>> jj;
 
-	ChunkBlockChannel *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader) {
+		for (int i = 0; i < 64; ++i) {
+			bool flag;
+			reader.read<bool>(flag);
 
-	ChunkBlockChannel();
-	~ChunkBlockChannel();
+			if (!flag) {
+				std::array<unsigned char, bytesPerValue * 1024> data;
+				reader.readBytes(&data[0], bytesPerValue * 1024);
+				cbcLayer[i] = data;
+			} else {
+				std::array<unsigned char, bytesPerValue> data;
+				reader.readBytes(&data[0], bytesPerValue);
+				jj[i] = data;
+			}
+		}
+	}
+
+	ChunkBlockChannel() {};
+	~ChunkBlockChannel() {};
 };

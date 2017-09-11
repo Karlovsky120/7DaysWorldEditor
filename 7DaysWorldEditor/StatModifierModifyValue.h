@@ -4,15 +4,14 @@
 
 class BinaryMemoryReader;
 
-class StatModifierModifyValue : public StatModifier
-{
+class StatModifierModifyValue : public StatModifier {
 public:
-	float *unknownV;
-	float *unknownF;
+	float unknownV;
+	float unknownF;
 
 	StatModifierModifyValue();
 	~StatModifierModifyValue();
 
 private:
-	void readMore(BinaryMemoryReader *const reader) override;
+	void readMore(BinaryMemoryReader &reader) override;
 };

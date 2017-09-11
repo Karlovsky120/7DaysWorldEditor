@@ -3,13 +3,14 @@
 #include "TileEntity.h"
 #include "TraderData.h"
 
-class TileEntityTrader : public TileEntity
-{
+class BinaryMemoryReader;
+
+class TileEntityTrader : public TileEntity {
 public:
-	int *version;
+	int version;
 	TraderData traderData;
 
-	TileEntityTrader *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	TileEntityTrader();
 	~TileEntityTrader();

@@ -1,31 +1,31 @@
 #pragma once
 
+#include "ItemStack.h"
+#include "ItemValue.h"
 #include "TileEntity.h"
 
 #include <vector>
 
-class ItemStack;
-class ItemValue;
+class BinaryMemoryReader;
 
 class TileEntityCampfire: public TileEntity
 {
 public:
+	unsigned _int64 ib;
 
-	unsigned _int64 *ib;
+	std::vector<ItemStack> gb;
+	std::vector<ItemStack> kb;
 
-	std::vector<ItemStack *> gb;
-	std::vector<ItemStack *> kb;
+	ItemStack xb;
+	ItemStack mb;
 
-	ItemStack *xb;
-	ItemStack *mb;
+	int hb;
+	ItemValue tb;
 
-	int *hb;
-	ItemValue *tb;
+	bool isCooking;
+	float db;
 
-	bool *isCooking;
-	float *db;
-
-	TileEntityCampfire *read(BinaryMemoryReader *const reader) override;
+	void read(BinaryMemoryReader &reader) override;
 
 	TileEntityCampfire();
 	~TileEntityCampfire();

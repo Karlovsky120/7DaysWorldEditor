@@ -1,8 +1,10 @@
 #pragma once
 
+#include "BuffTimer.h"
+#include "Stat.h"
+
+
 class BinaryMemoryReader;
-class BuffTimer;
-class Stat;
 
 enum BuffCategoryFlag;
 
@@ -14,28 +16,27 @@ enum StatModifierClassId {
 	StatModifierMulValueE
 };
 
-class StatModifier
-{
+class StatModifier {
 public:
-	int *statModifierVersion;
-	unsigned char *enumId;
+	int statModifierVersion;
+	unsigned char enumId;
 
-	int *UID;
-	unsigned short *fileId;
-	int *categoryFlag;
-	int *stackCount;
-	BuffTimer *buffTimer;
+	int UID;
+	unsigned short fileId;
+	int categoryFlag;
+	int stackCount;
 
-	Stat *stat;
+	BuffTimer buffTimer;
+	Stat stat;
 
-	StatModifier *read(BinaryMemoryReader *const reader);
-	static StatModifier *instantiate(StatModifierClassId id);
+	static std::shared_ptr<StatModifier> read(BinaryMemoryReader &reader);
+	static std::shared_ptr<StatModifier> instantiate(StatModifierClassId id);
 
 	StatModifier();
 	~StatModifier();
 
 protected:
-	void virtual readMore(BinaryMemoryReader *const reader);
+	void virtual readMore(BinaryMemoryReader &reader);
 
 };
 

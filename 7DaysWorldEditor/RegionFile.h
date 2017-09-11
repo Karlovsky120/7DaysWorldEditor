@@ -15,6 +15,7 @@ public:
 	void read(std::string path, const int rX, const int rZ);
 	void write(std::string path);
 
+	bool chunkExists(const int rcX, const int rcZ);
 	bool getChunk(Chunk &chunk, const int rcX, const int rcZ);
 
 	RegionFile(const std::string path, const int rX, const int rZ);

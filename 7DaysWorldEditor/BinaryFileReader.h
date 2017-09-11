@@ -8,16 +8,33 @@ class BinaryFileReader {
 public:
 	std::ifstream baseStream;
 
-	inline void readBoolean(bool *data) {
+	template <typename T>
+	inline void read(T &data) {
+		baseStream.read((char *)&data, sizeof(T));
+	}
+
+	template <>
+	inline void read(std::string &data) {
+		char length;
+		baseStream.read(&length, 1);
+
+		unsigned char *characters = new unsigned char[length];
+		baseStream.read((char*)characters, length);
+
+		data = std::string((char*)characters, length);
+		delete[] characters;
+	}
+
+	inline void readBytes(unsigned char data[], int count) {
+		baseStream.read((char*)data, count);
+	}
+
+	/*inline void readBoolean(bool *data) {
 		baseStream.read((char*)data, 1);
 	}
 
 	inline void readByte(unsigned char *data) {
 		baseStream.read((char*)data, 1);
-	}
-
-	inline void readBytes(unsigned char data[], int count) {
-		baseStream.read((char*)data, count);
 	}
 
 	inline void readDouble(double * data) {
@@ -64,7 +81,7 @@ public:
 
 	inline void readUInt64(unsigned _int64 *data) {
 		baseStream.read((char*)data, 8);
-	}
+	}*/
 
 	inline void seek(int amount, std::ios_base::seekdir seekStart) {
 		baseStream.seekg(amount, seekStart);

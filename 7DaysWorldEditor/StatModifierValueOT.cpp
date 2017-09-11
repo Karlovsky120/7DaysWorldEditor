@@ -2,13 +2,13 @@
 
 #include "BinaryMemoryReader.h"
 
-void StatModifierValueOT::readMore(BinaryMemoryReader * const reader) {
+void StatModifierValueOT::readMore(BinaryMemoryReader &reader) {
 	StatModifier::readMore(reader);
 
-	reader->read<float>(&unknownV);
-	reader->read<float>(&unknownF);
-	reader->read<float>(&frequency);
-	reader->read<float>(&unknownL);
+	reader.read<float>(unknownV);
+	reader.read<float>(unknownF);
+	reader.read<float>(frequency);
+	reader.read<float>(unknownL);
 }
 
 StatModifierValueOT::StatModifierValueOT() {}

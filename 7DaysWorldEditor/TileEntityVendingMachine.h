@@ -8,24 +8,23 @@
 
 class BinaryMemoryReader;
 
-class TileEntityVendingMachine : public TileEntityTrader
-{
+class TileEntityVendingMachine : public TileEntityTrader {
 public:
 
-	int *version;
-	bool *vd;
-	std::string *gd;
-	std::string *xd;
+	int version;
+	bool vd;
+	std::string gd;
+	std::string xd;
 
-	std::vector<std::string *> kd;
+	std::vector<std::string> kd;
 
-	unsigned _int64 *bd;
+	unsigned _int64 bd;
 
 	TraderData traderData;
 
-	unsigned _int64 *dd;
+	unsigned _int64 dd;
 
-	TileEntityVendingMachine *read(BinaryMemoryReader *const reader) override;
+	void read(BinaryMemoryReader &reader) override;
 
 	TileEntityVendingMachine();
 	~TileEntityVendingMachine();

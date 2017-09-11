@@ -1,19 +1,19 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class BinaryMemoryReader;
 
 class ChunkCustomData {
 public:
-	std::string *key;
-	unsigned _int64 *expiresInWorldTime;
-	bool *isSavedToNetwork;
+	std::string key;
+	unsigned _int64 expiresInWorldTime;
+	bool isSavedToNetwork;
 
-	#pragma warning(suppress: 4200) // Array size determined when being read.
-	unsigned char data[];
+	std::vector<unsigned char> data;
 
-	ChunkCustomData *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	ChunkCustomData();
 	~ChunkCustomData();

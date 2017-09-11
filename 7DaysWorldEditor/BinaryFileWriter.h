@@ -61,12 +61,15 @@ public:
 	}
 
 	inline void seek(int amount, std::ios_base::seekdir seekStart) {
+	#pragma warning(suppress: 4244)
 		int currentPosition = baseStream.tellp();
 
 		// Get the start and the end of the file to get the size.
 		baseStream.seekp(0, std::ios_base::beg);
+	#pragma warning(suppress: 4244)
 		int start = baseStream.tellp();
 		baseStream.seekp(0, std::ios_base::end);
+	#pragma warning(suppress: 4244)
 		int end = baseStream.tellp();
 		baseStream.seekp(currentPosition, std::ios_base::beg);
 

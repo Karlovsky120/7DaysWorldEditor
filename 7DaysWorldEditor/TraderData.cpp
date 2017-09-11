@@ -2,27 +2,27 @@
 
 #include "BinaryMemoryReader.h"
 
-TraderData *TraderData::read(BinaryMemoryReader *const reader)
+void TraderData::read(BinaryMemoryReader &reader)
 {
-	reader->read<int>(&traderID);
-	reader->read<unsigned _int64>(&lastInventoryUpdate);
-	reader->read<unsigned char>(&fileVersion);
+	reader.read<int>(traderID);
+	reader.read<unsigned _int64>(lastInventoryUpdate);
+	reader.read<unsigned char>(fileVersion);
 
-	primaryInventory = ItemStack::readItemStack(reader);
+	//primaryInventory = ItemStack::readItemStack(reader);
+	reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory);
 
-	unsigned char *tierItemGroupCount;
-	reader->read<unsigned char>(&tierItemGroupCount);
+	unsigned char tierItemGroupCount;
+	reader.read<unsigned char>(tierItemGroupCount);
 	
-	for (int i = 0; i < *tierItemGroupCount; ++i) {
-		std::vector<ItemStack *> *tierItemGroup;
-		tierItemGroup = ItemStack::readItemStack(reader);
+	for (int i = 0; i < tierItemGroupCount; ++i) {
+		std::vector<ItemStack> tierItemGroup;
+		//tierItemGroup = ItemStack::readItemStack(reader);
+		reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup);
 		tierItemGroups.push_back(tierItemGroup);
 	}
 
-	reader->read<int>(&availableMoney);
-	reader->readMultipleSimple<char, int>(jj);
-
-	return this;
+	reader.read<int>(availableMoney);
+	reader.readMultipleSimple<char, int>(jj);
 }
 
 TraderData::TraderData() {}

@@ -4,15 +4,14 @@
 
 class BinaryMemoryReader;
 
-class StatModifierMax : public StatModifier
-{
+class StatModifierMax : public StatModifier {
 public:
-	float *unknownV;
-	float *unknownF;
+	float unknownV;
+	float unknownF;
 
 	StatModifierMax();
 	~StatModifierMax();
 
 private:
-	void readMore(BinaryMemoryReader *const reader) override;
+	void readMore(BinaryMemoryReader &reader) override;
 };

@@ -4,27 +4,22 @@
 #include "ItemStack.h"
 #include "ItemValue.h"
 
-TileEntityForge *TileEntityForge::read(BinaryMemoryReader *const reader)
+void TileEntityForge::read(BinaryMemoryReader &reader)
 {
 	TileEntity::read(reader);
 
-	reader->read<unsigned _int64>(&ib);
+	reader.read<unsigned _int64>(ib);
 
-	reader->readMultipleComplex<ItemStack, unsigned char>(gb);
-	reader->readMultipleComplex<ItemStack, unsigned char>(kb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
 
-	fd = new ItemStack();
-	fd->read(reader);
-	mb = new ItemStack();
-	mb->read(reader);
+	fd.read(reader);
+	mb.read(reader);
 
-	reader->read<int>(&hb);
-	reader->read<short>(&qd);
-	reader->read<short>(&yd);
-	tb = new ItemValue();
-	tb->read(reader);
-
-	return this;
+	reader.read<int>(hb);
+	reader.read<short>(qd);
+	reader.read<short>(yd);
+	tb.read(reader);
 }
 
 TileEntityForge::TileEntityForge() {}

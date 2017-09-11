@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -8,12 +9,12 @@ class BinaryMemoryReader;
 class BuffDescriptor
 {
 public:
-	int *buffDescriptorVersion;
-	int *categoryFlags;
-	std::string *notificationClass;
-	std::vector<std::string *> overrides;
+	int buffDescriptorVersion;
+	int categoryFlags;
+	std::string notificationClass;
+	std::vector<std::string> overrides;
 
-	BuffDescriptor *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	BuffDescriptor();
 	~BuffDescriptor();

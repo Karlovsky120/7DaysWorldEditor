@@ -3,26 +3,24 @@
 #include "Coordinate.h"
 #include "TileEntity.h"
 
-#include <algorithm>
 #include <vector>
 
+class BinaryMemoryReader;
 class ItemStack;
 
-class TileEntityLootContainer :public TileEntity
-{
+class TileEntityLootContainer : public TileEntity {
 public:
-
-	unsigned short *lootListIndex;
+	unsigned short lootListIndex;
 	Coordinate<unsigned short> ad;
-	bool *bTouched;
-	unsigned int *worldTimeTouched;
-	bool *bPlayerBackpack;
+	bool bTouched;
+	unsigned int worldTimeTouched;
+	bool bPlayerBackpack;
 
-	std::vector<ItemStack *> items;
+	std::vector<ItemStack> items;
 
-	bool *bPlayerStorage;
+	bool bPlayerStorage;
 
-	TileEntityLootContainer *read(BinaryMemoryReader *const reader) override;
+	void read(BinaryMemoryReader &reader) override;
 
 	TileEntityLootContainer();
 	~TileEntityLootContainer();

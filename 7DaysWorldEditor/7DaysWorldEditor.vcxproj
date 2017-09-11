@@ -211,16 +211,17 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryMemoryReader.cpp" />
     <ClCompile Include="BodyDamage.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffDescriptor.cpp" />
     <ClCompile Include="BuffModifier.cpp" />
+    <ClCompile Include="BuffModifierSetTickRate.cpp" />
     <ClCompile Include="BuffTimer.cpp" />
     <ClCompile Include="BuffTimerDuration.cpp" />
     <ClCompile Include="BuffTimerNull.cpp" />
     <ClCompile Include="BuffTimerScheduled.cpp" />
     <ClCompile Include="Chunk.cpp" />
-    <ClCompile Include="ChunkBlockChannel.cpp" />
     <ClCompile Include="ChunkBlockLayer.cpp" />
     <ClCompile Include="ChunkCustomData.cpp" />
     <ClCompile Include="EntityCreationData.cpp" />
@@ -236,6 +237,8 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeQueueItem.cpp" />
     <ClCompile Include="RegionFile.cpp" />
+    <ClCompile Include="SleeperVolume.cpp" />
+    <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatModifier.cpp" />
     <ClCompile Include="StatModifierMax.cpp" />
@@ -246,7 +249,12 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClCompile Include="TileEntity.cpp" />
     <ClCompile Include="TileEntityCampfire.cpp" />
     <ClCompile Include="TileEntityForge.cpp" />
+    <ClCompile Include="TileEntityGoreBlock.cpp" />
     <ClCompile Include="TileEntityLootContainer.cpp" />
+    <ClCompile Include="TileEntityPowered.cpp" />
+    <ClCompile Include="TileEntityPoweredBlock.cpp" />
+    <ClCompile Include="TileEntityPoweredRangedTrap.cpp" />
+    <ClCompile Include="TileEntityPoweredTrigger.cpp" />
     <ClCompile Include="TileEntitySecure.cpp" />
     <ClCompile Include="TileEntitySecureDoor.cpp" />
     <ClCompile Include="TileEntitySecureLootContainer.cpp" />
@@ -254,6 +262,7 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClCompile Include="TileEntityTrader.cpp" />
     <ClCompile Include="TileEntityVendingMachine.cpp" />
     <ClCompile Include="TileEntityWorkstation.cpp" />
+    <ClCompile Include="TileEntityPowerSource.cpp" />
     <ClCompile Include="TraderData.cpp" />
     <ClCompile Include="Unzip.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -267,6 +276,7 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffDescriptor.h" />
     <ClInclude Include="BuffModifier.h" />
+    <ClInclude Include="BuffModifierSetTickRate.h" />
     <ClInclude Include="BuffTimer.h" />
     <ClInclude Include="BuffTimerDuration.h" />
     <ClInclude Include="BuffTimerNull.h" />
@@ -288,6 +298,8 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
+    <ClInclude Include="SleeperVolume.h" />
+    <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatModifier.h" />
     <ClInclude Include="StatModifierMax.h" />
@@ -298,7 +310,12 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="TileEntity.h" />
     <ClInclude Include="TileEntityCampfire.h" />
     <ClInclude Include="TileEntityForge.h" />
+    <ClInclude Include="TileEntityGoreBlock.h" />
     <ClInclude Include="TileEntityLootContainer.h" />
+    <ClInclude Include="TileEntityPowered.h" />
+    <ClInclude Include="TileEntityPoweredBlock.h" />
+    <ClInclude Include="TileEntityPoweredRangedTrap.h" />
+    <ClInclude Include="TileEntityPoweredTrigger.h" />
     <ClInclude Include="TileEntitySecure.h" />
     <ClInclude Include="TileEntitySecureDoor.h" />
     <ClInclude Include="TileEntitySecureLootContainer.h" />
@@ -306,6 +323,7 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="TileEntityTrader.h" />
     <ClInclude Include="TileEntityVendingMachine.h" />
     <ClInclude Include="TileEntityWorkstation.h" />
+    <ClInclude Include="TileEntityPowerSource.h" />
     <ClInclude Include="TraderData.h" />
     <ClInclude Include="Unzip.h" />
     <ClInclude Include="Utils.h" />

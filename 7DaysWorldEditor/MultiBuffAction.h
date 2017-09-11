@@ -1,9 +1,10 @@
 #pragma once
 
+#include "BuffTimer.h"
+
 #include <string>
 
 class BinaryMemoryReader;
-class BuffTimer;
 
 enum Command {
 	Damage,
@@ -20,25 +21,24 @@ enum Command {
 	Buff
 };
 
-class MultiBuffAction
-{
+class MultiBuffAction {
 public:
-	int *multiBuffActionVersion;
-	unsigned char *commandId;
-	float *unknownC;
-	int *categoryFlags;
-	int *unknownV;
-	std::string *unknownO;
-	std::string *unknownW;
-	std::string *context;
+	int multiBuffActionVersion;
+	unsigned char commandId;
+	float unknownC;
+	int categoryFlags;
+	int unknownV;
+	std::string unknownO;
+	std::string unknownW;
+	std::string context;
 
-	BuffTimer *unknownJ;
-	BuffTimer *unknownS;
+	BuffTimer unknownJ;
+	BuffTimer unknownS;
 
-	bool *unknownF;
-	bool *unknownI;
+	bool unknownF;
+	bool unknownI;
 
-	MultiBuffAction *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	MultiBuffAction();
 	~MultiBuffAction();

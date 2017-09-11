@@ -2,16 +2,15 @@
 
 class BinaryMemoryReader;
 
-class MultiBuffVariable
-{
+class MultiBuffVariable {
 public:
-	int *multiBuffVariableVersion;
-	float *unknownQ;
-	float *unknownJ;
-	float *unknownS;
-	float *unknownC;
+	int multiBuffVariableVersion;
+	float unknownQ;
+	float unknownJ;
+	float unknownS;
+	float unknownC;
 
-	MultiBuffVariable *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	MultiBuffVariable();
 	~MultiBuffVariable();

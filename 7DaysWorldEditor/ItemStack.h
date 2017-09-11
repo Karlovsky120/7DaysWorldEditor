@@ -1,19 +1,19 @@
 #pragma once
 
+#include "ItemValue.h"
+
 #include <vector>
 
 class BinaryMemoryReader;
-class ItemValue;
 
 class ItemStack
 {
 public:
-	short *count;
+	short count;
+	ItemValue itemValue;
 
-	ItemValue *itemValue;
-
-	static std::vector<ItemStack *> *readItemStack(BinaryMemoryReader *const reader);
-	ItemStack *read(BinaryMemoryReader *const reader);
+	//static std::vector<ItemStack *> *readItemStack(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	ItemStack();
 	~ItemStack();

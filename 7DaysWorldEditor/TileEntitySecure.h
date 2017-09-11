@@ -9,14 +9,14 @@ class BinaryMemeoryReader;
 class TileEntitySecure : public TileEntityLootContainer
 {
 public:
-	int *version;
-	bool *md;
-	bool *vd;
-	std::string *gd;
-	std::vector<std::string *> kd;
-	std::string *xd;
+	int version;
+	bool md;
+	bool vd;
+	std::string gd;
+	std::vector<std::string> kd;
+	std::string xd;
 
-	TileEntitySecure *read(BinaryMemoryReader *const reader) override;
+	void read(BinaryMemoryReader &reader) override;
 
 	TileEntitySecure();
 	~TileEntitySecure();

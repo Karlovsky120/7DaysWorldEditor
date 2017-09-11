@@ -7,14 +7,14 @@ class BinaryMemoryReader;
 class MultiBuffPrefabAttachmentDescriptor
 {
 public:
-	int *multiBuffPrefabAttachmentDescriptorVersion;
-	std::string *prefabName;
-	std::string *transformPath;
-	float *TTL;
-	bool *firstPerson;
-	bool *thirdPerson;
+	int multiBuffPrefabAttachmentDescriptorVersion;
+	std::string prefabName;
+	std::string transformPath;
+	float TTL;
+	bool firstPerson;
+	bool thirdPerson;
 
-	MultiBuffPrefabAttachmentDescriptor *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	MultiBuffPrefabAttachmentDescriptor();
 	~MultiBuffPrefabAttachmentDescriptor();

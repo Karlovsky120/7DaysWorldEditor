@@ -5,20 +5,22 @@
 #include <string>
 #include <vector>
 
+class BinaryMemoryReader;
+
 class TileEntitySign : public TileEntity
 {
 public:
-	int  *version;
+	int  version;
 
-	bool *vd;
-	std::string *gd;
-	std::string *xd;
+	bool vd;
+	std::string gd;
+	std::string xd;
 
-	std::vector<std::string *> kd;
+	std::vector<std::string> kd;
 
-	std::string *signText;
+	std::string signText;
 
-	TileEntitySign *read(BinaryMemoryReader *const reader) override;
+	void read(BinaryMemoryReader &reader) override;
 
 	TileEntitySign();
 	~TileEntitySign();

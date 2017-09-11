@@ -2,13 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 
-TileEntityTrader *TileEntityTrader::read(BinaryMemoryReader *const reader) {
+void TileEntityTrader::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);
 
-	reader->read<int>(&version);
+	reader.read<int>(version);
 	traderData.read(reader);
-
-	return this;
 }
 
 TileEntityTrader::TileEntityTrader() {}

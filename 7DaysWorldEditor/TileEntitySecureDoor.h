@@ -2,8 +2,7 @@
 
 #include "TileEntitySecure.h"
 
-class TileEntitySecureDoor : public TileEntitySecure
-{
+class TileEntitySecureDoor : public TileEntitySecure {
 public:
 	TileEntitySecureDoor();
 	~TileEntitySecureDoor();

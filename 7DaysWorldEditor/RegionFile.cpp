@@ -29,20 +29,19 @@ void RegionFile::read(std::string path, const int rX, const int rZ) {
 			reader.seek(4 + 4 * i, std::ios_base::beg);
 
 			unsigned short offset;
-
-			reader.readUInt16(&offset);
+			reader.read<unsigned short>(offset);
 
 			if (offset != 0) {
 				reader.seek(4100 + 4 * i, std::ios_base::beg);
 
 				int timeStamp;
-				reader.readInt32(&timeStamp);
+				reader.read<int>(timeStamp);
 				timeStamps.push_back(timeStamp);
 
 				reader.seek(offset * 4096 + 4, std::ios_base::beg);
 
 				int length;
-				reader.readInt32(&length);
+				reader.read<int>(length);
 
 				reader.seek(1, std::ios_base::cur);
 
@@ -98,12 +97,14 @@ void RegionFile::write(std::string path) {
 
 	for (int j = 0; j < 1024; ++j) {
 		if (zippedChunks[j].size() != 0) {
+		#pragma warning(suppress: 4244)
 			int position = writer.baseStream.tellp();
 
 			int pA = ((position - 4) / 4096) + 1;
 			offsets.push_back(((position - 4) / 4096) + 1);
 			writer.baseStream.seekp((offsets[j] * 4096) + 4, std::ios_base::beg);
 
+		#pragma warning(suppress: 4267)
 			int chunkSize = zippedChunks[j].size();
 
 			int BB = (chunkSize / 4096) + 1;
@@ -132,11 +133,15 @@ void RegionFile::write(std::string path) {
 	}
 }
 
+bool RegionFile::chunkExists(const int rcX, const int rcZ) {
+	return zippedChunks[rcX + 32 * rcZ].size() > 0;
+}
+
 bool RegionFile::getChunk(Chunk &chunk, const int rcX, const int rcZ)
 {
 	std::vector<unsigned char> &zippedChunk = zippedChunks[rcX + 32 * rcZ];
 
-	if (zippedChunk.size() > 0) {
+	if (chunkExists(rcX, rcZ)) {
 		return chunk.unpackChunk(chunk, zippedChunks[rcX + 32 * rcZ]);
 	}
 

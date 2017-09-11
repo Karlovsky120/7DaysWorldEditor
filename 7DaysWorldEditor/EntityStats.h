@@ -1,14 +1,16 @@
 #pragma once
 
+#include "Buff.h"
+#include "MultiBuffVariable.h"
+#include "Stat.h"
+#include "StatModifier.h"
+
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
 class BinaryMemoryReader;
-class Buff;
-class MultiBuffVariable;
-class Stat;
-class StatModifier;
 
 enum BuffCategoryFlags {
 	None = 0,
@@ -33,28 +35,28 @@ enum BuffCategoryFlags {
 class EntityStats
 {
 public:
-	int *statsVersion;
-	int *buffCategoryFlags;
+	int statsVersion;
+	int buffCategoryFlags;
 
-	std::vector<int *> immunity;
-	std::map<unsigned short *, StatModifier *> idTable;
+	std::vector<int> immunity;
+	std::map<unsigned short, std::shared_ptr<StatModifier>> idTable;
 
-	Stat *health;
-	Stat *stamina;
-	Stat *sickness;
-	Stat *gassines;
-	Stat *speedModifier;
-	Stat *wellness;
-	Stat *coreTemp;
-	Stat *food;
-	Stat *water;
+	Stat health;
+	Stat stamina;
+	Stat sickness;
+	Stat gassines;
+	Stat speedModifier;
+	Stat wellness;
+	Stat coreTemp;
+	Stat food;
+	Stat water;
 
-	float *waterLevel;
+	float waterLevel;
 
-	std::vector<Buff *> buffList;
-	std::map<std::string *, MultiBuffVariable *> multiBuffVariableMap;
+	std::vector<std::shared_ptr<Buff>> buffList;
+	std::map<std::string, MultiBuffVariable> multiBuffVariableMap;
 
-	EntityStats *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	EntityStats();
 	~EntityStats();

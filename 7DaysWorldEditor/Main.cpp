@@ -8,12 +8,11 @@
 #include "RegionFile.h"
 #include "Chunk.h"
 
-
 log4cplus::Logger mainLog;
 std::string currentDirectory;
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
+
 	std::string argv_str(argv[0]);
 	currentDirectory = argv_str.substr(0, argv_str.find_last_of("\\")) + "\\";
 	
@@ -25,23 +24,28 @@ int main(int argc, char* argv[])
 	mainLog = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("mainLog"));
 	LOG4CPLUS_INFO(mainLog, LOG4CPLUS_TEXT("Execution started!"));
 	
-	for (int k = -2; k < 10; k++) {
 
-		int a = 5;
+	/*RegionFile region(currentDirectory + "Dummy152b8\\Region", -2, -3);
+	Chunk *chunk = new Chunk();
+	region.getChunk(*chunk, 11, 10);*/
 
-		for (int l = -10; l < 10; l++) {
-			RegionFile region(currentDirectory + "Dummy152b8\\Region", k, l); //-4 //-3
+	for (int k = -4; k < -1; k++) {
 
-			if (region.timeStamps.capacity() > 0) {
-				region.write(currentDirectory + "Dummy15.2b8");
-				Chunk *chunk = new Chunk();
+		for (int l = -3; l < 1; ++l) {
+			RegionFile regionFile(currentDirectory + "A16.1b1\\Region", k, l);
 
+			if (regionFile.timeStamps.capacity() > 0) {
+				regionFile.write(currentDirectory + "A16.1b1\\data");
 				for (int i = 0; i < 32; ++i) {
 
-					int  h = 5;
-
 					for (int j = 0; j < 32; ++j) {
-						region.getChunk(*chunk, i, j);
+						if (regionFile.chunkExists(i, j)) {
+
+							if (k == -4 && l == -1 && i == 25 && j == 10) {
+								Chunk chunk = Chunk();
+								regionFile.getChunk(chunk, i, j);
+							}
+						}
 					}
 				}
 			}

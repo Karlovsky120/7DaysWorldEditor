@@ -7,13 +7,13 @@ class BinaryMemoryReader;
 class BuffTimerDuration : public BuffTimer
 {
 public:
-	float *duration;
-	float *elapsed;
+	float duration;
+	float elapsed;
 
 	BuffTimerDuration();
 	~BuffTimerDuration();
 
-private:
-	BuffTimerDuration *readMore(BinaryMemoryReader *const reader);
+protected:
+	void readMore(BinaryMemoryReader &reader) override;
 };
 

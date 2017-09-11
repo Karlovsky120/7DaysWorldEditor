@@ -1,22 +1,23 @@
 #pragma once
 
+#include "ItemValue.h"
+#include "Recipe.h"
+
 class BinaryMemoryReader;
-class  ItemValue;
-class  Recipe;
 
 class RecipeQueueItem
 {
 public:
-	int *amountToRepair;
-	float *craftingTimeLeft;
-	bool *isCrafting;
-	int *multiplier;
-	int *quality;
-	Recipe *recipe;
-	ItemValue *repairItem;
-	int *startingEntityId;
+	int amountToRepair;
+	float craftingTimeLeft;
+	bool isCrafting;
+	int multiplier;
+	int quality;
+	Recipe recipe;
+	ItemValue repairItem;
+	int startingEntityId;
 
-	RecipeQueueItem *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	RecipeQueueItem();
 	~RecipeQueueItem();

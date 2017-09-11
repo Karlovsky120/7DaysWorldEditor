@@ -5,31 +5,31 @@ class BinaryMemoryReader;
 class BodyDamage {
 
 public:
-	int *bodyDamageVersion;
+	int bodyDamageVersion;
 
-	short *chest;
-	bool *crippledLeftLeg;
-	bool *crippledRightLeg;
-	bool *dismemberedHead;
-	bool *dismemberedLeftLowerArm;
-	bool *dismemberedLeftLowerLeg;
-	bool *dismemberedLeftUpperArm;
-	bool *dismemberedLeftUpperLeg;
-	bool *dismemberedRightLowerArm;
-	bool *dismemberedRightLowerLeg;
-	bool *dismemberedRightUpperArm;
-	bool *dismemberedRightUpperLeg;
-	short *head;
-	short *leftLowerArm;
-	short *leftLowerLeg;
-	short *leftUpperArm;
-	short *leftUpperLeg;
-	short *rightLowerArm;
-	short *rightLowerLeg;
-	short *rightUpperArm;
-	short *rightUpperLeg;
+	short chest;
+	bool crippledLeftLeg;
+	bool crippledRightLeg;
+	bool dismemberedHead;
+	bool dismemberedLeftLowerArm;
+	bool dismemberedLeftLowerLeg;
+	bool dismemberedLeftUpperArm;
+	bool dismemberedLeftUpperLeg;
+	bool dismemberedRightLowerArm;
+	bool dismemberedRightLowerLeg;
+	bool dismemberedRightUpperArm;
+	bool dismemberedRightUpperLeg;
+	short head;
+	short leftLowerArm;
+	short leftLowerLeg;
+	short leftUpperArm;
+	short leftUpperLeg;
+	short rightLowerArm;
+	short rightLowerLeg;
+	short rightUpperArm;
+	short rightUpperLeg;
 
-	BodyDamage *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	BodyDamage();
 	~BodyDamage();

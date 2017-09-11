@@ -2,25 +2,29 @@
 
 #include "BinaryMemoryReader.h"
 
-ChunkBlockLayer *ChunkBlockLayer::read(BinaryMemoryReader *const reader) {
+void ChunkBlockLayer::read(BinaryMemoryReader &reader) {
 
-	bool *flag;
-	reader->read<bool>(&flag);
+	bool flag;
+	reader.read<bool>(flag);
 
-	if (*flag) {
-		reader->readBytes((unsigned char**)&oh, 1024);
+	if (flag) {
+		oh.first = true;
+		reader.readBytes(&oh.second[0], 1024);
+		jh.first = false;
 	} else {
-		reader->read<unsigned char>(&jh);
+		jh.first = true;
+		reader.read<unsigned char>(jh.second);
+		oh.first = false;
 	}
 
-	bool *flag2;
-	reader->read<bool>(&flag2);
+	reader.read<bool>(flag);
 
-	if (*flag2) {
-		reader->readBytes((unsigned char**)&fh, 3072);
+	if (flag) {
+		fh.first = true;
+		reader.readBytes(&fh.second[0], 3072);
+	} else {
+		fh.first = false;
 	}
-
-	return this;
 }
 
 ChunkBlockLayer::ChunkBlockLayer() {}

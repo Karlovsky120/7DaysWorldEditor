@@ -4,27 +4,23 @@
 #include "ItemStack.h"
 #include "ItemValue.h"
 
-TileEntityCampfire *TileEntityCampfire::read(BinaryMemoryReader *const reader)
+void TileEntityCampfire::read(BinaryMemoryReader &reader)
 {
 	TileEntity::read(reader);
 
-	reader->read<unsigned _int64>(&ib);
+	reader.read<unsigned _int64>(ib);
 
-	reader->readMultipleComplex<ItemStack, unsigned char>(gb);
-	reader->readMultipleComplex<ItemStack, unsigned char>(kb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
 
-	xb = new ItemStack();
-	xb->read(reader);
-	mb = new ItemStack();
-	mb->read(reader);
+	xb.read(reader);
+	mb.read(reader);
 
-	reader->read<int>(&hb);
-	tb = new ItemValue();
-	tb->read(reader);
-	reader->read<bool>(&isCooking);
-	reader->read<float>(&db);
+	reader.read<int>(hb);
 
-	return this;
+	tb.read(reader);
+	reader.read<bool>(isCooking);
+	reader.read<float>(db);
 }
 
 TileEntityCampfire::TileEntityCampfire() {}

@@ -11,44 +11,43 @@
 #include "TileEntityVendingMachine.h"
 #include "TileEntityWorkstation.h"
 
-TileEntity *TileEntity::read(BinaryMemoryReader *const reader)
-{
-	reader->read<unsigned short>(&tileEntityVersion);
-	reader->read<int>(&localChunkPosition.x);
-	reader->read<int>(&localChunkPosition.y);
-	reader->read<int>(&localChunkPosition.z);
+#include <assert.h>
 
-	reader->read<int>(&entityId);
+void TileEntity::read(BinaryMemoryReader &reader) {
+	reader.read<unsigned short>(tileEntityVersion);
 
-	reader->read<unsigned _int64>(&worldTimeHeatMapSomething);
+	reader.read<int>(localChunkPosition.x);
+	reader.read<int>(localChunkPosition.y);
+	reader.read<int>(localChunkPosition.z);
 
-	return this;
+	reader.read<int>(entityId);
+
+	reader.read<unsigned _int64>(worldTimeHeatMapSomething);
 }
 
-TileEntity *TileEntity::instantiate(TileEntityType type)
-{
+std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityType type) {
 	switch (type) {
 	case Campfire:
-		return new TileEntityCampfire();
+		return std::make_shared<TileEntityCampfire>();
 	case Forge:
-		return new TileEntityForge();
+		return std::make_shared<TileEntityForge>();
 	case Loot:
-		return new TileEntityLootContainer();
+		return std::make_shared<TileEntityLootContainer>();
 	case SecureDoor:
-		return new TileEntitySecureDoor();
+		return std::make_shared<TileEntitySecureDoor>();
 	case SecureLoot:
-		return new TileEntitySecureLootContainer();
+		return std::make_shared<TileEntitySecureLootContainer>();
 	case Sign:
-		return new TileEntitySign();
+		return std::make_shared<TileEntitySign>();
 	case Trader:
-		return new TileEntityTrader();
+		return std::make_shared<TileEntityTrader>();
 	case VendingMachine:
-		return new TileEntityVendingMachine();
+		return std::make_shared<TileEntityVendingMachine>();
 	case Workstation:
-		return new TileEntityWorkstation();
+		return std::make_shared<TileEntityWorkstation>();
 	}
 
-	return new TileEntity();
+	assert(false);
 }
 
 TileEntity::TileEntity(){}

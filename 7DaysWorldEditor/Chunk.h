@@ -4,6 +4,7 @@
 #include "Coordinate.h"
 
 #include <map>
+#include <memory>
 #include <vector>
 
 class ChunkBlockLayer;
@@ -12,58 +13,56 @@ class EntityCreationData;
 class EntitySpawner;
 class TileEntity;
 
-class string;
-
-class Chunk
-{
+class Chunk {
 private:
-	unsigned char *readMemoryStart;
-	unsigned char *readMemoryEnd;
+	void readChunk(Chunk &chunk, BinaryMemoryReader &reader);
 
-	bool unzipChunk(std::vector<unsigned char> &zipped, std::vector<unsigned char> &unzipped);
-	bool readChunk(Chunk &chunk, std::vector<unsigned char> &unzipped);
+	unsigned char header[4];
 
 public:
-	int *xm;
-	int *mm;
-	int *rm;
+	unsigned int version;
 
-	unsigned _int64 *savedInWorldTicks;
+	int xm;
+	int mm;
+	int rm;
 
-	std::vector<ChunkBlockLayer *> cbl;
+	unsigned _int64 savedInWorldTicks;
 
-	ChunkBlockChannel cbc;
+	std::map<unsigned int, ChunkBlockLayer> cbl;
+
+	ChunkBlockChannel<1> cbc;
 
 	unsigned char im[256];
 	unsigned char terrainHeight[256];
 	unsigned char biomeID[256];
 	unsigned char biomeIntentsity[1536];
 
-	unsigned char *dominantBiome;
-	unsigned char *areaMasterDominantBiome;
+	unsigned char dominantBiome;
+	unsigned char areaMasterDominantBiome;
 
-	std::map<std::string *, ChunkCustomData *> chunkCustomDataMap;
+	std::map<std::string, ChunkCustomData> chunkCustomDataMap;
 
 	unsigned char pr[256];
 	unsigned char jr[256];
 	unsigned char fr[256];
 
-	ChunkBlockChannel cm;
-	ChunkBlockChannel vm;
-	ChunkBlockChannel gm;
-	ChunkBlockChannel km;
+	ChunkBlockChannel<1> cm;
+	ChunkBlockChannel<1> vm;
+	ChunkBlockChannel<2> gm;
+	ChunkBlockChannel<6> km;
 
-	bool *needsLightCalculation;
+	bool needsLightCalculation;
 
-	std::vector<EntityCreationData *> entityCreationDataList;
+	std::vector<EntityCreationData> entityCreationDataList;	std::map<Coordinate<int>, std::shared_ptr<TileEntity>> tileEntityDictionary;
 
-	std::map<Coordinate<int> *, TileEntity *> tileEntityDictionary;
+	unsigned char entitySpawnerListSaveVersion;
+	std::vector<EntitySpawner> entitySpawnerList;
+	std::vector<unsigned short> ur;
 
-	unsigned char *entitySpawnerSaveVersion;
+	//std::vector<SleeperVolume> sleeperVolumeList;
+	std::vector<int> hk;
 
-	std::vector<EntitySpawner *> entitySpawnerList;
-
-	std::vector<unsigned short *> ur;
+	//bool isEdited;
 
 	bool unpackChunk(Chunk &chunk, std::vector<unsigned char> &zipped);
 

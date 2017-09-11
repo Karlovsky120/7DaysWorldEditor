@@ -1,33 +1,39 @@
 #pragma once
 
+#include "BuffDescriptor.h"
+#include "BuffModifier.h"
+#include "BuffTimer.h"
+#include "StatModifier.h"
+
 #include <map>
+#include <memory>
 #include <vector>
 
 class BinaryMemoryReader;
-class BuffDescriptor;
-class BuffTimer;
-class BuffModifier;
-class StatModifier;
 
-enum BuffClassId { MultiBuff, Count };
+enum BuffClassId {
+	MultiBuffType,
+	Count
+};
 
-class Buff
-{
+class Buff {
 public:
-	unsigned short *buffVersion;
-	unsigned char *buffClassId;
+	unsigned short buffVersion;
+	unsigned char buffClassId;
 
-	BuffTimer *timer;
-	BuffDescriptor *descriptor;
-	bool *isOverriden;
-	std::vector<StatModifier *> statModifierList;
-	std::vector<BuffModifier *> buffModifierList;
-	int *instigatorId;
+	std::shared_ptr<BuffTimer> timer;
+	BuffDescriptor descriptor;
+	bool isOverriden;
+	std::vector<std::shared_ptr<StatModifier>> statModifierList;
+	std::vector<BuffModifier> buffModifierList;
+	int instigatorId;
 
-	Buff *read(BinaryMemoryReader *const reader, std::map<unsigned short *, StatModifier *> idTable);
-	static Buff *instantiate(BuffClassId type);
-	virtual void readMore(BinaryMemoryReader *const reader, std::map<unsigned short *, StatModifier *> idTable);
+	static std::shared_ptr<Buff> instantiate(BuffClassId type);
+	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
 
 	Buff();
 	~Buff();
+
+protected:
+	virtual void readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
 };

@@ -2,11 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 
-void StatModifierMax::readMore(BinaryMemoryReader * const reader) {
+void StatModifierMax::readMore(BinaryMemoryReader &reader) {
 	StatModifier::readMore(reader);
 
-	reader->read<float>(&unknownV);
-	reader->read<float>(&unknownF);
+	reader.read<float>(unknownV);
+	reader.read<float>(unknownF);
 }
 
 StatModifierMax::StatModifierMax() {}

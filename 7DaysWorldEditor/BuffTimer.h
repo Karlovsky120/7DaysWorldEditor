@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 class BinaryMemoryReader;
 
 enum BuffTimerClassId {
@@ -8,19 +10,18 @@ enum BuffTimerClassId {
 	Scheduled
 };
 
-class BuffTimer
-{
+class BuffTimer {
 public:
-	int *buffTimerVersion;
-	unsigned char *buffTimerClassId;
+	int buffTimerVersion;
+	unsigned char buffTimerClassId;
 
-	BuffTimer *read(BinaryMemoryReader *const reader);
-	static BuffTimer *instantiate(BuffTimerClassId id);
+	static std::shared_ptr<BuffTimer> instantiate(BuffTimerClassId id);
+	static std::shared_ptr<BuffTimer> read(BinaryMemoryReader &reader);
 
 	BuffTimer();
 	~BuffTimer();
 
-private:
-	void readMore(BinaryMemoryReader *const reader);
+protected:
+	virtual void readMore(BinaryMemoryReader &reader);
 };
 

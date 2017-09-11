@@ -1,55 +1,60 @@
 #pragma once
 
+#include "BodyDamage.h"
 #include "Coordinate.h"
+#include "EntityStats.h"
+#include "ItemStack.h"
+#include "TileEntity.h"
 
-class BinaryMemoryReader;
-class BodyDamage;
-class EntityStats;
-class ItemStack;
-class TileEntity;
+#include <memory>
 
-enum SpawnerSource { Unindentified, Biome, StaticSpawner, Dynamic };
+enum SpawnerSource {
+	Unindentified,
+	Biome,
+	StaticSpawner,
+	Dynamic
+};
 
 class EntityCreationData {
 public:
-	unsigned char *entityCreationDataVersion;
-	int *entityClass;
+	unsigned char entityCreationDataVersion;
+	int entityClass;
 
-	int *id;
-	float *lifetime;
+	int id;
+	float lifetime;
 
 	Coordinate<float> pos;
 	Coordinate<float> rot;
 
-	bool *onGround;
+	bool onGround;
 
-	BodyDamage *bodyDamage;
+	BodyDamage bodyDamage;
 
-	bool *isStatsNotNull;
+	bool isStatsNotNull;
 
-	EntityStats *stats;
+	EntityStats stats;
 
-	short *deathTime;
+	short deathTime;
 
-	TileEntity *lootContainer;
+	std::shared_ptr<TileEntity> lootContainer;
 	Coordinate<int> homePosition;
 
-	short *unknownD;
-	unsigned char *spawnerSource;
+	short unknownD;
+	unsigned char spawnerSource;
 
-	int *belongsPlayerId;
-	ItemStack *itemStack;
-	char *someSByte;
+	int belongsPlayerId;
+	ItemStack itemStack;
+	char someSByte;
 
-	unsigned int *blockValueRawData;
+	unsigned int blockValue;
 
 	Coordinate<int> blockPosition;
 	Coordinate<float> fallTreeDir;
 
-	unsigned char *entityData;
-	bool *isTraderEntity;
+	std::vector<unsigned char> entityData;
+	bool isTraderEntity;
 
-	EntityCreationData *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	EntityCreationData();
 	~EntityCreationData();

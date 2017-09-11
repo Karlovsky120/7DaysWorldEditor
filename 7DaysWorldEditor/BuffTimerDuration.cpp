@@ -2,11 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 
-BuffTimerDuration *BuffTimerDuration::readMore(BinaryMemoryReader *const reader) {
-	BuffTimer::read(reader);
-	reader->read<float>(&elapsed);
-	reader->read<float>(&duration);
-	return this;
+void BuffTimerDuration::readMore(BinaryMemoryReader &reader) {
+	BuffTimer::readMore(reader);
+
+	reader.read<float>(elapsed);
+	reader.read<float>(duration);
 }
 
 BuffTimerDuration::BuffTimerDuration() {}

@@ -1,18 +1,18 @@
 #pragma once
 
-#include <vector>
+#include <utility>
+#include <array>
 
 class BinaryMemoryReader;
 
-class ChunkBlockLayer
-{
+class ChunkBlockLayer {
 
 public:
-	unsigned char oh[1024];
-	unsigned char *jh;
-	unsigned char fh[3072];
+	std::pair<bool, std::array<unsigned char, 1024>> oh;
+	std::pair<bool, unsigned char> jh;
+	std::pair<bool, std::array<unsigned char, 3072>> fh;
 
-	ChunkBlockLayer *read(BinaryMemoryReader *const reader);
+	void read(BinaryMemoryReader &reader);
 
 	ChunkBlockLayer();
 	~ChunkBlockLayer();
