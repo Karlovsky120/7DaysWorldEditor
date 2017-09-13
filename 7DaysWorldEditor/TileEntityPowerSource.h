@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TileEntityPowered.h"
 
 #include <vector>

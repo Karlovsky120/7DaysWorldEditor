@@ -1,12 +1,10 @@
 #pragma once
-
 #include "ItemValue.h"
 #include "Recipe.h"
 
 class BinaryMemoryReader;
 
-class RecipeQueueItem
-{
+class RecipeQueueItem {
 public:
 	int amountToRepair;
 	float craftingTimeLeft;

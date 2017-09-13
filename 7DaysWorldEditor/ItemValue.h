@@ -1,12 +1,10 @@
 #pragma once
-
 #include <map>
 #include <vector>
 
 class BinaryMemoryReader;
 
-class ItemValue
-{
+class ItemValue {
 public:
 	bool activated;
 

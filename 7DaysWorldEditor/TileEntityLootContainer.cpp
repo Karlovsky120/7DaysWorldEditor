@@ -1,7 +1,6 @@
 #include "TileEntityLootContainer.h"
 
 #include "BinaryMemoryReader.h"
-#include "ItemStack.h"
 
 void TileEntityLootContainer::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);

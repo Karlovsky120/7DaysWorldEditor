@@ -27,23 +27,23 @@ void TileEntity::read(BinaryMemoryReader &reader) {
 
 std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityType type) {
 	switch (type) {
-	case Campfire:
+		case Campfire:
 		return std::make_shared<TileEntityCampfire>();
-	case Forge:
+		case Forge:
 		return std::make_shared<TileEntityForge>();
-	case Loot:
+		case Loot:
 		return std::make_shared<TileEntityLootContainer>();
-	case SecureDoor:
+		case SecureDoor:
 		return std::make_shared<TileEntitySecureDoor>();
-	case SecureLoot:
+		case SecureLoot:
 		return std::make_shared<TileEntitySecureLootContainer>();
-	case Sign:
+		case Sign:
 		return std::make_shared<TileEntitySign>();
-	case Trader:
+		case Trader:
 		return std::make_shared<TileEntityTrader>();
-	case VendingMachine:
+		case VendingMachine:
 		return std::make_shared<TileEntityVendingMachine>();
-	case Workstation:
+		case Workstation:
 		return std::make_shared<TileEntityWorkstation>();
 	}
 

@@ -1,12 +1,12 @@
 #pragma once
+#include "TileEntity.h"
 
 #include "Coordinate.h"
-#include "TileEntity.h"
+#include "ItemStack.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
-class ItemStack;
 
 class TileEntityLootContainer : public TileEntity {
 public:

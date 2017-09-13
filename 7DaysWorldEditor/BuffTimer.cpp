@@ -24,11 +24,11 @@ std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader) {
 std::shared_ptr<BuffTimer> BuffTimer::instantiate(BuffTimerClassId id) {
 	switch (id) {
 		case Null:
-			return std::make_shared<BuffTimerNull>();
+		return std::make_shared<BuffTimerNull>();
 		case Duration:
-			return std::make_shared<BuffTimerDuration>();
+		return std::make_shared<BuffTimerDuration>();
 		case Scheduled:
-			return std::make_shared<BuffTimerScheduled>();
+		return std::make_shared<BuffTimerScheduled>();
 	}
 
 	assert(true);

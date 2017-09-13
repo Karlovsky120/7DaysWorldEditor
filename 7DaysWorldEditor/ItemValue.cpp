@@ -2,8 +2,7 @@
 
 #include "BinaryMemoryReader.h"
 
-void ItemValue::read(BinaryMemoryReader &reader)
-{
+void ItemValue::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(itemValueVersion);
 	reader.read<unsigned short>(type);
 	reader.read<unsigned short>(useTimes);

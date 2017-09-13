@@ -1,11 +1,9 @@
 #pragma once
-
 #include <string>
 
 class BinaryMemoryReader;
 
-class MultiBuffPrefabAttachmentDescriptor
-{
+class MultiBuffPrefabAttachmentDescriptor {
 public:
 	int multiBuffPrefabAttachmentDescriptorVersion;
 	std::string prefabName;

@@ -1,8 +1,6 @@
 #include "TileEntityWorkstation.h"
 
 #include "BinaryMemoryReader.h"
-#include "ItemStack.h"
-#include "RecipeQueueItem.h"
 
 void TileEntityWorkstation::read(BinaryMemoryReader &reader) {	
 	TileEntity::read(reader);

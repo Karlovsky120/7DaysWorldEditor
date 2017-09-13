@@ -1,11 +1,9 @@
 #pragma once
-
 #include "TileEntityLootContainer.h"
 
 class BinaryMemoryReader;
 
-class TileEntityGoreBlock : public TileEntityLootContainer
-{
+class TileEntityGoreBlock : public TileEntityLootContainer {
 public:
 	unsigned _int64 arz;
 

@@ -1,13 +1,10 @@
 #pragma once
-
-#include <memory>
 #include <string>
 #include <vector>
 
 class BinaryMemoryReader;
 
-class BuffDescriptor
-{
+class BuffDescriptor {
 public:
 	int buffDescriptorVersion;
 	int categoryFlags;

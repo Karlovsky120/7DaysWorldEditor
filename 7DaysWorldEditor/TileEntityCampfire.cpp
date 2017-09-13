@@ -1,11 +1,8 @@
 #include "TileEntityCampfire.h"
 
 #include "BinaryMemoryReader.h"
-#include "ItemStack.h"
-#include "ItemValue.h"
 
-void TileEntityCampfire::read(BinaryMemoryReader &reader)
-{
+void TileEntityCampfire::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);
 
 	reader.read<unsigned _int64>(ib);

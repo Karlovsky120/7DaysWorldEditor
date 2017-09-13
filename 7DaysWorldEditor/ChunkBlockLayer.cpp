@@ -3,7 +3,6 @@
 #include "BinaryMemoryReader.h"
 
 void ChunkBlockLayer::read(BinaryMemoryReader &reader) {
-
 	bool flag;
 	reader.read<bool>(flag);
 

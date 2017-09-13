@@ -1,7 +1,6 @@
 #include "BuffModifier.h"
 
 #include "BinaryMemoryReader.h"
-#include "Buff.h"
 #include "BuffModifierSetTickRate.h"
 
 #include <assert.h>
@@ -24,8 +23,9 @@ std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader) {
 std::shared_ptr<BuffModifier> BuffModifier::instantiate(BuffModifierClassId id) {
 	switch (id) {
 		case BuffModifierSetTickRateEnum:
-			return std::make_shared<BuffModifierSetTickRate>();
+		return std::make_shared<BuffModifierSetTickRate>();
 	}
+
 	assert(false);
 }
 

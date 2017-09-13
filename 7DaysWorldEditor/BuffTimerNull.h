@@ -1,5 +1,4 @@
 #pragma once
-
 #include "BuffTimer.h"
 
 class BinaryMemoryReader;

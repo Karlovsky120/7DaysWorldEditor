@@ -1,7 +1,6 @@
 #pragma once
 #include "Unzip.h"
 
-#include <memory>
 #include <vector>
 
 class BinaryMemoryReader {

@@ -1,13 +1,12 @@
 #pragma once
-
 #include "TileEntityLootContainer.h"
 
+#include <string>
 #include <vector>
 
 class BinaryMemoryReader;
 
-class TileEntitySecureLootContainer : public TileEntityLootContainer
-{
+class TileEntitySecureLootContainer : public TileEntityLootContainer {
 public:
 	int version;
 	bool md;

@@ -1,11 +1,9 @@
 #pragma once
-
 #include <vector>
 
 class Chunk;
 
-class RegionFile
-{
+class RegionFile {
 public:
 	int rX;
 	int rZ;

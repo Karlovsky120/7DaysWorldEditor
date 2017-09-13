@@ -1,15 +1,14 @@
 #pragma once
+#include "TileEntity.h"
 
 #include "ItemStack.h"
 #include "ItemValue.h"
-#include "TileEntity.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
 
-class TileEntityForge : public TileEntity
-{
+class TileEntityForge : public TileEntity {
 public:
 	unsigned _int64 ib;
 

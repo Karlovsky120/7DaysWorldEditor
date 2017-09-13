@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TileEntity.h"
 
 #include "Coordinate.h"
@@ -23,8 +22,7 @@ enum PowerItemTypes {
 	PressurePlate
 };
 
-class TileEntityPowered : public TileEntity
-{
+class TileEntityPowered : public TileEntity {
 public:
 	int tileEntityPoweredVersion;
 	bool isPlayerPlaced;

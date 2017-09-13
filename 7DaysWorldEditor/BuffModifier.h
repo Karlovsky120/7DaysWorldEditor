@@ -1,16 +1,13 @@
 #pragma once
-
 #include <memory>
 
 class BinaryMemoryReader;
-class Buff;
 
 enum BuffModifierClassId {
 	BuffModifierSetTickRateEnum
 };
 
-class BuffModifier
-{
+class BuffModifier {
 public:
 	int UID;
 

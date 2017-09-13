@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Buff.h"
 
 #include <map>

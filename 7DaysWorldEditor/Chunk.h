@@ -1,5 +1,4 @@
 #pragma once
-
 #include "ChunkBlockChannel.h"
 #include "Coordinate.h"
 

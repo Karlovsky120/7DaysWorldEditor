@@ -1,12 +1,10 @@
 #pragma once
-
 #include "BuffDescriptor.h"
 #include "BuffModifier.h"
 #include "BuffTimer.h"
 #include "StatModifier.h"
 
 #include <map>
-#include <memory>
 #include <vector>
 
 class BinaryMemoryReader;

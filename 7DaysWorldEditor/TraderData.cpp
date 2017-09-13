@@ -2,13 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 
-void TraderData::read(BinaryMemoryReader &reader)
-{
+void TraderData::read(BinaryMemoryReader &reader) {
 	reader.read<int>(traderID);
 	reader.read<unsigned _int64>(lastInventoryUpdate);
 	reader.read<unsigned char>(fileVersion);
 
-	//primaryInventory = ItemStack::readItemStack(reader);
 	reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory);
 
 	unsigned char tierItemGroupCount;
@@ -16,7 +14,6 @@ void TraderData::read(BinaryMemoryReader &reader)
 	
 	for (int i = 0; i < tierItemGroupCount; ++i) {
 		std::vector<ItemStack> tierItemGroup;
-		//tierItemGroup = ItemStack::readItemStack(reader);
 		reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup);
 		tierItemGroups.push_back(tierItemGroup);
 	}

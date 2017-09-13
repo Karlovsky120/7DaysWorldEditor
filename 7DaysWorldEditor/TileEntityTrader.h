@@ -1,6 +1,6 @@
 #pragma once
-
 #include "TileEntity.h"
+
 #include "TraderData.h"
 
 class BinaryMemoryReader;

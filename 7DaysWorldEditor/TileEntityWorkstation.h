@@ -1,12 +1,12 @@
 #pragma once
-
 #include "TileEntity.h"
+
+#include "ItemStack.h"
+#include "RecipeQueueItem.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
-class ItemStack;
-class RecipeQueueItem;
 
 class TileEntityWorkstation : public TileEntity {
 public:

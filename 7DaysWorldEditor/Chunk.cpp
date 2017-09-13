@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Chunk.h"
 
 #include "BinaryMemoryReader.h"
@@ -8,7 +7,6 @@
 #include "EntityCreationData.h"
 #include "EntitySpawner.h"
 #include "TileEntity.h"
-#include "SleeperVolume.h"
 
 #include "Unzip.h"
 #include "Zip.h"
@@ -16,13 +14,11 @@
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 
-
 extern log4cplus::Logger mainLog;
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
 void Chunk::readChunk(Chunk &chunk, BinaryMemoryReader &reader) {
-
  	reader.read<int>(xm);
 	reader.read<int>(mm);
 	reader.read<int>(rm);
@@ -114,7 +110,6 @@ void Chunk::readChunk(Chunk &chunk, BinaryMemoryReader &reader) {
 }
 
 bool Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
-	
 	memcpy(&header[0], &zipped[0], 4);
 	memcpy(&version, &zipped[4], 4);
 

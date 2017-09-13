@@ -1,18 +1,14 @@
 #pragma once
-
 #include "RegionFile.h"
 
 #include "BinaryFileReader.h"
 #include "BinaryFileWriter.h"
-
 #include "Chunk.h"
 
 #include "log4cplus\logger.h"
 #include "log4cplus\loggingmacros.h"
 
 extern log4cplus::Logger mainLog;
-
-RegionFile::RegionFile() {}
 
 void RegionFile::read(std::string path, const int rX, const int rZ) {
 
@@ -62,8 +58,7 @@ void RegionFile::read(std::string path, const int rX, const int rZ) {
 				zippedChunks.push_back(chunkData);
 			}
 		}
-	}
-	else {
+	} else {
 		std::stringstream error;
 		error << "Failed to open region file " << rX << "." << rZ << ".7rg @ " << path;
 		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT(error.str()));
@@ -137,8 +132,7 @@ bool RegionFile::chunkExists(const int rcX, const int rcZ) {
 	return zippedChunks[rcX + 32 * rcZ].size() > 0;
 }
 
-bool RegionFile::getChunk(Chunk &chunk, const int rcX, const int rcZ)
-{
+bool RegionFile::getChunk(Chunk &chunk, const int rcX, const int rcZ) {
 	std::vector<unsigned char> &zippedChunk = zippedChunks[rcX + 32 * rcZ];
 
 	if (chunkExists(rcX, rcZ)) {
@@ -155,4 +149,5 @@ RegionFile::RegionFile(const std::string path, const int rX, const int rZ) :
 	read(path, rX, rZ);
 }
 
+RegionFile::RegionFile() {}
 RegionFile::~RegionFile() {}

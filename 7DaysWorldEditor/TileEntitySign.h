@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TileEntity.h"
 
 #include <string>
@@ -7,8 +6,7 @@
 
 class BinaryMemoryReader;
 
-class TileEntitySign : public TileEntity
-{
+class TileEntitySign : public TileEntity{
 public:
 	int  version;
 

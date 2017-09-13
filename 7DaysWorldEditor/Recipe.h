@@ -1,14 +1,11 @@
 #pragma once
-
-
 #include <string>
 #include <tuple>
 #include <vector>
 
 class BinaryMemoryReader;
 
-class Recipe
-{
+class Recipe {
 public:
 	int count;
 	std::string craftingArea;

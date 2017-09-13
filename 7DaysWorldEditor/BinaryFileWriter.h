@@ -1,10 +1,8 @@
 #pragma once
-
 #include <string>
 #include <fstream>
 
 class BinaryFileWriter {
-
 public:
 	std::ofstream baseStream;
 
@@ -77,15 +75,14 @@ public:
 
 		int additionalOffset;
 
-		switch (seekStart)
-		{
-		case (std::ios_base::beg):
+		switch (seekStart) {
+			case (std::ios_base::beg):
 			additionalOffset = amount - size;
 			break;
-		case (std::ios_base::cur):
+			case (std::ios_base::cur):
 			additionalOffset = amount - size + currentPosition;
 			break;
-		case std::ios_base::end:
+			case std::ios_base::end:
 			additionalOffset = amount;
 			break;
 		}
@@ -97,9 +94,7 @@ public:
 			for (int i = 0; i < additionalOffset; ++i) {
 				baseStream.write((char*)&ch, 1);
 			}
-		}
-
-		else {
+		} else {
 			baseStream.seekp(amount, seekStart);
 		}
 	}

@@ -1,9 +1,7 @@
 #pragma once
-
 class BinaryMemoryReader;
 
 class BodyDamage {
-
 public:
 	int bodyDamageVersion;
 

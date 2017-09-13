@@ -1,8 +1,8 @@
 #pragma once
-
 #include "BuffTimer.h"
 #include "Stat.h"
 
+#include <memory>
 
 class BinaryMemoryReader;
 

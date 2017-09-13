@@ -1,11 +1,8 @@
 #include "TileEntityForge.h"
 
 #include "BinaryMemoryReader.h"
-#include "ItemStack.h"
-#include "ItemValue.h"
 
-void TileEntityForge::read(BinaryMemoryReader &reader)
-{
+void TileEntityForge::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);
 
 	reader.read<unsigned _int64>(ib);

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "BodyDamage.h"
 #include "Coordinate.h"
 #include "EntityStats.h"

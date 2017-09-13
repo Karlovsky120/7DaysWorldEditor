@@ -1,5 +1,4 @@
 #pragma once
-
 #include <map>
 #include <memory>
 #include <vector>
@@ -7,8 +6,7 @@
 class BinaryMemoryReader;
 class StatModifier;
 
-class Stat
-{
+class Stat {
 public:
 	int statVersion;
 	float value;

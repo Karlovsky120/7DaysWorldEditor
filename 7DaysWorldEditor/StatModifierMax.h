@@ -1,5 +1,4 @@
 #pragma once
-
 #include "StatModifier.h"
 
 class BinaryMemoryReader;

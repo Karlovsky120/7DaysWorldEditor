@@ -2,7 +2,6 @@
 
 #include "BinaryMemoryReader.h"
 
-
 void TileEntitySecure::read(BinaryMemoryReader &reader) {
 	TileEntityLootContainer::read(reader);
 

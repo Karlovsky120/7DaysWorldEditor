@@ -1,9 +1,6 @@
 #include "EntityStats.h"
 
 #include "BinaryMemoryReader.h"
-#include "Buff.h"
-#include "MultiBuffVariable.h"
-#include "Stat.h"
 
 void EntityStats::read(BinaryMemoryReader &reader) {
 	reader.read<int>(statsVersion);

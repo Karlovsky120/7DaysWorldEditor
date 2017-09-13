@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Coordinate.h"
 
 #include <memory>

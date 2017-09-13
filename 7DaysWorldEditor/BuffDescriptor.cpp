@@ -2,7 +2,6 @@
 
 #include "BinaryMemoryReader.h"
 
-
 void BuffDescriptor::read(BinaryMemoryReader &reader) {
 	reader.read<int>(buffDescriptorVersion);
 	reader.read<int>(categoryFlags);

@@ -1,11 +1,9 @@
 #pragma once
-
 #include "BuffModifier.h"
 
 class BinaryMemoryReader;
 
-class BuffModifierSetTickRate : public BuffModifier
-{
+class BuffModifierSetTickRate : public BuffModifier {
 public:
 	float tickRate;
 

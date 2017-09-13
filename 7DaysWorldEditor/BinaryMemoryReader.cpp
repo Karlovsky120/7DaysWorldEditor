@@ -14,6 +14,7 @@ BinaryMemoryReader::BinaryMemoryReader(std::vector<unsigned char> &zipped) {
 	bin.close();
 
 	// The 8 bytes is a header I've already read.
+#pragma warning(suppress: 4267)
 	hz = OpenZip(&zipped[8], zipped.capacity() - 8, 0);
 
 	ZIPENTRY ze;

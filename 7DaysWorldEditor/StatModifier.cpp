@@ -1,7 +1,6 @@
 #include "StatModifier.h"
 
 #include "BinaryMemoryReader.h"
-#include "BuffTimer.h"
 #include "StatModifierMax.h"
 #include "StatModifierValueOT.h"
 #include "StatModifierModifyValue.h"
@@ -27,15 +26,15 @@ std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader) {
 
 std::shared_ptr<StatModifier> StatModifier::instantiate(StatModifierClassId id) {
 	switch (id) {
-	case StatModifierMaxE:
+		case StatModifierMaxE:
 		return std::make_shared<StatModifierMax>();
-	case StatModifierValueOTE:
+		case StatModifierValueOTE:
 		return std::make_shared<StatModifierValueOT>();
-	case StatModifierModifyValueE:
+		case StatModifierModifyValueE:
 		return std::make_shared<StatModifierModifyValue>();
-	case StatModifierSetValueE:
+		case StatModifierSetValueE:
 		return std::make_shared<StatModifierSetValue>();
-	case StatModifierMulValueE:
+		case StatModifierMulValueE:
 		return std::make_shared<StatModifierMulValue>();
 	}
 

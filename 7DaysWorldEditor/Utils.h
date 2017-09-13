@@ -1,9 +1,7 @@
 #pragma once
-
 #include <string>
 
-class Utils
-{
+class Utils {
 public:
 	static int getMonoHash(std::string str);
 

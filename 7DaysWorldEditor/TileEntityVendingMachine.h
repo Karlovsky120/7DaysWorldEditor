@@ -1,16 +1,15 @@
 #pragma once
+#include "TileEntityTrader.h"
+
+#include "TraderData.h"
 
 #include <string>
 #include <vector>
-
-#include "TileEntityTrader.h"
-#include "TraderData.h"
 
 class BinaryMemoryReader;
 
 class TileEntityVendingMachine : public TileEntityTrader {
 public:
-
 	int version;
 	bool vd;
 	std::string gd;

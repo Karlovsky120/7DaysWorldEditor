@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Buff.h"
 #include "MultiBuffVariable.h"
 #include "Stat.h"
@@ -32,8 +31,7 @@ enum BuffCategoryFlags {
 	Health = 192
 };
 
-class EntityStats
-{
+class EntityStats {
 public:
 	int statsVersion;
 	int buffCategoryFlags;

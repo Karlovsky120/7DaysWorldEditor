@@ -1,11 +1,7 @@
 #include "Buff.h"
 
 #include "BinaryMemoryReader.h"
-#include "BuffDescriptor.h"
-#include "BuffModifier.h"
-#include "BuffTimer.h"
 #include "MultiBuff.h"
-#include "StatModifier.h"
 
 #include <assert.h>
 
@@ -27,10 +23,11 @@ std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned s
 std::shared_ptr<Buff> Buff::instantiate(BuffClassId type) {
 	switch (type) {
 		case MultiBuffType:
-		    return std::make_shared<MultiBuff>();
+		return std::make_shared<MultiBuff>();
 		case Count:
-		    assert(false);
+		assert(false);
 	}
+
 	assert(false);
 }
 

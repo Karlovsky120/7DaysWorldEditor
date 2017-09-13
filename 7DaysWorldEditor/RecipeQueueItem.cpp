@@ -1,11 +1,8 @@
 #include "RecipeQueueItem.h"
 
 #include "BinaryMemoryReader.h"
-#include "ItemValue.h"
-#include "Recipe.h"
 
 void RecipeQueueItem::read(BinaryMemoryReader &reader) {
-
 	bool isRecipeNotNull;
 	reader.read<bool>(isRecipeNotNull);
 

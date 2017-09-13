@@ -1,5 +1,4 @@
 #pragma once
-
 class BinaryMemoryReader;
 
 class MultiBuffVariable {

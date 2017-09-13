@@ -1,11 +1,9 @@
 #pragma once
-
 #include "BuffTimer.h"
 
 class BinaryMemoryReader;
 
-class BuffTimerDuration : public BuffTimer
-{
+class BuffTimerDuration : public BuffTimer {
 public:
 	float duration;
 	float elapsed;

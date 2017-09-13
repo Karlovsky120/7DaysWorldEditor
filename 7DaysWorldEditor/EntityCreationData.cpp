@@ -1,14 +1,11 @@
 #include "EntityCreationData.h"
 
 #include "BinaryMemoryReader.h"
-#include "BodyDamage.h"
-#include "EntityStats.h"
-#include "ItemStack.h"
-#include "TileEntity.h"
 #include "Utils.h"
 
-void EntityCreationData::read(BinaryMemoryReader &reader) {
+#include <assert.h>
 
+void EntityCreationData::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(entityCreationDataVersion);
 	reader.read<int>(entityClass);
 
@@ -68,8 +65,10 @@ void EntityCreationData::read(BinaryMemoryReader &reader) {
 		reader.read<float>(fallTreeDir.z);
 	} else if (entityClass == Utils::getMonoHash("playerMale")
 		|| entityClass == Utils::getMonoHash("playerFemale")) {
+
 		// This code should not be reached, this reads the
 		// player profile which should not be present here.
+		assert(false);
 	}
 	
 	unsigned short entityDataLength;

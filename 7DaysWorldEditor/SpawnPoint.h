@@ -1,11 +1,9 @@
 #pragma once
-
 #include "Coordinate.h"
 
 class BinaryMemoryReader;
 
-class SpawnPoint
-{
+class SpawnPoint {
 public:
 	Coordinate<int> pos;
 	Coordinate<float> look;
