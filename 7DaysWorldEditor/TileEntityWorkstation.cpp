@@ -18,6 +18,8 @@ void TileEntityWorkstation::read(BinaryMemoryReader &reader) {
 	reader.read<float>(fe);
 
 	reader.readMultipleSimple<float, unsigned char>(qe);
+
+	reader.read<bool>(yhh);
 }
 
 TileEntityWorkstation::TileEntityWorkstation() {}

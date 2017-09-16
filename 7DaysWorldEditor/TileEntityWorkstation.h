@@ -24,6 +24,8 @@ public:
 	float fe;
 	std::vector<float> qe;
 
+	bool yhh;
+
 	void read(BinaryMemoryReader &reader) override;
 
 	TileEntityWorkstation();
