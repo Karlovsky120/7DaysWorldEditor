@@ -1,6 +1,7 @@
 #include "Recipe.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void Recipe::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(recipeVersion);
@@ -33,6 +34,37 @@ void Recipe::read(BinaryMemoryReader &reader) {
 
 	reader.read<bool>(materialBasedRecipe);
 	reader.read<int>(craftingExpGain);
+}
+
+void Recipe::write(BinaryMemoryWriter &writer) const {
+	writer.write<unsigned char>(recipeVersion);
+
+	writer.write<std::string>(itemName);
+	writer.write<int>(count);
+	writer.write<bool>(scrapable);
+	writer.write<bool>(wildcardForgeCategory);
+	writer.write<bool>(wildcardCampfireCategory);
+
+	writer.write<std::string>(craftingToolTypeName);
+	writer.write<float>(craftingTime);
+	writer.write<std::string>(craftingArea);
+	writer.write<std::string>(tooltip);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<int>(nameStackSizeList.size());
+
+	for (int i = 0; i < nameStackSizeList.size(); ++i) {
+		std::string name = std::get<0>(nameStackSizeList[i]);
+		writer.write<std::string>(name);
+		int stackSize = std::get<1>(nameStackSizeList[i]);
+		writer.write<int>(stackSize);
+
+		writer.write<int>(zero1);
+		writer.write<int>(zero2);
+	}
+
+	writer.write<bool>(materialBasedRecipe);
+	writer.write<int>(craftingExpGain);
 }
 
 Recipe::Recipe() {}

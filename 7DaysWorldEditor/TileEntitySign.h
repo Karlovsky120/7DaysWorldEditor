@@ -5,8 +5,9 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
-class TileEntitySign : public TileEntity{
+class TileEntitySign : public TileEntity {
 public:
 	int  version;
 
@@ -18,7 +19,9 @@ public:
 
 	std::string signText;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntitySign();
 	~TileEntitySign();

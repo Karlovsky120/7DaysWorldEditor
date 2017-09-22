@@ -1,29 +1,50 @@
 #include "RecipeQueueItem.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void RecipeQueueItem::read(BinaryMemoryReader &reader) {
-	bool isRecipeNotNull;
-	reader.read<bool>(isRecipeNotNull);
+	reader.read<bool>(recipe.first);
 
-	if (isRecipeNotNull) {
-		recipe.read(reader);
+	if (recipe.first) {
+		recipe.second.read(reader);
 	}
 
 	reader.read<float>(craftingTimeLeft);
 	reader.read<int>(multiplier);
 	reader.read<bool>(isCrafting);
 
-	bool isRepairItemNotNull;
-	reader.read<bool>(isRepairItemNotNull);
+	reader.read<bool>(repairItem.first);
 
-	if (isRepairItemNotNull) {
-		repairItem.read(reader);
+	if (repairItem.first) {
+		repairItem.second.read(reader);
 		reader.read<int>(amountToRepair);
 	}
 
 	reader.read<int>(quality);
 	reader.read<int>(startingEntityId);
+}
+
+void RecipeQueueItem::write(BinaryMemoryWriter &writer) const {
+	writer.write<bool>(recipe.first);
+
+	if (recipe.first) {
+		recipe.second.write(writer);
+	}
+
+	writer.write<float>(craftingTimeLeft);
+	writer.write<int>(multiplier);
+	writer.write<bool>(isCrafting);
+
+	writer.write<bool>(repairItem.first);
+
+	if (repairItem.first) {
+		repairItem.second.write(writer);
+		writer.write<int>(amountToRepair);
+	}
+
+	writer.write<int>(quality);
+	writer.write<int>(startingEntityId);
 }
 
 RecipeQueueItem::RecipeQueueItem() {}

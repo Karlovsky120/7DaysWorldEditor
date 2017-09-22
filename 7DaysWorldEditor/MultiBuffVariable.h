@@ -1,5 +1,6 @@
 #pragma once
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class MultiBuffVariable {
 public:
@@ -10,6 +11,7 @@ public:
 	float unknownC;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	MultiBuffVariable();
 	~MultiBuffVariable();

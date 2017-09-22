@@ -1,6 +1,7 @@
 #include "TraderData.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void TraderData::read(BinaryMemoryReader &reader) {
 	reader.read<int>(traderID);
@@ -20,6 +21,24 @@ void TraderData::read(BinaryMemoryReader &reader) {
 
 	reader.read<int>(availableMoney);
 	reader.readMultipleSimple<char, int>(jj);
+}
+
+void TraderData::write(BinaryMemoryWriter &writer) {
+	writer.write<int>(traderID);
+	writer.write<unsigned _int64>(lastInventoryUpdate);
+	writer.write<unsigned char>(fileVersion);
+
+	writer.writeMultipleComplex<ItemStack, unsigned short>(primaryInventory);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<unsigned char>(tierItemGroups.size());
+
+	for (auto tierItemGroup : tierItemGroups) {
+		writer.writeMultipleComplex<ItemStack, unsigned short>(tierItemGroup);
+	}
+
+	writer.write<int>(availableMoney);
+	writer.writeMultipleSimple<char, int>(jj);
 }
 
 TraderData::TraderData() {}

@@ -2,10 +2,13 @@
 #include "ChunkBlockChannel.h"
 #include "Coordinate.h"
 
+#include <array>
 #include <map>
 #include <memory>
 #include <vector>
 
+class BinaryMemoryReader;
+class BinaryMemoryWriter;
 class ChunkBlockLayer;
 class ChunkCustomData;
 class EntityCreationData;
@@ -14,7 +17,8 @@ class TileEntity;
 
 class Chunk {
 private:
-	void readChunk(Chunk &chunk, BinaryMemoryReader &reader);
+	bool read(Chunk &chunk, BinaryMemoryReader &reader);
+	void write(const Chunk &chunk, BinaryMemoryWriter &writer) const;
 
 	unsigned char header[4];
 
@@ -56,14 +60,12 @@ public:
 
 	unsigned char entitySpawnerListSaveVersion;
 	std::vector<EntitySpawner> entitySpawnerList;
-	std::vector<unsigned short> ur;
+	std::pair<bool, std::array<unsigned short, 16>> ur;
 
-	//std::vector<SleeperVolume> sleeperVolumeList;
 	std::vector<int> hk;
 
-	//bool isEdited;
-
 	bool unpackChunk(Chunk &chunk, std::vector<unsigned char> &zipped);
+	bool packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const;
 
 	Chunk();
 	~Chunk();

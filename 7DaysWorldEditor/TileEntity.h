@@ -4,8 +4,9 @@
 #include <memory>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
-enum TileEntityType {
+enum TileEntityClassId {
 	NoneType,
 	Loot = 5,
 	Trader,
@@ -20,7 +21,8 @@ enum TileEntityType {
 	Powered,
 	PowerSource,
 	PowerRangeTrap,
-	Trigger = 19
+	Trigger = 19,
+	TileEntityBase
 };
 
 class TileEntity {
@@ -30,10 +32,11 @@ public:
 	int entityId;
 	unsigned _int64 worldTimeHeatMapSomething;
 
+	virtual TileEntityClassId getType();
+	static std::shared_ptr<TileEntity> instantiate(TileEntityClassId type);
 	virtual void read(BinaryMemoryReader &reader);
-	static std::shared_ptr<TileEntity> instantiate(TileEntityType type);
+	virtual void write(BinaryMemoryWriter &writer);
 
 	TileEntity();
 	~TileEntity();
 };
-

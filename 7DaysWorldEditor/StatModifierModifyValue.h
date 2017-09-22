@@ -8,6 +8,9 @@ public:
 	float unknownV;
 	float unknownF;
 
+	StatModifierClassId getType() override;
+	void write(BinaryMemoryWriter &writer) override;
+
 	StatModifierModifyValue();
 	~StatModifierModifyValue();
 

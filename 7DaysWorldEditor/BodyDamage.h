@@ -1,5 +1,6 @@
 #pragma once
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class BodyDamage {
 public:
@@ -28,6 +29,7 @@ public:
 	short rightUpperLeg;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	BodyDamage();
 	~BodyDamage();

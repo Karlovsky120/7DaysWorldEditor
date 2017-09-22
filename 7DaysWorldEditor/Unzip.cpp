@@ -5,6 +5,9 @@
 #include <tchar.h>
 #include "unzip.h"
 
+#pragma warning(push)
+#pragma warning(disable: 4302 4311 4996)
+
 // THIS FILE is almost entirely based upon code by Jean-loup Gailly
 // and Mark Adler. It has been modified by Lucian Wischik.
 // The modifications were: incorporate the bugfixes of 1.1.4, allow
@@ -4159,4 +4162,4 @@ bool IsZipHandleU(HZIP hz)
   return (han->flag==1);
 }
 
-
+#pragma warning(pop)

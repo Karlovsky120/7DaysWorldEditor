@@ -1,6 +1,7 @@
 #include "TileEntity.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "TileEntityCampfire.h"
 #include "TileEntityForge.h"
 #include "TileEntityLootContainer.h"
@@ -10,8 +11,50 @@
 #include "TileEntityTrader.h"
 #include "TileEntityVendingMachine.h"
 #include "TileEntityWorkstation.h"
+#include "TileEntityGoreBlock.h"
+#include "TileEntityPoweredBlock.h"
+#include "TileEntityPowerSource.h"
+#include "TileEntityPoweredRangedTrap.h"
+#include "TileEntityPoweredTrigger.h"
 
-#include <assert.h>
+TileEntityClassId TileEntity::getType() {
+	return TileEntityBase;
+}
+
+std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityClassId type) {
+	switch (type) {
+		case Loot:
+		return std::make_shared<TileEntityLootContainer>();
+		case Trader:
+		return std::make_shared<TileEntityTrader>();
+		case VendingMachine:
+		return std::make_shared<TileEntityVendingMachine>();
+		case Forge:
+		return std::make_shared<TileEntityForge>();
+		case Campfire:
+		return std::make_shared<TileEntityCampfire>();
+		case SecureLoot:
+		return std::make_shared<TileEntitySecureLootContainer>();
+		case SecureDoor:
+		return std::make_shared<TileEntitySecureDoor>();
+		case Workstation:
+		return std::make_shared<TileEntityWorkstation>();
+		case Sign:
+		return std::make_shared<TileEntitySign>();
+		case GoreBlock:
+		return std::make_shared<TileEntityGoreBlock>();
+		case Powered:
+		return std::make_shared<TileEntityPoweredBlock>();
+		case PowerSource:
+		return std::make_shared<TileEntityPowerSource>();
+		case PowerRangeTrap:
+		return std::make_shared<TileEntityPoweredRangedTrap>();
+		case Trigger:
+		return std::make_shared<TileEntityPoweredTrigger>();
+		default:
+		return std::make_shared<TileEntity>();
+	}
+}
 
 void TileEntity::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned short>(tileEntityVersion);
@@ -25,29 +68,16 @@ void TileEntity::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned _int64>(worldTimeHeatMapSomething);
 }
 
-std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityType type) {
-	switch (type) {
-		case Campfire:
-		return std::make_shared<TileEntityCampfire>();
-		case Forge:
-		return std::make_shared<TileEntityForge>();
-		case Loot:
-		return std::make_shared<TileEntityLootContainer>();
-		case SecureDoor:
-		return std::make_shared<TileEntitySecureDoor>();
-		case SecureLoot:
-		return std::make_shared<TileEntitySecureLootContainer>();
-		case Sign:
-		return std::make_shared<TileEntitySign>();
-		case Trader:
-		return std::make_shared<TileEntityTrader>();
-		case VendingMachine:
-		return std::make_shared<TileEntityVendingMachine>();
-		case Workstation:
-		return std::make_shared<TileEntityWorkstation>();
-	}
+void TileEntity::write(BinaryMemoryWriter &writer) {
+	writer.write<unsigned short>(tileEntityVersion);
 
-	assert(false);
+	writer.write<int>(localChunkPosition.x);
+	writer.write<int>(localChunkPosition.y);
+	writer.write<int>(localChunkPosition.z);
+
+	writer.write<int>(entityId);
+
+	writer.write<unsigned _int64>(worldTimeHeatMapSomething);
 }
 
 TileEntity::TileEntity(){}

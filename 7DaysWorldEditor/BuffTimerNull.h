@@ -1,10 +1,10 @@
 #pragma once
 #include "BuffTimer.h"
 
-class BinaryMemoryReader;
-
 class BuffTimerNull : public BuffTimer {
 public:
+	BuffTimerClassId getType() override;
+
 	BuffTimerNull();
 	~BuffTimerNull();
 };

@@ -1,6 +1,7 @@
 #include "EntityStats.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void EntityStats::read(BinaryMemoryReader &reader) {
 	reader.read<int>(statsVersion);
@@ -18,7 +19,7 @@ void EntityStats::read(BinaryMemoryReader &reader) {
 	food.read(reader, idTable);
 	water.read(reader, idTable);
 
-	reader.read(waterLevel);
+	reader.read<float>(waterLevel);
 
 	int buffCount;
 	reader.read<int>(buffCount);
@@ -37,6 +38,39 @@ void EntityStats::read(BinaryMemoryReader &reader) {
 		MultiBuffVariable variable;
 		variable.read(reader);
 		multiBuffVariableMap[key] = variable;
+	}
+}
+
+void EntityStats::write(BinaryMemoryWriter &writer) const {
+	writer.write<int>(statsVersion);
+	writer.write<int>(buffCategoryFlags);
+
+	writer.writeMultipleSimple<int, int>(immunity);
+
+	health.write(writer);
+	stamina.write(writer);
+	sickness.write(writer);
+	gassines.write(writer);
+	speedModifier.write(writer);
+	wellness.write(writer);
+	coreTemp.write(writer);
+	food.write(writer);
+	water.write(writer);
+
+	writer.write<float>(waterLevel);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<int>(buffList.size());
+	for (int i = 0; i < buffList.size(); ++i) {
+		buffList[i]->write(writer, idTable);
+	}
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<int>(multiBuffVariableMap.size());
+	for (auto it = multiBuffVariableMap.begin(); it != multiBuffVariableMap.end(); ++it) {
+		std::string first = it->first;
+		writer.write<std::string>(first);
+		it->second.write(writer);
 	}
 }
 

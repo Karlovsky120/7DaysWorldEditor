@@ -10,7 +10,7 @@
 
 extern log4cplus::Logger mainLog;
 
-void RegionFile::read(std::string path, const int rX, const int rZ) {
+void RegionFile::read(std::string path) {
 
 	path = path.append("\\r.").append(std::to_string(rX)).append(".").append(std::to_string(rZ)).append(".7rg");
 
@@ -132,9 +132,7 @@ bool RegionFile::chunkExists(const int rcX, const int rcZ) {
 	return zippedChunks[rcX + 32 * rcZ].size() > 0;
 }
 
-bool RegionFile::getChunk(Chunk &chunk, const int rcX, const int rcZ) {
-	std::vector<unsigned char> &zippedChunk = zippedChunks[rcX + 32 * rcZ];
-
+bool RegionFile::readChunk(Chunk &chunk, const int rcX, const int rcZ) {
 	if (chunkExists(rcX, rcZ)) {
 		return chunk.unpackChunk(chunk, zippedChunks[rcX + 32 * rcZ]);
 	}
@@ -142,11 +140,15 @@ bool RegionFile::getChunk(Chunk &chunk, const int rcX, const int rcZ) {
 	return false;
 }
 
+bool RegionFile::writeChunk(const Chunk &chunk, const int rcX, const int rcZ) {
+	return chunk.packChunk(chunk, zippedChunks[rcX + 32 * rcZ]);
+}
+
 RegionFile::RegionFile(const std::string path, const int rX, const int rZ) :
 	rX(rX),
 	rZ(rZ) {
 
-	read(path, rX, rZ);
+	read(path);
 }
 
 RegionFile::RegionFile() {}

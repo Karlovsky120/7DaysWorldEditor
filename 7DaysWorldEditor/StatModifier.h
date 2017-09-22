@@ -9,11 +9,12 @@ class BinaryMemoryReader;
 enum BuffCategoryFlag;
 
 enum StatModifierClassId {
-	StatModifierMaxE,
-	StatModifierValueOTE,
-	StatModifierModifyValueE,
-	StatModifierSetValueE,
-	StatModifierMulValueE
+	Max,
+	ValueOT,
+	ModifyValue,
+	SetValue,
+	MulValue,
+	StatModifierBase
 };
 
 class StatModifier {
@@ -29,14 +30,15 @@ public:
 	BuffTimer buffTimer;
 	Stat stat;
 
-	static std::shared_ptr<StatModifier> read(BinaryMemoryReader &reader);
+	virtual StatModifierClassId getType();
 	static std::shared_ptr<StatModifier> instantiate(StatModifierClassId id);
+	static std::shared_ptr<StatModifier> read(BinaryMemoryReader &reader);
+	virtual void write(BinaryMemoryWriter &writer);
 
 	StatModifier();
 	~StatModifier();
 
 protected:
 	void virtual readMore(BinaryMemoryReader &reader);
-
 };
 

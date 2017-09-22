@@ -1,6 +1,7 @@
 #include "ChunkCustomData.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void ChunkCustomData::read(BinaryMemoryReader &reader) {
 	reader.read<std::string>(key);
@@ -12,6 +13,21 @@ void ChunkCustomData::read(BinaryMemoryReader &reader) {
 
 	if (dataLength > 0) {
 		reader.readBytes(data, dataLength);
+	}
+}
+
+void ChunkCustomData::write(BinaryMemoryWriter &writer) const {
+	writer.write<std::string>(key);
+	writer.write<unsigned _int64>(expiresInWorldTime);
+	writer.write<bool>(isSavedToNetwork);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<unsigned short>(data.size());
+
+	if (data.size() > 0) {
+	#pragma warning (suppress: 4267)
+		unsigned short dataLength = data.size();
+		writer.writeBytes(data, dataLength);
 	}
 }
 

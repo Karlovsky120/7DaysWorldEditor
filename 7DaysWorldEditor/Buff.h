@@ -8,10 +8,12 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum BuffClassId {
 	MultiBuffType,
-	Count
+	Count,
+	BuffBase
 };
 
 class Buff {
@@ -26,11 +28,13 @@ public:
 	std::vector<BuffModifier> buffModifierList;
 	int instigatorId;
 
+	virtual BuffClassId getType();
 	static std::shared_ptr<Buff> instantiate(BuffClassId type);
 	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
+	virtual void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
 
 	Buff();
-	~Buff();
+	virtual ~Buff();
 
 protected:
 	virtual void readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);

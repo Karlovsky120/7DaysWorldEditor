@@ -6,6 +6,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 class MultiBuffAction;
 class MultiBuffPrefabAttachmentDescriptor;
 
@@ -19,6 +20,9 @@ public:
 	std::vector<MultiBuffPrefabAttachmentDescriptor> multiBuffPrefabAttachmentDescriptorList;
 
 	std::map<std::string, float> buffCounterValues;
+
+	BuffClassId getType() override;
+	void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) override;
 
 	MultiBuff();
 	~MultiBuff();

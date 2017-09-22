@@ -7,6 +7,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntityCampfire: public TileEntity {
 public:
@@ -24,7 +25,9 @@ public:
 	bool isCooking;
 	float db;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityCampfire();
 	~TileEntityCampfire();

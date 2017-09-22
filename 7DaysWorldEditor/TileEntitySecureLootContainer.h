@@ -5,6 +5,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntitySecureLootContainer : public TileEntityLootContainer {
 public:
@@ -16,7 +17,9 @@ public:
 
 	std::vector<std::string> kd;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntitySecureLootContainer();
 	~TileEntitySecureLootContainer();

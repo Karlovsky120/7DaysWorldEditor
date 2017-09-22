@@ -7,6 +7,9 @@
 
 #include <memory>
 
+class BinaryMemoryReader;
+class BinaryMemoryWriter;
+
 enum SpawnerSource {
 	Unindentified,
 	Biome,
@@ -29,12 +32,11 @@ public:
 
 	BodyDamage bodyDamage;
 
-	bool isStatsNotNull;
-
-	EntityStats stats;
+	std::pair<bool, EntityStats> stats;
 
 	short deathTime;
 
+	int tileEntityType;
 	std::shared_ptr<TileEntity> lootContainer;
 	Coordinate<int> homePosition;
 
@@ -54,6 +56,7 @@ public:
 	bool isTraderEntity;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	EntityCreationData();
 	~EntityCreationData();

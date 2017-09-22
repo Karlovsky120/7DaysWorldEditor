@@ -3,6 +3,8 @@
 
 class TileEntitySecureDoor : public TileEntitySecure {
 public:
+	TileEntityClassId getType() override;
+
 	TileEntitySecureDoor();
 	~TileEntitySecureDoor();
 };

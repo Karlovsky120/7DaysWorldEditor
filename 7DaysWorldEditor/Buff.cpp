@@ -1,9 +1,25 @@
 #include "Buff.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "MultiBuff.h"
 
-#include <assert.h>
+#include <typeinfo>
+
+BuffClassId Buff::getType() {
+	return BuffBase;
+}
+
+std::shared_ptr<Buff> Buff::instantiate(BuffClassId type) {
+	switch (type) {
+		case MultiBuffType:
+		return std::make_shared<MultiBuff>();
+		case Count:
+		//BuffCount doesn't exist, but it was still in the enum, sooo...
+		default:
+		return std::make_shared<Buff>();
+	}
+}
 
 std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
 	unsigned short buffVersion;
@@ -20,15 +36,30 @@ std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned s
 	return buff;
 }
 
-std::shared_ptr<Buff> Buff::instantiate(BuffClassId type) {
-	switch (type) {
-		case MultiBuffType:
-		return std::make_shared<MultiBuff>();
-		case Count:
-		assert(false);
+void Buff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+	writer.write<unsigned short>(buffVersion);
+	writer.write<unsigned char>(buffClassId);
+
+	timer->write(writer);
+	descriptor.write(writer);
+	writer.write<bool>(isOverriden);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<unsigned char>(statModifierList.size());
+
+	for (auto it = idTable.begin(); it != idTable.end(); ++it) {
+		unsigned short first = it->first;
+		writer.write<unsigned short>(first);
 	}
 
-	assert(false);
+#pragma warning (suppress: 4267)
+	writer.writeConst<unsigned char>(buffModifierList.size());
+
+	for (auto &buffModifier : buffModifierList) {
+		buffModifier.write(writer);
+	}
+
+	writer.write<int>(instigatorId);
 }
 
 void Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
@@ -41,7 +72,7 @@ void Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::sh
 
 	for (int i = 0; i < statModifierCount; ++i) {
 		unsigned short key;
-		reader.read(key);
+		reader.read<unsigned short>(key);
 
 		std::shared_ptr<StatModifier> statModifier = idTable[key];
 		statModifierList.push_back(statModifier);

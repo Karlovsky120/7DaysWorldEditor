@@ -1,6 +1,7 @@
 #include "Stat.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "StatModifier.h"
 
 void Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable) {
@@ -22,6 +23,24 @@ void Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared
 		modifier->stat = *this;
 		statModifierList.push_back(modifier);
 		idTable[modifier->fileId] = modifier;
+	}
+}
+
+void Stat::write(BinaryMemoryWriter &writer) const {
+	writer.write<int>(statVersion);
+	writer.write<float>(value);
+	writer.write<float>(maxModifier);
+	writer.write<float>(valueModifier);
+	writer.write<float>(baseMax);
+	writer.write<float>(originalMax);
+	writer.write<float>(originalValue);
+	writer.write<bool>(unknownG);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<int>(statModifierList.size());
+
+	for (int i = 0; i < statModifierList.size(); ++i) {
+		statModifierList[i]->write(writer);
 	}
 }
 

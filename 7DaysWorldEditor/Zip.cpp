@@ -3,6 +3,8 @@
 #include <tchar.h>
 #include "zip.h"
 
+#pragma warning(push)
+#pragma warning(disable: 4302 4311 4996)
 
 // THIS FILE is almost entirely based upon code by info-zip.
 // It has been modified by Lucian Wischik. The modifications
@@ -2828,3 +2830,4 @@ bool IsZipHandleZ(HZIP hz)
   return (han->flag==2);
 }
 
+#pragma warning(pop)

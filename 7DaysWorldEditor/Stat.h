@@ -4,6 +4,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 class StatModifier;
 
 class Stat {
@@ -20,6 +21,7 @@ public:
 	std::vector<std::shared_ptr<StatModifier>> statModifierList;
 
 	void read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable);
+	void write(BinaryMemoryWriter &writer) const;
 
 	Stat();
 	~Stat();

@@ -4,6 +4,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class Recipe {
 public:
@@ -24,6 +25,7 @@ public:
 	int zero2;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	Recipe();
 	~Recipe();

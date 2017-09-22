@@ -1,7 +1,7 @@
 #ifndef _zip_H
 #define _zip_H
 
-
+#include <Windows.h>
 // ZIP functions -- for creating zip files
 // This file is a repackaged form of the Info-Zip source code available
 // at www.info-zip.org. The original copyright notice may be found in

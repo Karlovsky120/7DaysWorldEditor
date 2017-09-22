@@ -3,6 +3,7 @@
 #include "Recipe.h"
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class RecipeQueueItem {
 public:
@@ -11,11 +12,12 @@ public:
 	bool isCrafting;
 	int multiplier;
 	int quality;
-	Recipe recipe;
-	ItemValue repairItem;
+	std::pair<bool, Recipe> recipe;
+	std::pair<bool, ItemValue> repairItem;
 	int startingEntityId;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	RecipeQueueItem();
 	~RecipeQueueItem();

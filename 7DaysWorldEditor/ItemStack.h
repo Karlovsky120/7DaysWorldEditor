@@ -4,6 +4,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class ItemStack {
 public:
@@ -11,6 +12,7 @@ public:
 	ItemValue itemValue;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	ItemStack();
 	~ItemStack();

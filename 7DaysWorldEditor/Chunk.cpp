@@ -2,6 +2,7 @@
 #include "Chunk.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "ChunkBlockLayer.h"
 #include "ChunkCustomData.h"
 #include "EntityCreationData.h"
@@ -18,7 +19,7 @@ extern log4cplus::Logger mainLog;
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
-void Chunk::readChunk(Chunk &chunk, BinaryMemoryReader &reader) {
+bool Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
  	reader.read<int>(xm);
 	reader.read<int>(mm);
 	reader.read<int>(rm);
@@ -73,7 +74,7 @@ void Chunk::readChunk(Chunk &chunk, BinaryMemoryReader &reader) {
 	for (int k = 0; k < tileEntityCount; ++k) {
 		int entityType;
 		reader.read<int>(entityType);
-		std::shared_ptr<TileEntity> tileEntity = TileEntity::instantiate((TileEntityType)entityType);
+		std::shared_ptr<TileEntity> tileEntity = TileEntity::instantiate((TileEntityClassId)entityType);
 		tileEntity->read(reader);
 		tileEntityDictionary[tileEntity->localChunkPosition] = tileEntity;
 	}
@@ -84,39 +85,115 @@ void Chunk::readChunk(Chunk &chunk, BinaryMemoryReader &reader) {
 
 	reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount);
 
-	bool flag2;
-	reader.read<bool>(flag2);
+	reader.read<bool>(ur.first);
 
-	if (flag2) {
+	if (ur.first) {
 		for (int n = 0; n < 16; ++n) {
-			unsigned short urShort;
-			reader.read<unsigned short>(urShort);
-			ur.push_back(urShort);
+			reader.read<unsigned short>(ur.second[n]);
 		}
 	}
-
-	//sleeperVolumeList = new std::vector<SleeperVolume *>();
-	//reader.readMultipleComplex<SleeperVolume, unsigned char>(sleeperVolumeList);
 	
 	reader.readMultipleSimple<int, unsigned char>(hk);
 
-	//reader.read<bool>(isEdited);
+	return reader.isValidRead();
+}
 
-	if (reader.length != reader.position) {
-		int a = 5;
+void Chunk::write(const Chunk &chunk, BinaryMemoryWriter &writer) const {
+	writer.write<int>(xm);
+	writer.write<int>(mm);
+	writer.write<int>(rm);
+
+	writer.write<unsigned _int64>(savedInWorldTicks);
+
+	for (int i = 0; i < 64; ++i) {
+
+		bool chunkBlockLayerExists = cbl.find(i) != cbl.end();
+		writer.write<bool>(chunkBlockLayerExists);
+
+		if (chunkBlockLayerExists) {
+			cbl.find(i)->second.write(writer);
+		}
 	}
 
-	//assert(reader.length == reader.position);
+	cbc.write(writer);
+
+	writer.writeBytes(im, 256);
+	writer.writeBytes(terrainHeight, 256);
+	writer.writeBytes(biomeID, 256);
+	writer.writeBytes(biomeIntentsity, 1536);
+
+	writer.write<unsigned char>(dominantBiome);
+	writer.write<unsigned char>(areaMasterDominantBiome);
+
+#pragma warning (suppress: 4267)
+	unsigned short customDataCount = chunkCustomDataMap.size();
+	writer.write<unsigned short>(customDataCount);
+
+	for (auto customData : chunkCustomDataMap) {
+		customData.second.write(writer);
+	}
+
+	writer.writeBytes(pr, 256);
+	writer.writeBytes(jr, 256);
+	writer.writeBytes(fr, 256);
+
+	cm.write(writer);
+	vm.write(writer);
+	gm.write(writer);
+	km.write(writer);
+
+	writer.write<bool>(needsLightCalculation);
+
+	writer.writeMultipleComplex<EntityCreationData, int>(entityCreationDataList);
+
+#pragma warning (suppress: 4267)
+	int tileEntityCount = tileEntityDictionary.size();
+	writer.write(tileEntityCount);
+
+	for (auto tileEntity : tileEntityDictionary) {
+		int tileEntityClassId = tileEntity.second->getType();
+
+		writer.write<int>(tileEntityClassId);
+		tileEntity.second->write(writer);
+	}
+
+#pragma warning (suppress: 4267)
+	unsigned short entitySpawnerCount = entitySpawnerList.size();
+	writer.write<unsigned short>(entitySpawnerCount);
+	writer.write<unsigned char>(entitySpawnerListSaveVersion);
+	
+	writer.writeMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount);
+
+	writer.write<bool>(ur.first);
+
+	if (ur.first) {
+		for (int n = 0; n < 16; ++n) {
+			writer.write<unsigned short>(ur.second[n]);
+		}
+	}
+
+	writer.writeMultipleSimple<int, unsigned char>(hk);
 }
 
 bool Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
 	memcpy(&header[0], &zipped[0], 4);
 	memcpy(&version, &zipped[4], 4);
 
-	BinaryMemoryReader reader = BinaryMemoryReader(zipped);
-	readChunk(chunk, reader);
+	BinaryMemoryReader reader = BinaryMemoryReader();
+	if (reader.initialize(zipped)) {
+		return read(chunk, reader);
+	}
 
-	return true;
+	return false;
+}
+
+bool Chunk::packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const {
+	memcpy(&zipped[0], &header[0], 4);
+	memcpy(&zipped[4], &version, 4);
+
+	BinaryMemoryWriter writer = BinaryMemoryWriter(1000000);
+	write(chunk, writer);
+	return writer.finalize(zipped);
 }
 
 Chunk::Chunk() {}

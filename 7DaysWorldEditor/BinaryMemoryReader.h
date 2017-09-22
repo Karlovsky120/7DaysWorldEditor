@@ -7,9 +7,10 @@ class BinaryMemoryReader {
 private:
 	HZIP hz;
 
+	long length = 0;
+
 public:
 	unsigned int position = 0;
-	long length = 0;
 
 	template <typename T>
 	inline void read(T &data) {
@@ -20,8 +21,9 @@ public:
 	template <>
 	inline void read(std::string &data) {
 		unsigned char length;
-		UnzipItem(hz, 0, &length, 1);
-		++position;
+		read(length);
+		//UnzipItem(hz, 0, &length, 1);
+		//++position;
 		
 		if (length != 0) {
 			unsigned char *stringData = new unsigned char[length];
@@ -56,8 +58,8 @@ public:
 	}
 
 	template<typename T, typename C>
-	inline void readMultipleSimple(std::vector<T> &listOfTs, C &counter) {
-		for (C i = 0; i < counter; ++i) {
+	inline void readMultipleSimple(std::vector<T> &listOfTs, C &count) {
+		for (C i = 0; i < count; ++i) {
 			T item;
 			read(item);
 			listOfTs.push_back(item);
@@ -72,15 +74,20 @@ public:
 	}
 
 	template<typename T, typename C>
-	inline void readMultipleComplex(std::vector<T> &listOfTs, C &counter) {
-		for (C i = 0; i < counter; ++i) {
+	inline void readMultipleComplex(std::vector<T> &listOfTs, C &count) {
+		for (C i = 0; i < count; ++i) {
 			T item;
 			item.read(*this);
 			listOfTs.push_back(item);
 		}
 	}
 
-	BinaryMemoryReader(std::vector<unsigned char> &zipped);
+	bool initialize(std::vector<unsigned char> &zipped);
+
+	bool isValidRead() {
+		return position != length;
+	}
+
 	BinaryMemoryReader();
 	~BinaryMemoryReader();
 };

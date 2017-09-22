@@ -7,6 +7,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntityVendingMachine : public TileEntityTrader {
 public:
@@ -23,7 +24,9 @@ public:
 
 	unsigned _int64 dd;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityVendingMachine();
 	~TileEntityVendingMachine();

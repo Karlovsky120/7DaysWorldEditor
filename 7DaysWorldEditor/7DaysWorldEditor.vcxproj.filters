@@ -67,6 +67,18 @@
     <Filter Include="Source Files\RegionFile\EntityData\BuffModifier">
       <UniqueIdentifier>{439a5e0a-b4f5-4557-8fdd-443b29198c61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer">
+      <UniqueIdentifier>{64710367-c8bd-4e53-8da8-745379a5306e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure">
+      <UniqueIdentifier>{02f8ab03-3a2b-4031-a4bb-fb29e751379e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer">
+      <UniqueIdentifier>{c7d0abeb-6628-49c8-9e6e-552b82bbd5e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure">
+      <UniqueIdentifier>{30945a9b-7168-4f6c-83e4-10e36cb7db5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="BinaryMemoryReader.cpp">
       <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="SleeperVolume.cpp">
-      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
     <ClCompile Include="SpawnPoint.cpp">
       <Filter>Source Files\RegionFile</Filter>
@@ -145,21 +154,6 @@
       <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
     <ClCompile Include="TileEntityForge.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityGoreBlock.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityLootContainer.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecure.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecureDoor.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecureLootContainer.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
     <ClCompile Include="TileEntitySign.cpp">
@@ -237,6 +231,24 @@
     <ClCompile Include="BuffModifierSetTickRate.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffModifier</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryMemoryWriter.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecure.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecureDoor.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntitySecureLootContainer.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityLootContainer.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEntityGoreBlock.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk.h">
@@ -272,9 +284,6 @@
     <ClInclude Include="BinaryMemoryReader.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
-    <ClInclude Include="SleeperVolume.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
     <ClInclude Include="SpawnPoint.h">
       <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
@@ -285,21 +294,6 @@
       <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
     </ClInclude>
     <ClInclude Include="TileEntityForge.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityGoreBlock.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityLootContainer.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecure.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecureDoor.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecureLootContainer.h">
       <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
     </ClInclude>
     <ClInclude Include="TileEntitySign.h">
@@ -407,14 +401,35 @@
     <ClInclude Include="Stat.h">
       <Filter>Header Files\RegionFile\EntityData</Filter>
     </ClInclude>
-    <ClInclude Include="TraderData.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
     <ClInclude Include="BuffModifier.h">
       <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
     </ClInclude>
     <ClInclude Include="BuffModifierSetTickRate.h">
       <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMemoryWriter.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityLootContainer.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecure.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecureDoor.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntitySecureLootContainer.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEntityGoreBlock.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="TraderData.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="PreprocessorConfig.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

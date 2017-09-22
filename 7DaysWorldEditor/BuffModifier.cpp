@@ -1,10 +1,21 @@
 #include "BuffModifier.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "BuffModifierSetTickRate.h"
 
-#include <assert.h>
+BuffModifierClassId BuffModifier::getType() {
+	return BuffModifierBase;
+}
 
+std::shared_ptr<BuffModifier> BuffModifier::instantiate(BuffModifierClassId id) {
+	switch (id) {
+		case SetTickRate:
+		return std::make_shared<BuffModifierSetTickRate>();
+		default:
+		return std::make_shared<BuffModifier>();
+	}
+}
 
 std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader) {
 	int buffModifierVersion;
@@ -20,18 +31,15 @@ std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader) {
 	return modifier;
 }
 
-std::shared_ptr<BuffModifier> BuffModifier::instantiate(BuffModifierClassId id) {
-	switch (id) {
-		case BuffModifierSetTickRateEnum:
-		return std::make_shared<BuffModifierSetTickRate>();
-	}
+void BuffModifier::write(BinaryMemoryWriter &writer) {
+	writer.write<int>(buffModifierVersion);
+	writer.write<unsigned char>(buffModifierClassId);
 
-	assert(false);
+	writer.write<int>(gh);
 }
 
 void BuffModifier::readMore(BinaryMemoryReader &reader) {
-	reader.read<int>(buffModifierVersion);
-	reader.read<unsigned char>(buffModifierClassId);
+	reader.read<int>(gh);
 }
 
 BuffModifier::BuffModifier() {}

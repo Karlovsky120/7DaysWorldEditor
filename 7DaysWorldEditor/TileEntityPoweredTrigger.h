@@ -4,6 +4,7 @@
 #include <string>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum TriggerTypes {
 	Switch,
@@ -25,7 +26,9 @@ public:
 
 	int targetType;
 
-	void reader(BinaryMemoryReader &reader);
+	TileEntityClassId getType() override;
+	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityPoweredTrigger();
 	~TileEntityPoweredTrigger();

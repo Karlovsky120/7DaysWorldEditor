@@ -2,20 +2,24 @@
 #include <memory>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum BuffModifierClassId {
-	BuffModifierSetTickRateEnum
+	SetTickRate,
+	BuffModifierBase
 };
 
 class BuffModifier {
 public:
-	int UID;
+	int gh;
 
 	int buffModifierVersion;
 	unsigned char buffModifierClassId;
 
-	static std::shared_ptr<BuffModifier> read(BinaryMemoryReader &reader);
+	virtual BuffModifierClassId getType();
 	static std::shared_ptr<BuffModifier> instantiate(BuffModifierClassId id);
+	static std::shared_ptr<BuffModifier> read(BinaryMemoryReader &reader);
+	void virtual write(BinaryMemoryWriter &writer);
 
 	BuffModifier();
 	~BuffModifier();
@@ -23,4 +27,3 @@ public:
 protected:
 	virtual void readMore(BinaryMemoryReader &reader);
 };
-

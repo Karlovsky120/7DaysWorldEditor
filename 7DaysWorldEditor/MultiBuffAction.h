@@ -4,6 +4,7 @@
 #include <string>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum Command {
 	Damage,
@@ -15,7 +16,7 @@ enum Command {
 	AttachPrefab,
 	Increment,
 	Min,
-	Max,
+	MaxCommand,
 	SetVar,
 	Buff
 };
@@ -38,6 +39,7 @@ public:
 	bool unknownI;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	MultiBuffAction();
 	~MultiBuffAction();

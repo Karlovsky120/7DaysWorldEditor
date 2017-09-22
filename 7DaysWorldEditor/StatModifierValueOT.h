@@ -10,6 +10,9 @@ public:
 	float frequency;
 	float unknownL;
 
+	StatModifierClassId getType() override;
+	void write(BinaryMemoryWriter &writer) override;
+
 	StatModifierValueOT();
 	~StatModifierValueOT();
 

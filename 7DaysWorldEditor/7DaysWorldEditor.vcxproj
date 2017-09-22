@@ -212,6 +212,7 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMemoryReader.cpp" />
+    <ClCompile Include="BinaryMemoryWriter.cpp" />
     <ClCompile Include="BodyDamage.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffDescriptor.cpp" />
@@ -237,7 +238,6 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeQueueItem.cpp" />
     <ClCompile Include="RegionFile.cpp" />
-    <ClCompile Include="SleeperVolume.cpp" />
     <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatModifier.cpp" />
@@ -272,6 +272,7 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="BinaryFileReader.h" />
     <ClInclude Include="BinaryFileWriter.h" />
     <ClInclude Include="BinaryMemoryReader.h" />
+    <ClInclude Include="BinaryMemoryWriter.h" />
     <ClInclude Include="BodyDamage.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffDescriptor.h" />
@@ -295,10 +296,10 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
     <ClInclude Include="MultiBuffAction.h" />
     <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h" />
     <ClInclude Include="MultiBuffVariable.h" />
+    <ClInclude Include="PreprocessorConfig.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
-    <ClInclude Include="SleeperVolume.h" />
     <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatModifier.h" />

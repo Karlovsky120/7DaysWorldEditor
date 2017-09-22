@@ -2,6 +2,7 @@
 #include "BuffTimer.h"
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class BuffTimerScheduled : public BuffTimer {
 public:
@@ -10,6 +11,9 @@ public:
 	int duration;
 	float unknownE;
 	int elapsed;
+
+	BuffTimerClassId getType() override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	BuffTimerScheduled();
 	~BuffTimerScheduled();

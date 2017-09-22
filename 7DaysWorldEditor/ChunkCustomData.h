@@ -3,6 +3,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class ChunkCustomData {
 public:
@@ -13,6 +14,7 @@ public:
 	std::vector<unsigned char> data;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	ChunkCustomData();
 	~ChunkCustomData();

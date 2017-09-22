@@ -1,6 +1,7 @@
 #include "BodyDamage.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 void BodyDamage::read(BinaryMemoryReader &reader) {
 	reader.read<int>(bodyDamageVersion);
@@ -30,6 +31,36 @@ void BodyDamage::read(BinaryMemoryReader &reader) {
 
 	reader.read<bool>(dismemberedLeftUpperLeg);
 	reader.read<bool>(crippledLeftLeg);
+}
+
+void BodyDamage::write(BinaryMemoryWriter &writer) const {
+	writer.write<int>(bodyDamageVersion);
+
+	writer.write<short>(leftUpperLeg);
+	writer.write<short>(rightUpperLeg);
+	writer.write<short>(leftUpperArm);
+	writer.write<short>(rightUpperArm);
+	writer.write<short>(chest);
+	writer.write<short>(head);
+
+	writer.write<bool>(dismemberedLeftUpperArm);
+	writer.write<bool>(dismemberedRightUpperArm);
+	writer.write<bool>(dismemberedHead);
+	writer.write<bool>(dismemberedRightUpperLeg);
+	writer.write<bool>(crippledRightLeg);
+
+	writer.write<short>(leftLowerLeg);
+	writer.write<short>(rightLowerLeg);
+	writer.write<short>(leftLowerArm);
+	writer.write<short>(rightLowerArm);
+
+	writer.write<bool>(dismemberedLeftLowerArm);
+	writer.write<bool>(dismemberedRightLowerArm);
+	writer.write<bool>(dismemberedLeftLowerLeg);
+	writer.write<bool>(dismemberedRightLowerLeg);
+
+	writer.write<bool>(dismemberedLeftUpperLeg);
+	writer.write<bool>(crippledLeftLeg);
 }
 
 BodyDamage::BodyDamage() {}

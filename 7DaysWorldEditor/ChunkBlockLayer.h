@@ -3,6 +3,7 @@
 #include <array>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class ChunkBlockLayer {
 public:
@@ -11,6 +12,7 @@ public:
 	std::pair<bool, std::array<unsigned char, 3072>> fh;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	ChunkBlockLayer();
 	~ChunkBlockLayer();

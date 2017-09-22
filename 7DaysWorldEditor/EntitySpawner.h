@@ -5,6 +5,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class EntitySpawner {
 public:
@@ -30,6 +31,7 @@ public:
 	bool bCaveSpawn;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	EntitySpawner();
 	~EntitySpawner();

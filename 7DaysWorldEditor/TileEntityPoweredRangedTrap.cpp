@@ -1,9 +1,14 @@
 #include "TileEntityPoweredRangedTrap.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "ItemStack.h"
 
 #include <string>
+
+TileEntityClassId TileEntityPoweredRangedTrap::getType() {
+	return PowerRangeTrap;
+}
 
 void TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
 	TileEntityPoweredBlock::read(reader);
@@ -12,7 +17,6 @@ void TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
 		reader.read<std::string>(lrz);
 	}
 
-	bool flag;
 	reader.read<bool>(flag);
 
 	if (flag) {
@@ -20,6 +24,23 @@ void TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
 		reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots);
 
 		reader.read<int>(targetType);
+	}
+}
+
+void TileEntityPoweredRangedTrap::write(BinaryMemoryWriter &writer) {
+	TileEntityPoweredBlock::write(writer);
+
+	if (RangedTrap == powerItemType) {
+		writer.write<std::string>(lrz);
+	}
+
+	writer.write<bool>(flag);
+
+	if (flag) {
+		writer.write<bool>(isLocked);
+		writer.writeMultipleComplex<ItemStack, unsigned short>(itemSlots);
+
+		writer.write<int>(targetType);
 	}
 }
 

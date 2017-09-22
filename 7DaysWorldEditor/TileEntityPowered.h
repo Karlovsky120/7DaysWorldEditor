@@ -6,6 +6,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum PowerItemTypes {
 	None,
@@ -34,9 +35,10 @@ public:
 	float centeredPitch;
 	float centeredYaw;
 
-	void read(BinaryMemoryReader &reader);
+	TileEntityClassId getType() override;
+	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityPowered();
 	~TileEntityPowered();
 };
-

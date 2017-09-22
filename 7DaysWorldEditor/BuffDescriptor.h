@@ -3,6 +3,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class BuffDescriptor {
 public:
@@ -12,6 +13,7 @@ public:
 	std::vector<std::string> overrides;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &write);
 
 	BuffDescriptor();
 	~BuffDescriptor();

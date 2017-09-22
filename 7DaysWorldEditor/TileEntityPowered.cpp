@@ -1,6 +1,11 @@
 #include "TileEntityPowered.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
+
+TileEntityClassId TileEntityPowered::getType() {
+	return TileEntityBase;
+}
 
 void TileEntityPowered::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);
@@ -26,6 +31,30 @@ void TileEntityPowered::read(BinaryMemoryReader &reader) {
 
 	reader.read<float>(centeredPitch);
 	reader.read<float>(centeredYaw);
+}
+
+void TileEntityPowered::write(BinaryMemoryWriter &writer) {
+	TileEntity::write(writer);
+	writer.write<int>(tileEntityPoweredVersion);
+	writer.write<bool>(isPlayerPlaced);
+	writer.write<unsigned char>(powerItemType);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<unsigned char>(intVectors.size());
+
+	for (int i = 0; i < intVectors.size(); ++i) {
+		Coordinate<int> item = intVectors[i];
+		writer.write<int>(item.x);
+		writer.write<int>(item.y);
+		writer.write<int>(item.z);
+	}
+
+	writer.write<int>(kzz.x);
+	writer.write<int>(kzz.y);
+	writer.write<int>(kzz.z);
+
+	writer.write<float>(centeredPitch);
+	writer.write<float>(centeredYaw);
 }
 
 TileEntityPowered::TileEntityPowered() {}

@@ -7,6 +7,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntityLootContainer : public TileEntity {
 public:
@@ -20,7 +21,9 @@ public:
 
 	bool bPlayerStorage;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityLootContainer();
 	~TileEntityLootContainer();

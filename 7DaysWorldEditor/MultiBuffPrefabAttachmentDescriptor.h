@@ -2,6 +2,7 @@
 #include <string>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class MultiBuffPrefabAttachmentDescriptor {
 public:
@@ -13,6 +14,7 @@ public:
 	bool thirdPerson;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	MultiBuffPrefabAttachmentDescriptor();
 	~MultiBuffPrefabAttachmentDescriptor();

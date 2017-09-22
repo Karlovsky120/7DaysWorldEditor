@@ -1,8 +1,13 @@
 #include "TileEntityPoweredTrigger.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
-void TileEntityPoweredTrigger::reader(BinaryMemoryReader &reader) {
+TileEntityClassId TileEntityPoweredTrigger::getType() {
+	return Trigger;
+}
+
+void TileEntityPoweredTrigger::read(BinaryMemoryReader &reader) {
 	TileEntityPowered::read(reader);
 
 	reader.read<unsigned char>(triggerType);
@@ -18,6 +23,25 @@ void TileEntityPoweredTrigger::reader(BinaryMemoryReader &reader) {
 
 	if (Motion == triggerType) {
 		reader.read<int>(targetType);
+	}
+}
+
+void TileEntityPoweredTrigger::write(BinaryMemoryWriter &writer) {
+	TileEntityPowered::write(writer);
+
+	writer.write<unsigned char>(triggerType);
+
+	if (Motion == triggerType) {
+		writer.write<std::string>(lrz);
+	} else if (TripWire == triggerType) {
+		writer.write<bool>(showTriggerOptions);
+	} else if (Switch == triggerType) {
+		writer.write<unsigned char>(property1);
+		writer.write<unsigned char>(property2);
+	}
+
+	if (Motion == triggerType) {
+		writer.write<int>(targetType);
 	}
 }
 

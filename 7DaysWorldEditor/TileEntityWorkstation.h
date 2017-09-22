@@ -7,6 +7,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntityWorkstation : public TileEntity {
 public:
@@ -26,7 +27,9 @@ public:
 
 	bool yhh;
 
+	TileEntityClassId getType() override;
 	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityWorkstation();
 	~TileEntityWorkstation();

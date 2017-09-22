@@ -1,11 +1,27 @@
 #include "BuffTimer.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "BuffTimerNull.h"
 #include "BuffTimerDuration.h"
 #include "BuffTimerScheduled.h"
 
-#include <assert.h>
+BuffTimerClassId BuffTimer::getType() {
+	return BuffTimerBase;
+}
+
+std::shared_ptr<BuffTimer> BuffTimer::instantiate(BuffTimerClassId id) {
+	switch (id) {
+		case Null:
+		return std::make_shared<BuffTimerNull>();
+		case Duration:
+		return std::make_shared<BuffTimerDuration>();
+		case Scheduled:
+		return std::make_shared<BuffTimerScheduled>();
+		default:
+		return std::make_shared<BuffTimer>();
+	}
+}
 
 std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader) {
 	int buffTimerVersion;
@@ -21,17 +37,9 @@ std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader) {
 	return timer;
 }
 
-std::shared_ptr<BuffTimer> BuffTimer::instantiate(BuffTimerClassId id) {
-	switch (id) {
-		case Null:
-		return std::make_shared<BuffTimerNull>();
-		case Duration:
-		return std::make_shared<BuffTimerDuration>();
-		case Scheduled:
-		return std::make_shared<BuffTimerScheduled>();
-	}
-
-	assert(true);
+void BuffTimer::write(BinaryMemoryWriter &writer) const {
+	writer.write<int>(buffTimerVersion);
+	writer.write<unsigned char>(buffTimerClassId);
 }
 
 void BuffTimer::readMore(BinaryMemoryReader &reader) {}

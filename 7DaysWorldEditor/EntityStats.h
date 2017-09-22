@@ -10,6 +10,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 enum BuffCategoryFlags {
 	None = 0,
@@ -55,6 +56,7 @@ public:
 	std::map<std::string, MultiBuffVariable> multiBuffVariableMap;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const ;
 
 	EntityStats();
 	~EntityStats();

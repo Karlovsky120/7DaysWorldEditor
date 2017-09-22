@@ -4,10 +4,10 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TraderData {
 public:
-
 	int traderID;
 	unsigned _int64 lastInventoryUpdate;
 	unsigned char fileVersion;
@@ -19,6 +19,7 @@ public:
 	std::vector<char> jj;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer);
 
 	TraderData();
 	~TraderData();

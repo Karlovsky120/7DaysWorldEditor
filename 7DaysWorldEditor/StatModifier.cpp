@@ -1,13 +1,33 @@
 #include "StatModifier.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "StatModifierMax.h"
 #include "StatModifierValueOT.h"
 #include "StatModifierModifyValue.h"
 #include "StatModifierSetValue.h"
 #include "StatModifierMulValue.h"
 
-#include <assert.h>
+StatModifierClassId StatModifier::getType() {
+	return StatModifierBase;
+}
+
+std::shared_ptr<StatModifier> StatModifier::instantiate(StatModifierClassId id) {
+	switch (id) {
+		case Max:
+		return std::make_shared<StatModifierMax>();
+		case ValueOT:
+		return std::make_shared<StatModifierValueOT>();
+		case ModifyValue:
+		return std::make_shared<StatModifierModifyValue>();
+		case SetValue:
+		return std::make_shared<StatModifierSetValue>();
+		case MulValue:
+		return std::make_shared<StatModifierMulValue>();
+		default:
+		return std::make_shared<StatModifier>();
+	}
+}
 
 std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader) {
 	int statModifierVersion;
@@ -24,21 +44,15 @@ std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader) {
 	return modifier;
 }
 
-std::shared_ptr<StatModifier> StatModifier::instantiate(StatModifierClassId id) {
-	switch (id) {
-		case StatModifierMaxE:
-		return std::make_shared<StatModifierMax>();
-		case StatModifierValueOTE:
-		return std::make_shared<StatModifierValueOT>();
-		case StatModifierModifyValueE:
-		return std::make_shared<StatModifierModifyValue>();
-		case StatModifierSetValueE:
-		return std::make_shared<StatModifierSetValue>();
-		case StatModifierMulValueE:
-		return std::make_shared<StatModifierMulValue>();
-	}
+void StatModifier::write(BinaryMemoryWriter &writer) {
+	writer.write<int>(statModifierVersion);
+	writer.write<unsigned char>(enumId);
 
-	assert(false);
+	writer.write<int>(UID);
+	writer.write<unsigned short>(fileId);
+	writer.write<int>(categoryFlag);
+	writer.write<int>(stackCount);
+	buffTimer.write(writer);
 }
 
 void StatModifier::readMore(BinaryMemoryReader &reader) {

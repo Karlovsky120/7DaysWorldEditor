@@ -1,8 +1,33 @@
 #include "MultiBuff.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "MultiBuffAction.h"
 #include "MultiBuffPrefabAttachmentDescriptor.h"
+
+BuffClassId MultiBuff::getType() {
+	return MultiBuffType;
+}
+
+void MultiBuff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+	Buff::write(writer, idTable);
+
+	writer.write<int>(multiBuffVersion);
+	writer.write<std::string>(multiBuffClassId);
+
+	writer.writeMultipleComplex<MultiBuffAction, int>(multiBuffActionList);
+	writer.writeMultipleComplex<MultiBuffAction, int>(multiBuffActionList2);
+
+	writer.writeMultipleComplex<MultiBuffPrefabAttachmentDescriptor, int>(multiBuffPrefabAttachmentDescriptorList);
+
+#pragma warning (suppress: 4267)
+	writer.writeConst<int>(buffCounterValues.size());
+
+	for (auto buffCounterValue: buffCounterValues) {
+		writer.writeConst<std::string>(buffCounterValue.first);
+
+	}
+}
 
 void MultiBuff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
 	Buff::readMore(reader, idTable);

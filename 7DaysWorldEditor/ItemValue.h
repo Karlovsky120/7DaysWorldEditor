@@ -3,6 +3,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class ItemValue {
 public:
@@ -21,6 +22,7 @@ public:
 	unsigned short useTimes;
 
 	void read(BinaryMemoryReader &reader);
+	void write(BinaryMemoryWriter &writer) const;
 
 	ItemValue();
 	~ItemValue();

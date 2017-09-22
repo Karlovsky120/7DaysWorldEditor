@@ -1,6 +1,11 @@
 #include "TileEntityLootContainer.h"
 
 #include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
+
+TileEntityClassId TileEntityLootContainer::getType() {
+	return Loot;
+}
 
 void TileEntityLootContainer::read(BinaryMemoryReader &reader) {
 	TileEntity::read(reader);
@@ -19,6 +24,24 @@ void TileEntityLootContainer::read(BinaryMemoryReader &reader) {
 
 	reader.readMultipleComplex<ItemStack, short>(items, itemsLength);
 	reader.read<bool>(bPlayerStorage);
+}
+
+void TileEntityLootContainer::write(BinaryMemoryWriter &writer) {
+	TileEntity::write(writer);
+
+	writer.write<unsigned short>(lootListIndex);
+	writer.write<unsigned short>(ad.x);
+	writer.write<unsigned short>(ad.y);
+
+	writer.write<bool>(bTouched);
+	writer.write<unsigned int>(worldTimeTouched);
+	writer.write<bool>(bPlayerBackpack);
+
+	short itemsLength = items.size();
+	writer.write<short>(itemsLength);
+
+	writer.writeMultipleComplex<ItemStack, short>(items, itemsLength);
+	writer.write<bool>(bPlayerStorage);
 }
 
 TileEntityLootContainer::TileEntityLootContainer() {}

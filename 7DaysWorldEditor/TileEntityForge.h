@@ -7,6 +7,7 @@
 #include <vector>
 
 class BinaryMemoryReader;
+class BinaryMemoryWriter;
 
 class TileEntityForge : public TileEntity {
 public:
@@ -23,7 +24,9 @@ public:
 	short yd;
 	ItemValue tb;
 
-	void read(BinaryMemoryReader &reader);
+	TileEntityClassId getType() override;
+	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityForge();
 	~TileEntityForge();

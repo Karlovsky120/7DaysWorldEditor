@@ -3,10 +3,14 @@
 
 #include <vector>
 
+class BinaryMemoryReader;
+class BinaryMemoryWriter;
 class ItemStack;
 
 class TileEntityPowerSource : public TileEntityPowered {
 public:
+	bool flag;
+
 	bool isOn;
 
 	unsigned short maxFuel;
@@ -18,7 +22,9 @@ public:
 	unsigned short maxOutput;
 	unsigned short lastOutput;
 
-	void reader(BinaryMemoryReader &reader);
+	TileEntityClassId getType() override;
+	void read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityPowerSource();
 	~TileEntityPowerSource();
