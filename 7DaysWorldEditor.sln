@@ -1,19 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "7DaysWorldEditor", "7DaysWorldEditor\7DaysWorldEditor.vcxproj", "{5C90B0B8-447E-4899-8A2B-6370313578CB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940} = {917836A4-0DDC-47BE-B930-1B3BFDF6C940}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cplus", "submodules\log4cplus\msvc14\log4cplus.vcxproj", "{917836A4-0DDC-47BE-B930-1B3BFDF6C940}"
 EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -29,16 +21,14 @@ Global
 		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x64.Build.0 = Release|x64
 		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x86.ActiveCfg = Release|Win32
 		{5C90B0B8-447E-4899-8A2B-6370313578CB}.Release|x86.Build.0 = Release|Win32
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x64.ActiveCfg = Debug|x64
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x64.Build.0 = Debug|x64
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x86.ActiveCfg = Debug|Win32
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Debug|x86.Build.0 = Debug|Win32
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x64.ActiveCfg = Release|x64
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x64.Build.0 = Release|x64
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x86.ActiveCfg = Release|Win32
-		{917836A4-0DDC-47BE-B930-1B3BFDF6C940}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB448789-374F-4046-8D53-C6F9FFBCF015}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

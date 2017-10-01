@@ -37,6 +37,7 @@ void TileEntityLootContainer::write(BinaryMemoryWriter &writer) {
 	writer.write<unsigned int>(worldTimeTouched);
 	writer.write<bool>(bPlayerBackpack);
 
+#pragma warning (suppress: 4267)
 	short itemsLength = items.size();
 	writer.write<short>(itemsLength);
 

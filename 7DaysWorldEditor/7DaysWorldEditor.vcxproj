@@ -105,20 +105,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Karlovsky120\Source\Repos\7DaysWorldEditor\submodules\log4cplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)Win32\bin.$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>if $(Configuration) == Debug (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplusD.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)
-if $(Configuration) == Release (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
@@ -131,20 +127,16 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Karlovsky120\Source\Repos\7DaysWorldEditor\submodules\log4cplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)x64\bin.$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>if $(Configuration) == Debug (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplusD.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)
-if $(Configuration) == Release (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
@@ -159,22 +151,18 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Karlovsky120\Source\Repos\7DaysWorldEditor\submodules\log4cplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Win32\bin.$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>if $(Configuration) == Debug (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplusD.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)
-if $(Configuration) == Release (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
@@ -189,22 +177,18 @@ xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(Pro
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Karlovsky120\Source\Repos\7DaysWorldEditor\submodules\log4cplus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)x64\bin.$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>if $(Configuration) == Debug (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplusD.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)
-if $(Configuration) == Release (
-xcopy "$(SolutionDir)\$(PlatformName)\bin.$(Configuration)\log4cplus.dll" "$(ProjectDir)\bin\$(Configuration)\$(PlatformName)\" /Y
-)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
