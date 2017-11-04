@@ -10,8 +10,8 @@ TileEntityClassId TileEntityPoweredRangedTrap::getType() {
 	return PowerRangeTrap;
 }
 
-void TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
-	TileEntityPoweredBlock::read(reader);
+int TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntityPoweredBlock::read(reader));
 
 	if (RangedTrap == powerItemType) {
 		reader.read<std::string>(lrz);
@@ -21,10 +21,12 @@ void TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
 
 	if (flag) {
 		reader.read<bool>(isLocked);
-		reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots);
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots, NO_VERSION)));
 
 		reader.read<int>(targetType);
 	}
+
+	return 0;
 }
 
 void TileEntityPoweredRangedTrap::write(BinaryMemoryWriter &writer) {

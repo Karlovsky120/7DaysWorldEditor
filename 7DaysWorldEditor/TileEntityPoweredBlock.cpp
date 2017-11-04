@@ -7,10 +7,12 @@ TileEntityClassId TileEntityPoweredBlock::getType() {
 	return Powered;
 }
 
-void TileEntityPoweredBlock::read(BinaryMemoryReader &reader) {
-	TileEntityPowered::read(reader);
+int TileEntityPoweredBlock::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntityPowered::read(reader));
 
 	reader.read<bool>(uzz);
+
+	return 0;
 }
 
 void TileEntityPoweredBlock::write(BinaryMemoryWriter &writer) {

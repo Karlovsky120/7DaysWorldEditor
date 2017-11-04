@@ -3,8 +3,10 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void MultiBuffAction::read(BinaryMemoryReader &reader) {
+int MultiBuffAction::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffActionVersion);
+	CHECK_VERSION(multiBuffActionVersion, MULTI_BUFF_ACTION);
+
 	reader.read<unsigned char>(commandId);
 	reader.read<float>(unknownC);
 	reader.read<int>(categoryFlags);
@@ -13,11 +15,16 @@ void MultiBuffAction::read(BinaryMemoryReader &reader) {
 	reader.read<std::string>(unknownW);
 	reader.read<std::string>(context);
 
-	unknownJ.read(reader);
-	unknownS.read(reader);
+	int buffTimerVer;
+	unknownJ = BuffTimer::read(reader, buffTimerVer);
+	CHECK_VERSION_ZERO(buffTimerVer);
+	unknownS = BuffTimer::read(reader, buffTimerVer);
+	CHECK_VERSION_ZERO(buffTimerVer);
 
 	reader.read<bool>(unknownF);
 	reader.read<bool>(unknownI);
+
+	return 0;
 }
 
 void MultiBuffAction::write(BinaryMemoryWriter &writer) const {
@@ -30,8 +37,8 @@ void MultiBuffAction::write(BinaryMemoryWriter &writer) const {
 	writer.write<std::string>(unknownW);
 	writer.write<std::string>(context);
 
-	unknownJ.write(writer);
-	unknownS.write(writer);
+	unknownJ->write(writer);
+	unknownS->write(writer);
 
 	writer.write<bool>(unknownF);
 	writer.write<bool>(unknownI);

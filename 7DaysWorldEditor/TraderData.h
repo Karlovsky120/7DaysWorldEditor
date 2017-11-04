@@ -1,12 +1,14 @@
 #pragma once
 #include "ItemStack.h"
 
+#include "SaveVersionCheck.h"
+
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TraderData {
+class TraderData : public SaveVersionCheck {
 public:
 	int traderID;
 	unsigned _int64 lastInventoryUpdate;
@@ -18,7 +20,7 @@ public:
 	int availableMoney;
 	std::vector<char> jj;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer);
 
 	TraderData();

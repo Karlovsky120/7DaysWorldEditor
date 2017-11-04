@@ -3,12 +3,16 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void BuffDescriptor::read(BinaryMemoryReader &reader) {
+int BuffDescriptor::read(BinaryMemoryReader &reader) {
 	reader.read<int>(buffDescriptorVersion);
+	CHECK_VERSION(buffDescriptorVersion, BUFF_DESCRIPTOR);
+
 	reader.read<int>(categoryFlags);
 	reader.read<std::string>(notificationClass);
 
 	reader.readMultipleSimple<std::string, int>(overrides);
+
+	return 0;
 }
 
 void BuffDescriptor::write(BinaryMemoryWriter &writer) {

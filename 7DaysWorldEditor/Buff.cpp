@@ -21,9 +21,11 @@ std::shared_ptr<Buff> Buff::instantiate(BuffClassId type) {
 	}
 }
 
-std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable, int &buffVer) {
 	unsigned short buffVersion;
 	reader.read<unsigned short>(buffVersion);
+	CHECK_VERSION_R(buffVersion, BUFF, buffVer);
+
 	unsigned char buffClassId;
 	reader.read<unsigned char>(buffClassId);
 
@@ -31,7 +33,7 @@ std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned s
 	buff->buffVersion = buffVersion;
 	buff->buffClassId = buffClassId;
 
-	buff->readMore(reader, idTable);
+	CHECK_VERSION_ZERO_R(buff->readMore(reader, idTable), buffVer);
 
 	return buff;
 }
@@ -56,15 +58,17 @@ void Buff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::share
 	writer.writeConst<unsigned char>(buffModifierList.size());
 
 	for (auto &buffModifier : buffModifierList) {
-		buffModifier.write(writer);
+		buffModifier->write(writer);
 	}
 
 	writer.write<int>(instigatorId);
 }
 
-void Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
-	timer = BuffTimer::read(reader);
-	descriptor.read(reader);
+int Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+	int buffTimerVer;
+	timer = BuffTimer::read(reader, buffTimerVer);
+	CHECK_VERSION_ZERO(buffTimerVer);
+	CHECK_VERSION_ZERO(descriptor.read(reader));
 	reader.read<bool>(isOverriden);
 
 	unsigned char statModifierCount;
@@ -82,12 +86,16 @@ void Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::sh
 	reader.read<unsigned char>(buffModifierCount);
 
 	for (int j = 0; j < buffModifierCount; ++j) {
-		BuffModifier modifier;
-		modifier.read(reader);
+		std::shared_ptr<BuffModifier> modifier;
+		int buffModifierVer;
+		modifier = BuffModifier::read(reader, buffModifierVer);
+		CHECK_VERSION_ZERO(buffModifierVer);
 		buffModifierList.push_back(modifier);
 	}
 
 	reader.read<int>(instigatorId);
+
+	return 0;
 }
 
 Buff::Buff() {}

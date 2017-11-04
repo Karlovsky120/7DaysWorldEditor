@@ -1,10 +1,12 @@
 #pragma once
+#include "SaveVersionCheck.h"
+
 #include <string>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class MultiBuffPrefabAttachmentDescriptor {
+class MultiBuffPrefabAttachmentDescriptor : public SaveVersionCheck {
 public:
 	int multiBuffPrefabAttachmentDescriptorVersion;
 	std::string prefabName;
@@ -13,7 +15,7 @@ public:
 	bool firstPerson;
 	bool thirdPerson;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	MultiBuffPrefabAttachmentDescriptor();

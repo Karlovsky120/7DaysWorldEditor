@@ -7,21 +7,23 @@ TileEntityClassId TileEntityForge::getType() {
 	return Forge;
 }
 
-void TileEntityForge::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+int TileEntityForge::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<unsigned _int64>(ib);
 
-	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
-	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb, NO_VERSION)));
 
-	fd.read(reader);
-	mb.read(reader);
+	CHECK_VERSION_ZERO(fd.read(reader));
+	CHECK_VERSION_ZERO(mb.read(reader));
 
 	reader.read<int>(hb);
 	reader.read<short>(qd);
 	reader.read<short>(yd);
-	tb.read(reader);
+	CHECK_VERSION(tb.read(reader), ITEM_VALUE);
+
+	return 0;
 }
 
 void TileEntityForge::write(BinaryMemoryWriter &writer) {

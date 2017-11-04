@@ -3,7 +3,7 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void ChunkCustomData::read(BinaryMemoryReader &reader) {
+int ChunkCustomData::read(BinaryMemoryReader &reader) {
 	reader.read<std::string>(key);
 	reader.read<unsigned _int64>(expiresInWorldTime);
 	reader.read<bool>(isSavedToNetwork);
@@ -14,6 +14,8 @@ void ChunkCustomData::read(BinaryMemoryReader &reader) {
 	if (dataLength > 0) {
 		reader.readBytes(data, dataLength);
 	}
+
+	return 0;
 }
 
 void ChunkCustomData::write(BinaryMemoryWriter &writer) const {

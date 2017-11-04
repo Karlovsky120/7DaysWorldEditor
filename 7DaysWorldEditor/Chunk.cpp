@@ -12,14 +12,12 @@
 #include "Unzip.h"
 #include "Zip.h"
 
-#include <log4cplus/logger.h>
-#include <log4cplus/loggingmacros.h>
-
-extern log4cplus::Logger mainLog;
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
-bool Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
+int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
+	int versionCheck = 0;
+
  	reader.read<int>(xm);
 	reader.read<int>(mm);
 	reader.read<int>(rm);
@@ -66,7 +64,7 @@ bool Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
 
 	reader.read<bool>(needsLightCalculation);
 
-	reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList, ENTITY_CREATION_DATA)));
 
 	int tileEntityCount;
 	reader.read<int>(tileEntityCount);
@@ -75,7 +73,7 @@ bool Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
 		int entityType;
 		reader.read<int>(entityType);
 		std::shared_ptr<TileEntity> tileEntity = TileEntity::instantiate((TileEntityClassId)entityType);
-		tileEntity->read(reader);
+		CHECK_VERSION_ZERO(tileEntity->read(reader));
 		tileEntityDictionary[tileEntity->localChunkPosition] = tileEntity;
 	}
 
@@ -83,7 +81,7 @@ bool Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
 	reader.read<unsigned short>(entitySpawnerCount);
 	reader.read<unsigned char>(entitySpawnerListSaveVersion);
 
-	reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount, ENTITY_SPAWNER)));
 
 	reader.read<bool>(ur.first);
 
@@ -175,16 +173,18 @@ void Chunk::write(const Chunk &chunk, BinaryMemoryWriter &writer) const {
 	writer.writeMultipleSimple<int, unsigned char>(hk);
 }
 
-bool Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
+int Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
 	memcpy(&header[0], &zipped[0], 4);
 	memcpy(&version, &zipped[4], 4);
 
+
+	CHECK_VERSION(version, CHUNK);
 	BinaryMemoryReader reader = BinaryMemoryReader();
 	if (reader.initialize(zipped)) {
 		return read(chunk, reader);
 	}
 
-	return false;
+	return -1;
 }
 
 bool Chunk::packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const {

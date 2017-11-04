@@ -1,5 +1,6 @@
 #pragma once
 #include "Coordinate.h"
+#include "SaveVersionCheck.h"
 
 #include <string>
 #include <vector>
@@ -7,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class EntitySpawner {
+class EntitySpawner : public SaveVersionCheck {
 public:
 	unsigned char version;
 	Coordinate<int> position;
@@ -30,7 +31,7 @@ public:
 	unsigned _int64 worldTimeNextToWave;
 	bool bCaveSpawn;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	EntitySpawner();

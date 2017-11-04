@@ -23,16 +23,18 @@ std::shared_ptr<BuffTimer> BuffTimer::instantiate(BuffTimerClassId id) {
 	}
 }
 
-std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader) {
+std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader, int &buffTimerVer) {
 	int buffTimerVersion;
 	reader.read<int>(buffTimerVersion);
+	CHECK_VERSION_R(buffTimerVersion, BUFF_TIMER, buffTimerVer);
+
 	unsigned char buffTimerClassId;
 	reader.read<unsigned char>(buffTimerClassId);
 
 	std::shared_ptr<BuffTimer> timer = instantiate((BuffTimerClassId)buffTimerClassId);
 	timer->buffTimerVersion = buffTimerVersion;
 	timer->buffTimerClassId = buffTimerClassId;
-	timer->readMore(reader);
+	CHECK_VERSION_ZERO_R(timer->readMore(reader), buffTimerVer);
 
 	return timer;
 }
@@ -42,7 +44,9 @@ void BuffTimer::write(BinaryMemoryWriter &writer) const {
 	writer.write<unsigned char>(buffTimerClassId);
 }
 
-void BuffTimer::readMore(BinaryMemoryReader &reader) {}
+int BuffTimer::readMore(BinaryMemoryReader &reader) {
+	return 0;
+}
 
 BuffTimer::BuffTimer() {}
 BuffTimer::~BuffTimer() {}

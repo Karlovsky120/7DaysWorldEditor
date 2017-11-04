@@ -13,10 +13,12 @@ void BuffModifierSetTickRate::write(BinaryMemoryWriter &writer) {
 	writer.write<float>(tickRate);
 }
 
-void BuffModifierSetTickRate::readMore(BinaryMemoryReader &reader) {
-	BuffModifier::readMore(reader);
+int BuffModifierSetTickRate::readMore(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(BuffModifier::readMore(reader));
 
 	reader.read<float>(tickRate);
+
+	return 0;
 }
 
 BuffModifierSetTickRate::BuffModifierSetTickRate() {}

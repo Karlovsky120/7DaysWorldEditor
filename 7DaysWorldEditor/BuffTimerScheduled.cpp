@@ -18,10 +18,11 @@ void BuffTimerScheduled::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(elapsed);
 }
 
-void BuffTimerScheduled::readMore(BinaryMemoryReader &reader) {
-	BuffTimer::readMore(reader);
+int BuffTimerScheduled::readMore(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(BuffTimer::readMore(reader));
 
 	reader.read<int>(buffTimerScheduledVersion);
+	CHECK_VERSION(buffTimerScheduledVersion, BUFF_TIMER_SCHEDULED);
 
 	reader.read<unsigned _int64>(unknownG);
 	reader.read<int>(duration);

@@ -1,11 +1,14 @@
 #pragma once
+
+#include "SaveVersionCheck.h"
+
 #include <map>
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemValue {
+class ItemValue : public SaveVersionCheck {
 public:
 	bool activated;
 
@@ -21,7 +24,7 @@ public:
 	unsigned short type;
 	unsigned short useTimes;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	ItemValue();

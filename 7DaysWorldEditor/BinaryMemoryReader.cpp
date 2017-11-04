@@ -14,6 +14,7 @@ bool BinaryMemoryReader::initialize(std::vector<unsigned char> &zipped) {
 	ZIPENTRY ze;
 	ZRESULT result;
 
+	//This ordering is required because writing to the file will consume the stream making it unable to read on the second go.
 #if READTOFILE
 	// The 8 bytes is a header which is already read.
 #pragma warning(suppress: 4267)
@@ -43,10 +44,9 @@ bool BinaryMemoryReader::initialize(std::vector<unsigned char> &zipped) {
 	}
 #endif
 
-	// Those 8 bytes are metadata we no longer need.
+	// The 8 bytes is a header which is already read.
 #pragma warning(suppress: 4267) // Conversion from size_t to unsigned int - file will never be that large
 	hz = OpenZip(&zipped[8], zipped.capacity() - 8, 0);
-
 	result = GetZipItem(hz, 0, &ze);
 
 	if (result != ZR_OK) {

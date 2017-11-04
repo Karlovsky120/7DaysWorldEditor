@@ -16,13 +16,15 @@ void StatModifierValueOT::write(BinaryMemoryWriter &writer) {
 	writer.write<float>(unknownL);
 }
 
-void StatModifierValueOT::readMore(BinaryMemoryReader &reader) {
-	StatModifier::readMore(reader);
+int StatModifierValueOT::readMore(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(StatModifier::readMore(reader));
 
 	reader.read<float>(unknownV);
 	reader.read<float>(unknownF);
 	reader.read<float>(frequency);
 	reader.read<float>(unknownL);
+
+	return 0;
 }
 
 StatModifierValueOT::StatModifierValueOT() {}

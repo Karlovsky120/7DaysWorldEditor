@@ -3,11 +3,13 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void RecipeQueueItem::read(BinaryMemoryReader &reader) {
+#include "SaveVersionCheck.h"
+
+int RecipeQueueItem::read(BinaryMemoryReader &reader) {
 	reader.read<bool>(recipe.first);
 
 	if (recipe.first) {
-		recipe.second.read(reader);
+		CHECK_VERSION_ZERO(recipe.second.read(reader));
 	}
 
 	reader.read<float>(craftingTimeLeft);
@@ -17,12 +19,14 @@ void RecipeQueueItem::read(BinaryMemoryReader &reader) {
 	reader.read<bool>(repairItem.first);
 
 	if (repairItem.first) {
-		repairItem.second.read(reader);
+		CHECK_VERSION_ZERO(repairItem.second.read(reader));
 		reader.read<int>(amountToRepair);
 	}
 
 	reader.read<int>(quality);
 	reader.read<int>(startingEntityId);
+
+	return 0;
 }
 
 void RecipeQueueItem::write(BinaryMemoryWriter &writer) const {

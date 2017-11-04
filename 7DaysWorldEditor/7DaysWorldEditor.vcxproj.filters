@@ -79,6 +79,9 @@
     <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure">
       <UniqueIdentifier>{30945a9b-7168-4f6c-83e4-10e36cb7db5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cfg">
+      <UniqueIdentifier>{20290c48-8f4b-47f2-9d63-03f708fd80b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -219,9 +222,6 @@
     <ClCompile Include="RecipeQueueItem.cpp">
       <Filter>Source Files\RegionFile\EntityData</Filter>
     </ClCompile>
-    <ClCompile Include="TraderData.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
     <ClCompile Include="Stat.cpp">
       <Filter>Source Files\RegionFile\EntityData</Filter>
     </ClCompile>
@@ -248,6 +248,15 @@
     </ClCompile>
     <ClCompile Include="TileEntityGoreBlock.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveVersionCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TraderData.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -431,8 +440,23 @@
     <ClInclude Include="PreprocessorConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConfigFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Log4cplus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CurrentVersionConfigConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveVersionCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="log4cplus.ini" />
+    <None Include="cfg\currentVersion.cfg">
+      <Filter>cfg</Filter>
+    </None>
   </ItemGroup>
 </Project>

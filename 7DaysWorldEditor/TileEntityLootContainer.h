@@ -22,7 +22,7 @@ public:
 	bool bPlayerStorage;
 
 	TileEntityClassId getType() override;
-	void read(BinaryMemoryReader &reader) override;
+	int read(BinaryMemoryReader &reader) override;
 	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityLootContainer();

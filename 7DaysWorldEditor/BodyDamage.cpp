@@ -3,8 +3,9 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void BodyDamage::read(BinaryMemoryReader &reader) {
+int BodyDamage::read(BinaryMemoryReader &reader) {
 	reader.read<int>(bodyDamageVersion);
+	CHECK_VERSION(bodyDamageVersion, BODY_DAMAGE);
 
 	reader.read<short>(leftUpperLeg);
 	reader.read<short>(rightUpperLeg);
@@ -31,6 +32,8 @@ void BodyDamage::read(BinaryMemoryReader &reader) {
 
 	reader.read<bool>(dismemberedLeftUpperLeg);
 	reader.read<bool>(crippledLeftLeg);
+
+	return 0;
 }
 
 void BodyDamage::write(BinaryMemoryWriter &writer) const {

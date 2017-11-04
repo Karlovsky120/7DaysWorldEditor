@@ -13,7 +13,7 @@ public:
 
 	std::vector<unsigned char> data;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	ChunkCustomData();

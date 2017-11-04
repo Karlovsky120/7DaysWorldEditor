@@ -1,4 +1,6 @@
 #pragma once
+#include "SaveVersionCheck.h"
+
 #include <map>
 #include <memory>
 #include <vector>
@@ -7,7 +9,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class StatModifier;
 
-class Stat {
+class Stat : public SaveVersionCheck {
 public:
 	int statVersion;
 	float value;
@@ -20,7 +22,7 @@ public:
 
 	std::vector<std::shared_ptr<StatModifier>> statModifierList;
 
-	void read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable);
+	int read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable);
 	void write(BinaryMemoryWriter &writer) const;
 
 	Stat();

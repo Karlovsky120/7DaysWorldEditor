@@ -14,11 +14,13 @@ void StatModifierModifyValue::write(BinaryMemoryWriter &writer) {
 	writer.write<float>(unknownF);
 }
 
-void StatModifierModifyValue::readMore(BinaryMemoryReader &reader) {
-	StatModifier::readMore(reader);
+int StatModifierModifyValue::readMore(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(StatModifier::readMore(reader));
 
 	reader.read<float>(unknownV);
 	reader.read<float>(unknownF);
+
+	return 0;
 }
 
 StatModifierModifyValue::StatModifierModifyValue() {}

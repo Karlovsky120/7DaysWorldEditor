@@ -3,8 +3,9 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void Recipe::read(BinaryMemoryReader &reader) {
+int Recipe::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(recipeVersion);
+	CHECK_VERSION(recipeVersion, RECIPE);
 
 	reader.read<std::string>(itemName);
 	reader.read<int>(count);
@@ -34,6 +35,8 @@ void Recipe::read(BinaryMemoryReader &reader) {
 
 	reader.read<bool>(materialBasedRecipe);
 	reader.read<int>(craftingExpGain);
+
+	return 0;
 }
 
 void Recipe::write(BinaryMemoryWriter &writer) const {

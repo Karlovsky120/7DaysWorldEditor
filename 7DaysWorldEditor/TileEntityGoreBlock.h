@@ -9,7 +9,7 @@ public:
 	unsigned _int64 arz;
 
 	TileEntityClassId getType() override;
-	void read(BinaryMemoryReader &reader) override;
+	int read(BinaryMemoryReader &reader) override;
 	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityGoreBlock();

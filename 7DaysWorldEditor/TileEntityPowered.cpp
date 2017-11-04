@@ -7,9 +7,12 @@ TileEntityClassId TileEntityPowered::getType() {
 	return TileEntityBase;
 }
 
-void TileEntityPowered::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+int TileEntityPowered::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
+
 	reader.read<int>(tileEntityPoweredVersion);
+	CHECK_VERSION(tileEntityPoweredVersion, TILE_ENTITY_POWERED);
+
 	reader.read<bool>(isPlayerPlaced);
 	reader.read<unsigned char>(powerItemType);
 
@@ -31,6 +34,8 @@ void TileEntityPowered::read(BinaryMemoryReader &reader) {
 
 	reader.read<float>(centeredPitch);
 	reader.read<float>(centeredYaw);
+
+	return 0;
 }
 
 void TileEntityPowered::write(BinaryMemoryWriter &writer) {

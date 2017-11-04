@@ -1,6 +1,7 @@
 #pragma once
 #include "Buff.h"
 #include "MultiBuffVariable.h"
+#include "SaveVersionCheck.h"
 #include "Stat.h"
 #include "StatModifier.h"
 
@@ -32,7 +33,7 @@ enum BuffCategoryFlags {
 	Health = 192
 };
 
-class EntityStats {
+class EntityStats : public SaveVersionCheck {
 public:
 	int statsVersion;
 	int buffCategoryFlags;
@@ -55,7 +56,7 @@ public:
 	std::vector<std::shared_ptr<Buff>> buffList;
 	std::map<std::string, MultiBuffVariable> multiBuffVariableMap;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const ;
 
 	EntityStats();

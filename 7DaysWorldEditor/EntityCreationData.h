@@ -3,6 +3,7 @@
 #include "Coordinate.h"
 #include "EntityStats.h"
 #include "ItemStack.h"
+#include "SaveVersionCheck.h"
 #include "TileEntity.h"
 
 #include <memory>
@@ -17,7 +18,7 @@ enum SpawnerSource {
 	Dynamic
 };
 
-class EntityCreationData {
+class EntityCreationData : public SaveVersionCheck {
 public:
 	unsigned char entityCreationDataVersion;
 	int entityClass;
@@ -55,7 +56,7 @@ public:
 	std::vector<unsigned char> entityData;
 	bool isTraderEntity;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	EntityCreationData();

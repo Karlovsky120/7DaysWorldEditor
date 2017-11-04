@@ -4,8 +4,10 @@
 #include "BinaryMemoryWriter.h"
 #include "Utils.h"
 
-void EntityCreationData::read(BinaryMemoryReader &reader) {
+int EntityCreationData::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(entityCreationDataVersion);
+	CHECK_VERSION(entityCreationDataVersion, ENTITY_CREATION_DATA);
+
 	reader.read<int>(entityClass);
 
 	reader.read<int>(id);
@@ -21,12 +23,12 @@ void EntityCreationData::read(BinaryMemoryReader &reader) {
 
 	reader.read<bool>(onGround);
 	
-	bodyDamage.read(reader);
+	CHECK_VERSION_ZERO(bodyDamage.read(reader));
 
 	reader.read<bool>(stats.first);
 
 	if (stats.first) {
-		stats.second.read(reader);
+		CHECK_VERSION_ZERO(stats.second.read(reader));
 	}
 
 	reader.read<short>(deathTime);
@@ -37,7 +39,7 @@ void EntityCreationData::read(BinaryMemoryReader &reader) {
 	if (tileEntityNotNull) {
 		reader.read<int>(tileEntityType);
 		lootContainer = TileEntity::instantiate((TileEntityClassId)tileEntityType);
-		lootContainer->read(reader);
+		CHECK_VERSION_ZERO(lootContainer->read(reader));
 	}
 
 	reader.read<int>(homePosition.x);
@@ -49,7 +51,7 @@ void EntityCreationData::read(BinaryMemoryReader &reader) {
 
 	if (entityClass == Utils::getMonoHash("item")) {
 		reader.read<int>(belongsPlayerId);
-		itemStack.read(reader);
+		CHECK_VERSION_ZERO(itemStack.read(reader));
 		reader.read<char>(someSByte);
 	} else if (entityClass == Utils::getMonoHash("fallingBlock")) {
 		reader.read<unsigned int>(blockValue);
@@ -76,6 +78,8 @@ void EntityCreationData::read(BinaryMemoryReader &reader) {
 	}
 
 	reader.read<bool>(isTraderEntity);
+
+	return 0;
 }
 
 void EntityCreationData::write(BinaryMemoryWriter &writer) const {

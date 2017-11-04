@@ -7,17 +7,17 @@ TileEntityClassId TileEntityWorkstation::getType() {
 	return Workstation;
 }
 
-void TileEntityWorkstation::read(BinaryMemoryReader &reader) {	
-	TileEntity::read(reader);
+int TileEntityWorkstation::read(BinaryMemoryReader &reader) {	
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<unsigned char>(version);
 	reader.read<unsigned _int64>(ib);
 
-	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
-	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
-	reader.readMultipleComplex<ItemStack, unsigned char>(eg);
-	reader.readMultipleComplex<ItemStack, unsigned char>(mb);
-	reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(eg, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(mb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe, RECIPE_QUEUE_ITEM)));
 
 	reader.read<bool>(ye);
 	reader.read<float>(fe);
@@ -25,6 +25,8 @@ void TileEntityWorkstation::read(BinaryMemoryReader &reader) {
 	reader.readMultipleSimple<float, unsigned char>(qe);
 
 	reader.read<bool>(yhh);
+
+	return 0;
 }
 
 void TileEntityWorkstation::write(BinaryMemoryWriter &writer) {

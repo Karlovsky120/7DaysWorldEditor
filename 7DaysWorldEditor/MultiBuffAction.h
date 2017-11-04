@@ -1,7 +1,9 @@
 #pragma once
 #include "BuffTimer.h"
+#include "SaveVersionCheck.h"
 
 #include <string>
+#include <memory>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
@@ -21,7 +23,7 @@ enum Command {
 	Buff
 };
 
-class MultiBuffAction {
+class MultiBuffAction : public SaveVersionCheck {
 public:
 	int multiBuffActionVersion;
 	unsigned char commandId;
@@ -32,13 +34,13 @@ public:
 	std::string unknownW;
 	std::string context;
 
-	BuffTimer unknownJ;
-	BuffTimer unknownS;
+	std::shared_ptr<BuffTimer> unknownJ;
+	std::shared_ptr<BuffTimer> unknownS;
 
 	bool unknownF;
 	bool unknownI;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	MultiBuffAction();

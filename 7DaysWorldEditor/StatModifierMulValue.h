@@ -15,5 +15,5 @@ public:
 	~StatModifierMulValue();
 
 private:
-	void readMore(BinaryMemoryReader &reader) override;
+	int readMore(BinaryMemoryReader &reader) override;
 };

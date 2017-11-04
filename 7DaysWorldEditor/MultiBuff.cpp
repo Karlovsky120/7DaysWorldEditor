@@ -29,16 +29,18 @@ void MultiBuff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::
 	}
 }
 
-void MultiBuff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
-	Buff::readMore(reader, idTable);
+int MultiBuff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+	CHECK_VERSION_ZERO(Buff::readMore(reader, idTable));
 
 	reader.read<int>(multiBuffVersion);
+	CHECK_VERSION(multiBuffVersion, MULTI_BUFF);
+
 	reader.read<std::string>(multiBuffClassId);
 
-	reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList);
-	reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList2);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList, MULTI_BUFF_ACTION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList2, MULTI_BUFF_ACTION)));
 
-	reader.readMultipleComplex<MultiBuffPrefabAttachmentDescriptor, int>(multiBuffPrefabAttachmentDescriptorList);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffPrefabAttachmentDescriptor, int>(multiBuffPrefabAttachmentDescriptorList, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR)));
 
 	int buffCounterCounter;
 	reader.read<int>(buffCounterCounter);

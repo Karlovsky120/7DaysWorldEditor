@@ -17,16 +17,18 @@ std::shared_ptr<BuffModifier> BuffModifier::instantiate(BuffModifierClassId id) 
 	}
 }
 
-std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader) {
+std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader, int &buffModifierVer) {
 	int buffModifierVersion;
 	reader.read<int>(buffModifierVersion);
+	CHECK_VERSION_R(buffModifierVersion, BUFF_MODIFIER, buffModifierVer);
+
 	unsigned char buffModifierClassId;
 	reader.read<unsigned char>(buffModifierClassId);
 
 	std::shared_ptr<BuffModifier> modifier = instantiate((BuffModifierClassId)buffModifierClassId);
 	modifier->buffModifierVersion = buffModifierVersion;
 	modifier->buffModifierClassId = buffModifierClassId;
-	modifier->readMore(reader);
+	CHECK_VERSION_ZERO_R(modifier->readMore(reader), buffModifierVer);
 
 	return modifier;
 }
@@ -38,8 +40,9 @@ void BuffModifier::write(BinaryMemoryWriter &writer) {
 	writer.write<int>(gh);
 }
 
-void BuffModifier::readMore(BinaryMemoryReader &reader) {
+int BuffModifier::readMore(BinaryMemoryReader &reader) {
 	reader.read<int>(gh);
+	return 0;
 }
 
 BuffModifier::BuffModifier() {}

@@ -7,16 +7,20 @@ TileEntityClassId TileEntitySecure::getType() {
 	return TileEntityBase;
 }
 
-void TileEntitySecure::read(BinaryMemoryReader &reader) {
-	TileEntityLootContainer::read(reader);
+int TileEntitySecure::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntityLootContainer::read(reader));
 
 	reader.read<int>(version);
+	CHECK_VERSION(version, TILE_ENTITY_SECURE);
+
 	reader.read<bool>(md);
 	reader.read<bool>(vd);
 	reader.read<std::string>(gd);
 
 	reader.readMultipleSimple<std::string, int>(kd);
 	reader.read<std::string>(xd);
+
+	return 0;
 }
 
 void TileEntitySecure::write(BinaryMemoryWriter &writer) {

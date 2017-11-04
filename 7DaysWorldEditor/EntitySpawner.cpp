@@ -3,8 +3,9 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void EntitySpawner::read(BinaryMemoryReader &reader) {
+int EntitySpawner::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(version);
+	CHECK_VERSION(version, ENTITY_SPAWNER);
 
 	reader.read<int>(position.x);
 	reader.read<int>(position.y);
@@ -33,6 +34,8 @@ void EntitySpawner::read(BinaryMemoryReader &reader) {
 
 	reader.read<unsigned _int64>(worldTimeNextToWave);
 	reader.read<bool>(bCaveSpawn);
+
+	return 0;
 }
 
 void EntitySpawner::write(BinaryMemoryWriter &writer) const {

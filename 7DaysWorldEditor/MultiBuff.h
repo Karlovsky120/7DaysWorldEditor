@@ -28,6 +28,6 @@ public:
 	~MultiBuff();
 
 protected:
-	void readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) override;
+	int readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) override;
 };
 

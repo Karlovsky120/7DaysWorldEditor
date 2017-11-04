@@ -7,22 +7,23 @@ TileEntityClassId TileEntityCampfire::getType() {
 	return Campfire;
 }
 
-void TileEntityCampfire::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+int TileEntityCampfire::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<unsigned _int64>(ib);
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb, NO_VERSION)));
 
-	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
-	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
-
-	xb.read(reader);
-	mb.read(reader);
+	CHECK_VERSION_ZERO(xb.read(reader));
+	CHECK_VERSION_ZERO(mb.read(reader));
 
 	reader.read<int>(hb);
 
-	tb.read(reader);
+	CHECK_VERSION(tb.read(reader), ITEM_VALUE);
 	reader.read<bool>(isCooking);
 	reader.read<float>(db);
+
+	return 0;
 }
 
 void TileEntityCampfire::write(BinaryMemoryWriter &writer) {

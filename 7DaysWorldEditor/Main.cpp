@@ -1,3 +1,8 @@
+#include "Chunk.h"
+#include "RegionFile.h"
+
+#include "ConfigFile.h"
+
 #include <log4cplus/configurator.h>
 #include <log4cplus/fileappender.h>
 #include <log4cplus/initializer.h>
@@ -5,12 +10,10 @@
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 
-#include "RegionFile.h"
-#include "Chunk.h"
-
 #include <fstream>
 
 log4cplus::Logger mainLog;
+ConfigFile saveVersion;
 std::string currentDirectory;
 
 int main(int argc, char* argv[]) {
@@ -25,11 +28,14 @@ int main(int argc, char* argv[]) {
 
 	mainLog = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("mainLog"));
 	LOG4CPLUS_INFO(mainLog, LOG4CPLUS_TEXT("Execution started!"));
-	
 
-	/*RegionFile region(currentDirectory + "Dummy152b8\\Region", -2, -3);
-	Chunk *chunk = new Chunk();
-	region.read(*chunk, 11, 10);*/
+	//Load save version config
+	saveVersion.open(currentDirectory + "cfg\\currentVersion.cfg");
+
+
+
+
+	//TEST CODE
 
 	for (int k = -4; k < -1; k++) {
 
@@ -45,9 +51,11 @@ int main(int argc, char* argv[]) {
 
 							//if (k == -3 && l == -3 && i == 11 && j == 5) {
 								Chunk chunk = Chunk();
-								regionFile.readChunk(chunk, i, j);
+								int failed = regionFile.readChunk(chunk, i, j);
 
-								regionFile.writeChunk(chunk, i, j);
+								if (!failed) {
+									regionFile.writeChunk(chunk, i, j);
+								}
 								int a = 0;
 
 								std::fstream binR(currentDirectory + "chunk.read.hex", std::ios::in | std::ios::binary);
@@ -78,4 +86,6 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
+
+	//END TEST CODE
 }

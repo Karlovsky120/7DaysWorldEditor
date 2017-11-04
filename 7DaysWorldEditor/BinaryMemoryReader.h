@@ -1,9 +1,10 @@
 #pragma once
+#include "SaveVersionCheck.h"
 #include "Unzip.h"
 
 #include <vector>
 
-class BinaryMemoryReader {
+class BinaryMemoryReader : public SaveVersionCheck {
 private:
 	HZIP hz;
 
@@ -22,8 +23,6 @@ public:
 	inline void read(std::string &data) {
 		unsigned char length;
 		read(length);
-		//UnzipItem(hz, 0, &length, 1);
-		//++position;
 		
 		if (length != 0) {
 			unsigned char *stringData = new unsigned char[length];
@@ -67,25 +66,27 @@ public:
 	}
 
 	template<typename T, typename C>
-	inline void readMultipleComplex(std::vector<T> &listOfTs) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs, std::string objectName) {
 		C counter;
 		read<C>(counter);
-		readMultipleComplex(listOfTs, counter);
+		return readMultipleComplex(listOfTs, counter, objectName);
 	}
 
 	template<typename T, typename C>
-	inline void readMultipleComplex(std::vector<T> &listOfTs, C &count) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs, C &count, std::string objectName) {
 		for (C i = 0; i < count; ++i) {
 			T item;
-			item.read(*this);
+			CHECK_VERSION(item.read(*this), objectName);
 			listOfTs.push_back(item);
 		}
+
+		return 0;
 	}
 
 	bool initialize(std::vector<unsigned char> &zipped);
 
-	bool isValidRead() {
-		return position != length;
+	int isValidRead() {
+		return position != length ? -1 : 0;
 	}
 
 	BinaryMemoryReader();

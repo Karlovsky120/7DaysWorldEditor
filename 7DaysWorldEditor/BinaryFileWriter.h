@@ -42,9 +42,9 @@ public:
 		baseStream.write((char*)data, 4);
 	}
 
-	inline void writeString(std::string *data) {
+	/*inline void writeString(std::string *data) {
 		//baseStream.write((char*)&data[0], data->length);
-	}
+	}*/
 
 	inline void  writeUInt16(unsigned short *data) {
 		baseStream.write((char*)data, 2);

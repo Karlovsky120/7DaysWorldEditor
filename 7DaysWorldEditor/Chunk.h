@@ -1,6 +1,7 @@
 #pragma once
 #include "ChunkBlockChannel.h"
 #include "Coordinate.h"
+#include "SaveVersionCheck.h"
 
 #include <array>
 #include <map>
@@ -15,9 +16,9 @@ class EntityCreationData;
 class EntitySpawner;
 class TileEntity;
 
-class Chunk {
+class Chunk : public SaveVersionCheck {
 private:
-	bool read(Chunk &chunk, BinaryMemoryReader &reader);
+	int read(Chunk &chunk, BinaryMemoryReader &reader);
 	void write(const Chunk &chunk, BinaryMemoryWriter &writer) const;
 
 	unsigned char header[4];
@@ -64,7 +65,7 @@ public:
 
 	std::vector<int> hk;
 
-	bool unpackChunk(Chunk &chunk, std::vector<unsigned char> &zipped);
+	int unpackChunk(Chunk &chunk, std::vector<unsigned char> &zipped);
 	bool packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const;
 
 	Chunk();

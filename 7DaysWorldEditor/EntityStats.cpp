@@ -3,21 +3,23 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void EntityStats::read(BinaryMemoryReader &reader) {
+int EntityStats::read(BinaryMemoryReader &reader) {
 	reader.read<int>(statsVersion);
+	CHECK_VERSION(statsVersion, ENTITY_STATS);
+
 	reader.read<int>(buffCategoryFlags);
 
 	reader.readMultipleSimple<int, int>(immunity);
 
-	health.read(reader, idTable);
-	stamina.read(reader, idTable);
-	sickness.read(reader, idTable);
-	gassines.read(reader, idTable);
-	speedModifier.read(reader, idTable);
-	wellness.read(reader, idTable);
-	coreTemp.read(reader, idTable);
-	food.read(reader, idTable);
-	water.read(reader, idTable);
+	CHECK_VERSION_ZERO((health.read(reader, idTable)));
+	CHECK_VERSION_ZERO((stamina.read(reader, idTable)));
+	CHECK_VERSION_ZERO((sickness.read(reader, idTable)));
+	CHECK_VERSION_ZERO((gassines.read(reader, idTable)));
+	CHECK_VERSION_ZERO((speedModifier.read(reader, idTable)));
+	CHECK_VERSION_ZERO((wellness.read(reader, idTable)));
+	CHECK_VERSION_ZERO((coreTemp.read(reader, idTable)));
+	CHECK_VERSION_ZERO((food.read(reader, idTable)));
+	CHECK_VERSION_ZERO((water.read(reader, idTable)));
 
 	reader.read<float>(waterLevel);
 
@@ -25,7 +27,10 @@ void EntityStats::read(BinaryMemoryReader &reader) {
 	reader.read<int>(buffCount);
 
 	for (int i = 0; i < buffCount; ++i) {
-		std::shared_ptr<Buff> buff = Buff::read(reader, idTable);
+		int buffVersion;
+		std::shared_ptr<Buff> buff = Buff::read(reader, idTable, buffVersion);
+		CHECK_VERSION_ZERO(buffVersion);
+
 		buffList.push_back(buff);
 	}
 
@@ -36,9 +41,11 @@ void EntityStats::read(BinaryMemoryReader &reader) {
 		std::string key;
 		reader.read<std::string>(key);
 		MultiBuffVariable variable;
-		variable.read(reader);
+		CHECK_VERSION_ZERO(variable.read(reader));
 		multiBuffVariableMap[key] = variable;
 	}
+
+	return 0;
 }
 
 void EntityStats::write(BinaryMemoryWriter &writer) const {

@@ -7,10 +7,12 @@ TileEntityClassId TileEntityGoreBlock::getType() {
 	return GoreBlock;
 }
 
-void TileEntityGoreBlock::read(BinaryMemoryReader &reader) {
-	TileEntityLootContainer::read(reader);
+int TileEntityGoreBlock::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntityLootContainer::read(reader));
 
 	reader.read<unsigned _int64>(arz);
+
+	return 0;
 }
 
 void TileEntityGoreBlock::write(BinaryMemoryWriter &writer) {

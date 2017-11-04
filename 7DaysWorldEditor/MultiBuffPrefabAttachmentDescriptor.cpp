@@ -3,13 +3,17 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void MultiBuffPrefabAttachmentDescriptor::read(BinaryMemoryReader &reader) {
+int MultiBuffPrefabAttachmentDescriptor::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffPrefabAttachmentDescriptorVersion);
+	CHECK_VERSION(multiBuffPrefabAttachmentDescriptorVersion, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR);
+
 	reader.read<std::string>(prefabName);
 	reader.read<std::string>(transformPath);
 	reader.read<float>(TTL);
 	reader.read<bool>(firstPerson);
 	reader.read<bool>(thirdPerson);
+
+	return 0;
 }
 
 void MultiBuffPrefabAttachmentDescriptor::write(BinaryMemoryWriter &writer) const {

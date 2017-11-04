@@ -5,10 +5,8 @@
 #include "BinaryFileWriter.h"
 #include "Chunk.h"
 
-#include "log4cplus\logger.h"
-#include "log4cplus\loggingmacros.h"
+#include "Log4cplus.h"
 
-extern log4cplus::Logger mainLog;
 
 void RegionFile::read(std::string path) {
 

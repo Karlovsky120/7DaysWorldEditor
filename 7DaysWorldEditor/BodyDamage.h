@@ -1,8 +1,10 @@
 #pragma once
+#include "SaveVersionCheck.h"
+
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BodyDamage {
+class BodyDamage : public SaveVersionCheck {
 public:
 	int bodyDamageVersion;
 
@@ -28,7 +30,7 @@ public:
 	short rightUpperArm;
 	short rightUpperLeg;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	BodyDamage();

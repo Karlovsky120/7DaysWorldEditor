@@ -3,8 +3,10 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void ItemValue::read(BinaryMemoryReader &reader) {
+int ItemValue::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(itemValueVersion);
+	CHECK_VERSION(itemValueVersion, ITEM_VALUE);
+
 	reader.read<unsigned short>(type);
 	reader.read<unsigned short>(useTimes);
 	reader.read<unsigned short>(quality);
@@ -31,11 +33,13 @@ void ItemValue::read(BinaryMemoryReader &reader) {
 
 
 	if (hasAttachments) {
-		reader.readMultipleComplex<ItemValue, unsigned char>(attachments);
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemValue, unsigned char>(attachments, ITEM_VALUE)));
 	}
 
 	reader.read<bool>(activated);
 	reader.read<unsigned char>(selectedAmmoTypeIndex);
+
+	return 0;
 }
 
 void ItemValue::write(BinaryMemoryWriter &writer) const {

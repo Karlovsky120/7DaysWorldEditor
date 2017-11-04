@@ -2,6 +2,7 @@
 #include "BuffDescriptor.h"
 #include "BuffModifier.h"
 #include "BuffTimer.h"
+#include "SaveVersionCheck.h"
 #include "StatModifier.h"
 
 #include <map>
@@ -16,7 +17,7 @@ enum BuffClassId {
 	BuffBase
 };
 
-class Buff {
+class Buff : public SaveVersionCheck {
 public:
 	unsigned short buffVersion;
 	unsigned char buffClassId;
@@ -25,17 +26,17 @@ public:
 	BuffDescriptor descriptor;
 	bool isOverriden;
 	std::vector<std::shared_ptr<StatModifier>> statModifierList;
-	std::vector<BuffModifier> buffModifierList;
+	std::vector<std::shared_ptr<BuffModifier>> buffModifierList;
 	int instigatorId;
 
 	virtual BuffClassId getType();
 	static std::shared_ptr<Buff> instantiate(BuffClassId type);
-	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
+	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable, int &buffModifierVer);
 	virtual void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
 
 	Buff();
 	virtual ~Buff();
 
 protected:
-	virtual void readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
+	virtual int readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
 };

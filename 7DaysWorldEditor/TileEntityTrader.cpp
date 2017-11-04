@@ -7,11 +7,13 @@ TileEntityClassId TileEntityTrader::getType() {
 	return Trader;
 }
 
-void TileEntityTrader::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+int TileEntityTrader::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<int>(version);
 	traderData.read(reader);
+
+	return 0;
 }
 
 void TileEntityTrader::write(BinaryMemoryWriter &writer) {

@@ -12,7 +12,7 @@ public:
 	TraderData traderData;
 
 	TileEntityClassId getType() override;
-	void read(BinaryMemoryReader &reader) override;
+	int read(BinaryMemoryReader &reader) override;
 	void write(BinaryMemoryWriter &writer) override;
 
 	TileEntityTrader();

@@ -7,8 +7,8 @@ TileEntityClassId TileEntityPoweredTrigger::getType() {
 	return Trigger;
 }
 
-void TileEntityPoweredTrigger::read(BinaryMemoryReader &reader) {
-	TileEntityPowered::read(reader);
+int TileEntityPoweredTrigger::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntityPowered::read(reader));
 
 	reader.read<unsigned char>(triggerType);
 
@@ -24,6 +24,8 @@ void TileEntityPoweredTrigger::read(BinaryMemoryReader &reader) {
 	if (Motion == triggerType) {
 		reader.read<int>(targetType);
 	}
+
+	return 0;
 }
 
 void TileEntityPoweredTrigger::write(BinaryMemoryWriter &writer) {

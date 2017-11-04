@@ -16,7 +16,7 @@ public:
 	std::pair<bool, ItemValue> repairItem;
 	int startingEntityId;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	RecipeQueueItem();

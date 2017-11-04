@@ -106,18 +106,21 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,18 +131,21 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -152,6 +158,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,7 +172,9 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -178,6 +187,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(Project)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -191,7 +201,9 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -209,6 +221,7 @@
     <ClCompile Include="Chunk.cpp" />
     <ClCompile Include="ChunkBlockLayer.cpp" />
     <ClCompile Include="ChunkCustomData.cpp" />
+    <ClCompile Include="ConfigFile.cpp" />
     <ClCompile Include="EntityCreationData.cpp" />
     <ClCompile Include="EntitySpawner.cpp" />
     <ClCompile Include="EntityStats.cpp" />
@@ -222,6 +235,7 @@
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeQueueItem.cpp" />
     <ClCompile Include="RegionFile.cpp" />
+    <ClCompile Include="SaveVersionCheck.cpp" />
     <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatModifier.cpp" />
@@ -270,12 +284,15 @@
     <ClInclude Include="ChunkBlockChannel.h" />
     <ClInclude Include="ChunkBlockLayer.h" />
     <ClInclude Include="ChunkCustomData.h" />
+    <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="Coordinate.h" />
+    <ClInclude Include="CurrentVersionConfigConstants.h" />
     <ClInclude Include="EntityCreationData.h" />
     <ClInclude Include="EntitySpawner.h" />
     <ClInclude Include="EntityStats.h" />
     <ClInclude Include="ItemStack.h" />
     <ClInclude Include="ItemValue.h" />
+    <ClInclude Include="Log4cplus.h" />
     <ClInclude Include="MultiBuff.h" />
     <ClInclude Include="MultiBuffAction.h" />
     <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h" />
@@ -284,6 +301,7 @@
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
+    <ClInclude Include="SaveVersionCheck.h" />
     <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatModifier.h" />
@@ -315,6 +333,7 @@
     <ClInclude Include="Zip.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cfg\currentVersion.cfg" />
     <None Include="log4cplus.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

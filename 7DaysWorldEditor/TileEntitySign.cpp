@@ -7,10 +7,11 @@ TileEntityClassId TileEntitySign::getType() {
 	return Sign;
 }
 
-void TileEntitySign::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+int TileEntitySign::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<int>(version);
+	CHECK_VERSION(version, TILE_ENTITY_SIGN);
 
 	reader.read<bool>(vd);
 	reader.read<std::string>(gd);
@@ -18,6 +19,8 @@ void TileEntitySign::read(BinaryMemoryReader &reader) {
 
 	reader.readMultipleSimple<std::string, int>(kd);
 	reader.read<std::string>(signText);
+
+	return 0;
 }
 
 void TileEntitySign::write(BinaryMemoryWriter &writer) {

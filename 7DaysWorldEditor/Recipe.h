@@ -1,4 +1,6 @@
 #pragma once
+#include "SaveVersionCheck.h"
+
 #include <string>
 #include <tuple>
 #include <vector>
@@ -6,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class Recipe {
+class Recipe : public SaveVersionCheck {
 public:
 	int count;
 	std::string craftingArea;
@@ -24,7 +26,7 @@ public:
 	int zero1;
 	int zero2;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	Recipe();

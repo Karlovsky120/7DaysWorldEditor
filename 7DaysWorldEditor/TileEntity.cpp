@@ -17,6 +17,7 @@
 #include "TileEntityPoweredRangedTrap.h"
 #include "TileEntityPoweredTrigger.h"
 
+
 TileEntityClassId TileEntity::getType() {
 	return TileEntityBase;
 }
@@ -56,8 +57,9 @@ std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityClassId type) {
 	}
 }
 
-void TileEntity::read(BinaryMemoryReader &reader) {
+int TileEntity::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned short>(tileEntityVersion);
+	CHECK_VERSION(tileEntityVersion, TILE_ENTITY);
 
 	reader.read<int>(localChunkPosition.x);
 	reader.read<int>(localChunkPosition.y);
@@ -66,6 +68,8 @@ void TileEntity::read(BinaryMemoryReader &reader) {
 	reader.read<int>(entityId);
 
 	reader.read<unsigned _int64>(worldTimeHeatMapSomething);
+
+	return 0;
 }
 
 void TileEntity::write(BinaryMemoryWriter &writer) {

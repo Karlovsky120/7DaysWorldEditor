@@ -1,17 +1,18 @@
 #pragma once
 #include "ItemValue.h"
+#include "SaveVersionCheck.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemStack {
+class ItemStack : public SaveVersionCheck {
 public:
 	short count;
 	ItemValue itemValue;
 
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer) const;
 
 	ItemStack();

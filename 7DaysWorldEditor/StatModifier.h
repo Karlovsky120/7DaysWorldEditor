@@ -1,5 +1,6 @@
 #pragma once
 #include "BuffTimer.h"
+#include "SaveVersionCheck.h"
 #include "Stat.h"
 
 #include <memory>
@@ -17,7 +18,7 @@ enum StatModifierClassId {
 	StatModifierBase
 };
 
-class StatModifier {
+class StatModifier : public SaveVersionCheck {
 public:
 	int statModifierVersion;
 	unsigned char enumId;
@@ -32,13 +33,13 @@ public:
 
 	virtual StatModifierClassId getType();
 	static std::shared_ptr<StatModifier> instantiate(StatModifierClassId id);
-	static std::shared_ptr<StatModifier> read(BinaryMemoryReader &reader);
+	static std::shared_ptr<StatModifier> read(BinaryMemoryReader &reader, int &statModifierVersion);
 	virtual void write(BinaryMemoryWriter &writer);
 
 	StatModifier();
 	~StatModifier();
 
 protected:
-	void virtual readMore(BinaryMemoryReader &reader);
+	int virtual readMore(BinaryMemoryReader &reader);
 };
 

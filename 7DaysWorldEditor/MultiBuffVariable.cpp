@@ -3,12 +3,16 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void MultiBuffVariable::read(BinaryMemoryReader &reader) {
+int MultiBuffVariable::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffVariableVersion);
+	CHECK_VERSION(multiBuffVariableVersion, MULTI_BUFF_VARIABLE);
+
 	reader.read<float>(unknownQ);
 	reader.read<float>(unknownJ);
 	reader.read<float>(unknownS);
 	reader.read<float>(unknownC);
+
+	return 0;
 }
 
 void MultiBuffVariable::write(BinaryMemoryWriter &writer) const {

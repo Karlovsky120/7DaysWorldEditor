@@ -29,17 +29,19 @@ std::shared_ptr<StatModifier> StatModifier::instantiate(StatModifierClassId id) 
 	}
 }
 
-std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader) {
+std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader, int &statModifierVer) {
 	int statModifierVersion;
 	unsigned char enumId;
 	reader.read<int>(statModifierVersion);
+	CHECK_VERSION_R(statModifierVersion, STAT_MODIFIER, statModifierVer);
+
 	reader.read<unsigned char>(enumId);
 
 	std::shared_ptr<StatModifier> modifier = instantiate((StatModifierClassId)enumId);
 	modifier->statModifierVersion = statModifierVersion;
 	modifier->enumId = enumId;
 
-	modifier->readMore(reader);
+	CHECK_VERSION_ZERO_R(modifier->readMore(reader), statModifierVer);
 
 	return modifier;
 }
@@ -55,12 +57,15 @@ void StatModifier::write(BinaryMemoryWriter &writer) {
 	buffTimer.write(writer);
 }
 
-void StatModifier::readMore(BinaryMemoryReader &reader) {
+int StatModifier::readMore(BinaryMemoryReader &reader) {
 	reader.read<int>(UID);
 	reader.read<unsigned short>(fileId);
 	reader.read<int>(categoryFlag);
 	reader.read<int>(stackCount);
-	buffTimer.read(reader);
+	int buffTimerVer;
+	buffTimer.read(reader, buffTimerVer);
+	CHECK_VERSION_ZERO(buffTimerVer);
+	return 0;
 }
 
 StatModifier::StatModifier() {}

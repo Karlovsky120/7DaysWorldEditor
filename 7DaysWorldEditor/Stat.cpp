@@ -4,8 +4,10 @@
 #include "BinaryMemoryWriter.h"
 #include "StatModifier.h"
 
-void Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable) {
+int Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable) {
 	reader.read<int>(statVersion);
+	CHECK_VERSION(statVersion, STAT);
+
 	reader.read<float>(value);
 	reader.read<float>(maxModifier);
 	reader.read<float>(valueModifier);
@@ -19,11 +21,15 @@ void Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared
 
 	for (int i = 0; i < statModifierListCount; ++i) {
 		std::shared_ptr<StatModifier> modifier;
-		modifier = StatModifier::read(reader);
+		int statModifierVersion;
+		modifier = StatModifier::read(reader, statModifierVersion);
+		CHECK_VERSION_ZERO(statModifierVersion);
 		modifier->stat = *this;
 		statModifierList.push_back(modifier);
 		idTable[modifier->fileId] = modifier;
 	}
+
+	return 0;
 }
 
 void Stat::write(BinaryMemoryWriter &writer) const {

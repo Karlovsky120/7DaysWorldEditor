@@ -3,9 +3,10 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-void ItemStack::read(BinaryMemoryReader &reader) {
-	itemValue.read(reader);
+int ItemStack::read(BinaryMemoryReader &reader) {
+	CHECK_VERSION_ZERO(itemValue.read(reader));
 	reader.read<short>(count);
+	return 0;
 }
 
 void ItemStack::write(BinaryMemoryWriter &writer) const {

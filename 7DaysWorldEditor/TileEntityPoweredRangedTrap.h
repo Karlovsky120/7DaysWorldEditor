@@ -16,7 +16,7 @@ public:
 	int targetType;
 
 	TileEntityClassId getType() override;
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer);
 
 	TileEntityPoweredRangedTrap();

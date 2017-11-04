@@ -1,4 +1,6 @@
 #pragma once
+#include "SaveVersionCheck.h"
+
 #include <memory>
 
 class BinaryMemoryReader;
@@ -11,20 +13,20 @@ enum BuffTimerClassId {
 	BuffTimerBase
 };
 
-class BuffTimer {
+class BuffTimer : public SaveVersionCheck{
 public:
 	int buffTimerVersion;
 	unsigned char buffTimerClassId;
 
 	virtual BuffTimerClassId getType();
 	static std::shared_ptr<BuffTimer> instantiate(BuffTimerClassId id);
-	static std::shared_ptr<BuffTimer> read(BinaryMemoryReader &reader);
+	static std::shared_ptr<BuffTimer> read(BinaryMemoryReader &reader, int &buffTimerVer);
 	virtual void write(BinaryMemoryWriter &writer) const;
 
 	BuffTimer();
 	~BuffTimer();
 
 protected:
-	virtual void readMore(BinaryMemoryReader &reader);
+	virtual int readMore(BinaryMemoryReader &reader);
 };
 

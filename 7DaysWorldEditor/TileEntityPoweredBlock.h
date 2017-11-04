@@ -9,7 +9,7 @@ public:
 	bool uzz;
 
 	TileEntityClassId getType() override;
-	void read(BinaryMemoryReader &reader);
+	int read(BinaryMemoryReader &reader);
 	void write(BinaryMemoryWriter &writer);
 
 	TileEntityPoweredBlock();
