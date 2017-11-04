@@ -1,5 +1,5 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <string>
 #include <tuple>
@@ -8,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class Recipe : public SaveVersionCheck {
+class Recipe : public VersionCheck {
 public:
 	int count;
 	std::string craftingArea;

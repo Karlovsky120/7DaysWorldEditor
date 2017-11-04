@@ -11,6 +11,8 @@ int TileEntityTrader::read(BinaryMemoryReader &reader) {
 	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<int>(version);
+	CHECK_VERSION(version, TILE_ENTITY_TRADER);
+
 	traderData.read(reader);
 
 	return 0;

@@ -53,6 +53,8 @@ int MultiBuff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std
 
 		buffCounterValues[key] = value;
 	}
+
+	return 0;
 }
 
 MultiBuff::MultiBuff() {}

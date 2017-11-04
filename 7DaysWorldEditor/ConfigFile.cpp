@@ -9,7 +9,8 @@ bool ConfigFile::open(std::string configFilePath) {
 		std::string line;
 
 		while (std::getline(cFile, line)) {
-			if (line.find('#') != 0) {
+			if (line.find('#') != 0 && line.find('\n') != 0 && line.find('\r') != 0) {
+				line = line.substr(0, line.length() - 1);
 				int pos = line.find('=');
 
 				std::string propertyName = line.substr(0, pos);

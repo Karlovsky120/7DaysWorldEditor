@@ -12,11 +12,13 @@
 #include "Unzip.h"
 #include "Zip.h"
 
+#include "Log4cplus.h"
+
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
-int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
-	int versionCheck = 0;
+int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead) {
+	isValidRead = true;
 
  	reader.read<int>(xm);
 	reader.read<int>(mm);
@@ -93,7 +95,9 @@ int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader) {
 	
 	reader.readMultipleSimple<int, unsigned char>(hk);
 
-	return reader.isValidRead();
+	isValidRead = reader.isValidRead();
+
+	return 0;
 }
 
 void Chunk::write(const Chunk &chunk, BinaryMemoryWriter &writer) const {
@@ -177,14 +181,29 @@ int Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
 	memcpy(&header[0], &zipped[0], 4);
 	memcpy(&version, &zipped[4], 4);
 
-
-	CHECK_VERSION(version, CHUNK);
-	BinaryMemoryReader reader = BinaryMemoryReader();
-	if (reader.initialize(zipped)) {
-		return read(chunk, reader);
+	
+	int versionCheck = checkVersion(version, CHUNK);
+	if (versionCheck != 0) {
+		return false;
 	}
 
-	return -1;
+	BinaryMemoryReader reader = BinaryMemoryReader();
+	if (!reader.initialize(zipped)) {
+		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to initialize memory reader, could not read chunk!"));
+		return false;
+	}
+
+	bool isValidRead;
+	versionCheck = read(chunk, reader, isValidRead);
+
+	if (versionCheck != 0) {
+		return false;
+	}
+
+	if (!isValidRead) {
+		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Chunk data corrupted, could not read chunk!"));
+		return false;
+	}
 }
 
 bool Chunk::packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const {

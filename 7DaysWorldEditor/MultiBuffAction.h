@@ -1,6 +1,6 @@
 #pragma once
 #include "BuffTimer.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <string>
 #include <memory>
@@ -23,7 +23,7 @@ enum Command {
 	Buff
 };
 
-class MultiBuffAction : public SaveVersionCheck {
+class MultiBuffAction : public VersionCheck {
 public:
 	int multiBuffActionVersion;
 	unsigned char commandId;

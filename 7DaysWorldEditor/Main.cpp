@@ -10,7 +10,10 @@
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 
+#include <experimental/filesystem>
+
 #include <fstream>
+#include <string>
 
 log4cplus::Logger mainLog;
 ConfigFile saveVersion;
@@ -20,17 +23,19 @@ int main(int argc, char* argv[]) {
 
 	std::string argv_str(argv[0]);
 	currentDirectory = argv_str.substr(0, argv_str.find_last_of("\\")) + "\\";
-	
 
-	//Initialize main log
+	std::experimental::filesystem::create_directory("logs");
+
 	log4cplus::Initializer initializer;
-	log4cplus::PropertyConfigurator::doConfigure("log4cplus.ini");
+	log4cplus::PropertyConfigurator::doConfigure("cfg\\log4cplus.ini");
 
 	mainLog = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("mainLog"));
 	LOG4CPLUS_INFO(mainLog, LOG4CPLUS_TEXT("Execution started!"));
 
 	//Load save version config
-	saveVersion.open(currentDirectory + "cfg\\currentVersion.cfg");
+	saveVersion.open(currentDirectory + "cfg\\currentVersion.ini");
+
+
 
 
 
@@ -51,9 +56,9 @@ int main(int argc, char* argv[]) {
 
 							//if (k == -3 && l == -3 && i == 11 && j == 5) {
 								Chunk chunk = Chunk();
-								int failed = regionFile.readChunk(chunk, i, j);
+								bool success = regionFile.readChunk(chunk, i, j);
 
-								if (!failed) {
+								if (success) {
 									regionFile.writeChunk(chunk, i, j);
 								}
 								int a = 0;
@@ -88,4 +93,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	//END TEST CODE
+
+	LOG4CPLUS_INFO(mainLog, LOG4CPLUS_TEXT("Execution complete!\n\n"));
+
+	return 0;
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "Coordinate.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <string>
 #include <vector>
@@ -8,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class EntitySpawner : public SaveVersionCheck {
+class EntitySpawner : public VersionCheck {
 public:
 	unsigned char version;
 	Coordinate<int> position;

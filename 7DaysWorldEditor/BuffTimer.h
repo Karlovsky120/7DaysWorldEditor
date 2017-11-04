@@ -1,5 +1,5 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <memory>
 
@@ -13,7 +13,7 @@ enum BuffTimerClassId {
 	BuffTimerBase
 };
 
-class BuffTimer : public SaveVersionCheck{
+class BuffTimer : public VersionCheck{
 public:
 	int buffTimerVersion;
 	unsigned char buffTimerClassId;

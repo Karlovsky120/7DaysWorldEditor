@@ -1,5 +1,5 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <memory>
 
@@ -11,7 +11,7 @@ enum BuffModifierClassId {
 	BuffModifierBase
 };
 
-class BuffModifier : public SaveVersionCheck {
+class BuffModifier : public VersionCheck {
 public:
 	int gh;
 

@@ -28,6 +28,8 @@ int BuffTimerScheduled::readMore(BinaryMemoryReader &reader) {
 	reader.read<int>(duration);
 	reader.read<float>(unknownE);
 	reader.read<int>(elapsed);
+
+	return 0;
 }
 
 BuffTimerScheduled::BuffTimerScheduled() {}

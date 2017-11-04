@@ -22,7 +22,7 @@ int ItemValue::read(BinaryMemoryReader &reader) {
 
 			if (exists) {
 				ItemValue part;
-				part.read(reader);
+				CHECK_VERSION(part.read(reader), ITEM_VALUE);
 				parts[i] = part;
 			}
 		}

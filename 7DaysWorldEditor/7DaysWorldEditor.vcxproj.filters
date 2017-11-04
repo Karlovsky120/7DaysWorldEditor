@@ -252,11 +252,11 @@
     <ClCompile Include="ConfigFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SaveVersionCheck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TraderData.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="VersionCheck.cpp">
+      <Filter>Source Files\RegionIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -446,16 +446,15 @@
     <ClInclude Include="Log4cplus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CurrentVersionConfigConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveVersionCheck.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="VersionCheck.h">
+      <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="log4cplus.ini" />
-    <None Include="cfg\currentVersion.cfg">
+    <None Include="cfg\currentVersion.ini">
+      <Filter>cfg</Filter>
+    </None>
+    <None Include="cfg\log4cplus.ini">
       <Filter>cfg</Filter>
     </None>
   </ItemGroup>

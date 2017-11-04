@@ -1,14 +1,14 @@
 #pragma once
 #include "ItemStack.h"
 
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TraderData : public SaveVersionCheck {
+class TraderData : public VersionCheck {
 public:
 	int traderID;
 	unsigned _int64 lastInventoryUpdate;

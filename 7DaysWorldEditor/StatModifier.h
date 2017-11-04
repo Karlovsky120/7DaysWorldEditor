@@ -1,6 +1,6 @@
 #pragma once
 #include "BuffTimer.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 #include "Stat.h"
 
 #include <memory>
@@ -18,7 +18,7 @@ enum StatModifierClassId {
 	StatModifierBase
 };
 
-class StatModifier : public SaveVersionCheck {
+class StatModifier : public VersionCheck {
 public:
 	int statModifierVersion;
 	unsigned char enumId;

@@ -1,5 +1,5 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <map>
 #include <memory>
@@ -9,7 +9,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class StatModifier;
 
-class Stat : public SaveVersionCheck {
+class Stat : public VersionCheck {
 public:
 	int statVersion;
 	float value;

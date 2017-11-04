@@ -1,4 +1,4 @@
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include "ConfigFile.h"
 
@@ -6,7 +6,7 @@
 
 extern ConfigFile saveVersion;
 
-int SaveVersionCheck::checkVersion(int readVersion, std::string objectName) {
+int VersionCheck::checkVersion(int readVersion, std::string objectName) {
 	int expectedVersion;
 	saveVersion.getProperty(objectName, expectedVersion);
 	if (readVersion != expectedVersion) {
@@ -20,5 +20,5 @@ int SaveVersionCheck::checkVersion(int readVersion, std::string objectName) {
 	return 0;
 }
 
-SaveVersionCheck::SaveVersionCheck() {}
-SaveVersionCheck::~SaveVersionCheck() {}
+VersionCheck::VersionCheck() {}
+VersionCheck::~VersionCheck() {}

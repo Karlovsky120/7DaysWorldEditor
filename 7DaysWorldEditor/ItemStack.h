@@ -1,13 +1,13 @@
 #pragma once
 #include "ItemValue.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemStack : public SaveVersionCheck {
+class ItemStack : public VersionCheck {
 public:
 	short count;
 	ItemValue itemValue;

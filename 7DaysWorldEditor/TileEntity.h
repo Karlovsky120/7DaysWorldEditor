@@ -1,6 +1,6 @@
 #pragma once
 #include "Coordinate.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <memory>
 
@@ -26,7 +26,7 @@ enum TileEntityClassId {
 	TileEntityBase
 };
 
-class TileEntity : public SaveVersionCheck {
+class TileEntity : public VersionCheck {
 public:
 	unsigned short tileEntityVersion;
 	Coordinate<int> localChunkPosition;

@@ -235,7 +235,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeQueueItem.cpp" />
     <ClCompile Include="RegionFile.cpp" />
-    <ClCompile Include="SaveVersionCheck.cpp" />
+    <ClCompile Include="VersionCheck.cpp" />
     <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatModifier.cpp" />
@@ -286,7 +286,6 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClInclude Include="ChunkCustomData.h" />
     <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="Coordinate.h" />
-    <ClInclude Include="CurrentVersionConfigConstants.h" />
     <ClInclude Include="EntityCreationData.h" />
     <ClInclude Include="EntitySpawner.h" />
     <ClInclude Include="EntityStats.h" />
@@ -301,7 +300,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
-    <ClInclude Include="SaveVersionCheck.h" />
+    <ClInclude Include="VersionCheck.h" />
     <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatModifier.h" />
@@ -333,8 +332,8 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClInclude Include="Zip.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cfg\currentVersion.cfg" />
-    <None Include="log4cplus.ini" />
+    <None Include="cfg\currentVersion.ini" />
+    <None Include="cfg\log4cplus.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

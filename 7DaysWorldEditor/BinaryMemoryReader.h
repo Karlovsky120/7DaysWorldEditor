@@ -1,10 +1,10 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 #include "Unzip.h"
 
 #include <vector>
 
-class BinaryMemoryReader : public SaveVersionCheck {
+class BinaryMemoryReader : public VersionCheck {
 private:
 	HZIP hz;
 
@@ -86,7 +86,7 @@ public:
 	bool initialize(std::vector<unsigned char> &zipped);
 
 	int isValidRead() {
-		return position != length ? -1 : 0;
+		return position == length;
 	}
 
 	BinaryMemoryReader();

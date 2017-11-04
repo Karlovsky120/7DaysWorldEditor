@@ -1,5 +1,5 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <string>
 #include <vector>
@@ -7,7 +7,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BuffDescriptor : public SaveVersionCheck {
+class BuffDescriptor : public VersionCheck {
 public:
 	int buffDescriptorVersion;
 	int categoryFlags;

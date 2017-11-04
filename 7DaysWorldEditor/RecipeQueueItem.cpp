@@ -3,7 +3,7 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 int RecipeQueueItem::read(BinaryMemoryReader &reader) {
 	reader.read<bool>(recipe.first);

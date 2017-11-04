@@ -11,6 +11,7 @@ int TileEntityWorkstation::read(BinaryMemoryReader &reader) {
 	CHECK_VERSION_ZERO(TileEntity::read(reader));
 
 	reader.read<unsigned char>(version);
+	CHECK_VERSION(version, TILE_ENTITY_WORKSTATION);
 	reader.read<unsigned _int64>(ib);
 
 	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));

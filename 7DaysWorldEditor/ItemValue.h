@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 #include <map>
 #include <vector>
@@ -8,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemValue : public SaveVersionCheck {
+class ItemValue : public VersionCheck {
 public:
 	bool activated;
 

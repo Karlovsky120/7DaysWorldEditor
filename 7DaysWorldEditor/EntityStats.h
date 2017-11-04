@@ -1,7 +1,7 @@
 #pragma once
 #include "Buff.h"
 #include "MultiBuffVariable.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 #include "Stat.h"
 #include "StatModifier.h"
 
@@ -33,7 +33,7 @@ enum BuffCategoryFlags {
 	Health = 192
 };
 
-class EntityStats : public SaveVersionCheck {
+class EntityStats : public VersionCheck {
 public:
 	int statsVersion;
 	int buffCategoryFlags;

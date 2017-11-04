@@ -2,7 +2,7 @@
 #include "BuffDescriptor.h"
 #include "BuffModifier.h"
 #include "BuffTimer.h"
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 #include "StatModifier.h"
 
 #include <map>
@@ -17,7 +17,7 @@ enum BuffClassId {
 	BuffBase
 };
 
-class Buff : public SaveVersionCheck {
+class Buff : public VersionCheck {
 public:
 	unsigned short buffVersion;
 	unsigned char buffClassId;

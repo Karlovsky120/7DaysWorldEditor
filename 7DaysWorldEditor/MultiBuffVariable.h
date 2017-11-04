@@ -1,10 +1,10 @@
 #pragma once
-#include "SaveVersionCheck.h"
+#include "VersionCheck.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class MultiBuffVariable : public SaveVersionCheck{
+class MultiBuffVariable : public VersionCheck{
 public:
 	int multiBuffVariableVersion;
 	float unknownQ;
