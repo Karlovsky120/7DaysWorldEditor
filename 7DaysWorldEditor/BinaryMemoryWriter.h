@@ -79,7 +79,8 @@ public:
 		}
 	}
 
-	bool finalize(std::vector<unsigned char> &zipped);
+	void fetchZipped(std::vector<unsigned char> &zipped);
+	void fetchUnzipped(std::vector<unsigned char> &unzipped);
 
 	BinaryMemoryWriter(int reservedBytes);
 	~BinaryMemoryWriter();

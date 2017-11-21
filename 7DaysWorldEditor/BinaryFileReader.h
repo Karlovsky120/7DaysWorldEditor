@@ -2,10 +2,13 @@
 #include <string>
 #include <fstream>
 
+#include "Log4cplus.h"
+
 class BinaryFileReader {
-public:
+private:
 	std::ifstream baseStream;
 
+public:
 	template <typename T>
 	inline void read(T &data) {
 		baseStream.read((char *)&data, sizeof(T));
@@ -31,13 +34,16 @@ public:
 		baseStream.seekg(amount, seekStart);
 	}
 
-	inline bool open(std::string const& path) {
+	BinaryFileReader(std::string const path) {
 		baseStream.open(path, std::ios::binary | std::ios::in);
 
-		return baseStream.good();
-	}
+		if (!baseStream.good()) {
+			std::string errorMsg = "Failed to open file at " + path;
 
-	BinaryFileReader() {}
+			LOG4CPLUS_ERROR(mainLog, errorMsg);
+			throw std::ios_base::failure(errorMsg);
+		}
+	}
 
 	~BinaryFileReader() {
 		baseStream.close();

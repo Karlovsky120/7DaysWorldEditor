@@ -9,7 +9,6 @@
 // by Lucian Wischik to simplify and extend its use in Windows/C++. Also
 // encryption and unicode filenames have been added.
 
-
 #ifndef _zip_H
 DECLARE_HANDLE(HZIP);
 #endif
@@ -209,7 +208,5 @@ bool IsZipHandleU(HZIP hz);
 #define CloseZip CloseZipU
 #define FormatZipMessage FormatZipMessageU
 #endif
-
-
 
 #endif // _unzip_H

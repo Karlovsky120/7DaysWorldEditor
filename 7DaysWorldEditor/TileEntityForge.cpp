@@ -12,8 +12,8 @@ int TileEntityForge::read(BinaryMemoryReader &reader) {
 
 	reader.read<unsigned _int64>(ib);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb)));
 
 	CHECK_VERSION_ZERO(fd.read(reader));
 	CHECK_VERSION_ZERO(mb.read(reader));

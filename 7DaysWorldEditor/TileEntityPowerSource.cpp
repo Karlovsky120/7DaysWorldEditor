@@ -11,7 +11,7 @@ TileEntityClassId TileEntityPowerSource::getType() {
 int TileEntityPowerSource::read(BinaryMemoryReader &reader) {
 	CHECK_VERSION_ZERO(TileEntityPowered::read(reader));
 
-	reader.read<bool>(flag);
+	/*reader.read<bool>(flag);
 
 	if (flag) {
 		reader.read<bool>(isOn);
@@ -23,11 +23,11 @@ int TileEntityPowerSource::read(BinaryMemoryReader &reader) {
 			reader.read<unsigned short>(solarInput);
 		}
 
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots, NO_VERSION)));
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots)));
 
 		reader.read<unsigned short>(maxOutput);
 		reader.read<unsigned short>(lastOutput);
-	}
+	}*/
 
 	return 0;
 }
@@ -35,7 +35,7 @@ int TileEntityPowerSource::read(BinaryMemoryReader &reader) {
 void TileEntityPowerSource::write(BinaryMemoryWriter &writer) {
 	TileEntityPowered::write(writer);
 
-	writer.write<bool>(flag);
+	/*writer.write<bool>(flag);
 
 	if (flag) {
 		writer.write<bool>(isOn);
@@ -51,7 +51,7 @@ void TileEntityPowerSource::write(BinaryMemoryWriter &writer) {
 
 		writer.write<unsigned short>(maxOutput);
 		writer.write<unsigned short>(lastOutput);
-	}
+	}*/
 }
 
 TileEntityPowerSource::TileEntityPowerSource() {}

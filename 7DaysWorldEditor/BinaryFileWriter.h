@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 
+#include "Log4cplus.h"
+
 class BinaryFileWriter {
 public:
 	std::ofstream baseStream;
@@ -41,10 +43,6 @@ public:
 	inline void writeSingle(float * data) {
 		baseStream.write((char*)data, 4);
 	}
-
-	/*inline void writeString(std::string *data) {
-		//baseStream.write((char*)&data[0], data->length);
-	}*/
 
 	inline void  writeUInt16(unsigned short *data) {
 		baseStream.write((char*)data, 2);
@@ -101,6 +99,13 @@ public:
 
 	BinaryFileWriter(std::string const& path) {
 		baseStream.open(path, std::ios::binary | std::ios::out);
+
+		if (!baseStream.good()) {
+			std::string errorMsg = "Failed to write to file at " + path;
+
+			LOG4CPLUS_ERROR(mainLog, errorMsg);
+			throw std::ios_base::failure(errorMsg);
+		}
 	}
 
 	~BinaryFileWriter() {

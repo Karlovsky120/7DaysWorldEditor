@@ -17,7 +17,7 @@
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
-int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead) {
+int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 	isValidRead = true;
 
  	reader.read<int>(xm);
@@ -66,7 +66,7 @@ int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead) {
 
 	reader.read<bool>(needsLightCalculation);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList, ENTITY_CREATION_DATA)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList/*, ENTITY_CREATION_DATA*/)));
 
 	int tileEntityCount;
 	reader.read<int>(tileEntityCount);
@@ -83,7 +83,7 @@ int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead) {
 	reader.read<unsigned short>(entitySpawnerCount);
 	reader.read<unsigned char>(entitySpawnerListSaveVersion);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount, ENTITY_SPAWNER)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount/*, ENTITY_SPAWNER*/)));
 
 	reader.read<bool>(ur.first);
 
@@ -100,7 +100,7 @@ int Chunk::read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead) {
 	return 0;
 }
 
-void Chunk::write(const Chunk &chunk, BinaryMemoryWriter &writer) const {
+void Chunk::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(xm);
 	writer.write<int>(mm);
 	writer.write<int>(rm);
@@ -175,44 +175,6 @@ void Chunk::write(const Chunk &chunk, BinaryMemoryWriter &writer) const {
 	}
 
 	writer.writeMultipleSimple<int, unsigned char>(hk);
-}
-
-int Chunk::unpackChunk(Chunk &chunk, std::vector<unsigned char>& zipped) {
-	memcpy(&header[0], &zipped[0], 4);
-	memcpy(&version, &zipped[4], 4);
-
-	
-	int versionCheck = checkVersion(version, CHUNK);
-	if (versionCheck != 0) {
-		return false;
-	}
-
-	BinaryMemoryReader reader = BinaryMemoryReader();
-	if (!reader.initialize(zipped)) {
-		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to initialize memory reader, could not read chunk!"));
-		return false;
-	}
-
-	bool isValidRead;
-	versionCheck = read(chunk, reader, isValidRead);
-
-	if (versionCheck != 0) {
-		return false;
-	}
-
-	if (!isValidRead) {
-		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Chunk data corrupted, could not read chunk!"));
-		return false;
-	}
-}
-
-bool Chunk::packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const {
-	memcpy(&zipped[0], &header[0], 4);
-	memcpy(&zipped[4], &version, 4);
-
-	BinaryMemoryWriter writer = BinaryMemoryWriter(1000000);
-	write(chunk, writer);
-	return writer.finalize(zipped);
 }
 
 Chunk::Chunk() {}

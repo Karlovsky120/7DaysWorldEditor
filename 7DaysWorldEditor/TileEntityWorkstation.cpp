@@ -14,11 +14,11 @@ int TileEntityWorkstation::read(BinaryMemoryReader &reader) {
 	CHECK_VERSION(version, TILE_ENTITY_WORKSTATION);
 	reader.read<unsigned _int64>(ib);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb, NO_VERSION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb, NO_VERSION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(eg, NO_VERSION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(mb, NO_VERSION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe, RECIPE_QUEUE_ITEM)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(eg)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(mb)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe)));
 
 	reader.read<bool>(ye);
 	reader.read<float>(fe);

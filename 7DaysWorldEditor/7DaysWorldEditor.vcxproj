@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplusD.lib;nfd_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -136,7 +136,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplusD.lib;nfd_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -165,7 +165,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplus.lib;nfd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -194,7 +194,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>log4cplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>log4cplus.lib;nfd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -228,6 +228,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClCompile Include="ItemStack.cpp" />
     <ClCompile Include="ItemValue.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MemoryLeakManager.cpp" />
     <ClCompile Include="MultiBuff.cpp" />
     <ClCompile Include="MultiBuffAction.cpp" />
     <ClCompile Include="MultiBuffPrefabAttachmentDescriptor.cpp" />
@@ -235,6 +236,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeQueueItem.cpp" />
     <ClCompile Include="RegionFile.cpp" />
+    <ClCompile Include="SaveDeflater.cpp" />
     <ClCompile Include="VersionCheck.cpp" />
     <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
@@ -292,6 +294,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClInclude Include="ItemStack.h" />
     <ClInclude Include="ItemValue.h" />
     <ClInclude Include="Log4cplus.h" />
+    <ClInclude Include="MemoryLeakManager.h" />
     <ClInclude Include="MultiBuff.h" />
     <ClInclude Include="MultiBuffAction.h" />
     <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h" />
@@ -300,6 +303,7 @@ xcopy "$(ProjectDir)lib\$(Configuration)\$(PlatformName)\*" "$(ProjectDir)bin\$(
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
+    <ClInclude Include="SaveDeflater.h" />
     <ClInclude Include="VersionCheck.h" />
     <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />

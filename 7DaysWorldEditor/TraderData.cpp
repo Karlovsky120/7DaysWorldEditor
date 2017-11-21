@@ -10,14 +10,14 @@ int TraderData::read(BinaryMemoryReader &reader) {
 
 	CHECK_VERSION(fileVersion, TRADER_DATA);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory)));
 
 	unsigned char tierItemGroupCount;
 	reader.read<unsigned char>(tierItemGroupCount);
 	
 	for (int i = 0; i < tierItemGroupCount; ++i) {
 		std::vector<ItemStack> tierItemGroup;
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup, NO_VERSION)));
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup)));
 		tierItemGroups.push_back(tierItemGroup);
 	}
 

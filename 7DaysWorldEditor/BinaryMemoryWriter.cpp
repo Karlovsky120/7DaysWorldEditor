@@ -1,23 +1,16 @@
 #include "BinaryMemoryWriter.h"
 
 #include "PreprocessorConfig.h"
-
 #include "Zip.h"
 
-#include <log4cplus/logger.h>
-#include <log4cplus/loggingmacros.h>
+#include "Log4cplus.h"
 
 #include <fstream>
 
-extern log4cplus::Logger mainLog;
 extern std::string currentDirectory;
 
-bool BinaryMemoryWriter::finalize(std::vector<unsigned char> &zipped) {
-#if WRITETOFILE
-	std::fstream bout(currentDirectory + "chunk.write.hex", std::ios::out | std::ios::binary);
-	bout.write((char *)&unzippedData[0], position);
-	bout.close();
-#endif
+void BinaryMemoryWriter::fetchZipped(std::vector<unsigned char> &zipped) {
+	unzippedData.resize(position);
 
 #pragma warning(suppress: 4267)
 	HZIP hz = CreateZip(0, unzippedData.size(), nullptr);
@@ -28,13 +21,20 @@ bool BinaryMemoryWriter::finalize(std::vector<unsigned char> &zipped) {
 	CloseZip(hz);
 
 	if (result != ZR_OK) {
-		return false;
-	}
+		std::string errorMsg = "Failed to zip chunk.";
+		LOG4CPLUS_ERROR(mainLog, errorMsg);
 
-	return true;
+		throw std::ios_base::failure(errorMsg);
+	}
+}
+
+void BinaryMemoryWriter::fetchUnzipped(std::vector<unsigned char> &unzipped) {
+	unzippedData.resize(position);
+	unzipped = unzippedData;
 }
 
 BinaryMemoryWriter::BinaryMemoryWriter(int reservedBytes) {
 	unzippedData.resize(reservedBytes);
 }
+
 BinaryMemoryWriter::~BinaryMemoryWriter() {}

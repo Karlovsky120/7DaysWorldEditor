@@ -258,6 +258,12 @@
     <ClCompile Include="VersionCheck.cpp">
       <Filter>Source Files\RegionIO</Filter>
     </ClCompile>
+    <ClCompile Include="SaveDeflater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryLeakManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk.h">
@@ -448,6 +454,12 @@
     </ClInclude>
     <ClInclude Include="VersionCheck.h">
       <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveDeflater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryLeakManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

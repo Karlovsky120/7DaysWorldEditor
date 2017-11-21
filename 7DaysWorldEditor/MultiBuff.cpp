@@ -37,10 +37,10 @@ int MultiBuff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std
 
 	reader.read<std::string>(multiBuffClassId);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList, MULTI_BUFF_ACTION)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList2, MULTI_BUFF_ACTION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffAction, int>(multiBuffActionList2)));
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffPrefabAttachmentDescriptor, int>(multiBuffPrefabAttachmentDescriptorList, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<MultiBuffPrefabAttachmentDescriptor, int>(multiBuffPrefabAttachmentDescriptorList)));
 
 	int buffCounterCounter;
 	reader.read<int>(buffCounterCounter);

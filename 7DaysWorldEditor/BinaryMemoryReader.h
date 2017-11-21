@@ -7,12 +7,10 @@
 class BinaryMemoryReader : public VersionCheck {
 private:
 	HZIP hz;
-
 	long length = 0;
-
-public:
 	unsigned int position = 0;
 
+public:
 	template <typename T>
 	inline void read(T &data) {
 		UnzipItem(hz, 0, &data, sizeof(T));
@@ -66,29 +64,29 @@ public:
 	}
 
 	template<typename T, typename C>
-	inline int readMultipleComplex(std::vector<T> &listOfTs, std::string objectName) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs/*, std::string objectName*/) {
 		C counter;
 		read<C>(counter);
-		return readMultipleComplex(listOfTs, counter, objectName);
+		return readMultipleComplex(listOfTs, counter/*, objectName*/);
 	}
 
 	template<typename T, typename C>
-	inline int readMultipleComplex(std::vector<T> &listOfTs, C &count, std::string objectName) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs, C &count/*, std::string objectName*/) {
 		for (C i = 0; i < count; ++i) {
 			T item;
-			CHECK_VERSION(item.read(*this), objectName);
+			CHECK_VERSION_ZERO(item.read(*this)/*, NO_VERSION*/);
 			listOfTs.push_back(item);
 		}
 
 		return 0;
 	}
 
-	bool initialize(std::vector<unsigned char> &zipped);
-
-	int isValidRead() {
+	bool isValidRead() {
 		return position == length;
 	}
 
-	BinaryMemoryReader();
+	static void unzipWhole(std::vector<unsigned char> &zipped, std::vector<unsigned char> &unzipped);
+
+	BinaryMemoryReader(std::vector<unsigned char> &zipped);
 	~BinaryMemoryReader();
 };

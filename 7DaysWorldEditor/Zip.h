@@ -198,6 +198,4 @@ bool IsZipHandleZ(HZIP hz);
 #define FormatZipMessage FormatZipMessageZ
 #endif
 
-
-
 #endif

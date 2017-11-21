@@ -33,7 +33,7 @@ int ItemValue::read(BinaryMemoryReader &reader) {
 
 
 	if (hasAttachments) {
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemValue, unsigned char>(attachments, ITEM_VALUE)));
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemValue, unsigned char>(attachments)));
 	}
 
 	reader.read<bool>(activated);

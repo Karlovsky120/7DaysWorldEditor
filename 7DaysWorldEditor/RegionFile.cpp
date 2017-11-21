@@ -3,69 +3,62 @@
 
 #include "BinaryFileReader.h"
 #include "BinaryFileWriter.h"
+#include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 #include "Chunk.h"
+#include "MemoryLeakManager.h"
 
 #include "Log4cplus.h"
 
+void RegionFile::read(const std::string path) {
+	BinaryFileReader reader(path);
+	timeStamps.reserve(1024);
+	zippedChunks.reserve(1024);
 
-void RegionFile::read(std::string path) {
+	for (int i = 0; i < 1024; ++i) {
+		reader.seek(4 + 4 * i, std::ios_base::beg);
 
-	path = path.append("\\r.").append(std::to_string(rX)).append(".").append(std::to_string(rZ)).append(".7rg");
+		unsigned short offset;
+		reader.read<unsigned short>(offset);
 
-	BinaryFileReader reader;
+		if (offset != 0) {
+			reader.seek(4100 + 4 * i, std::ios_base::beg);
 
-	if (reader.open(path)) {
+			int timeStamp;
+			reader.read<int>(timeStamp);
+			timeStamps.push_back(timeStamp);
 
-		timeStamps.reserve(1024);
-		zippedChunks.reserve(1024);
+			reader.seek(offset * 4096 + 4, std::ios_base::beg);
 
-		for (int i = 0; i < 1024; ++i) {
-			reader.seek(4 + 4 * i, std::ios_base::beg);
+			int length;
+			reader.read<int>(length);
 
-			unsigned short offset;
-			reader.read<unsigned short>(offset);
+			reader.seek(1, std::ios_base::cur);
 
-			if (offset != 0) {
-				reader.seek(4100 + 4 * i, std::ios_base::beg);
+			std::vector<unsigned char> chunkData;
+			chunkData.resize(length);
+			reader.readBytes(&chunkData[0], length);
+			zippedChunks.push_back(chunkData);
+		} else {
+			// This chunk hasn't been generated yet.
 
-				int timeStamp;
-				reader.read<int>(timeStamp);
-				timeStamps.push_back(timeStamp);
+			// We push zero to the timeStamp.
+			timeStamps.push_back(0);
 
-				reader.seek(offset * 4096 + 4, std::ios_base::beg);
-
-				int length;
-				reader.read<int>(length);
-
-				reader.seek(1, std::ios_base::cur);
-
-				std::vector<unsigned char> chunkData;
-				chunkData.resize(length);
-				reader.readBytes(&chunkData[0], length);
-				zippedChunks.push_back(chunkData);
-			}
-
-			else {
-				// This chunk hasn't been generated yet.
-
-				// We push zero to the timeStamp.
-				timeStamps.push_back(0);
-
-				// We create a vector, resize it to zero and push it to zippedChunks.
-				std::vector<unsigned char> chunkData(0);
-				zippedChunks.push_back(chunkData);
-			}
+			// We create a vector, resize it to zero and push it to zippedChunks.
+			std::vector<unsigned char> chunkData(0);
+			zippedChunks.push_back(chunkData);
 		}
-	} else {
-		std::stringstream error;
-		error << "Failed to open region file " << rX << "." << rZ << ".7rg @ " << path;
-		LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT(error.str()));
 	}
 }
 
-void RegionFile::write(std::string path) {
+inline void RegionFile::write(std::string path, const int rX, const int rZ) {
 	path = path.append("\\r.").append(std::to_string(rX)).append(".").append(std::to_string(rZ)).append(".7rg");
 
+	write(path);
+}
+
+void RegionFile::write(const std::string path) {
 	BinaryFileWriter writer(path);
 
 	unsigned char ch = 55;
@@ -109,9 +102,7 @@ void RegionFile::write(std::string path) {
 			writer.writeBytes(&zippedChunks[j][0], chunkSize);
 
 			writer.seek((offsets[j] + size[j]) * 4096, std::ios_base::beg);
-		}
-
-		else {
+		} else {
 			offsets.push_back(0);
 			size.push_back(0);
 		}
@@ -126,28 +117,97 @@ void RegionFile::write(std::string path) {
 	}
 }
 
-bool RegionFile::chunkExists(const int rcX, const int rcZ) {
-	return zippedChunks[rcX + 32 * rcZ].size() > 0;
+inline bool RegionFile::chunkExists(const int rcX, const int rcZ) const {
+	return chunkExists(rcX + 32 * rcZ);
 }
 
-bool RegionFile::readChunk(Chunk &chunk, const int rcX, const int rcZ) {
-	if (chunkExists(rcX, rcZ)) {
-		return chunk.unpackChunk(chunk, zippedChunks[rcX + 32 * rcZ]);
+inline bool RegionFile::chunkExists(const int position) const {
+	return zippedChunks[position].size() > 0;
+}
+
+int RegionFile::readChunk(Chunk &chunk, const int position) {
+	if (!chunkExists(position)) {
+		return INT_MAX;
+	} else {
+		memcpy(&chunk.header[0], &zippedChunks[position][0], 4);
+		memcpy(&chunk.version, &zippedChunks[position][4], 4);
+
+		int versionCheck = checkVersion(chunk.version, CHUNK);
+		if (versionCheck != 0) {
+			return versionCheck;
+		}
+
+		try {
+			BinaryMemoryReader reader = BinaryMemoryReader(zippedChunks[position]);
+
+			bool isValidRead;
+			versionCheck = chunk.read(reader, isValidRead);
+
+			if (versionCheck != 0) {
+				LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Version mismatch, version difference of " + std::to_string(versionCheck)));
+				return versionCheck;
+			}
+
+			if (!isValidRead) {
+				LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Chunk data corrupted, could not read chunk!"));
+				return INT_MAX;
+			}
+
+			return 0;
+		} catch (std::ios_base::failure) {
+			LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to initialize memory reader, could not read chunk!"));
+			return INT_MAX;
+		}
 	}
-
-	return false;
 }
 
-bool RegionFile::writeChunk(const Chunk &chunk, const int rcX, const int rcZ) {
-	return chunk.packChunk(chunk, zippedChunks[rcX + 32 * rcZ]);
+inline int RegionFile::readChunk(Chunk &chunk, const int rcX, const int rcZ) {
+	return readChunk(chunk, rcX + 32 * rcZ);
 }
 
-RegionFile::RegionFile(const std::string path, const int rX, const int rZ) :
+void RegionFile::writeChunk(const Chunk &chunk, const int position) {
+	memcpy(&zippedChunks[position][0], &chunk.header[0], 4);
+	memcpy(&zippedChunks[position][4], &chunk.version, 4);
+
+	BinaryMemoryWriter writer = BinaryMemoryWriter(1000000); // 1MB
+	chunk.write(writer);
+	writer.fetchZipped(zippedChunks[position]);
+}
+
+void RegionFile::writeChunk(const Chunk &chunk, BinaryMemoryWriter &writer, const int position) {
+	memcpy(&zippedChunks[position][0], &chunk.header[0], 4);
+	memcpy(&zippedChunks[position][4], &chunk.version, 4);
+
+	chunk.write(writer);
+}
+
+inline void RegionFile::writeChunk(const Chunk &chunk, const int rcX, const int rcZ) {
+	return writeChunk(chunk, rcX + 32 * rcZ);
+}
+
+RegionFile::RegionFile(std::string path, const int rX, const int rZ) :
 	rX(rX),
 	rZ(rZ) {
+
+	path = path.append("\\r." + std::to_string(rX) + "." + std::to_string(rZ) + ".7rg");
 
 	read(path);
 }
 
-RegionFile::RegionFile() {}
+RegionFile::RegionFile(std::string path) {
+	std::string name = path.substr(path.find_last_of('\\') + 1, path.length());
+	if (name.length() > 3 && name.substr(name.length() - 3, name.length() - 1) == "7rg") {
+		std::string coords = name.substr(name.find_first_of('.') + 1, name.find_last_of('.') - 2);
+
+		rX = std::stoi(coords.substr(0, coords.find('.')));
+		rZ = std::stoi(coords.substr(coords.find('.') + 1, coords.length()));
+
+		read(path);
+	}
+}
+
+RegionFile::RegionFile(std::vector<int> timeStamps, std::vector<std::vector<unsigned char>> zippedChunks) :
+	timeStamps(timeStamps),
+	zippedChunks(zippedChunks) {}
+
 RegionFile::~RegionFile() {}

@@ -17,13 +17,8 @@ class EntitySpawner;
 class TileEntity;
 
 class Chunk : public VersionCheck {
-private:
-	int read(Chunk &chunk, BinaryMemoryReader &reader, bool &isValidRead);
-	void write(const Chunk &chunk, BinaryMemoryWriter &writer) const;
-
-	unsigned char header[4];
-
 public:
+	unsigned char header[4];
 	unsigned int version;
 
 	int xm;
@@ -65,8 +60,8 @@ public:
 
 	std::vector<int> hk;
 
-	int unpackChunk(Chunk &chunk, std::vector<unsigned char> &zipped);
-	bool packChunk(const Chunk &chunk, std::vector<unsigned char> &zipped) const;
+	int read(BinaryMemoryReader &reader, bool &isValidRead);
+	void write(BinaryMemoryWriter &writer) const;
 
 	Chunk();
 	~Chunk();

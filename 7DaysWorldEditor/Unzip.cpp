@@ -74,6 +74,10 @@
 #define ZIP_FILENAME 2
 #define ZIP_MEMORY   3
 
+#include "MemoryLeakManager.h"
+#define malloc(len) MemoryLeakManager::MLMmalloc(len)
+#define calloc(count, size) MemoryLeakManager::MLMcalloc(count, size)
+#define free(p) MemoryLeakManager::MLMfree(p)
 
 #define zmalloc(len) malloc(len)
 
@@ -4124,7 +4128,7 @@ ZRESULT FindZipItem(HZIP hz, const TCHAR *name, bool ic, int *index, ZIPENTRY *z
 }
 
 ZRESULT UnzipItemInternal(HZIP hz, int index, void *dst, unsigned int len, DWORD flags)
-{ if (hz==0) {lasterrorU=ZR_ARGS;return ZR_ARGS;}
+{ if (hz == 0) { lasterrorU = ZR_ARGS; return ZR_ARGS; }
   TUnzipHandleData *han = (TUnzipHandleData*)hz;
   if (han->flag!=1) {lasterrorU=ZR_ZMODE;return ZR_ZMODE;}
   TUnzip *unz = han->unz;
@@ -4161,5 +4165,9 @@ bool IsZipHandleU(HZIP hz)
   TUnzipHandleData *han = (TUnzipHandleData*)hz;
   return (han->flag==1);
 }
+
+#undef malloc
+#undef calloc
+#undef free
 
 #pragma warning(pop)

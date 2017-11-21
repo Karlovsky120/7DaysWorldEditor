@@ -17,7 +17,6 @@
 #define MULTI_BUFF_VARIABLE "multiBuffVariable"
 #define BUFF_MODIFIER "buffModifier"
 #define RECIPE "recipe"
-#define RECIPE_QUEUE_ITEM "recipeQueueItem"
 #define STAT "stat"
 #define STAT_MODIFIER "statModifier"
 #define TILE_ENTITY "tileEntity"
@@ -29,7 +28,6 @@
 #define TILE_ENTITY_VENDING_MACHINE "tileEntityVendingMachine"
 #define TILE_ENTITY_WORKSTATION "tileEntityWorkstation"
 #define TRADER_DATA "traderData"
-
 
 #define NO_VERSION "noVersion"
 

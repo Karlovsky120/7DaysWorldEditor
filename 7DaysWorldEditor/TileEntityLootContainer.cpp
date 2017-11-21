@@ -22,7 +22,7 @@ int TileEntityLootContainer::read(BinaryMemoryReader &reader) {
 	reader.read<short>(itemsLength);
 	itemsLength = ((((int)itemsLength) < (ad.x * ad.y)) ? itemsLength : (ad.x * ad.y));
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, short>(items, itemsLength, NO_VERSION)));
+	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, short>(items, itemsLength)));
 	reader.read<bool>(bPlayerStorage);
 
 	return 0;

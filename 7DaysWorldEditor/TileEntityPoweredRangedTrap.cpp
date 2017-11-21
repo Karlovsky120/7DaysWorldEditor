@@ -21,7 +21,7 @@ int TileEntityPoweredRangedTrap::read(BinaryMemoryReader &reader) {
 
 	if (flag) {
 		reader.read<bool>(isLocked);
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots, NO_VERSION)));
+		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(itemSlots)));
 
 		reader.read<int>(targetType);
 	}
