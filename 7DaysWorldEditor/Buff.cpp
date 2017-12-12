@@ -4,7 +4,7 @@
 #include "BinaryMemoryWriter.h"
 #include "MultiBuff.h"
 
-#include <typeinfo>
+//#include <typeinfo>
 
 BuffClassId Buff::getType() {
 	return BuffBase;

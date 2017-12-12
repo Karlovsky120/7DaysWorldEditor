@@ -8,7 +8,7 @@
 #include "Chunk.h"
 #include "MemoryLeakManager.h"
 
-#include "Log4cplus.h"
+#include <wx/log.h>
 
 void RegionFile::read(const std::string path) {
 	BinaryFileReader reader(path);
@@ -144,18 +144,21 @@ int RegionFile::readChunk(Chunk &chunk, const int position) {
 			versionCheck = chunk.read(reader, isValidRead);
 
 			if (versionCheck != 0) {
-				LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Version mismatch, version difference of " + std::to_string(versionCheck)));
+				std::string errorMsg = "Version mismatch, version difference of " + std::to_string(versionCheck);
+        wxLogError(errorMsg.c_str());
 				return versionCheck;
 			}
 
 			if (!isValidRead) {
-				LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Chunk data corrupted, could not read chunk!"));
+        std::string errorMsg = "Chunk data corrupted, could not read chunk!";
+        wxLogError(errorMsg.c_str());
 				return INT_MAX;
 			}
 
 			return 0;
 		} catch (std::ios_base::failure) {
-			LOG4CPLUS_ERROR(mainLog, LOG4CPLUS_TEXT("Failed to initialize memory reader, could not read chunk!"));
+      std::string errorMsg = "Failed to initialize memory reader, could not read chunk!";
+      wxLogError(errorMsg.c_str());
 			return INT_MAX;
 		}
 	}

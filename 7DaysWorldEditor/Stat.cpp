@@ -45,7 +45,7 @@ void Stat::write(BinaryMemoryWriter &writer) const {
 #pragma warning (suppress: 4267)
 	writer.writeConst<int>(statModifierList.size());
 
-	for (int i = 0; i < statModifierList.size(); ++i) {
+	for (unsigned int i = 0; i < statModifierList.size(); ++i) {
 		statModifierList[i]->write(writer);
 	}
 }

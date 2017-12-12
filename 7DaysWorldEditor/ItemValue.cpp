@@ -53,7 +53,7 @@ void ItemValue::write(BinaryMemoryWriter &writer) const {
 	writer.writeConst<unsigned char>(parts.size());
 
 	if (0 != parts.size()) {
-		for (int i = 0; i < parts.size(); ++i) {
+		for (unsigned int i = 0; i < parts.size(); ++i) {
 			bool exists = parts.find(i) != parts.end();
 			writer.write<bool>(exists);
 

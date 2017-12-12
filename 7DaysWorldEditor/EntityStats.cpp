@@ -68,7 +68,7 @@ void EntityStats::write(BinaryMemoryWriter &writer) const {
 
 #pragma warning (suppress: 4267)
 	writer.writeConst<int>(buffList.size());
-	for (int i = 0; i < buffList.size(); ++i) {
+	for (unsigned int i = 0; i < buffList.size(); ++i) {
 		buffList[i]->write(writer, idTable);
 	}
 

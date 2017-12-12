@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 
-#include "Log4cplus.h"
+#include <wx\log.h>
 
 class BinaryFileWriter {
 public:
@@ -102,8 +102,8 @@ public:
 
 		if (!baseStream.good()) {
 			std::string errorMsg = "Failed to write to file at " + path;
+			wxLogError(errorMsg.c_str());
 
-			LOG4CPLUS_ERROR(mainLog, errorMsg);
 			throw std::ios_base::failure(errorMsg);
 		}
 	}

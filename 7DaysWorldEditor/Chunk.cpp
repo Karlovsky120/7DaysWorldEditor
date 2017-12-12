@@ -12,8 +12,6 @@
 #include "Unzip.h"
 #include "Zip.h"
 
-#include "Log4cplus.h"
-
 extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.

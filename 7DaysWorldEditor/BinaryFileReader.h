@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 
-#include "Log4cplus.h"
+#include "wx\log.h"
 
 class BinaryFileReader {
 private:
@@ -39,8 +39,8 @@ public:
 
 		if (!baseStream.good()) {
 			std::string errorMsg = "Failed to open file at " + path;
+			wxLogError(errorMsg.c_str());
 
-			LOG4CPLUS_ERROR(mainLog, errorMsg);
 			throw std::ios_base::failure(errorMsg);
 		}
 	}

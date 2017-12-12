@@ -1,10 +1,12 @@
 #include "configFile.h"
 
-#include "Log4cplus.h"
+#include <wx\log.h>
 
 bool ConfigFile::open(std::string configFilePath) {
-	cFile.open(configFilePath, std::ios::binary | std::ios::out);
-
+	path = configFilePath;
+	std::ifstream cFile;
+	cFile.open(path, std::ios::binary | std::ios::in);
+	
 	if (cFile.good()) {
 		std::string line;
 
@@ -14,37 +16,87 @@ bool ConfigFile::open(std::string configFilePath) {
 				int pos = line.find('=');
 
 				std::string propertyName = line.substr(0, pos);
-				std::string valueString = line.substr(pos + 1, line.length());
-				int propertyValue;
+				std::string propertyValue = line.substr(pos + 1, line.length());
+
+				properties[propertyName] = propertyValue;
+
+				/*int propertyValue;
 
 				try {
 					propertyValue = std::stoi(valueString);
 				} catch (std::exception e) {
 					propertyValue = INT_MIN;
-					std::string errorString = "Failed to read property " + propertyName + "." + e.what();
-					LOG4CPLUS_WARN(mainLog, LOG4CPLUS_TEXT(errorString));
+					LOGW << "Failed to read property " + propertyName + "." + e.what();
 					return false;
 				}
 
-				properties[propertyName] = propertyValue;
+				properties[propertyName] = propertyValue;*/
 			}
 		}
 
 		return true;
 	} else {
-		std::string errorString = "Failed to open config file at " + configFilePath + ".";
-		LOG4CPLUS_WARN(mainLog, LOG4CPLUS_TEXT(errorString));
+    std::string errorMsg = "Failed to open config file at " + path + ".";
+    wxLogError(errorMsg.c_str());
 		return false;
 	}
 }
 
-bool ConfigFile::getProperty(std::string propertyName, int &value) {
+void ConfigFile::save() {
+	std::ofstream cFile;
+	cFile.open(path, std::ios::binary | std::ios::out);
+
+	if (cFile.good()) {
+		for (auto const &prop : properties) {
+			cFile << prop.first << "=" << prop.second;
+		}
+	}
+}
+
+bool ConfigFile::getProperty(std::string propertyName, std::string &value) const {
 	if (auto it = properties.find(propertyName) != properties.end()) {
 		value = properties.find(propertyName)->second;
 		return true;
 	} else {
-		std::string errorString = "Could not find " + propertyName + ".";
-		LOG4CPLUS_WARN(mainLog, LOG4CPLUS_TEXT(errorString));
+    std::string errorMsg = "Could not find " + propertyName + ".";
+    wxLogError(errorMsg.c_str());
+		return false;
+	}
+}
+
+bool ConfigFile::getProperty(std::string propertyName, int &value) const {
+	if (auto it = properties.find(propertyName) != properties.end()) {
+		try {
+			value = std::stoi(properties.find(propertyName)->second);
+		} catch (std::exception e) {
+			std::string errorMsg = "Failed to read property " + propertyName + ". " + e.what();
+      wxLogError(errorMsg.c_str());
+      return false;
+		}
+		return true;
+	} else {
+		std::string errorMsg = "Could not find " + propertyName + ".";
+    wxLogError(errorMsg.c_str());
+		return false;
+	}
+}
+
+bool ConfigFile::setProperty(std::string propertyName, std::string &value) {
+	if (auto it = properties.find(propertyName) != properties.end()) {
+		properties.find(propertyName)->second = value;
+		return true;
+	} else {
+		properties[propertyName] = value;
+		return false;
+	}
+}
+
+bool ConfigFile::setProperty(std::string propertyName, int &value) {
+	if (auto it = properties.find(propertyName) != properties.end()) {
+		properties.find(propertyName)->second = value;
+		return true;
+	} else {
+		properties[propertyName] = value;
 		return false;
 	}
 }

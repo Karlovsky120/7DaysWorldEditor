@@ -56,7 +56,7 @@ void Recipe::write(BinaryMemoryWriter &writer) const {
 #pragma warning (suppress: 4267)
 	writer.writeConst<int>(nameStackSizeList.size());
 
-	for (int i = 0; i < nameStackSizeList.size(); ++i) {
+	for (unsigned int i = 0; i < nameStackSizeList.size(); ++i) {
 		std::string name = std::get<0>(nameStackSizeList[i]);
 		writer.write<std::string>(name);
 		int stackSize = std::get<1>(nameStackSizeList[i]);

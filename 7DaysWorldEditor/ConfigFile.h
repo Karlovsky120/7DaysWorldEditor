@@ -8,13 +8,18 @@
 class ConfigFile {
 public:
 	bool open(std::string configFilePath);
-	bool getProperty(std::string propertyName, int &value);
+	void save();
+
+	bool getProperty(std::string propertyName, std::string &value) const;
+	bool getProperty(std::string propertyName, int &value) const;
+	bool setProperty(std::string propertyName, std::string &value);
+	bool setProperty(std::string propertyName, int &value);
 
 	ConfigFile();
 	~ConfigFile();
 
 private:
-	std::ifstream cFile;
-	std::map<std::string, int> properties;
+	std::string path;
+	std::map<std::string, std::string> properties;
 };
 

@@ -47,7 +47,7 @@ void TileEntityPowered::write(BinaryMemoryWriter &writer) {
 #pragma warning (suppress: 4267)
 	writer.writeConst<unsigned char>(intVectors.size());
 
-	for (int i = 0; i < intVectors.size(); ++i) {
+	for (unsigned int i = 0; i < intVectors.size(); ++i) {
 		Coordinate<int> item = intVectors[i];
 		writer.write<int>(item.x);
 		writer.write<int>(item.y);

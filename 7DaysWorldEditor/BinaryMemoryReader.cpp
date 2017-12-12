@@ -1,8 +1,8 @@
 #include "BinaryMemoryReader.h"
 
-#include "MemoryLeakManager.h";
+#include "MemoryLeakManager.h"
 
-#include "Log4cplus.h"
+#include "wx\log.h"
 
 void BinaryMemoryReader::unzipWhole(std::vector<unsigned char> &zipped, std::vector<unsigned char> &unzipped) {
 #pragma warning(suppress: 4267)
@@ -19,7 +19,7 @@ void BinaryMemoryReader::unzipWhole(std::vector<unsigned char> &zipped, std::vec
 
 	if (result != ZR_OK) {
 		std::string errorMsg = "Failed to unzip zipped chunk.";
-		LOG4CPLUS_ERROR(mainLog, errorMsg);
+    wxLogError(errorMsg.c_str());
 
 		CloseZip(hz);
 		throw std::ios_base::failure(errorMsg);
@@ -36,7 +36,7 @@ BinaryMemoryReader::BinaryMemoryReader(std::vector<unsigned char> &zipped) {
 
 	if (result != ZR_OK) {
 		std::string errorMsg = "Failed to unzip chunk within the region file.";
-		LOG4CPLUS_ERROR(mainLog, errorMsg);
+    wxLogError(errorMsg.c_str());
 
 		CloseZip(hz);
 		throw std::ios_base::failure(errorMsg);

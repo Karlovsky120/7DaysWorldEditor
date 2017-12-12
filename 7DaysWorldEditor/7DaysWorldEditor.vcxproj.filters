@@ -82,6 +82,21 @@
     <Filter Include="cfg">
       <UniqueIdentifier>{20290c48-8f4b-47f2-9d63-03f708fd80b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{ab6d36e0-d546-4d2d-a690-74782f673003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{5b1809c8-4c84-4565-9822-11246150ffa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{61c1a953-438a-4e48-8ee8-47d017fcd092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{379b6ebc-a492-48c9-9fb4-6480cd4beb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{d97ba981-f84d-474b-bd49-2308cc2b2954}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -98,12 +113,6 @@
     </ClCompile>
     <ClCompile Include="RegionFile.cpp">
       <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Unzip.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Zip.cpp">
-      <Filter>Source Files\RegionIO</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
@@ -264,6 +273,33 @@
     <ClCompile Include="MemoryLeakManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Unzip.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="Zip.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="openGLCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogFormatter.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraTransformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk.h">
@@ -285,12 +321,6 @@
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
     <ClInclude Include="BinaryFileWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Unzip.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Zip.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
@@ -449,9 +479,6 @@
     <ClInclude Include="ConfigFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Log4cplus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VersionCheck.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
@@ -461,13 +488,54 @@
     <ClInclude Include="MemoryLeakManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unzip.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="Zip.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="wxWidgets.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFormatter.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="openGLCanvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraTransformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cfg\currentVersion.ini">
       <Filter>cfg</Filter>
     </None>
-    <None Include="cfg\log4cplus.ini">
-      <Filter>cfg</Filter>
+    <None Include="resources\shaders\vertexShader.vert">
+      <Filter>Resource Files\shaders</Filter>
     </None>
+    <None Include="resources\shaders\fragmentShader.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\texture.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
