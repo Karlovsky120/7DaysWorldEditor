@@ -1,0 +1,3 @@
+[submodule "7DaysWorldEditor/lib/wxWidgets"]
+	path = 7DaysWorldEditor/lib/wxWidgets
+	url = https://github.com/wxWidgets/wxWidgets
