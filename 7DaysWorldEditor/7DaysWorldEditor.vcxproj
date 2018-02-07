@@ -19,13 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraTransformation.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Transformation.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="LogFormatter.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenGLCanvas.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="StaticShader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TexturedMesh.cpp" />
     <ClCompile Include="Zip.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -111,7 +119,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
-xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E</Command>
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,7 +139,8 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
-xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E</Command>
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,7 +163,8 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
-xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E</Command>
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,7 +187,8 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
-xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E</Command>
+xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -254,6 +266,7 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     <ClInclude Include="BuffTimerDuration.h" />
     <ClInclude Include="BuffTimerNull.h" />
     <ClInclude Include="BuffTimerScheduled.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraTransformation.h" />
     <ClInclude Include="Chunk.h" />
     <ClInclude Include="ChunkBlockChannel.h" />
@@ -261,11 +274,15 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     <ClInclude Include="ChunkCustomData.h" />
     <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="Coordinate.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityCreationData.h" />
     <ClInclude Include="EntitySpawner.h" />
     <ClInclude Include="EntityStats.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Transformation.h" />
     <ClInclude Include="ItemStack.h" />
     <ClInclude Include="ItemValue.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="LogFormatter.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainFrame.h" />
@@ -280,9 +297,12 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeQueueItem.h" />
     <ClInclude Include="RegionFile.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="SaveDeflater.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="StaticShader.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TexturedMesh.h" />
     <ClInclude Include="Unzip.h" />
     <ClInclude Include="VersionCheck.h" />
     <ClInclude Include="SpawnPoint.h" />
