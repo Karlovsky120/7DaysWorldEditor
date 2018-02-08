@@ -4,14 +4,17 @@
 
 class Mesh {
 public:
+  Mesh(const GLuint vaoID, const int vertexCount, const int indexCount);
+  Mesh();
+  ~Mesh();
+
   GLuint getVaoID() const;
   int getVertexCount() const;
-
-  Mesh(const GLuint vaoID, const int vertexCount);
-  ~Mesh();
+  int getIndexCount() const;
 
 private:
   GLuint vaoID;
   int vertexCount;
+  int indexCount;
 };
 

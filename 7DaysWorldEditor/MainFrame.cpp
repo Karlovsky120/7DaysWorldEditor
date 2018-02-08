@@ -23,11 +23,10 @@ MainFrame::MainFrame(const wxString& title, const wxPoint& pos, const wxSize& si
 	//menuBar->Append(menuHelp, "&Help");
 	SetMenuBar(menuBar);
 
-
   wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-  int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
+  int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, WX_GL_MAJOR_VERSION, 4, WX_GL_MINOR_VERSION, 4, 0};
 
-  BasicGLPane *glPane = new BasicGLPane((wxFrame*)this, args);
+  OpenGLCanvas *glPane = new OpenGLCanvas((wxFrame*)this, args);
   sizer->Add(glPane, 1, wxEXPAND);
 
   this->SetSizer(sizer);

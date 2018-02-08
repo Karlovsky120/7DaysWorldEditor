@@ -4,6 +4,7 @@ CameraTransformation::CameraTransformation(const glm::vec3 &position, const glm:
   position(position),
   rotation(rotation) {}
 
+
 glm::vec3 CameraTransformation::getPosition() const {
   return this->position;
 }

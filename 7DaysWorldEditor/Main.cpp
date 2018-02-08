@@ -23,7 +23,7 @@ bool Main::OnInit() {
 
   int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
 
-  BasicGLPane *glPane = new BasicGLPane((wxFrame*)frame, args);
+  OpenGLCanvas *glPane = new OpenGLCanvas((wxFrame*)frame, args);
   sizer->Add(glPane, 1, wxEXPAND);
 
   frame->SetSizer(sizer);

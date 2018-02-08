@@ -1,11 +1,14 @@
 #include "ShaderProgram.h"
 
-#include "wxWidgets.h"
+#include "GL\glew.h"
+#include "glm\glm.hpp"
+#include "glm\gtc\type_ptr.hpp"
+#include "wx\log.h"
 
 #include <fstream>
 
 GLuint ShaderProgram::loadShader(std::string shaderFile, GLenum type) {
-  std::ifstream in("resources\\shaders\\" + shaderFile);
+  std::ifstream in("resources\\shaders\\" + shaderFile, std::ios::in);
   std::string src = "";
   std::string line = "";
 
@@ -19,6 +22,15 @@ GLuint ShaderProgram::loadShader(std::string shaderFile, GLenum type) {
   glShaderSource(shader, 1, &source, NULL);
   glCompileShader(shader);
 
+  int  success;
+  char infoLog[512];
+  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    glGetShaderInfoLog(shader, 512, NULL, infoLog);
+    std::string error = "GLEW Error: " + std::string(infoLog);
+    wxLog(wxT(error));
+  }
+
   return shader;
 }
 
@@ -30,6 +42,29 @@ void ShaderProgram::stop() {
   glUseProgram(0);
 }
 
+void ShaderProgram::bindAttribute(GLuint attributeIndex, const char *variableName) {
+  glBindAttribLocation(programID, attributeIndex, variableName);
+}
+
+GLuint ShaderProgram::getUniformLocation(const char *uniformName) {
+  return glGetUniformLocation(programID, uniformName);
+}
+
+void ShaderProgram::loadFloatUniform(GLuint location, GLfloat value) {
+  glUniform1f(location, value);
+}
+
+void ShaderProgram::loadVector3fUniform(GLuint location, glm::vec3 value) {
+  glUniform3f(location, value.x, value.y, value.z);
+}
+
+void ShaderProgram::loadBooleanUniform(GLuint location, GLboolean value) {
+  glUniform1i(location, (GLint)value);
+}
+
+void ShaderProgram::loadMatrix4fUniform(GLuint location, glm::mat4x4 &value) {
+  glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+}
 
 ShaderProgram::ShaderProgram(std::string vertexShader, std::string fragmentShader) {
   vertexShaderID = loadShader(vertexShader, GL_VERTEX_SHADER);

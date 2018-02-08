@@ -4,10 +4,11 @@
 
 class Texture {
 public:
-  GLuint getID() const;
-
   Texture(GLuint textureID);
+  Texture();
   ~Texture();
+
+  GLuint getID() const;
 
 private:
   GLuint textureID;
