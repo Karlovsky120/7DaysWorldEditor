@@ -288,5 +288,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-*7DaysWorldEditor\lib\wxWidgets\lib\
-*7DaysWorldEditor\lib\wxWidgets\lib\*
+*7DaysWorldEditor/lib/wxWidgets/*
