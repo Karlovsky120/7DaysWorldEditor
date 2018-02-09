@@ -4,7 +4,7 @@
 
 class Camera {
 public:
-  Camera(Transformation &cameraTransformation, float FOV, float aspectRatio, float nearPlane, float farPlane);
+  Camera(Transformation cameraTransformation, float FOV, float aspectRatio, float nearPlane, float farPlane);
   Camera::Camera();
 
   Transformation *getCameraTransformation();

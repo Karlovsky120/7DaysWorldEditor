@@ -7,7 +7,7 @@
 #include "GL\glew.h"
 
 
-Renderer::Renderer(Camera &camera) :
+Renderer::Renderer(Camera camera) :
   camera(camera) {}
 
 Renderer::Renderer() {}

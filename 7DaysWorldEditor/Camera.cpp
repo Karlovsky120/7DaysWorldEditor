@@ -3,7 +3,7 @@
 #include "glm\gtx\transform.hpp"
 
 
-Camera::Camera(Transformation &cameraTransformation, float FOV, float aspectRatio, float nearPlane, float farPlane) :
+Camera::Camera(Transformation cameraTransformation, float FOV, float aspectRatio, float nearPlane, float farPlane) :
   cameraTransformation(cameraTransformation),
   projectionMatrix(glm::perspective(FOV, aspectRatio, nearPlane, farPlane)) {}
 

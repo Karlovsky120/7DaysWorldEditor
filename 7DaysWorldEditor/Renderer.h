@@ -7,7 +7,7 @@ class StaticShader;
 
 class Renderer {
 public:
-  Renderer(Camera &camera);
+  Renderer(Camera camera);
   Renderer();
 
   void prepare();

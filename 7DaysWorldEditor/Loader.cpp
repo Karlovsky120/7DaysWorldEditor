@@ -38,6 +38,7 @@ void inline Loader::setPixelForTexture(unsigned char pixelLocation[], unsigned c
   pixelLocation[3] = a;
 }
 
+//EDIT TO NOT GENERATE NEW ID FOR MULTIPLE DEFAULT TEXTURES
 GLuint Loader::loadTexture(std::string textureName) {
   int width;
   int height;
@@ -92,9 +93,9 @@ void Loader::storeDataInAttributeList(const GLuint attributeNumber, const GLuint
   glGenBuffers(1, &vboID);
   vbos.push_back(vboID);
 
-  glEnableVertexAttribArray(attributeNumber);
   glBindBuffer(GL_ARRAY_BUFFER, vboID);
   glBufferData(GL_ARRAY_BUFFER, dataLength, data, GL_STATIC_DRAW);
+  glEnableVertexAttribArray(attributeNumber);
   glVertexAttribPointer(attributeNumber, coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0);
 }
 

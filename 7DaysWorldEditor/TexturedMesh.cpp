@@ -1,6 +1,6 @@
 #include "TexturedMesh.h"
 
-TexturedMesh::TexturedMesh(Mesh &mesh, Texture &texture) :
+TexturedMesh::TexturedMesh(Mesh mesh, Texture texture) :
   mesh(mesh),
   texture(texture) {}
 

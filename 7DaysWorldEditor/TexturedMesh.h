@@ -5,7 +5,7 @@
 
 class TexturedMesh {
 public:
-  TexturedMesh(Mesh &mesh, Texture &texture);
+  TexturedMesh(Mesh mesh, Texture texture);
   TexturedMesh();
 
   Texture &getTexture();
