@@ -2,15 +2,15 @@
 
 #include "Mesh.h"
 
-Mesh Loader::loadToVAO(const float vertices[], const int vertexArraySize, const int indices[], const int indexArraySize, const float textureCoords[], const int textureCoordsArraySize) {
+void Loader::loadToVAO(Mesh &mesh, const float vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCoordsCount) {
   GLuint vaoID = createVAO();
   glBindVertexArray(vaoID);
-  bindIndicesBuffer(indices, indexArraySize);
-  storeDataInAttributeList(0, 3, vertices, vertexArraySize);
-  storeDataInAttributeList(1, 2, textureCoords, textureCoordsArraySize);
+  bindIndicesBuffer(indices, indexCount);
+  storeDataInAttributeList(0, 3, vertices, vertexCount);
+  storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
   unbindVAO();
 
-  return Mesh(vaoID, vertexArraySize, indexArraySize);
+  mesh = Mesh(vaoID, vertexCount, indexCount);
 }
 
 void Loader::generateDefaultTexture() {
@@ -88,13 +88,13 @@ GLuint Loader::createVAO() {
   return vaoID;
 }
 
-void Loader::storeDataInAttributeList(const GLuint attributeNumber, const GLuint coordinateSize, const GLfloat data[], const GLsizeiptr dataLength) {
+void Loader::storeDataInAttributeList(const GLuint attributeNumber, const GLuint coordinateSize, const GLfloat data[], const GLsizeiptr dataCount) {
   GLuint vboID;
   glGenBuffers(1, &vboID);
   vbos.push_back(vboID);
 
   glBindBuffer(GL_ARRAY_BUFFER, vboID);
-  glBufferData(GL_ARRAY_BUFFER, dataLength, data, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(data[0]), data, GL_STATIC_DRAW);
   glEnableVertexAttribArray(attributeNumber);
   glVertexAttribPointer(attributeNumber, coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0);
 }
@@ -109,7 +109,7 @@ void Loader::bindIndicesBuffer(const int indices[], const int indexCount) {
   vbos.push_back(vboID);
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, 3 * indexCount, indices, GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
 }
 
 Loader::~Loader() {

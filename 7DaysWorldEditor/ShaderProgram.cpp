@@ -8,7 +8,7 @@
 #include <fstream>
 
 GLuint ShaderProgram::loadShader(std::string shaderFile, GLenum type) {
-  std::ifstream in("resources\\shaders\\" + shaderFile, std::ios::in);
+  std::ifstream in(".\\resources\\shaders\\" + shaderFile, std::ios::in);
   std::string src = "";
   std::string line = "";
 

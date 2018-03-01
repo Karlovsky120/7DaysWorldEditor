@@ -1,9 +1,9 @@
 #include "Mesh.h"
 
-Mesh::Mesh(const GLuint vaoID, const int vertexCount, const int indexCount) :
+Mesh::Mesh(const GLuint vaoID, const int vertexCount, const int iIndexCount) :
   vaoID(vaoID),
   vertexCount(vertexCount),
-  indexCount(indexCount) {}
+  indexCount(iIndexCount) {}
 
 Mesh::Mesh() {}
 Mesh::~Mesh() {}

@@ -75,12 +75,14 @@ Scene::Scene() {
   Loader loader = Loader();
 
   Transformation cameraTransformation = Transformation();
-  camera = Camera(cameraTransformation, 90.0f, 16.0f / 9.0f, 0.00001f, 1000.0f);
+  Camera camera = Camera(cameraTransformation, 90.0f, 16.0f / 9.0f, 0.00001f, 1000.0f);
 
   renderer = Renderer(camera);
-  shader = StaticShader();
+  //shader = StaticShader();
 
-  Mesh mesh = loader.loadToVAO(vertices, sizeof(vertices), indices, sizeof(indices), textureCoords, sizeof(textureCoords));
+  Mesh mesh;
+
+  loader.loadToVAO(mesh, vertices, sizeof(vertices)/sizeof(vertices[0]), indices, sizeof(indices)/sizeof(indices[0]), textureCoords, sizeof(textureCoords)/sizeof(textureCoords[0]));
   Texture modelTexture = Texture(loader.loadTexture("texture"));
   TexturedMesh texturedMesh = TexturedMesh(mesh, modelTexture);
 

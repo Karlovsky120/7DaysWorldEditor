@@ -95,11 +95,9 @@ void OpenGLCanvas::render(wxPaintEvent& evt) {
 
 
   /*const wxSize ClientSize = GetClientSize();
-  glViewport(0, 0, ClientSize.x, ClientSize.y);*/
+  glViewport(0, 0, ClientSize.x, ClientSize.y);
 
-  //applyViewportTransformation(camera.getCameraTransformation());
-
-
+  //applyViewportTransformation(camera.getCameraTransformation());*/
   scene->render();
 
 

@@ -10,7 +10,7 @@ class Mesh;
 class Loader {
 public:
   ~Loader();
-  Mesh loadToVAO(const float vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCordsCount);
+  void loadToVAO(Mesh &mesh, const float vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCordsCount);
   GLuint loadTexture(std::string textureName);
 
 private:

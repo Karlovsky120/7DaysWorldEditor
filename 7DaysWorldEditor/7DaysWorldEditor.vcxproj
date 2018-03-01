@@ -173,7 +173,7 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
 xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -200,7 +200,7 @@ xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cf
 xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

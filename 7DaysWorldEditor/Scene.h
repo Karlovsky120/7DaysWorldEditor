@@ -13,7 +13,6 @@ public:
   void render();
 
 //private:
-  Camera camera;
   Renderer renderer;
   StaticShader shader;
   Entity entity;
