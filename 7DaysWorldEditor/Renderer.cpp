@@ -6,6 +6,8 @@
 
 #include "GL\glew.h"
 
+#include <math.h>
+
 
 Renderer::Renderer(Camera camera) :
   camera(camera) {}
@@ -13,7 +15,8 @@ Renderer::Renderer(Camera camera) :
 Renderer::Renderer() {}
 
 void Renderer::prepare() {
-  glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
+  glClearColor(std::sin(c/1000), std::sin(c/100), std::sin(c/10), 1.0f);
+  c += 1.0f;
   glEnable(GL_DEPTH_TEST);
   glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 

@@ -49,7 +49,7 @@ bool Main::OnInit() {
 	//Load configs
 	saveVersion.open(currentDirectory + "cfg\\currentVersion.ini");
 	settings.open(currentDirectory + "cfg\\settings.ini");
-
+	
 	frame = new MainFrame("7 Days World Editor", wxPoint(0, 0), wxSize(1280, 720));
 
 
