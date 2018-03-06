@@ -2,8 +2,6 @@
 #include <string>
 #include <fstream>
 
-#include <wx\log.h>
-
 class BinaryFileWriter {
 public:
 	std::ofstream baseStream;
@@ -102,10 +100,7 @@ public:
 		baseStream.open(path, std::ios::binary | std::ios::out);
 
 		if (!baseStream.good()) {
-			std::string errorMsg = "Failed to write to file at " + path;
-			wxLogError(errorMsg.c_str());
-
-			throw std::ios_base::failure(errorMsg);
+			throw std::ios_base::failure("Failed to write to file at " + path);
 		}
 	}
 

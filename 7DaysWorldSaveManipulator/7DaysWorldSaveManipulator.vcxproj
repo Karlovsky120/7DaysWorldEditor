@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{1C79076D-70A9-4DFE-9905-993A2D41FC49}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>My7DaysWorldSaveManipulator</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\BinaryFileReader.h" />
+    <ClInclude Include="Source\BinaryFileWriter.h" />
+    <ClInclude Include="Source\BinaryMemoryReader.h" />
+    <ClInclude Include="Source\BinaryMemoryWriter.h" />
+    <ClInclude Include="Source\BodyDamage.h" />
+    <ClInclude Include="Source\Buff.h" />
+    <ClInclude Include="Source\BuffDescriptor.h" />
+    <ClInclude Include="Source\BuffModifier.h" />
+    <ClInclude Include="Source\BuffModifierSetTickRate.h" />
+    <ClInclude Include="Source\BuffTimer.h" />
+    <ClInclude Include="Source\BuffTimerDuration.h" />
+    <ClInclude Include="Source\BuffTimerNull.h" />
+    <ClInclude Include="Source\BuffTimerScheduled.h" />
+    <ClInclude Include="Source\Chunk.h" />
+    <ClInclude Include="Source\ChunkBlockChannel.h" />
+    <ClInclude Include="Source\ChunkBlockLayer.h" />
+    <ClInclude Include="Source\ChunkCustomData.h" />
+    <ClInclude Include="Source\Coordinate.h" />
+    <ClInclude Include="Source\DllHeader.h" />
+    <ClInclude Include="Source\EntityCreationData.h" />
+    <ClInclude Include="Source\EntitySpawner.h" />
+    <ClInclude Include="Source\EntityStats.h" />
+    <ClInclude Include="Source\ItemStack.h" />
+    <ClInclude Include="Source\ItemValue.h" />
+    <ClInclude Include="Source\MemoryLeakManager.h" />
+    <ClInclude Include="Source\MultiBuff.h" />
+    <ClInclude Include="Source\MultiBuffAction.h" />
+    <ClInclude Include="Source\MultiBuffPrefabAttachmentDescriptor.h" />
+    <ClInclude Include="Source\MultiBuffVariable.h" />
+    <ClInclude Include="Source\Recipe.h" />
+    <ClInclude Include="Source\RecipeQueueItem.h" />
+    <ClInclude Include="Source\RegionFile.h" />
+    <ClInclude Include="Source\Stat.h" />
+    <ClInclude Include="Source\StatModifier.h" />
+    <ClInclude Include="Source\StatModifierMax.h" />
+    <ClInclude Include="Source\StatModifierModifyValue.h" />
+    <ClInclude Include="Source\StatModifierMulValue.h" />
+    <ClInclude Include="Source\StatModifierSetValue.h" />
+    <ClInclude Include="Source\StatModifierValueOT.h" />
+    <ClInclude Include="Source\TileEntity.h" />
+    <ClInclude Include="Source\TileEntityCampfire.h" />
+    <ClInclude Include="Source\TileEntityForge.h" />
+    <ClInclude Include="Source\TileEntityGoreBlock.h" />
+    <ClInclude Include="Source\TileEntityLootContainer.h" />
+    <ClInclude Include="Source\TileEntityPowered.h" />
+    <ClInclude Include="Source\TileEntityPoweredBlock.h" />
+    <ClInclude Include="Source\TileEntityPoweredRangedTrap.h" />
+    <ClInclude Include="Source\TileEntityPoweredTrigger.h" />
+    <ClInclude Include="Source\TileEntityPowerSource.h" />
+    <ClInclude Include="Source\TileEntitySecure.h" />
+    <ClInclude Include="Source\TileEntitySecureDoor.h" />
+    <ClInclude Include="Source\TileEntitySecureLootContainer.h" />
+    <ClInclude Include="Source\TileEntitySign.h" />
+    <ClInclude Include="Source\TileEntityTrader.h" />
+    <ClInclude Include="Source\TileEntityVendingMachine.h" />
+    <ClInclude Include="Source\TileEntityWorkstation.h" />
+    <ClInclude Include="Source\TraderData.h" />
+    <ClInclude Include="Source\Unzip.h" />
+    <ClInclude Include="Source\Utils.h" />
+    <ClInclude Include="Source\VersionCheck.h" />
+    <ClInclude Include="Source\Zip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Unzip.cpp" />
+    <ClCompile Include="Source\Zip.cpp" />
+    <ClCompile Include="Source\BinaryMemoryReader.cpp" />
+    <ClCompile Include="Source\BinaryMemoryWriter.cpp" />
+    <ClCompile Include="Source\BodyDamage.cpp" />
+    <ClCompile Include="Source\Buff.cpp" />
+    <ClCompile Include="Source\BuffDescriptor.cpp" />
+    <ClCompile Include="Source\BuffModifier.cpp" />
+    <ClCompile Include="Source\BuffModifierSetTickRate.cpp" />
+    <ClCompile Include="Source\BuffTimer.cpp" />
+    <ClCompile Include="Source\BuffTimerDuration.cpp" />
+    <ClCompile Include="Source\BuffTimerNull.cpp" />
+    <ClCompile Include="Source\BuffTimerScheduled.cpp" />
+    <ClCompile Include="Source\Chunk.cpp" />
+    <ClCompile Include="Source\ChunkBlockLayer.cpp" />
+    <ClCompile Include="Source\ChunkCustomData.cpp" />
+    <ClCompile Include="Source\EntityCreationData.cpp" />
+    <ClCompile Include="Source\EntitySpawner.cpp" />
+    <ClCompile Include="Source\EntityStats.cpp" />
+    <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\ItemValue.cpp" />
+    <ClCompile Include="Source\MemoryLeakManager.cpp" />
+    <ClCompile Include="Source\MultiBuff.cpp" />
+    <ClCompile Include="Source\MultiBuffAction.cpp" />
+    <ClCompile Include="Source\MultiBuffPrefabAttachmentDescriptor.cpp" />
+    <ClCompile Include="Source\MultiBuffVariable.cpp" />
+    <ClCompile Include="Source\Recipe.cpp" />
+    <ClCompile Include="Source\RecipeQueueItem.cpp" />
+    <ClCompile Include="Source\RegionFile.cpp" />
+    <ClCompile Include="Source\Stat.cpp" />
+    <ClCompile Include="Source\StatModifier.cpp" />
+    <ClCompile Include="Source\StatModifierMax.cpp" />
+    <ClCompile Include="Source\StatModifierModifyValue.cpp" />
+    <ClCompile Include="Source\StatModifierMulValue.cpp" />
+    <ClCompile Include="Source\StatModifierSetValue.cpp" />
+    <ClCompile Include="Source\StatModifierValueOT.cpp" />
+    <ClCompile Include="Source\TileEntity.cpp" />
+    <ClCompile Include="Source\TileEntityCampfire.cpp" />
+    <ClCompile Include="Source\TileEntityForge.cpp" />
+    <ClCompile Include="Source\TileEntityGoreBlock.cpp" />
+    <ClCompile Include="Source\TileEntityLootContainer.cpp" />
+    <ClCompile Include="Source\TileEntityPowered.cpp" />
+    <ClCompile Include="Source\TileEntityPoweredBlock.cpp" />
+    <ClCompile Include="Source\TileEntityPoweredRangedTrap.cpp" />
+    <ClCompile Include="Source\TileEntityPoweredTrigger.cpp" />
+    <ClCompile Include="Source\TileEntityPowerSource.cpp" />
+    <ClCompile Include="Source\TileEntitySecure.cpp" />
+    <ClCompile Include="Source\TileEntitySecureDoor.cpp" />
+    <ClCompile Include="Source\TileEntitySecureLootContainer.cpp" />
+    <ClCompile Include="Source\TileEntitySign.cpp" />
+    <ClCompile Include="Source\TileEntityTrader.cpp" />
+    <ClCompile Include="Source\TileEntityVendingMachine.cpp" />
+    <ClCompile Include="Source\TileEntityWorkstation.cpp" />
+    <ClCompile Include="Source\TraderData.cpp" />
+    <ClCompile Include="Source\Utils.cpp" />
+    <ClCompile Include="Source\VersionCheck.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,6 +1,5 @@
 #include "BinaryMemoryWriter.h"
 
-#include "PreprocessorConfig.h"
 #include "Zip.h"
 
 #include <fstream>
@@ -18,9 +17,6 @@ void BinaryMemoryWriter::fetchZipped(std::vector<unsigned char> &zipped) {
 		CloseZip(hz);
 
 		if (result != ZR_OK) {
-			std::string errorMsg = "Failed to zip chunk.";
-			LOGE << errorMsg;
-
 			throw std::ios_base::failure(errorMsg);
 		}*/
 }

@@ -9,8 +9,6 @@
 #include "MemoryLeakManager.h"
 #include "VersionCheck.h"
 
-#include <wx/log.h>
-
 void RegionFile::read(const std::string path) {
 	BinaryFileReader reader(path);
 	timeStamps.reserve(1024);

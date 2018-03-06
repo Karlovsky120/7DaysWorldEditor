@@ -13,77 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\RegionFile">
-      <UniqueIdentifier>{42519c5d-37e2-416c-99d8-0f5ee9db2e15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile">
-      <UniqueIdentifier>{7b75ffd2-55f4-4c32-ae56-2af000c5bb51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionIO">
-      <UniqueIdentifier>{7915a5ed-cf76-4f97-bfd5-300349d739fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionIO">
-      <UniqueIdentifier>{e59e1a42-0086-4726-8894-3bfdb4ecd2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData">
-      <UniqueIdentifier>{6cc692ac-a83f-4022-9fe0-0003cd35ef6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\TileEntity">
-      <UniqueIdentifier>{3ead1dfc-59d7-490f-8706-24db08e81445}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered">
-      <UniqueIdentifier>{54de768c-dffe-4ac8-b73d-65dc799e1952}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\StatModifier">
-      <UniqueIdentifier>{9fc3b3ae-0fcb-47d3-8127-9d65ed33b382}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\Buff">
-      <UniqueIdentifier>{de4df56b-76f7-40c4-8f54-48b193162730}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\BuffTimer">
-      <UniqueIdentifier>{8f50e1d3-058f-45f8-bfd9-1f043f7b9069}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData">
-      <UniqueIdentifier>{ce8e5796-ae74-410e-98d3-dbccce4a9606}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\Buff">
-      <UniqueIdentifier>{401c5b17-a1a8-4fa1-b5df-789b441b4769}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\StatModifier">
-      <UniqueIdentifier>{13af9d69-ccd5-4fc5-a0f6-774b5794e012}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\BuffTimer">
-      <UniqueIdentifier>{d3074930-1a7b-4280-ba76-41f7e439ee56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\TileEntity">
-      <UniqueIdentifier>{c6e5f085-b412-426b-99a5-f88e43009cfe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered">
-      <UniqueIdentifier>{18b9fdbb-eb45-4188-b170-a1269c4fa34c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\BufModifier">
-      <UniqueIdentifier>{534c66e0-c52e-4e26-9655-bfc743158e5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\BuffModifier">
-      <UniqueIdentifier>{439a5e0a-b4f5-4557-8fdd-443b29198c61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer">
-      <UniqueIdentifier>{64710367-c8bd-4e53-8da8-745379a5306e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure">
-      <UniqueIdentifier>{02f8ab03-3a2b-4031-a4bb-fb29e751379e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer">
-      <UniqueIdentifier>{c7d0abeb-6628-49c8-9e6e-552b82bbd5e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure">
-      <UniqueIdentifier>{30945a9b-7168-4f6c-83e4-10e36cb7db5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cfg">
       <UniqueIdentifier>{20290c48-8f4b-47f2-9d63-03f708fd80b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="External">
-      <UniqueIdentifier>{ab6d36e0-d546-4d2d-a690-74782f673003}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GUI">
       <UniqueIdentifier>{5b1809c8-4c84-4565-9822-11246150ffa0}</UniqueIdentifier>
@@ -103,184 +34,19 @@
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{aa168fed-c99b-4c8c-b93a-27e1061690e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{ab6d36e0-d546-4d2d-a690-74782f673003}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Chunk.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkBlockLayer.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkCustomData.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="RegionFile.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BinaryMemoryReader.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffTimer.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffTimerDuration.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffTimerNull.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffTimerScheduled.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClCompile>
-    <ClCompile Include="Buff.cpp">
-      <Filter>Source Files\RegionFile\EntityData\Buff</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiBuff.cpp">
-      <Filter>Source Files\RegionFile\EntityData\Buff</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifier.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierMax.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierModifyValue.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierMulValue.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierSetValue.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="StatModifierValueOT.cpp">
-      <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntity.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityCampfire.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityForge.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySign.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityTrader.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityVendingMachine.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityWorkstation.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityPowered.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityPoweredBlock.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityPoweredRangedTrap.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityPoweredTrigger.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityPowerSource.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClCompile>
-    <ClCompile Include="BodyDamage.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffDescriptor.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityCreationData.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="EntitySpawner.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityStats.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemStack.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemValue.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiBuffAction.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiBuffPrefabAttachmentDescriptor.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiBuffVariable.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Recipe.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="RecipeQueueItem.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Stat.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffModifier.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="BuffModifierSetTickRate.cpp">
-      <Filter>Source Files\RegionFile\EntityData\BuffModifier</Filter>
-    </ClCompile>
-    <ClCompile Include="BinaryMemoryWriter.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecure.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecureDoor.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntitySecureLootContainer.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityLootContainer.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="TileEntityGoreBlock.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClCompile>
     <ClCompile Include="ConfigFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TraderData.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="VersionCheck.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
     <ClCompile Include="SaveDeflater.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryLeakManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Unzip.cpp">
-      <Filter>External</Filter>
-    </ClCompile>
-    <ClCompile Include="Zip.cpp">
-      <Filter>External</Filter>
     </ClCompile>
     <ClCompile Include="MainFrame.cpp">
       <Filter>Source Files\GUI</Filter>
@@ -292,9 +58,6 @@
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="CameraTransformation.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Loader.cpp">
@@ -327,199 +90,22 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chunk.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkBlockChannel.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkBlockLayer.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkCustomData.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="RegionFile.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryFileReader.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryFileWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryMemoryReader.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntity.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityCampfire.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityForge.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySign.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityTrader.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityVendingMachine.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityWorkstation.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffTimer.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffTimerDuration.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffTimerNull.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffTimerScheduled.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifier.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierMax.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierModifyValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierMulValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierSetValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="StatModifierValueOT.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiBuff.h">
-      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
-    </ClInclude>
-    <ClInclude Include="Buff.h">
-      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityPowered.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityPoweredBlock.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityPoweredRangedTrap.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityPoweredTrigger.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityPowerSource.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Coordinate.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="BodyDamage.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffDescriptor.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityCreationData.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="EntitySpawner.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityStats.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemStack.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemValue.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiBuffAction.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiBuffVariable.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Recipe.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="RecipeQueueItem.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Stat.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffModifier.h">
-      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="BuffModifierSetTickRate.h">
-      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryMemoryWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityLootContainer.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecure.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecureDoor.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntitySecureLootContainer.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="TileEntityGoreBlock.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="TraderData.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
     <ClInclude Include="PreprocessorConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConfigFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VersionCheck.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
     <ClInclude Include="SaveDeflater.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryLeakManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unzip.h">
-      <Filter>External</Filter>
-    </ClInclude>
-    <ClInclude Include="Zip.h">
-      <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="MainFrame.h">
       <Filter>Header Files\GUI</Filter>
@@ -534,9 +120,6 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="CameraTransformation.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Loader.h">
@@ -567,6 +150,9 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

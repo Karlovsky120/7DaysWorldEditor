@@ -2,8 +2,6 @@
 #include <string>
 #include <fstream>
 
-#include "wx\log.h"
-
 class BinaryFileReader {
 private:
 	std::ifstream baseStream;
@@ -38,10 +36,7 @@ public:
 		baseStream.open(path, std::ios::binary | std::ios::in);
 
 		if (!baseStream.good()) {
-			std::string errorMsg = "Failed to open file at " + path;
-			wxLogError(errorMsg.c_str());
-
-			throw std::ios_base::failure(errorMsg);
+			throw std::ios_base::failure("Failed to open file at " + path);
 		}
 	}
 

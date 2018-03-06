@@ -2,8 +2,8 @@
 
 #include <map>
 
-class BinaryMemoryReader;
-class BinaryMemoryWriter;
+#include "BinaryMemoryReader.h"
+#include "BinaryMemoryWriter.h"
 
 template <int bytesPerValue = 1>
 class ChunkBlockChannel {

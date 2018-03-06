@@ -1,5 +1,7 @@
 #include "MemoryLeakManager.h"
 
+#include <algorithm>
+
 std::set<void*> MemoryLeakManager::memoryAllocations;
 
 void *MemoryLeakManager::MLMmalloc(size_t len) {
@@ -22,9 +24,7 @@ void MemoryLeakManager::MLMfree(void *block) {
 }
 
 void MemoryLeakManager::freeMemoryLeaks() {
-	for each (void *leak in memoryAllocations) {
-		free(leak);
-	}
+	for_each(memoryAllocations.begin(), memoryAllocations.end(), free);
 
 	memoryAllocations.clear();
 }

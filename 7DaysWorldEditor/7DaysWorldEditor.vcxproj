@@ -34,7 +34,6 @@
     <ClCompile Include="StaticShader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TexturedMesh.cpp" />
-    <ClCompile Include="Zip.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -204,146 +203,31 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryMemoryReader.cpp" />
-    <ClCompile Include="BinaryMemoryWriter.cpp" />
-    <ClCompile Include="BodyDamage.cpp" />
-    <ClCompile Include="Buff.cpp" />
-    <ClCompile Include="BuffDescriptor.cpp" />
-    <ClCompile Include="BuffModifier.cpp" />
-    <ClCompile Include="BuffModifierSetTickRate.cpp" />
-    <ClCompile Include="BuffTimer.cpp" />
-    <ClCompile Include="BuffTimerDuration.cpp" />
-    <ClCompile Include="BuffTimerNull.cpp" />
-    <ClCompile Include="BuffTimerScheduled.cpp" />
-    <ClCompile Include="Chunk.cpp" />
-    <ClCompile Include="ChunkBlockLayer.cpp" />
-    <ClCompile Include="ChunkCustomData.cpp" />
     <ClCompile Include="ConfigFile.cpp" />
-    <ClCompile Include="EntityCreationData.cpp" />
-    <ClCompile Include="EntitySpawner.cpp" />
-    <ClCompile Include="EntityStats.cpp" />
-    <ClCompile Include="ItemStack.cpp" />
-    <ClCompile Include="ItemValue.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MemoryLeakManager.cpp" />
-    <ClCompile Include="MultiBuff.cpp" />
-    <ClCompile Include="MultiBuffAction.cpp" />
-    <ClCompile Include="MultiBuffPrefabAttachmentDescriptor.cpp" />
-    <ClCompile Include="MultiBuffVariable.cpp" />
-    <ClCompile Include="Recipe.cpp" />
-    <ClCompile Include="RecipeQueueItem.cpp" />
-    <ClCompile Include="RegionFile.cpp" />
     <ClCompile Include="SaveDeflater.cpp" />
-    <ClCompile Include="Unzip.cpp" />
-    <ClCompile Include="VersionCheck.cpp" />
-    <ClCompile Include="Stat.cpp" />
-    <ClCompile Include="StatModifier.cpp" />
-    <ClCompile Include="StatModifierMax.cpp" />
-    <ClCompile Include="StatModifierModifyValue.cpp" />
-    <ClCompile Include="StatModifierMulValue.cpp" />
-    <ClCompile Include="StatModifierSetValue.cpp" />
-    <ClCompile Include="StatModifierValueOT.cpp" />
-    <ClCompile Include="TileEntity.cpp" />
-    <ClCompile Include="TileEntityCampfire.cpp" />
-    <ClCompile Include="TileEntityForge.cpp" />
-    <ClCompile Include="TileEntityGoreBlock.cpp" />
-    <ClCompile Include="TileEntityLootContainer.cpp" />
-    <ClCompile Include="TileEntityPowered.cpp" />
-    <ClCompile Include="TileEntityPoweredBlock.cpp" />
-    <ClCompile Include="TileEntityPoweredRangedTrap.cpp" />
-    <ClCompile Include="TileEntityPoweredTrigger.cpp" />
-    <ClCompile Include="TileEntitySecure.cpp" />
-    <ClCompile Include="TileEntitySecureDoor.cpp" />
-    <ClCompile Include="TileEntitySecureLootContainer.cpp" />
-    <ClCompile Include="TileEntitySign.cpp" />
-    <ClCompile Include="TileEntityTrader.cpp" />
-    <ClCompile Include="TileEntityVendingMachine.cpp" />
-    <ClCompile Include="TileEntityWorkstation.cpp" />
-    <ClCompile Include="TileEntityPowerSource.cpp" />
-    <ClCompile Include="TraderData.cpp" />
-    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryFileReader.h" />
-    <ClInclude Include="BinaryFileWriter.h" />
-    <ClInclude Include="BinaryMemoryReader.h" />
-    <ClInclude Include="BinaryMemoryWriter.h" />
-    <ClInclude Include="BodyDamage.h" />
-    <ClInclude Include="Buff.h" />
-    <ClInclude Include="BuffDescriptor.h" />
-    <ClInclude Include="BuffModifier.h" />
-    <ClInclude Include="BuffModifierSetTickRate.h" />
-    <ClInclude Include="BuffTimer.h" />
-    <ClInclude Include="BuffTimerDuration.h" />
-    <ClInclude Include="BuffTimerNull.h" />
-    <ClInclude Include="BuffTimerScheduled.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraTransformation.h" />
-    <ClInclude Include="Chunk.h" />
-    <ClInclude Include="ChunkBlockChannel.h" />
-    <ClInclude Include="ChunkBlockLayer.h" />
-    <ClInclude Include="ChunkCustomData.h" />
     <ClInclude Include="ConfigFile.h" />
-    <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityCreationData.h" />
-    <ClInclude Include="EntitySpawner.h" />
-    <ClInclude Include="EntityStats.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Transformation.h" />
-    <ClInclude Include="ItemStack.h" />
-    <ClInclude Include="ItemValue.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="LogFormatter.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainFrame.h" />
-    <ClInclude Include="MemoryLeakManager.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="MultiBuff.h" />
-    <ClInclude Include="MultiBuffAction.h" />
-    <ClInclude Include="MultiBuffPrefabAttachmentDescriptor.h" />
-    <ClInclude Include="MultiBuffVariable.h" />
     <ClInclude Include="OpenGLCanvas.h" />
     <ClInclude Include="PreprocessorConfig.h" />
-    <ClInclude Include="Recipe.h" />
-    <ClInclude Include="RecipeQueueItem.h" />
-    <ClInclude Include="RegionFile.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SaveDeflater.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TexturedMesh.h" />
-    <ClInclude Include="Unzip.h" />
-    <ClInclude Include="VersionCheck.h" />
-    <ClInclude Include="Stat.h" />
-    <ClInclude Include="StatModifier.h" />
-    <ClInclude Include="StatModifierMax.h" />
-    <ClInclude Include="StatModifierModifyValue.h" />
-    <ClInclude Include="StatModifierMulValue.h" />
-    <ClInclude Include="StatModifierSetValue.h" />
-    <ClInclude Include="StatModifierValueOT.h" />
-    <ClInclude Include="TileEntity.h" />
-    <ClInclude Include="TileEntityCampfire.h" />
-    <ClInclude Include="TileEntityForge.h" />
-    <ClInclude Include="TileEntityGoreBlock.h" />
-    <ClInclude Include="TileEntityLootContainer.h" />
-    <ClInclude Include="TileEntityPowered.h" />
-    <ClInclude Include="TileEntityPoweredBlock.h" />
-    <ClInclude Include="TileEntityPoweredRangedTrap.h" />
-    <ClInclude Include="TileEntityPoweredTrigger.h" />
-    <ClInclude Include="TileEntitySecure.h" />
-    <ClInclude Include="TileEntitySecureDoor.h" />
-    <ClInclude Include="TileEntitySecureLootContainer.h" />
-    <ClInclude Include="TileEntitySign.h" />
-    <ClInclude Include="TileEntityTrader.h" />
-    <ClInclude Include="TileEntityVendingMachine.h" />
-    <ClInclude Include="TileEntityWorkstation.h" />
-    <ClInclude Include="TileEntityPowerSource.h" />
-    <ClInclude Include="TraderData.h" />
-    <ClInclude Include="Utils.h" />
     <ClInclude Include="wxWidgets.h" />
-    <ClInclude Include="Zip.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cfg\currentVersion.ini" />
@@ -352,6 +236,11 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\texture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\7DaysWorldSaveManipulator\7DaysWorldSaveManipulator.vcxproj">
+      <Project>{1c79076d-70a9-4dfe-9905-993a2d41fc49}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

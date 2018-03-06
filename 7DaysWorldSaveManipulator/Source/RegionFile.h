@@ -1,4 +1,5 @@
 #pragma once
+#include "dllHeader.h"
 #include "VersionCheck.h"
 
 #include <vector>
