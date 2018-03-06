@@ -8,4 +8,3 @@ public:
 	Utils();
 	~Utils();
 };
-

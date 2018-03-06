@@ -3,10 +3,11 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "Utils.h"
+#include "VersionCheck.h"
 
 int EntityCreationData::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(entityCreationDataVersion);
-	CHECK_VERSION(entityCreationDataVersion, ENTITY_CREATION_DATA);
+	VersionCheck::checkVersion(entityCreationDataVersion, ENTITY_CREATION_DATA_VER, ENTITY_CREATION_DATA);
 
 	reader.read<int>(entityClass);
 
@@ -22,13 +23,13 @@ int EntityCreationData::read(BinaryMemoryReader &reader) {
 	reader.read<float>(rot.z);
 
 	reader.read<bool>(onGround);
-	
-	CHECK_VERSION_ZERO(bodyDamage.read(reader));
+
+	bodyDamage.read(reader);
 
 	reader.read<bool>(stats.first);
 
 	if (stats.first) {
-		CHECK_VERSION_ZERO(stats.second.read(reader));
+		stats.second.read(reader);
 	}
 
 	reader.read<short>(deathTime);
@@ -39,7 +40,7 @@ int EntityCreationData::read(BinaryMemoryReader &reader) {
 	if (tileEntityNotNull) {
 		reader.read<int>(tileEntityType);
 		lootContainer = TileEntity::instantiate((TileEntityClassId)tileEntityType);
-		CHECK_VERSION_ZERO(lootContainer->read(reader));
+		lootContainer->read(reader);
 	}
 
 	reader.read<int>(homePosition.x);
@@ -51,11 +52,13 @@ int EntityCreationData::read(BinaryMemoryReader &reader) {
 
 	if (entityClass == Utils::getMonoHash("item")) {
 		reader.read<int>(belongsPlayerId);
-		CHECK_VERSION_ZERO(itemStack.read(reader));
+		itemStack.read(reader);
 		reader.read<char>(someSByte);
-	} else if (entityClass == Utils::getMonoHash("fallingBlock")) {
+	}
+	else if (entityClass == Utils::getMonoHash("fallingBlock")) {
 		reader.read<unsigned int>(blockValue);
-	} else if (entityClass == Utils::getMonoHash("fallingTree")) {
+	}
+	else if (entityClass == Utils::getMonoHash("fallingTree")) {
 		reader.read<int>(blockPosition.x);
 		reader.read<int>(blockPosition.y);
 		reader.read<int>(blockPosition.z);
@@ -63,13 +66,13 @@ int EntityCreationData::read(BinaryMemoryReader &reader) {
 		reader.read<float>(fallTreeDir.x);
 		reader.read<float>(fallTreeDir.y);
 		reader.read<float>(fallTreeDir.z);
-	} else if (entityClass == Utils::getMonoHash("playerMale")
+	}
+	else if (entityClass == Utils::getMonoHash("playerMale")
 		|| entityClass == Utils::getMonoHash("playerFemale")) {
-
 		// This code should not be reached, this reads the
 		// player profile which should not be present here.
 	}
-	
+
 	unsigned short entityDataLength;
 	reader.read<unsigned short>(entityDataLength);
 
@@ -128,9 +131,11 @@ void EntityCreationData::write(BinaryMemoryWriter &writer) const {
 		writer.write<int>(belongsPlayerId);
 		itemStack.write(writer);
 		writer.write<char>(someSByte);
-	} else if (entityClass == Utils::getMonoHash("fallingBlock")) {
+	}
+	else if (entityClass == Utils::getMonoHash("fallingBlock")) {
 		writer.write<unsigned int>(blockValue);
-	} else if (entityClass == Utils::getMonoHash("fallingTree")) {
+	}
+	else if (entityClass == Utils::getMonoHash("fallingTree")) {
 		writer.write<int>(blockPosition.x);
 		writer.write<int>(blockPosition.y);
 		writer.write<int>(blockPosition.z);
@@ -138,9 +143,9 @@ void EntityCreationData::write(BinaryMemoryWriter &writer) const {
 		writer.write<float>(fallTreeDir.x);
 		writer.write<float>(fallTreeDir.y);
 		writer.write<float>(fallTreeDir.z);
-	} else if (entityClass == Utils::getMonoHash("playerMale")
+	}
+	else if (entityClass == Utils::getMonoHash("playerMale")
 		|| entityClass == Utils::getMonoHash("playerFemale")) {
-
 		// This code should not be reached, this reads the
 		// player profile which should not be present here.
 	}
@@ -149,7 +154,7 @@ void EntityCreationData::write(BinaryMemoryWriter &writer) const {
 	writer.writeConst<unsigned short>(entityData.size());
 
 	if (entityData.size() > 0) {
-	#pragma warning (suppress: 4267)
+#pragma warning (suppress: 4267)
 		unsigned short entityDataLength = entityData.size();
 		writer.writeBytes(entityData, entityDataLength);
 	}

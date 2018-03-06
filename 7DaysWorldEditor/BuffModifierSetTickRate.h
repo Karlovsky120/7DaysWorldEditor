@@ -8,7 +8,7 @@ public:
 	float tickRate;
 
 	BuffModifierClassId getType() override;
-	void write(BinaryMemoryWriter &writer) override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	BuffModifierSetTickRate();
 	~BuffModifierSetTickRate();
@@ -16,4 +16,3 @@ public:
 protected:
 	int readMore(BinaryMemoryReader &reader) override;
 };
-

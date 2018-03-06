@@ -3,6 +3,7 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "BuffModifierSetTickRate.h"
+#include "VersionCheck.h"
 
 BuffModifierClassId BuffModifier::getType() {
 	return BuffModifierBase;
@@ -10,17 +11,17 @@ BuffModifierClassId BuffModifier::getType() {
 
 std::shared_ptr<BuffModifier> BuffModifier::instantiate(BuffModifierClassId id) {
 	switch (id) {
-		case SetTickRate:
+	case SetTickRate:
 		return std::make_shared<BuffModifierSetTickRate>();
-		default:
+	default:
 		return std::make_shared<BuffModifier>();
 	}
 }
 
-std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader, int &buffModifierVer) {
+std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader) {
 	int buffModifierVersion;
 	reader.read<int>(buffModifierVersion);
-	CHECK_VERSION_R(buffModifierVersion, BUFF_MODIFIER, buffModifierVer);
+	VersionCheck::checkVersion(buffModifierVersion, BUFF_MODIFIER_VER, BUFF_MODIFIER);
 
 	unsigned char buffModifierClassId;
 	reader.read<unsigned char>(buffModifierClassId);
@@ -28,12 +29,12 @@ std::shared_ptr<BuffModifier> BuffModifier::read(BinaryMemoryReader &reader, int
 	std::shared_ptr<BuffModifier> modifier = instantiate((BuffModifierClassId)buffModifierClassId);
 	modifier->buffModifierVersion = buffModifierVersion;
 	modifier->buffModifierClassId = buffModifierClassId;
-	CHECK_VERSION_ZERO_R(modifier->readMore(reader), buffModifierVer);
+	modifier->readMore(reader);
 
 	return modifier;
 }
 
-void BuffModifier::write(BinaryMemoryWriter &writer) {
+void BuffModifier::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(buffModifierVersion);
 	writer.write<unsigned char>(buffModifierClassId);
 

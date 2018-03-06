@@ -16,11 +16,12 @@ public:
 			bool flag;
 			reader.read<bool>(flag);
 
-			if (flag) {				
+			if (flag) {
 				std::array<unsigned char, bytesPerValue> data;
 				reader.readBytes(&data[0], bytesPerValue);
 				jj[i] = data;
-			} else {
+			}
+			else {
 				std::array<unsigned char, bytesPerValue * 1024> data;
 				reader.readBytes(&data[0], bytesPerValue * 1024);
 				cbcLayer[i] = data;
@@ -36,7 +37,8 @@ public:
 			writer.write(flag);
 			if (flag) {
 				writer.writeBytes(jj.find(i)->second, bytesPerValue);
-			} else {
+			}
+			else {
 				writer.writeBytes(cbcLayer.find(i)->second, bytesPerValue * 1024);
 			}
 		}

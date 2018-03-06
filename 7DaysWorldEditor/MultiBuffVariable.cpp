@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int MultiBuffVariable::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffVariableVersion);
-	CHECK_VERSION(multiBuffVariableVersion, MULTI_BUFF_VARIABLE);
+	VersionCheck::checkVersion(multiBuffVariableVersion, MULTI_BUFF_VARIABLE_VER, MULTI_BUFF_VARIABLE);
 
 	reader.read<float>(unknownQ);
 	reader.read<float>(unknownJ);

@@ -15,7 +15,7 @@ void BuffTimerDuration::write(BinaryMemoryWriter &writer) const {
 }
 
 int BuffTimerDuration::readMore(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(BuffTimer::readMore(reader));
+	BuffTimer::readMore(reader);
 
 	reader.read<float>(elapsed);
 	reader.read<float>(duration);

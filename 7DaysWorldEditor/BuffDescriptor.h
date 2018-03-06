@@ -1,13 +1,11 @@
 #pragma once
-#include "VersionCheck.h"
-
 #include <string>
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BuffDescriptor : public VersionCheck {
+class BuffDescriptor {
 public:
 	int buffDescriptorVersion;
 	int categoryFlags;
@@ -15,9 +13,8 @@ public:
 	std::vector<std::string> overrides;
 
 	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &write);
+	void write(BinaryMemoryWriter &write) const;
 
 	BuffDescriptor();
 	~BuffDescriptor();
 };
-

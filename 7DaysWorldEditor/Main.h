@@ -9,7 +9,7 @@
 
 class Main : public wxApp {
 private:
-	MainFrame *frame;
+	MainFrame * frame;
 
 	std::ofstream *m_logFile;
 	LogFormatter *m_formatter;
@@ -18,4 +18,3 @@ public:
 	virtual bool OnInit();
 	virtual int OnExit();
 };
-

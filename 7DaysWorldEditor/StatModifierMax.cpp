@@ -7,7 +7,7 @@ StatModifierClassId StatModifierMax::getType() {
 	return Max;
 }
 
-void StatModifierMax::write(BinaryMemoryWriter &writer) {
+void StatModifierMax::write(BinaryMemoryWriter &writer) const {
 	StatModifier::write(writer);
 
 	writer.write<float>(unknownV);
@@ -15,7 +15,7 @@ void StatModifierMax::write(BinaryMemoryWriter &writer) {
 }
 
 int StatModifierMax::readMore(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(StatModifier::readMore(reader));
+	StatModifier::readMore(reader);
 
 	reader.read<float>(unknownV);
 	reader.read<float>(unknownF);

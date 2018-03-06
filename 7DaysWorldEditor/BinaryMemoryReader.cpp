@@ -13,13 +13,13 @@ void BinaryMemoryReader::unzipWhole(std::vector<unsigned char> &zipped, std::vec
 	if (ZR_OK == result) {
 		unzipped = std::vector<unsigned char>(ze.unc_size);
 
-	#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 		result = UnzipItem(hz, 0, &unzipped[0], unzipped.size());
 	}
 
 	if (result != ZR_OK) {
 		std::string errorMsg = "Failed to unzip zipped chunk.";
-    wxLogError(errorMsg.c_str());
+		wxLogError(errorMsg.c_str());
 
 		CloseZip(hz);
 		throw std::ios_base::failure(errorMsg);
@@ -36,7 +36,7 @@ BinaryMemoryReader::BinaryMemoryReader(std::vector<unsigned char> &zipped) {
 
 	if (result != ZR_OK) {
 		std::string errorMsg = "Failed to unzip chunk within the region file.";
-    wxLogError(errorMsg.c_str());
+		wxLogError(errorMsg.c_str());
 
 		CloseZip(hz);
 		throw std::ios_base::failure(errorMsg);

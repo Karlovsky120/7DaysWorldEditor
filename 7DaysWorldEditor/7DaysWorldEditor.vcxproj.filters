@@ -126,9 +126,6 @@
     <ClCompile Include="BinaryMemoryReader.cpp">
       <Filter>Source Files\RegionIO</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnPoint.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
     <ClCompile Include="BuffTimer.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
     </ClCompile>
@@ -358,9 +355,6 @@
     </ClInclude>
     <ClInclude Include="BinaryMemoryReader.h">
       <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="SpawnPoint.h">
-      <Filter>Header Files\RegionFile</Filter>
     </ClInclude>
     <ClInclude Include="TileEntity.h">
       <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>

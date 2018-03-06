@@ -22,4 +22,3 @@ private:
 	std::string path;
 	std::map<std::string, std::string> properties;
 };
-

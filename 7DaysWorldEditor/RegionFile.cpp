@@ -7,6 +7,7 @@
 #include "BinaryMemoryWriter.h"
 #include "Chunk.h"
 #include "MemoryLeakManager.h"
+#include "VersionCheck.h"
 
 #include <wx/log.h>
 
@@ -39,13 +40,14 @@ void RegionFile::read(const std::string path) {
 			chunkData.resize(length);
 			reader.readBytes(&chunkData[0], length);
 			zippedChunks.push_back(chunkData);
-		} else {
+		}
+		else {
 			// This chunk hasn't been generated yet.
 
-			// We push zero to the timeStamp.
+			// Push zero to the timeStamp.
 			timeStamps.push_back(0);
 
-			// We create a vector, resize it to zero and push it to zippedChunks.
+			// Create a vector, resize it to zero and push it to zippedChunks.
 			std::vector<unsigned char> chunkData(0);
 			zippedChunks.push_back(chunkData);
 		}
@@ -83,14 +85,14 @@ void RegionFile::write(const std::string path) {
 
 	for (int j = 0; j < 1024; ++j) {
 		if (zippedChunks[j].size() != 0) {
-		#pragma warning(suppress: 4244)
+#pragma warning(suppress: 4244)
 			int position = writer.baseStream.tellp();
 
 			int pA = ((position - 4) / 4096) + 1;
 			offsets.push_back(((position - 4) / 4096) + 1);
 			writer.baseStream.seekp((offsets[j] * 4096) + 4, std::ios_base::beg);
 
-		#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 			int chunkSize = zippedChunks[j].size();
 
 			int BB = (chunkSize / 4096) + 1;
@@ -102,7 +104,8 @@ void RegionFile::write(const std::string path) {
 			writer.writeBytes(&zippedChunks[j][0], chunkSize);
 
 			writer.seek((offsets[j] + size[j]) * 4096, std::ios_base::beg);
-		} else {
+		}
+		else {
 			offsets.push_back(0);
 			size.push_back(0);
 		}
@@ -128,39 +131,18 @@ inline bool RegionFile::chunkExists(const int position) const {
 int RegionFile::readChunk(Chunk &chunk, const int position) {
 	if (!chunkExists(position)) {
 		return INT_MAX;
-	} else {
+	}
+	else {
 		memcpy(&chunk.header[0], &zippedChunks[position][0], 4);
 		memcpy(&chunk.version, &zippedChunks[position][4], 4);
 
-		int versionCheck = checkVersion(chunk.version, CHUNK);
-		if (versionCheck != 0) {
-			return versionCheck;
-		}
+		VersionCheck::checkVersion(chunk.version, CHUNK_VER, CHUNK);
 
-		try {
-			BinaryMemoryReader reader = BinaryMemoryReader(zippedChunks[position]);
+		BinaryMemoryReader reader = BinaryMemoryReader(zippedChunks[position]);
+		bool isValidRead;
+		chunk.read(reader, isValidRead);
 
-			bool isValidRead;
-			versionCheck = chunk.read(reader, isValidRead);
-
-			if (versionCheck != 0) {
-				std::string errorMsg = "Version mismatch, version difference of " + std::to_string(versionCheck);
-        wxLogError(errorMsg.c_str());
-				return versionCheck;
-			}
-
-			if (!isValidRead) {
-        std::string errorMsg = "Chunk data corrupted, could not read chunk!";
-        wxLogError(errorMsg.c_str());
-				return INT_MAX;
-			}
-
-			return 0;
-		} catch (std::ios_base::failure) {
-      std::string errorMsg = "Failed to initialize memory reader, could not read chunk!";
-      wxLogError(errorMsg.c_str());
-			return INT_MAX;
-		}
+		return isValidRead ? 0 : INT_MIN;
 	}
 }
 
@@ -191,13 +173,12 @@ inline void RegionFile::writeChunk(const Chunk &chunk, const int rcX, const int 
 RegionFile::RegionFile(std::string path, const int rX, const int rZ) :
 	rX(rX),
 	rZ(rZ) {
-
 	path = path.append("\\r." + std::to_string(rX) + "." + std::to_string(rZ) + ".7rg");
 
 	read(path);
 }
 
-RegionFile::RegionFile(std::string path) {
+RegionFile::RegionFile(const std::string path) {
 	std::string name = path.substr(path.find_last_of('\\') + 1, path.length());
 	if (name.length() > 3 && name.substr(name.length() - 3, name.length() - 1) == "7rg") {
 		std::string coords = name.substr(name.find_first_of('.') + 1, name.find_last_of('.') - 2);

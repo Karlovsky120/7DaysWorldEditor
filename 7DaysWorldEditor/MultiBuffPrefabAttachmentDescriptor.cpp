@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int MultiBuffPrefabAttachmentDescriptor::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffPrefabAttachmentDescriptorVersion);
-	CHECK_VERSION(multiBuffPrefabAttachmentDescriptorVersion, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR);
+	VersionCheck::checkVersion(multiBuffPrefabAttachmentDescriptorVersion, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR_VER, MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR);
 
 	reader.read<std::string>(prefabName);
 	reader.read<std::string>(transformPath);

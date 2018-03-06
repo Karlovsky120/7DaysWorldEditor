@@ -12,17 +12,17 @@
 class Transformation;
 
 class OpenGLCanvas : public wxGLCanvas {
-  wxGLContext*	context;
+	wxGLContext*	context;
 
 public:
-  OpenGLCanvas(wxFrame* parent, int* args);
-  virtual ~OpenGLCanvas();
+	OpenGLCanvas(wxFrame* parent, int* args);
+	virtual ~OpenGLCanvas();
 
-  void resized(wxSizeEvent& evt);
-  void render(wxPaintEvent& evt);
+	void resized(wxSizeEvent& evt);
+	void render(wxPaintEvent& evt);
 
 private:
-  std::unique_ptr<Scene> scene;
+	std::unique_ptr<Scene> scene;
 
-  wxDECLARE_EVENT_TABLE();
+	wxDECLARE_EVENT_TABLE();
 };

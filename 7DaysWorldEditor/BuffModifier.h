@@ -11,7 +11,7 @@ enum BuffModifierClassId {
 	BuffModifierBase
 };
 
-class BuffModifier : public VersionCheck {
+class BuffModifier {
 public:
 	int gh;
 
@@ -20,8 +20,8 @@ public:
 
 	virtual BuffModifierClassId getType();
 	static std::shared_ptr<BuffModifier> instantiate(BuffModifierClassId id);
-	static std::shared_ptr<BuffModifier> read(BinaryMemoryReader &reader, int &buffModifierVer);
-	void virtual write(BinaryMemoryWriter &writer);
+	static std::shared_ptr<BuffModifier> read(BinaryMemoryReader &reader);
+	void virtual write(BinaryMemoryWriter &writer) const;
 
 	BuffModifier();
 	~BuffModifier();

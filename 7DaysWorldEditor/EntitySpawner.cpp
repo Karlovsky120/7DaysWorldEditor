@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int EntitySpawner::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(version);
-	CHECK_VERSION(version, ENTITY_SPAWNER);
+	VersionCheck::checkVersion(version, ENTITY_SPAWNER_VER, ENTITY_SPAWNER);
 
 	reader.read<int>(position.x);
 	reader.read<int>(position.y);
@@ -27,7 +28,7 @@ int EntitySpawner::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(idVersion);
 
 	reader.readMultipleSimple<int, unsigned short>(entitySpawnedIdList, entitySpawnedIdCount);
-	
+
 	reader.read<short>(currentWave);
 	reader.read<int>(lastDaySpawnCalled);
 	reader.read<int>(numberToSpawnThisWave);

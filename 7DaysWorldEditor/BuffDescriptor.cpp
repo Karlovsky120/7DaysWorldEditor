@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int BuffDescriptor::read(BinaryMemoryReader &reader) {
 	reader.read<int>(buffDescriptorVersion);
-	CHECK_VERSION(buffDescriptorVersion, BUFF_DESCRIPTOR);
+	VersionCheck::checkVersion(buffDescriptorVersion, BUFF_DESCRIPTOR_VER, BUFF_DESCRIPTOR);
 
 	reader.read<int>(categoryFlags);
 	reader.read<std::string>(notificationClass);
@@ -15,7 +16,7 @@ int BuffDescriptor::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void BuffDescriptor::write(BinaryMemoryWriter &writer) {
+void BuffDescriptor::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(buffDescriptorVersion);
 	writer.write<int>(categoryFlags);
 	writer.write<std::string>(notificationClass);

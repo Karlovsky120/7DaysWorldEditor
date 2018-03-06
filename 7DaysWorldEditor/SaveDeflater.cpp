@@ -10,15 +10,13 @@
 #include <iomanip>
 #include <iostream>
 
-
 void SaveDeflater::deflate(wxFrame *mainFrame) {
-
 	wxFileDialog *saveLocationDialog = new wxFileDialog(mainFrame,
-														wxT("Please navigate to main.ttw inside your desired save folder"),
-														wxEmptyString,
-														wxEmptyString,
-														wxT("main.ttw|main.ttw"),
-														wxFD_FILE_MUST_EXIST);
+		wxT("Please navigate to main.ttw inside your desired save folder"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("main.ttw|main.ttw"),
+		wxFD_FILE_MUST_EXIST);
 	saveLocationDialog->CenterOnParent();
 	int result = saveLocationDialog->ShowModal();
 	saveLocationDialog->Close();
@@ -77,23 +75,28 @@ void SaveDeflater::deflate(wxFrame *mainFrame) {
 											break;
 										}
 									}
-								} else {
+								}
+								else {
 									failedChunks.push_back(originalZipped);
 								}
 
 								std::vector<unsigned char> newZipped;
 								try {
 									writer.fetchZipped(newZipped);
-								} catch (std::ios_base::failure) {
+								}
+								catch (std::ios_base::failure) {
 									failedChunks.push_back(originalZipped);
 								}
-							} catch (std::ios_base::failure) {
+							}
+							catch (std::ios_base::failure) {
 								failedChunks.push_back(originalZipped);
 							}
-						} else if (INT_MAX == result) {
+						}
+						else if (INT_MAX == result) {
 							failedChunks.push_back(originalZipped);
 						}
-					} catch (std::ios_base::failure) {
+					}
+					catch (std::ios_base::failure) {
 						failedChunks.push_back(originalZipped);
 					}
 				}
@@ -116,11 +119,8 @@ void SaveDeflater::deflate(wxFrame *mainFrame) {
 SaveDeflater::SaveDeflater() {}
 SaveDeflater::~SaveDeflater() {}
 
-
-
 /*SaveDeflaterProgressFrame::SaveDeflaterProgressFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	: wxFrame(NULL, wxID_ANY, title, pos, size) {
-
 	wxPanel *mainPanel = new wxPanel(this);
 }
 */

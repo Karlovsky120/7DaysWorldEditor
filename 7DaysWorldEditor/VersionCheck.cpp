@@ -1,23 +1,9 @@
 #include "VersionCheck.h"
 
-#include "ConfigFile.h"
-
-#include "wx\log.h"
-
-extern ConfigFile saveVersion;
-
-int VersionCheck::checkVersion(int readVersion, std::string objectName) {
-	int expectedVersion;
-	saveVersion.getProperty(objectName, expectedVersion);
+void VersionCheck::checkVersion(int readVersion, int expectedVersion, std::string objectName) {
 	if (readVersion != expectedVersion) {
-    std::string errorMsg = "Version mismatch! Expected " + std::to_string(expectedVersion) + ", read " + std::to_string(readVersion) + " for " + objectName;
-    wxLogError(errorMsg.c_str());
-
-		// Return a negative value of read version if the read version is older than the expected version.
-		return expectedVersion > readVersion ? -readVersion : readVersion;
+		throw std::runtime_error("Version of " + objectName + " was " + (char)readVersion + ", while the expected value was " + (char)expectedVersion + ".");
 	}
-
-	return 0;
 }
 
 VersionCheck::VersionCheck() {}

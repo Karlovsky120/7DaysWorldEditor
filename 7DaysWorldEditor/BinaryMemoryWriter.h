@@ -23,7 +23,7 @@ public:
 
 	template<>
 	inline void write(const std::string &data) {
-	#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 		unsigned char length = data.size();
 		write<unsigned char>(length);
 
@@ -34,7 +34,7 @@ public:
 
 	template<>
 	inline void writeConst(const std::string data) {
-	#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 		unsigned char length = data.size();
 		write<unsigned char>(length);
 
@@ -51,7 +51,7 @@ public:
 
 	template<typename T, typename C>
 	inline void writeMultipleSimple(const std::vector<T> &listOfTs) {
-	#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 		C count = listOfTs.size();
 		write<C>(count);
 		writeMultipleSimple(listOfTs, count);
@@ -66,7 +66,7 @@ public:
 
 	template<typename T, typename C>
 	inline void writeMultipleComplex(const std::vector<T> &listOfTs) {
-	#pragma warning(suppress: 4267)
+#pragma warning(suppress: 4267)
 		C count = listOfTs.size();
 		write<C>(count);
 		writeMultipleComplex(listOfTs, count);
@@ -85,4 +85,3 @@ public:
 	BinaryMemoryWriter(int reservedBytes);
 	~BinaryMemoryWriter();
 };
-

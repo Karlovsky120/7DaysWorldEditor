@@ -2,22 +2,23 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int TraderData::read(BinaryMemoryReader &reader) {
 	reader.read<int>(traderID);
 	reader.read<unsigned _int64>(lastInventoryUpdate);
 	reader.read<unsigned char>(fileVersion);
 
-	CHECK_VERSION(fileVersion, TRADER_DATA);
+	VersionCheck::checkVersion(fileVersion, TRADER_DATA_VER, TRADER_DATA);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory)));
+	reader.readMultipleComplex<ItemStack, unsigned short>(primaryInventory);
 
 	unsigned char tierItemGroupCount;
 	reader.read<unsigned char>(tierItemGroupCount);
-	
+
 	for (int i = 0; i < tierItemGroupCount; ++i) {
 		std::vector<ItemStack> tierItemGroup;
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup)));
+		reader.readMultipleComplex<ItemStack, unsigned short>(tierItemGroup);
 		tierItemGroups.push_back(tierItemGroup);
 	}
 
@@ -27,7 +28,7 @@ int TraderData::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TraderData::write(BinaryMemoryWriter &writer) {
+void TraderData::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(traderID);
 	writer.write<unsigned _int64>(lastInventoryUpdate);
 	writer.write<unsigned char>(fileVersion);

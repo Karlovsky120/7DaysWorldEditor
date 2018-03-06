@@ -236,7 +236,6 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
     <ClCompile Include="SaveDeflater.cpp" />
     <ClCompile Include="Unzip.cpp" />
     <ClCompile Include="VersionCheck.cpp" />
-    <ClCompile Include="SpawnPoint.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatModifier.cpp" />
     <ClCompile Include="StatModifierMax.cpp" />
@@ -317,7 +316,6 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
     <ClInclude Include="TexturedMesh.h" />
     <ClInclude Include="Unzip.h" />
     <ClInclude Include="VersionCheck.h" />
-    <ClInclude Include="SpawnPoint.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatModifier.h" />
     <ClInclude Include="StatModifierMax.h" />

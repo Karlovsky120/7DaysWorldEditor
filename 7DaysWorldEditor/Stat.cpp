@@ -3,10 +3,11 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "StatModifier.h"
+#include "VersionCheck.h"
 
 int Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> &idTable) {
 	reader.read<int>(statVersion);
-	CHECK_VERSION(statVersion, STAT);
+	VersionCheck::checkVersion(statVersion, STAT_VER, STAT);
 
 	reader.read<float>(value);
 	reader.read<float>(maxModifier);
@@ -21,9 +22,7 @@ int Stat::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_
 
 	for (int i = 0; i < statModifierListCount; ++i) {
 		std::shared_ptr<StatModifier> modifier;
-		int statModifierVersion;
-		modifier = StatModifier::read(reader, statModifierVersion);
-		CHECK_VERSION_ZERO(statModifierVersion);
+		modifier = StatModifier::read(reader);
 		modifier->stat = *this;
 		statModifierList.push_back(modifier);
 		idTable[modifier->fileId] = modifier;

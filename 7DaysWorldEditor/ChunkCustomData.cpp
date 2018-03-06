@@ -27,7 +27,7 @@ void ChunkCustomData::write(BinaryMemoryWriter &writer) const {
 	writer.writeConst<unsigned short>(data.size());
 
 	if (data.size() > 0) {
-	#pragma warning (suppress: 4267)
+#pragma warning (suppress: 4267)
 		unsigned short dataLength = data.size();
 		writer.writeBytes(data, dataLength);
 	}

@@ -7,14 +7,13 @@
 
 class Scene {
 public:
-  Scene();
-  ~Scene();
+	Scene();
+	~Scene();
 
-  void render();
+	void render();
 
-//private:
-  Renderer renderer;
-  StaticShader shader;
-  Entity entity;
+	//private:
+	Renderer renderer;
+	StaticShader shader;
+	Entity entity;
 };
-

@@ -10,7 +10,7 @@ public:
 	float unknownF;
 
 	StatModifierClassId getType() override;
-	void write(BinaryMemoryWriter &writer) override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	StatModifierSetValue();
 	~StatModifierSetValue();

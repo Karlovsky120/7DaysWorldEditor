@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int MultiBuffAction::read(BinaryMemoryReader &reader) {
 	reader.read<int>(multiBuffActionVersion);
-	CHECK_VERSION(multiBuffActionVersion, MULTI_BUFF_ACTION);
+	VersionCheck::checkVersion(multiBuffActionVersion, MULTI_BUFF_ACTION_VER, MULTI_BUFF_ACTION);
 
 	reader.read<unsigned char>(commandId);
 	reader.read<float>(unknownC);
@@ -15,11 +16,8 @@ int MultiBuffAction::read(BinaryMemoryReader &reader) {
 	reader.read<std::string>(unknownW);
 	reader.read<std::string>(context);
 
-	int buffTimerVer;
-	unknownJ = BuffTimer::read(reader, buffTimerVer);
-	CHECK_VERSION_ZERO(buffTimerVer);
-	unknownS = BuffTimer::read(reader, buffTimerVer);
-	CHECK_VERSION_ZERO(buffTimerVer);
+	unknownJ = BuffTimer::read(reader);
+	unknownS = BuffTimer::read(reader);
 
 	reader.read<bool>(unknownF);
 	reader.read<bool>(unknownI);

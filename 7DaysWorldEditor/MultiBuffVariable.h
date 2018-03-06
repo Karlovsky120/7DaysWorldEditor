@@ -4,7 +4,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class MultiBuffVariable : public VersionCheck{
+class MultiBuffVariable {
 public:
 	int multiBuffVariableVersion;
 	float unknownQ;
@@ -18,4 +18,3 @@ public:
 	MultiBuffVariable();
 	~MultiBuffVariable();
 };
-

@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 #define BODY_DAMAGE "bodyDamage"
 #define BUFF "buff"
@@ -29,17 +28,39 @@
 #define TILE_ENTITY_WORKSTATION "tileEntityWorkstation"
 #define TRADER_DATA "traderData"
 
-#define NO_VERSION "noVersion"
+#define BODY_DAMAGE_VER 2
+#define BUFF_VER 7
+#define BUFF_DESCRIPTOR_VER 2
+#define BUFF_TIMER_VER 1
+#define BUFF_TIMER_SCHEDULED_VER 3
+#define CHUNK_VER 38
+#define ENTITY_CREATION_DATA_VER 25
+#define ENTITY_SPAWNER_VER 3
+#define ENTITY_STATS_VER 6
+#define ITEM_VALUE_VER 3
+#define MULTI_BUFF_VER 2
+#define MULTI_BUFF_ACTION_VER 3
+#define MULTI_BUFF_PREFAB_ATTACHMENT_DESCRIPTOR_VER 1
+#define MULTI_BUFF_VARIABLE_VER 1
+#define BUFF_MODIFIER_VER 1
+#define RECIPE_VER 2
+#define STAT_VER 5
+#define STAT_MODIFIER_VER 4
+#define TILE_ENTITY_VER 3
+#define TILE_ENTITY_SECURE_VER 1
+#define TILE_ENTITY_SECURE_LOOT_CONTAINER_VER 1
+#define TILE_ENTITY_SIGN_VER 1
+#define TILE_ENTITY_POWERED_VER 1
+#define TILE_ENTITY_TRADER_VER 1
+#define TILE_ENTITY_VENDING_MACHINE_VER 1
+#define TILE_ENTITY_WORKSTATION_VER 30
+#define TRADER_DATA_VER 1
 
-
-#define CHECK_VERSION(value, objectName) {int versionCheck = checkVersion(value, objectName); if (versionCheck != 0) return versionCheck;}
-#define CHECK_VERSION_R(value, objectName, reference) {int versionCheck = checkVersion(value, objectName); if (versionCheck != 0) reference = versionCheck;}
-#define CHECK_VERSION_ZERO(value) {int versionCheck = value; if (versionCheck != 0) return versionCheck;}
-#define CHECK_VERSION_ZERO_R(value, reference) {int versionCheck = value; if (versionCheck != 0) reference = versionCheck;}
+#include <string>
 
 class VersionCheck {
 public:
-	static int checkVersion(int readVersion, std::string objectName);
+	static void checkVersion(int readVersion, int expectedVersion, std::string objectName);
 
 	VersionCheck();
 	~VersionCheck();

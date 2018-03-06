@@ -18,4 +18,3 @@ public:
 protected:
 	int readMore(BinaryMemoryReader &reader) override;
 };
-

@@ -2,31 +2,32 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntityCampfire::getType() {
 	return Campfire;
 }
 
 int TileEntityCampfire::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(TileEntity::read(reader));
+	TileEntity::read(reader);
 
 	reader.read<unsigned _int64>(ib);
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb)));
+	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
 
-	CHECK_VERSION_ZERO(xb.read(reader));
-	CHECK_VERSION_ZERO(mb.read(reader));
+	xb.read(reader);
+	mb.read(reader);
 
 	reader.read<int>(hb);
 
-	CHECK_VERSION(tb.read(reader), ITEM_VALUE);
+	VersionCheck::checkVersion(tb.read(reader), ITEM_VALUE_VER, ITEM_VALUE);
 	reader.read<bool>(isCooking);
 	reader.read<float>(db);
 
 	return 0;
 }
 
-void TileEntityCampfire::write(BinaryMemoryWriter &writer) {
+void TileEntityCampfire::write(BinaryMemoryWriter &writer) const {
 	TileEntity::write(writer);
 
 	writer.write<unsigned _int64>(ib);

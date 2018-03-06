@@ -3,7 +3,6 @@
 #include "Coordinate.h"
 #include "EntityStats.h"
 #include "ItemStack.h"
-#include "VersionCheck.h"
 #include "TileEntity.h"
 
 #include <memory>
@@ -18,7 +17,7 @@ enum SpawnerSource {
 	Dynamic
 };
 
-class EntityCreationData : public VersionCheck {
+class EntityCreationData {
 public:
 	unsigned char entityCreationDataVersion;
 	int entityClass;
@@ -62,4 +61,3 @@ public:
 	EntityCreationData();
 	~EntityCreationData();
 };
-

@@ -8,7 +8,7 @@ TileEntityClassId TileEntityLootContainer::getType() {
 }
 
 int TileEntityLootContainer::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(TileEntity::read(reader));
+	TileEntity::read(reader);
 
 	reader.read<unsigned short>(lootListIndex);
 	reader.read<unsigned short>(ad.x);
@@ -22,13 +22,13 @@ int TileEntityLootContainer::read(BinaryMemoryReader &reader) {
 	reader.read<short>(itemsLength);
 	itemsLength = ((((int)itemsLength) < (ad.x * ad.y)) ? itemsLength : (ad.x * ad.y));
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, short>(items, itemsLength)));
+	reader.readMultipleComplex<ItemStack, short>(items, itemsLength);
 	reader.read<bool>(bPlayerStorage);
 
 	return 0;
 }
 
-void TileEntityLootContainer::write(BinaryMemoryWriter &writer) {
+void TileEntityLootContainer::write(BinaryMemoryWriter &writer) const {
 	TileEntity::write(writer);
 
 	writer.write<unsigned short>(lootListIndex);

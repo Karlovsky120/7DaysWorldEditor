@@ -13,24 +13,23 @@ ConfigFile settings;
 std::string currentDirectory;
 std::string gameInstallDirectory;
 
-#include "wx\sizer.h"
-#include "openGLCanvas.h"
+#include "wx/sizer.h"
+#include "OpenGLCanvas.h"
 
 bool Main::OnInit() {
+	/*wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+	wxFrame *frame = new wxFrame((wxFrame *)NULL, -1, wxT("Hello GL World"), wxPoint(50, 50), wxSize(400, 200));
 
-  /*wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-  wxFrame *frame = new wxFrame((wxFrame *)NULL, -1, wxT("Hello GL World"), wxPoint(50, 50), wxSize(400, 200));
+	int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
 
-  int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
+	OpenGLCanvas *glPane = new OpenGLCanvas((wxFrame*)frame, args);
+	sizer->Add(glPane, 1, wxEXPAND);
 
-  OpenGLCanvas *glPane = new OpenGLCanvas((wxFrame*)frame, args);
-  sizer->Add(glPane, 1, wxEXPAND);
+	frame->SetSizer(sizer);
+	frame->SetAutoLayout(true);
 
-  frame->SetSizer(sizer);
-  frame->SetAutoLayout(true);
-
-  frame->Show();
-  return true;*/
+	frame->Show();
+	return true;*/
 
 	std::string argv_str(argv[0]);
 	currentDirectory = argv_str.substr(0, argv_str.find_last_of("\\")) + "\\";
@@ -45,14 +44,11 @@ bool Main::OnInit() {
 	delete logger->SetFormatter(m_formatter);
 	wxLog::SetActiveTarget(logger);
 
-
 	//Load configs
 	saveVersion.open(currentDirectory + "cfg\\currentVersion.ini");
 	settings.open(currentDirectory + "cfg\\settings.ini");
-	
+
 	frame = new MainFrame("7 Days World Editor", wxPoint(0, 0), wxSize(1280, 720));
-
-
 
 	frame->CenterOnScreen();
 	frame->Show(true);
@@ -98,15 +94,13 @@ bool Main::OnInit() {
 }
 
 int Main::OnExit() {
-  *m_logFile << "Execution complete!\n\n\n";
+	*m_logFile << "Execution complete!\n\n\n";
 	delete m_logFile;
 
 	return 0;
 }
 
 wxIMPLEMENT_APP(Main);
-
-
 
 /*#include "PreprocessorConfig.h"
 
@@ -154,17 +148,14 @@ int main(int argc, char* argv[]) {
 		//TEST CODE
 
 		for (int k = -4; k < -1; k++) {
-
 			for (int l = -3; l < 1; ++l) {
 				RegionFile regionFile(currentDirectory + "A16.3b12\\Region", k, l);
 
 				if (regionFile.timeStamps.capacity() > 0) {
 					regionFile.write(currentDirectory + "A16.3b12\\data");
 					for (int i = 0; i < 32; ++i) {
-
 						for (int j = 0; j < 32; ++j) {
 							if (regionFile.chunkExists(i, j)) {
-
 								//if (k == -3 && l == -3 && i == 11 && j == 5) {
 									Chunk chunk = Chunk();
 									bool success = regionFile.readChunk(chunk, i, j);

@@ -2,23 +2,24 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntityWorkstation::getType() {
 	return Workstation;
 }
 
-int TileEntityWorkstation::read(BinaryMemoryReader &reader) {	
-	CHECK_VERSION_ZERO(TileEntity::read(reader));
+int TileEntityWorkstation::read(BinaryMemoryReader &reader) {
+	TileEntity::read(reader);
 
 	reader.read<unsigned char>(version);
-	CHECK_VERSION(version, TILE_ENTITY_WORKSTATION);
+	VersionCheck::checkVersion(version, TILE_ENTITY_WORKSTATION_VER, TILE_ENTITY_WORKSTATION);
 	reader.read<unsigned _int64>(ib);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(gb)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(kb)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(eg)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemStack, unsigned char>(mb)));
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe)));
+	reader.readMultipleComplex<ItemStack, unsigned char>(gb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(kb);
+	reader.readMultipleComplex<ItemStack, unsigned char>(eg);
+	reader.readMultipleComplex<ItemStack, unsigned char>(mb);
+	reader.readMultipleComplex<RecipeQueueItem, unsigned char>(oe);
 
 	reader.read<bool>(ye);
 	reader.read<float>(fe);
@@ -30,7 +31,7 @@ int TileEntityWorkstation::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TileEntityWorkstation::write(BinaryMemoryWriter &writer) {
+void TileEntityWorkstation::write(BinaryMemoryWriter &writer) const {
 	TileEntity::write(writer);
 
 	writer.write<unsigned char>(version);

@@ -9,24 +9,10 @@ class ItemStack;
 
 class TileEntityPowerSource : public TileEntityPowered {
 public:
-	bool flag;
-
-	bool isOn;
-
-	unsigned short maxFuel;
-	unsigned short currentFuel;
-
-	unsigned short solarInput;
-	std::vector<ItemStack> itemSlots;
-
-	unsigned short maxOutput;
-	unsigned short lastOutput;
-
 	TileEntityClassId getType() override;
 	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	TileEntityPowerSource();
 	~TileEntityPowerSource();
 };
-

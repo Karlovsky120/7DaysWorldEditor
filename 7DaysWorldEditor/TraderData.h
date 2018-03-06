@@ -8,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TraderData : public VersionCheck {
+class TraderData {
 public:
 	int traderID;
 	unsigned _int64 lastInventoryUpdate;
@@ -21,9 +21,8 @@ public:
 	std::vector<char> jj;
 
 	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer);
+	void write(BinaryMemoryWriter &writer) const;
 
 	TraderData();
 	~TraderData();
 };
-

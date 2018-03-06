@@ -2,7 +2,6 @@
 #include "BuffDescriptor.h"
 #include "BuffModifier.h"
 #include "BuffTimer.h"
-#include "VersionCheck.h"
 #include "StatModifier.h"
 
 #include <map>
@@ -17,7 +16,7 @@ enum BuffClassId {
 	BuffBase
 };
 
-class Buff : public VersionCheck {
+class Buff {
 public:
 	unsigned short buffVersion;
 	unsigned char buffClassId;
@@ -31,8 +30,8 @@ public:
 
 	virtual BuffClassId getType();
 	static std::shared_ptr<Buff> instantiate(BuffClassId type);
-	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable, int &buffModifierVer);
-	virtual void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
+	static std::shared_ptr<Buff> read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable);
+	virtual void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) const;
 
 	Buff();
 	virtual ~Buff();

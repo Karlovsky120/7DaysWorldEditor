@@ -1,5 +1,4 @@
 #pragma once
-#include "VersionCheck.h"
 
 #include <string>
 #include <tuple>
@@ -8,7 +7,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class Recipe : public VersionCheck {
+class Recipe {
 public:
 	int count;
 	std::string craftingArea;
@@ -32,4 +31,3 @@ public:
 	Recipe();
 	~Recipe();
 };
-

@@ -1,7 +1,6 @@
 #pragma once
 #include "ChunkBlockChannel.h"
 #include "Coordinate.h"
-#include "VersionCheck.h"
 
 #include <array>
 #include <map>
@@ -16,7 +15,7 @@ class EntityCreationData;
 class EntitySpawner;
 class TileEntity;
 
-class Chunk : public VersionCheck {
+class Chunk {
 public:
 	unsigned char header[4];
 	unsigned int version;
@@ -66,4 +65,3 @@ public:
 	Chunk();
 	~Chunk();
 };
-

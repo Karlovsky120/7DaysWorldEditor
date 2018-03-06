@@ -3,8 +3,7 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "MultiBuff.h"
-
-//#include <typeinfo>
+#include "VersionCheck.h"
 
 BuffClassId Buff::getType() {
 	return BuffBase;
@@ -12,19 +11,19 @@ BuffClassId Buff::getType() {
 
 std::shared_ptr<Buff> Buff::instantiate(BuffClassId type) {
 	switch (type) {
-		case MultiBuffType:
+	case MultiBuffType:
 		return std::make_shared<MultiBuff>();
-		case Count:
+	case Count:
 		//BuffCount doesn't exist, but it was still in the enum, sooo...
-		default:
+	default:
 		return std::make_shared<Buff>();
 	}
 }
 
-std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable, int &buffVer) {
+std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
 	unsigned short buffVersion;
 	reader.read<unsigned short>(buffVersion);
-	CHECK_VERSION_R(buffVersion, BUFF, buffVer);
+	VersionCheck::checkVersion(buffVersion, BUFF_VER, BUFF);
 
 	unsigned char buffClassId;
 	reader.read<unsigned char>(buffClassId);
@@ -33,12 +32,12 @@ std::shared_ptr<Buff> Buff::read(BinaryMemoryReader &reader, std::map<unsigned s
 	buff->buffVersion = buffVersion;
 	buff->buffClassId = buffClassId;
 
-	CHECK_VERSION_ZERO_R(buff->readMore(reader, idTable), buffVer);
+	buff->readMore(reader, idTable);
 
 	return buff;
 }
 
-void Buff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
+void Buff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) const {
 	writer.write<unsigned short>(buffVersion);
 	writer.write<unsigned char>(buffClassId);
 
@@ -65,10 +64,8 @@ void Buff::write(BinaryMemoryWriter &writer, std::map<unsigned short, std::share
 }
 
 int Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) {
-	int buffTimerVer;
-	timer = BuffTimer::read(reader, buffTimerVer);
-	CHECK_VERSION_ZERO(buffTimerVer);
-	CHECK_VERSION_ZERO(descriptor.read(reader));
+	timer = BuffTimer::read(reader);
+	descriptor.read(reader);
 	reader.read<bool>(isOverriden);
 
 	unsigned char statModifierCount;
@@ -87,9 +84,7 @@ int Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::sha
 
 	for (int j = 0; j < buffModifierCount; ++j) {
 		std::shared_ptr<BuffModifier> modifier;
-		int buffModifierVer;
-		modifier = BuffModifier::read(reader, buffModifierVer);
-		CHECK_VERSION_ZERO(buffModifierVer);
+		modifier = BuffModifier::read(reader);
 		buffModifierList.push_back(modifier);
 	}
 

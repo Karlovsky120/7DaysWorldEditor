@@ -1,14 +1,12 @@
 #pragma once
 
-#include "VersionCheck.h"
-
 #include <map>
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemValue : public VersionCheck {
+class ItemValue {
 public:
 	bool activated;
 
@@ -30,4 +28,3 @@ public:
 	ItemValue();
 	~ItemValue();
 };
-

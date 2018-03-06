@@ -4,7 +4,7 @@
 
 #include <vector>
 
-class BinaryMemoryReader : public VersionCheck {
+class BinaryMemoryReader {
 private:
 	HZIP hz;
 	long length = 0;
@@ -21,7 +21,7 @@ public:
 	inline void read(std::string &data) {
 		unsigned char length;
 		read(length);
-		
+
 		if (length != 0) {
 			unsigned char *stringData = new unsigned char[length];
 			UnzipItem(hz, 0, stringData, length);
@@ -29,11 +29,11 @@ public:
 			data = std::string((const char *)stringData, (size_t)length);
 			delete stringData;
 			position += length;
-		} else {
+		}
+		else {
 			data = std::string();
 		}
 	}
-
 
 	inline void readBytes(unsigned char *data, int count) {
 		UnzipItem(hz, 0, data, count);
@@ -45,7 +45,6 @@ public:
 		UnzipItem(hz, 0, data.data(), count);
 		position += count;
 	}
-
 
 	template<typename T, typename C>
 	inline void readMultipleSimple(std::vector<T> &listOfTs) {
@@ -64,17 +63,17 @@ public:
 	}
 
 	template<typename T, typename C>
-	inline int readMultipleComplex(std::vector<T> &listOfTs/*, std::string objectName*/) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs) {
 		C counter;
 		read<C>(counter);
-		return readMultipleComplex(listOfTs, counter/*, objectName*/);
+		return readMultipleComplex(listOfTs, counter);
 	}
 
 	template<typename T, typename C>
-	inline int readMultipleComplex(std::vector<T> &listOfTs, C &count/*, std::string objectName*/) {
+	inline int readMultipleComplex(std::vector<T> &listOfTs, C &count) {
 		for (C i = 0; i < count; ++i) {
 			T item;
-			CHECK_VERSION_ZERO(item.read(*this)/*, NO_VERSION*/);
+			item.read(*this);
 			listOfTs.push_back(item);
 		}
 

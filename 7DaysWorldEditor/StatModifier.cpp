@@ -7,6 +7,7 @@
 #include "StatModifierModifyValue.h"
 #include "StatModifierSetValue.h"
 #include "StatModifierMulValue.h"
+#include "VersionCheck.h"
 
 StatModifierClassId StatModifier::getType() {
 	return StatModifierBase;
@@ -14,26 +15,26 @@ StatModifierClassId StatModifier::getType() {
 
 std::shared_ptr<StatModifier> StatModifier::instantiate(StatModifierClassId id) {
 	switch (id) {
-		case Max:
+	case Max:
 		return std::make_shared<StatModifierMax>();
-		case ValueOT:
+	case ValueOT:
 		return std::make_shared<StatModifierValueOT>();
-		case ModifyValue:
+	case ModifyValue:
 		return std::make_shared<StatModifierModifyValue>();
-		case SetValue:
+	case SetValue:
 		return std::make_shared<StatModifierSetValue>();
-		case MulValue:
+	case MulValue:
 		return std::make_shared<StatModifierMulValue>();
-		default:
+	default:
 		return std::make_shared<StatModifier>();
 	}
 }
 
-std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader, int &statModifierVer) {
+std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader) {
 	int statModifierVersion;
 	unsigned char enumId;
 	reader.read<int>(statModifierVersion);
-	CHECK_VERSION_R(statModifierVersion, STAT_MODIFIER, statModifierVer);
+	VersionCheck::checkVersion(statModifierVersion, STAT_MODIFIER_VER, STAT_MODIFIER);
 
 	reader.read<unsigned char>(enumId);
 
@@ -41,12 +42,12 @@ std::shared_ptr<StatModifier> StatModifier::read(BinaryMemoryReader &reader, int
 	modifier->statModifierVersion = statModifierVersion;
 	modifier->enumId = enumId;
 
-	CHECK_VERSION_ZERO_R(modifier->readMore(reader), statModifierVer);
+	modifier->readMore(reader);
 
 	return modifier;
 }
 
-void StatModifier::write(BinaryMemoryWriter &writer) {
+void StatModifier::write(BinaryMemoryWriter &writer) const {
 	writer.write<int>(statModifierVersion);
 	writer.write<unsigned char>(enumId);
 
@@ -62,9 +63,7 @@ int StatModifier::readMore(BinaryMemoryReader &reader) {
 	reader.read<unsigned short>(fileId);
 	reader.read<int>(categoryFlag);
 	reader.read<int>(stackCount);
-	int buffTimerVer;
-	buffTimer.read(reader, buffTimerVer);
-	CHECK_VERSION_ZERO(buffTimerVer);
+	buffTimer.read(reader);
 	return 0;
 }
 

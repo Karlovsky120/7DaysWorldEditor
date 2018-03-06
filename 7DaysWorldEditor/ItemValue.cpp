@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int ItemValue::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(itemValueVersion);
-	CHECK_VERSION(itemValueVersion, ITEM_VALUE);
+	VersionCheck::checkVersion(itemValueVersion, ITEM_VALUE_VER, ITEM_VALUE);
 
 	reader.read<unsigned short>(type);
 	reader.read<unsigned short>(useTimes);
@@ -22,7 +23,7 @@ int ItemValue::read(BinaryMemoryReader &reader) {
 
 			if (exists) {
 				ItemValue part;
-				CHECK_VERSION(part.read(reader), ITEM_VALUE);
+				part.read(reader);
 				parts[i] = part;
 			}
 		}
@@ -31,9 +32,8 @@ int ItemValue::read(BinaryMemoryReader &reader) {
 	bool hasAttachments;
 	reader.read<bool>(hasAttachments);
 
-
 	if (hasAttachments) {
-		CHECK_VERSION_ZERO((reader.readMultipleComplex<ItemValue, unsigned char>(attachments)));
+		reader.readMultipleComplex<ItemValue, unsigned char>(attachments);
 	}
 
 	reader.read<bool>(activated);

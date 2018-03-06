@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int Recipe::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned char>(recipeVersion);
-	CHECK_VERSION(recipeVersion, RECIPE);
+	VersionCheck::checkVersion(recipeVersion, RECIPE_VER, RECIPE);
 
 	reader.read<std::string>(itemName);
 	reader.read<int>(count);

@@ -1,12 +1,11 @@
 #pragma once
-#include "VersionCheck.h"
 
 #include <string>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class MultiBuffPrefabAttachmentDescriptor : public VersionCheck {
+class MultiBuffPrefabAttachmentDescriptor {
 public:
 	int multiBuffPrefabAttachmentDescriptorVersion;
 	std::string prefabName;

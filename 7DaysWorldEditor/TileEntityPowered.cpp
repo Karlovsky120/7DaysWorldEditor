@@ -2,16 +2,17 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntityPowered::getType() {
 	return TileEntityBase;
 }
 
 int TileEntityPowered::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(TileEntity::read(reader));
+	TileEntity::read(reader);
 
 	reader.read<int>(tileEntityPoweredVersion);
-	CHECK_VERSION(tileEntityPoweredVersion, TILE_ENTITY_POWERED);
+	VersionCheck::checkVersion(tileEntityPoweredVersion, TILE_ENTITY_POWERED_VER, TILE_ENTITY_POWERED);
 
 	reader.read<bool>(isPlayerPlaced);
 	reader.read<unsigned char>(powerItemType);
@@ -38,7 +39,7 @@ int TileEntityPowered::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TileEntityPowered::write(BinaryMemoryWriter &writer) {
+void TileEntityPowered::write(BinaryMemoryWriter &writer) const {
 	TileEntity::write(writer);
 	writer.write<int>(tileEntityPoweredVersion);
 	writer.write<bool>(isPlayerPlaced);

@@ -2,6 +2,7 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 BuffTimerClassId BuffTimerScheduled::getType() {
 	return Scheduled;
@@ -19,10 +20,10 @@ void BuffTimerScheduled::write(BinaryMemoryWriter &writer) const {
 }
 
 int BuffTimerScheduled::readMore(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(BuffTimer::readMore(reader));
+	BuffTimer::readMore(reader);
 
 	reader.read<int>(buffTimerScheduledVersion);
-	CHECK_VERSION(buffTimerScheduledVersion, BUFF_TIMER_SCHEDULED);
+	VersionCheck::checkVersion(buffTimerScheduledVersion, BUFF_TIMER_SCHEDULED_VER, BUFF_TIMER_SCHEDULED);
 
 	reader.read<unsigned _int64>(unknownG);
 	reader.read<int>(duration);

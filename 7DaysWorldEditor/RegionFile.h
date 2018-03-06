@@ -6,7 +6,7 @@
 class BinaryMemoryWriter;
 class Chunk;
 
-class RegionFile : public VersionCheck {
+class RegionFile {
 private:
 	// Region file managment
 	void read(const std::string path);
@@ -30,10 +30,8 @@ public:
 	inline void writeChunk(const Chunk &chunk, const int rcX, const int rcZ);
 	void writeChunk(const Chunk &chunk, BinaryMemoryWriter &writer, const int position);
 
-
-	RegionFile(std::string path, const int rX, const int rZ);
+	RegionFile(const std::string path, const int rX, const int rZ);
 	RegionFile(std::string path);
 	RegionFile(std::vector<int> timeStamps, std::vector<std::vector<unsigned char>> zippedChunks);
 	~RegionFile();
 };
-

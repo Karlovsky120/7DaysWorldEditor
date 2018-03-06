@@ -10,9 +10,8 @@ public:
 
 	TileEntityClassId getType() override;
 	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	TileEntityGoreBlock();
 	~TileEntityGoreBlock();
 };
-

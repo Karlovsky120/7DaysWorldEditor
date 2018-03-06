@@ -7,7 +7,7 @@ StatModifierClassId StatModifierMulValue::getType() {
 	return MulValue;
 }
 
-void StatModifierMulValue::write(BinaryMemoryWriter &writer) {
+void StatModifierMulValue::write(BinaryMemoryWriter &writer) const {
 	StatModifier::write(writer);
 
 	writer.write<float>(unknownV);
@@ -15,7 +15,7 @@ void StatModifierMulValue::write(BinaryMemoryWriter &writer) {
 }
 
 int StatModifierMulValue::readMore(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(StatModifier::readMore(reader));
+	StatModifier::readMore(reader);
 
 	reader.read<float>(unknownV);
 	reader.read<float>(unknownF);

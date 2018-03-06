@@ -19,4 +19,3 @@ public:
 	ChunkCustomData();
 	~ChunkCustomData();
 };
-

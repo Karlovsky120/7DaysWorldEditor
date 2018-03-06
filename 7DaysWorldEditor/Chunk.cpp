@@ -8,17 +8,16 @@
 #include "EntityCreationData.h"
 #include "EntitySpawner.h"
 #include "TileEntity.h"
+#include "VersionCheck.h"
 
 #include "Unzip.h"
 #include "Zip.h"
-
-extern std::string currentDirectory;
 
 // In the original code the flag is false and the streamMode is persistency.
 int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 	isValidRead = true;
 
- 	reader.read<int>(xm);
+	reader.read<int>(xm);
 	reader.read<int>(mm);
 	reader.read<int>(rm);
 
@@ -28,7 +27,7 @@ int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 		bool flag;
 		reader.read<bool>(flag);
 
-		if (flag) {	
+		if (flag) {
 			cbl[i] = ChunkBlockLayer();
 			cbl[i].read(reader);
 		}
@@ -64,7 +63,7 @@ int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 
 	reader.read<bool>(needsLightCalculation);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList/*, ENTITY_CREATION_DATA*/)));
+	reader.readMultipleComplex<EntityCreationData, int>(entityCreationDataList);
 
 	int tileEntityCount;
 	reader.read<int>(tileEntityCount);
@@ -73,7 +72,7 @@ int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 		int entityType;
 		reader.read<int>(entityType);
 		std::shared_ptr<TileEntity> tileEntity = TileEntity::instantiate((TileEntityClassId)entityType);
-		CHECK_VERSION_ZERO(tileEntity->read(reader));
+		tileEntity->read(reader);
 		tileEntityDictionary[tileEntity->localChunkPosition] = tileEntity;
 	}
 
@@ -81,7 +80,7 @@ int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 	reader.read<unsigned short>(entitySpawnerCount);
 	reader.read<unsigned char>(entitySpawnerListSaveVersion);
 
-	CHECK_VERSION_ZERO((reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount/*, ENTITY_SPAWNER*/)));
+	reader.readMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount);
 
 	reader.read<bool>(ur.first);
 
@@ -90,7 +89,7 @@ int Chunk::read(BinaryMemoryReader &reader, bool &isValidRead) {
 			reader.read<unsigned short>(ur.second[n]);
 		}
 	}
-	
+
 	reader.readMultipleSimple<int, unsigned char>(hk);
 
 	isValidRead = reader.isValidRead();
@@ -106,7 +105,6 @@ void Chunk::write(BinaryMemoryWriter &writer) const {
 	writer.write<unsigned _int64>(savedInWorldTicks);
 
 	for (int i = 0; i < 64; ++i) {
-
 		bool chunkBlockLayerExists = cbl.find(i) != cbl.end();
 		writer.write<bool>(chunkBlockLayerExists);
 
@@ -161,7 +159,7 @@ void Chunk::write(BinaryMemoryWriter &writer) const {
 	unsigned short entitySpawnerCount = entitySpawnerList.size();
 	writer.write<unsigned short>(entitySpawnerCount);
 	writer.write<unsigned char>(entitySpawnerListSaveVersion);
-	
+
 	writer.writeMultipleComplex<EntitySpawner, unsigned short>(entitySpawnerList, entitySpawnerCount);
 
 	writer.write<bool>(ur.first);

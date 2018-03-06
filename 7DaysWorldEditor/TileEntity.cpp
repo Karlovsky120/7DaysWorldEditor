@@ -16,7 +16,7 @@
 #include "TileEntityPowerSource.h"
 #include "TileEntityPoweredRangedTrap.h"
 #include "TileEntityPoweredTrigger.h"
-
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntity::getType() {
 	return TileEntityBase;
@@ -24,42 +24,42 @@ TileEntityClassId TileEntity::getType() {
 
 std::shared_ptr<TileEntity> TileEntity::instantiate(TileEntityClassId type) {
 	switch (type) {
-		case Loot:
+	case Loot:
 		return std::make_shared<TileEntityLootContainer>();
-		case Trader:
+	case Trader:
 		return std::make_shared<TileEntityTrader>();
-		case VendingMachine:
+	case VendingMachine:
 		return std::make_shared<TileEntityVendingMachine>();
-		case Forge:
+	case Forge:
 		return std::make_shared<TileEntityForge>();
-		case Campfire:
+	case Campfire:
 		return std::make_shared<TileEntityCampfire>();
-		case SecureLoot:
+	case SecureLoot:
 		return std::make_shared<TileEntitySecureLootContainer>();
-		case SecureDoor:
+	case SecureDoor:
 		return std::make_shared<TileEntitySecureDoor>();
-		case Workstation:
+	case Workstation:
 		return std::make_shared<TileEntityWorkstation>();
-		case Sign:
+	case Sign:
 		return std::make_shared<TileEntitySign>();
-		case GoreBlock:
+	case GoreBlock:
 		return std::make_shared<TileEntityGoreBlock>();
-		case Powered:
+	case Powered:
 		return std::make_shared<TileEntityPoweredBlock>();
-		case PowerSource:
+	case PowerSource:
 		return std::make_shared<TileEntityPowerSource>();
-		case PowerRangeTrap:
+	case PowerRangeTrap:
 		return std::make_shared<TileEntityPoweredRangedTrap>();
-		case Trigger:
+	case Trigger:
 		return std::make_shared<TileEntityPoweredTrigger>();
-		default:
+	default:
 		return std::make_shared<TileEntity>();
 	}
 }
 
 int TileEntity::read(BinaryMemoryReader &reader) {
 	reader.read<unsigned short>(tileEntityVersion);
-	CHECK_VERSION(tileEntityVersion, TILE_ENTITY);
+	VersionCheck::checkVersion(tileEntityVersion, TILE_ENTITY_VER, TILE_ENTITY);
 
 	reader.read<int>(localChunkPosition.x);
 	reader.read<int>(localChunkPosition.y);
@@ -72,7 +72,7 @@ int TileEntity::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TileEntity::write(BinaryMemoryWriter &writer) {
+void TileEntity::write(BinaryMemoryWriter &writer) const {
 	writer.write<unsigned short>(tileEntityVersion);
 
 	writer.write<int>(localChunkPosition.x);
@@ -84,5 +84,5 @@ void TileEntity::write(BinaryMemoryWriter &writer) {
 	writer.write<unsigned _int64>(worldTimeHeatMapSomething);
 }
 
-TileEntity::TileEntity(){}
-TileEntity::~TileEntity(){}
+TileEntity::TileEntity() {}
+TileEntity::~TileEntity() {}

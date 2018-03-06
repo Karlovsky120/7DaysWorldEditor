@@ -1,6 +1,5 @@
 #pragma once
 #include "Coordinate.h"
-#include "VersionCheck.h"
 
 #include <memory>
 
@@ -26,7 +25,7 @@ enum TileEntityClassId {
 	TileEntityBase
 };
 
-class TileEntity : public VersionCheck {
+class TileEntity {
 public:
 	unsigned short tileEntityVersion;
 	Coordinate<int> localChunkPosition;
@@ -36,7 +35,7 @@ public:
 	virtual TileEntityClassId getType();
 	static std::shared_ptr<TileEntity> instantiate(TileEntityClassId type);
 	virtual int read(BinaryMemoryReader &reader);
-	virtual void write(BinaryMemoryWriter &writer);
+	virtual void write(BinaryMemoryWriter &writer) const;
 
 	TileEntity();
 	~TileEntity();

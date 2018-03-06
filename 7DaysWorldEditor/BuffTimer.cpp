@@ -5,6 +5,7 @@
 #include "BuffTimerNull.h"
 #include "BuffTimerDuration.h"
 #include "BuffTimerScheduled.h"
+#include "VersionCheck.h"
 
 BuffTimerClassId BuffTimer::getType() {
 	return BuffTimerBase;
@@ -12,21 +13,21 @@ BuffTimerClassId BuffTimer::getType() {
 
 std::shared_ptr<BuffTimer> BuffTimer::instantiate(BuffTimerClassId id) {
 	switch (id) {
-		case Null:
+	case Null:
 		return std::make_shared<BuffTimerNull>();
-		case Duration:
+	case Duration:
 		return std::make_shared<BuffTimerDuration>();
-		case Scheduled:
+	case Scheduled:
 		return std::make_shared<BuffTimerScheduled>();
-		default:
+	default:
 		return std::make_shared<BuffTimer>();
 	}
 }
 
-std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader, int &buffTimerVer) {
+std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader) {
 	int buffTimerVersion;
 	reader.read<int>(buffTimerVersion);
-	CHECK_VERSION_R(buffTimerVersion, BUFF_TIMER, buffTimerVer);
+	VersionCheck::checkVersion(buffTimerVersion, BUFF_TIMER_VER, BUFF_TIMER);
 
 	unsigned char buffTimerClassId;
 	reader.read<unsigned char>(buffTimerClassId);
@@ -34,7 +35,7 @@ std::shared_ptr<BuffTimer> BuffTimer::read(BinaryMemoryReader &reader, int &buff
 	std::shared_ptr<BuffTimer> timer = instantiate((BuffTimerClassId)buffTimerClassId);
 	timer->buffTimerVersion = buffTimerVersion;
 	timer->buffTimerClassId = buffTimerClassId;
-	CHECK_VERSION_ZERO_R(timer->readMore(reader), buffTimerVer);
+	timer->readMore(reader);
 
 	return timer;
 }

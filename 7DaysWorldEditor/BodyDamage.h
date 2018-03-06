@@ -1,10 +1,9 @@
 #pragma once
-#include "VersionCheck.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BodyDamage : public VersionCheck {
+class BodyDamage {
 public:
 	int bodyDamageVersion;
 
@@ -36,4 +35,3 @@ public:
 	BodyDamage();
 	~BodyDamage();
 };
-

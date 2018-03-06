@@ -6,7 +6,7 @@ bool ConfigFile::open(std::string configFilePath) {
 	path = configFilePath;
 	std::ifstream cFile;
 	cFile.open(path, std::ios::binary | std::ios::in);
-	
+
 	if (cFile.good()) {
 		std::string line;
 
@@ -35,9 +35,10 @@ bool ConfigFile::open(std::string configFilePath) {
 		}
 
 		return true;
-	} else {
-    std::string errorMsg = "Failed to open config file at " + path + ".";
-    wxLogError(errorMsg.c_str());
+	}
+	else {
+		std::string errorMsg = "Failed to open config file at " + path + ".";
+		wxLogError(errorMsg.c_str());
 		return false;
 	}
 }
@@ -57,9 +58,10 @@ bool ConfigFile::getProperty(std::string propertyName, std::string &value) const
 	if (auto it = properties.find(propertyName) != properties.end()) {
 		value = properties.find(propertyName)->second;
 		return true;
-	} else {
-    std::string errorMsg = "Could not find " + propertyName + ".";
-    wxLogError(errorMsg.c_str());
+	}
+	else {
+		std::string errorMsg = "Could not find " + propertyName + ".";
+		wxLogError(errorMsg.c_str());
 		return false;
 	}
 }
@@ -68,15 +70,17 @@ bool ConfigFile::getProperty(std::string propertyName, int &value) const {
 	if (auto it = properties.find(propertyName) != properties.end()) {
 		try {
 			value = std::stoi(properties.find(propertyName)->second);
-		} catch (std::exception e) {
+		}
+		catch (std::exception e) {
 			std::string errorMsg = "Failed to read property " + propertyName + ". " + e.what();
-      wxLogError(errorMsg.c_str());
-      return false;
+			wxLogError(errorMsg.c_str());
+			return false;
 		}
 		return true;
-	} else {
+	}
+	else {
 		std::string errorMsg = "Could not find " + propertyName + ".";
-    wxLogError(errorMsg.c_str());
+		wxLogError(errorMsg.c_str());
 		return false;
 	}
 }
@@ -85,7 +89,8 @@ bool ConfigFile::setProperty(std::string propertyName, std::string &value) {
 	if (auto it = properties.find(propertyName) != properties.end()) {
 		properties.find(propertyName)->second = value;
 		return true;
-	} else {
+	}
+	else {
 		properties[propertyName] = value;
 		return false;
 	}
@@ -95,12 +100,12 @@ bool ConfigFile::setProperty(std::string propertyName, int &value) {
 	if (auto it = properties.find(propertyName) != properties.end()) {
 		properties.find(propertyName)->second = value;
 		return true;
-	} else {
+	}
+	else {
 		properties[propertyName] = value;
 		return false;
 	}
 }
-
 
 ConfigFile::ConfigFile() {}
 ConfigFile::~ConfigFile() {}

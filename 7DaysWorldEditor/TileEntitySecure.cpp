@@ -2,16 +2,17 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntitySecure::getType() {
 	return TileEntityBase;
 }
 
 int TileEntitySecure::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(TileEntityLootContainer::read(reader));
+	TileEntityLootContainer::read(reader);
 
 	reader.read<int>(version);
-	CHECK_VERSION(version, TILE_ENTITY_SECURE);
+	VersionCheck::checkVersion(version, TILE_ENTITY_SECURE_VER, TILE_ENTITY_SECURE);
 
 	reader.read<bool>(md);
 	reader.read<bool>(vd);
@@ -23,7 +24,7 @@ int TileEntitySecure::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TileEntitySecure::write(BinaryMemoryWriter &writer) {
+void TileEntitySecure::write(BinaryMemoryWriter &writer) const {
 	TileEntityLootContainer::write(writer);
 
 	writer.write<int>(version);

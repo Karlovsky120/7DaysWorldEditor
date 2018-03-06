@@ -2,10 +2,11 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 int BodyDamage::read(BinaryMemoryReader &reader) {
 	reader.read<int>(bodyDamageVersion);
-	CHECK_VERSION(bodyDamageVersion, BODY_DAMAGE);
+	VersionCheck::checkVersion(bodyDamageVersion, BODY_DAMAGE_VER, BODY_DAMAGE);
 
 	reader.read<short>(leftUpperLeg);
 	reader.read<short>(rightUpperLeg);

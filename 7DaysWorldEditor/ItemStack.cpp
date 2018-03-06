@@ -4,7 +4,7 @@
 #include "BinaryMemoryWriter.h"
 
 int ItemStack::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(itemValue.read(reader));
+	itemValue.read(reader);
 	reader.read<short>(count);
 	return 0;
 }

@@ -2,16 +2,17 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
+#include "VersionCheck.h"
 
 TileEntityClassId TileEntityVendingMachine::getType() {
 	return VendingMachine;
 }
 
 int TileEntityVendingMachine::read(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(TileEntityTrader::read(reader));
+	TileEntityTrader::read(reader);
 
 	reader.read<int>(version);
-	CHECK_VERSION(version, TILE_ENTITY_VENDING_MACHINE);
+	VersionCheck::checkVersion(version, TILE_ENTITY_VENDING_MACHINE_VER, TILE_ENTITY_VENDING_MACHINE);
 
 	reader.read<bool>(vd);
 	reader.read<std::string>(gd);
@@ -21,7 +22,7 @@ int TileEntityVendingMachine::read(BinaryMemoryReader &reader) {
 
 	reader.read<unsigned _int64>(bd);
 
-	CHECK_VERSION_ZERO(traderData.read(reader));
+	traderData.read(reader);
 
 	// Ugly assumption because this is the only thing not stored in the save file as it should be.
 	// If there are rentable vending machines in game which are not regular vanilla, any chunk that
@@ -33,7 +34,7 @@ int TileEntityVendingMachine::read(BinaryMemoryReader &reader) {
 	return 0;
 }
 
-void TileEntityVendingMachine::write(BinaryMemoryWriter &writer) {
+void TileEntityVendingMachine::write(BinaryMemoryWriter &writer) const {
 	TileEntityTrader::write(writer);
 
 	writer.write<int>(version);

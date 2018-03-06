@@ -9,7 +9,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TileEntityCampfire: public TileEntity {
+class TileEntityCampfire : public TileEntity {
 public:
 	unsigned _int64 ib;
 
@@ -27,9 +27,8 @@ public:
 
 	TileEntityClassId getType() override;
 	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 	TileEntityCampfire();
 	~TileEntityCampfire();
 };
-

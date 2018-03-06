@@ -7,16 +7,15 @@
 
 class Entity {
 public:
-  Entity(TexturedMesh &texturedModel, Transformation &transformation);
-  Entity();
+	Entity(TexturedMesh &texturedModel, Transformation &transformation);
+	Entity();
 
-  glm::mat4x4 getTransformationMatrix() const;
+	glm::mat4x4 getTransformationMatrix() const;
 
-  Transformation &getEntityTransformation();
-  TexturedMesh &getTexturedMesh();
+	Transformation &getEntityTransformation();
+	TexturedMesh &getTexturedMesh();
 
 private:
-  TexturedMesh texturedMesh;
-  Transformation transformation;
+	TexturedMesh texturedMesh;
+	Transformation transformation;
 };
-

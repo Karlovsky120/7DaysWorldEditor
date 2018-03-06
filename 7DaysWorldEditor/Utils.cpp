@@ -1,6 +1,5 @@
 #include "Utils.h"
 
-
 int Utils::getMonoHash(std::string str)
 {
 	char* src = &str[0];
@@ -16,7 +15,7 @@ int Utils::getMonoHash(std::string str)
 	if (chPtr2 < chPtr3) {
 		num = ((num << 5) - num) + chPtr2[0];
 	}
-	return num;	
+	return num;
 }
 
 Utils::Utils() {}

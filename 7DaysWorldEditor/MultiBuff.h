@@ -22,7 +22,7 @@ public:
 	std::map<std::string, float> buffCounterValues;
 
 	BuffClassId getType() override;
-	void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) override;
+	void write(BinaryMemoryWriter &writer, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) const override;
 
 	MultiBuff();
 	~MultiBuff();
@@ -30,4 +30,3 @@ public:
 protected:
 	int readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::shared_ptr<StatModifier>> idTable) override;
 };
-

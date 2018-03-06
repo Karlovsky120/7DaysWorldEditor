@@ -7,14 +7,14 @@ BuffModifierClassId BuffModifierSetTickRate::getType() {
 	return SetTickRate;
 }
 
-void BuffModifierSetTickRate::write(BinaryMemoryWriter &writer) {
+void BuffModifierSetTickRate::write(BinaryMemoryWriter &writer) const {
 	BuffModifier::write(writer);
 
 	writer.write<float>(tickRate);
 }
 
 int BuffModifierSetTickRate::readMore(BinaryMemoryReader &reader) {
-	CHECK_VERSION_ZERO(BuffModifier::readMore(reader));
+	BuffModifier::readMore(reader);
 
 	reader.read<float>(tickRate);
 
@@ -23,4 +23,3 @@ int BuffModifierSetTickRate::readMore(BinaryMemoryReader &reader) {
 
 BuffModifierSetTickRate::BuffModifierSetTickRate() {}
 BuffModifierSetTickRate::~BuffModifierSetTickRate() {}
-
