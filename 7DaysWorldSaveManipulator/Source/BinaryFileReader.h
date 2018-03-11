@@ -1,8 +1,10 @@
 #pragma once
+#include "DllHeader.h"
+
 #include <string>
 #include <fstream>
 
-class BinaryFileReader {
+class SDWSM_API BinaryFileReader {
 private:
 	std::ifstream baseStream;
 

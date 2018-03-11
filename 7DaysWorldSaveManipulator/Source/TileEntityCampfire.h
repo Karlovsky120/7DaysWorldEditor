@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntity.h"
 
 #include "ItemStack.h"
@@ -9,7 +11,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TileEntityCampfire : public TileEntity {
+class SDWSM_API TileEntityCampfire : public TileEntity {
 public:
 	unsigned _int64 ib;
 

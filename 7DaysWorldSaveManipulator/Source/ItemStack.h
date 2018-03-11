@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "ItemValue.h"
 
 #include <vector>
@@ -6,7 +8,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemStack {
+class SDWSM_API ItemStack {
 public:
 	short count;
 	ItemValue itemValue;

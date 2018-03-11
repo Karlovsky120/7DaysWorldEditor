@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "Coordinate.h"
 
 #include <string>
@@ -7,7 +9,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class EntitySpawner {
+class SDWSM_API EntitySpawner {
 public:
 	unsigned char version;
 	Coordinate<int> position;

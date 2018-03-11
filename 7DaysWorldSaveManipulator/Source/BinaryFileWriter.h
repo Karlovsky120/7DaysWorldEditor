@@ -1,8 +1,10 @@
 #pragma once
+#include "DllHeader.h"
+
 #include <string>
 #include <fstream>
 
-class BinaryFileWriter {
+class SDWSM_API BinaryFileWriter {
 public:
 	std::ofstream baseStream;
 

@@ -3,10 +3,6 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
-#include "ChunkBlockLayer.h"
-#include "ChunkCustomData.h"
-#include "EntityCreationData.h"
-#include "EntitySpawner.h"
 #include "TileEntity.h"
 #include "VersionCheck.h"
 

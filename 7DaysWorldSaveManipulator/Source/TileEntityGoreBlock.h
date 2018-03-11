@@ -1,10 +1,12 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntityLootContainer.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TileEntityGoreBlock : public TileEntityLootContainer {
+class SDWSM_API TileEntityGoreBlock : public TileEntityLootContainer {
 public:
 	unsigned _int64 arz;
 

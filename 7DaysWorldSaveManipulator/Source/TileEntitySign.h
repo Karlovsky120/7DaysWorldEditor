@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntity.h"
 
 #include <string>
@@ -7,7 +9,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class TileEntitySign : public TileEntity {
+class SDWSM_API TileEntitySign : public TileEntity {
 public:
 	int  version;
 

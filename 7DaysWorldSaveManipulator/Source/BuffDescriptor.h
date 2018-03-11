@@ -1,11 +1,13 @@
 #pragma once
+#include "DllHeader.h"
+
 #include <string>
 #include <vector>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BuffDescriptor {
+class SDWSM_API BuffDescriptor {
 public:
 	int buffDescriptorVersion;
 	int categoryFlags;

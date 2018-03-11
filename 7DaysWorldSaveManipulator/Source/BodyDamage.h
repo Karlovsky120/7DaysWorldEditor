@@ -1,9 +1,10 @@
 #pragma once
+#include "DllHeader.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BodyDamage {
+class SDWSM_API BodyDamage {
 public:
 	int bodyDamageVersion;
 

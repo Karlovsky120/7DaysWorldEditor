@@ -1,9 +1,11 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "BuffModifier.h"
 
 class BinaryMemoryReader;
 
-class BuffModifierSetTickRate : public BuffModifier {
+class SDWSM_API BuffModifierSetTickRate : public BuffModifier {
 public:
 	float tickRate;
 

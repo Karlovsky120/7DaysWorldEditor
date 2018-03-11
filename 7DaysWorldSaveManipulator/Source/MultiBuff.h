@@ -1,5 +1,10 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "Buff.h"
+
+#include "MultiBuffPrefabAttachmentDescriptor.h"
+#include "MultiBuffAction.h"
 
 #include <map>
 #include <string>
@@ -7,10 +12,8 @@
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
-class MultiBuffAction;
-class MultiBuffPrefabAttachmentDescriptor;
 
-class MultiBuff : public Buff {
+class SDWSM_API MultiBuff : public Buff {
 public:
 	int multiBuffVersion;
 	std::string multiBuffClassId;

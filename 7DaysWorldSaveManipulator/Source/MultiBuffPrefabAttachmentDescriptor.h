@@ -1,11 +1,12 @@
 #pragma once
+#include "DllHeader.h"
 
 #include <string>
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class MultiBuffPrefabAttachmentDescriptor {
+class SDWSM_API MultiBuffPrefabAttachmentDescriptor {
 public:
 	int multiBuffPrefabAttachmentDescriptorVersion;
 	std::string prefabName;

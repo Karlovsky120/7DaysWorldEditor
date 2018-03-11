@@ -1,9 +1,11 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "StatModifier.h"
 
 class BinaryMemoryReader;
 
-class StatModifierModifyValue : public StatModifier {
+class SDWSM_API StatModifierModifyValue : public StatModifier {
 public:
 	float unknownV;
 	float unknownF;

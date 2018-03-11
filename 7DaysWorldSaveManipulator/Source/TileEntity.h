@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "Coordinate.h"
 
 #include <memory>
@@ -25,7 +27,7 @@ enum TileEntityClassId {
 	TileEntityBase
 };
 
-class TileEntity {
+class SDWSM_API TileEntity {
 public:
 	unsigned short tileEntityVersion;
 	Coordinate<int> localChunkPosition;

@@ -2,8 +2,6 @@
 
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
-#include "MultiBuffAction.h"
-#include "MultiBuffPrefabAttachmentDescriptor.h"
 #include "VersionCheck.h"
 
 BuffClassId MultiBuff::getType() {

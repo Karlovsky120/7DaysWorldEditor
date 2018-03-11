@@ -1,4 +1,5 @@
 #pragma once
+#include "DllHeader.h"
 
 #include <map>
 #include <vector>
@@ -6,7 +7,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class ItemValue {
+class SDWSM_API ItemValue {
 public:
 	bool activated;
 

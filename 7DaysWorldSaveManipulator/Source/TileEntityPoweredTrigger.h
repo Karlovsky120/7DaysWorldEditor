@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntityPowered.h"
 
 #include <string>
@@ -14,7 +16,7 @@ enum TriggerTypes {
 	TripWire
 };
 
-class TileEntityPoweredTrigger : public TileEntityPowered {
+class SDWSM_API TileEntityPoweredTrigger : public TileEntityPowered {
 public:
 	unsigned char triggerType;
 	std::string lrz;

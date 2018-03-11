@@ -1,5 +1,4 @@
 #pragma once
-
 #include <set>
 
 class MemoryLeakManager {

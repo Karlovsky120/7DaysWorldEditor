@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntityLootContainer.h"
 
 #include <string>
@@ -7,7 +9,7 @@
 class BinaryMemeoryReader;
 class BinaryMemoryWriter;
 
-class TileEntitySecure : public TileEntityLootContainer {
+class SDWSM_API TileEntitySecure : public TileEntityLootContainer {
 public:
 	int version;
 	bool md;

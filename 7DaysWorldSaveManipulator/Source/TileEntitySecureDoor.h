@@ -1,7 +1,9 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "TileEntitySecure.h"
 
-class TileEntitySecureDoor : public TileEntitySecure {
+class SDWSM_API TileEntitySecureDoor : public TileEntitySecure {
 public:
 	TileEntityClassId getType() override;
 

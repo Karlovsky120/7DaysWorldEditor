@@ -1,10 +1,12 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "BuffTimer.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class BuffTimerScheduled : public BuffTimer {
+class SDWSM_API BuffTimerScheduled : public BuffTimer {
 public:
 	int buffTimerScheduledVersion;
 	unsigned _int64 unknownG;

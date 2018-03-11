@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 #define BODY_DAMAGE "bodyDamage"
 #define BUFF "buff"
@@ -55,8 +56,6 @@
 #define TILE_ENTITY_VENDING_MACHINE_VER 1
 #define TILE_ENTITY_WORKSTATION_VER 30
 #define TRADER_DATA_VER 1
-
-#include <string>
 
 class VersionCheck {
 public:

@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "BuffDescriptor.h"
 #include "BuffModifier.h"
 #include "BuffTimer.h"
@@ -16,7 +18,7 @@ enum BuffClassId {
 	BuffBase
 };
 
-class Buff {
+class SDWSM_API Buff {
 public:
 	unsigned short buffVersion;
 	unsigned char buffClassId;

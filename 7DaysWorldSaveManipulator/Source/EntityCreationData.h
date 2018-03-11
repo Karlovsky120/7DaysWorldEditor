@@ -1,4 +1,6 @@
 #pragma once
+#include "DllHeader.h"
+
 #include "BodyDamage.h"
 #include "Coordinate.h"
 #include "EntityStats.h"
@@ -17,7 +19,7 @@ enum SpawnerSource {
 	Dynamic
 };
 
-class EntityCreationData {
+class SDWSM_API EntityCreationData {
 public:
 	unsigned char entityCreationDataVersion;
 	int entityClass;
