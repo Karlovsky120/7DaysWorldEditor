@@ -1,15 +1,5 @@
 #include "openGLCanvas.h"
 
-#include "CameraTransformation.h"
-#include "Loader.h"
-#include "Renderer.h"
-#include "StaticShader.h"
-#include "Mesh.h"
-#include "Texture.h"
-#include "TexturedMesh.h"
-#include "Transformation.h"
-#include "Entity.h"
-
 OpenGLCanvas::OpenGLCanvas(wxFrame* parent, int* args) :
 	wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE) {
 	context = new wxGLContext(this);

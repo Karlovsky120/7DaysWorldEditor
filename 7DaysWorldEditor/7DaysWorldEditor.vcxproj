@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CameraTransformation.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Transformation.cpp" />
@@ -209,7 +208,6 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CameraTransformation.h" />
     <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Scene.h" />

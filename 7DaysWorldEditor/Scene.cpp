@@ -156,8 +156,7 @@ Scene::Scene() {
 
 	loader = Loader();
 
-	Transformation cameraTransformation = Transformation();
-	Camera camera = Camera(cameraTransformation, 90.0f, 16.0f / 9.0f, 0.00001f, 10000.0f);
+	Camera camera = Camera(glm::vec3(0.0f), glm::angleAxis(0.0f, glm::vec3(0.0f, 0.0f, 1.0f)), 90.0f, 16.0f / 9.0f, 0.00001f, 10000.0f);
 
 	renderer = Renderer(camera);
 	shader = StaticShader();
