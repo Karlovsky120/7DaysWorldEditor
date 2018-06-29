@@ -25,6 +25,7 @@ void Renderer::render(Entity &entity, StaticShader &shader) {
 	Mesh mesh = texturedMesh.getMesh();
 
 	glBindVertexArray(mesh.getVaoID());
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 1);
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
@@ -33,7 +34,6 @@ void Renderer::render(Entity &entity, StaticShader &shader) {
 	shader.loadTransformationMatrix(entity.getTransformationMatrix());
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 1);
 	glBindTexture(GL_TEXTURE_2D, texturedMesh.getTexture().getID());
 	glDrawElements(GL_TRIANGLES, mesh.getIndexCount(), GL_UNSIGNED_INT, (void*)0);
 	glDisableVertexAttribArray(0);

@@ -8,7 +8,8 @@ void Loader::loadToVAO(Mesh &mesh, const float vertices[], const int vertexCount
 	bindIndicesBuffer(indices, indexCount);
 	storeDataInAttributeList(0, 3, vertices, vertexCount);
 	storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
-	unbindVAO();
+	glBindVertexArray(0);
+	//unbindVAO();
 
 	mesh = Mesh(vaoID, vertexCount, indexCount);
 }
@@ -71,11 +72,11 @@ GLuint Loader::loadTexture(std::string textureName) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	/*if (!textureLoadFailed) {
-	  stbi_image_free(image);
-	}*/
-
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	/*if (!textureLoadFailed) {
+	stbi_image_free(image);
+	}*/
 
 	return textureID;
 }
@@ -94,9 +95,10 @@ void Loader::storeDataInAttributeList(const GLuint attributeNumber, const GLuint
 	vbos.push_back(vboID);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
-	glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(data[0]), data, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(attributeNumber);
+	glBufferData(GL_ARRAY_BUFFER, dataCount * 3, data, GL_STATIC_DRAW);
+ 	glEnableVertexAttribArray(attributeNumber);
 	glVertexAttribPointer(attributeNumber, coordinateSize, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Loader::unbindVAO() {
@@ -109,7 +111,7 @@ void Loader::bindIndicesBuffer(const int indices[], const int indexCount) {
 	vbos.push_back(vboID);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * 3, indices, GL_STATIC_DRAW);
 }
 
 Loader::~Loader() {

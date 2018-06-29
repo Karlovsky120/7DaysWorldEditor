@@ -3,7 +3,7 @@
 
 class SaveDeflater {
 public:
-	static void deflate(wxFrame *mainFrame);
+	//static void deflate(wxFrame *mainFrame);
 private:
 	SaveDeflater();
 	~SaveDeflater();

@@ -1,5 +1,5 @@
 #include "SaveDeflater.h"
-
+/*
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "Chunk.h"
@@ -115,7 +115,7 @@ void SaveDeflater::deflate(wxFrame *mainFrame) {
 		}
 	}
 }
-
+*/
 SaveDeflater::SaveDeflater() {}
 SaveDeflater::~SaveDeflater() {}
 
