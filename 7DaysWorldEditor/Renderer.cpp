@@ -32,10 +32,9 @@ void Renderer::render(Entity &entity, StaticShader &shader) {
 	shader.loadViewMatrix(camera.getViewMatrix());
 	shader.loadTransformationMatrix(entity.getTransformationMatrix());
 
-	//glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, texturedMesh.getTexture().getID());
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texturedMesh.getTexture().getID());
 
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
 	glDrawElements(GL_TRIANGLES, mesh.getIndexCount(), GL_UNSIGNED_INT, (void*)0);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

@@ -7,7 +7,7 @@ void Loader::loadToVAO(Mesh &mesh, const GLfloat vertices[], const int vertexCou
 	glBindVertexArray(vaoID);
 	bindIndicesBuffer(indices, indexCount);
 	storeDataInAttributeList(0, 3, vertices, vertexCount);
-	//storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
+	storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
 	glBindVertexArray(0);
 
 	mesh = Mesh(vaoID, vertexCount, indexCount);
@@ -62,7 +62,7 @@ GLuint Loader::loadTexture(std::string textureName) {
 	//}
 
 	GLuint textureID = 0;
-	/*glGenTextures(1, &textureID);
+	glGenTextures(1, &textureID);
 	textures.push_back(textureID);
 
 	glBindTexture(GL_TEXTURE_2D, textureID);
@@ -71,7 +71,7 @@ GLuint Loader::loadTexture(std::string textureName) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	glBindTexture(GL_TEXTURE_2D, 0);*/
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	/*if (!textureLoadFailed) {
 	stbi_image_free(image);

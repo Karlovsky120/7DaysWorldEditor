@@ -15,5 +15,5 @@ public:
 
 private:
 	Camera camera;
-	float c = 1;
+	float c = 100;
 };
