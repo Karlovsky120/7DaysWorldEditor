@@ -19,20 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Transformation.cpp" />
-    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="LogFormatter.cpp" />
     <ClCompile Include="MainFrame.cpp" />
-    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenGLCanvas.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ShaderProgram.cpp" />
-    <ClCompile Include="StaticShader.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TexturedMesh.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -106,19 +95,19 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine;$(SolutionDir)\7DaysWorldEngine\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\Win32;$(ProjectDir)dependencies\wxWidgets\lib\vc_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\7DaysWorldEngine\lib\Win32;$(ProjectDir)dependencies\wxWidgets\lib\vc_lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>comctl32.lib;rpcrt4.lib;winmm.lib;advapi32.lib;wsock32.lib;wxmsw31ud_core.lib;wxbase31ud.lib;wxpngd.lib;wxzlibd.lib;wxjpegd.lib;wxtiffd.lib;glew32sd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
+xcopy "$(SolutionDir)\7DaysWorldEngine\resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
@@ -129,19 +118,19 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine;$(SolutionDir)\7DaysWorldEngine\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\x64;$(ProjectDir)dependencies\wxWidgets\lib\vc_x64_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\7DaysWorldEngine\lib\x64;$(ProjectDir)dependencies\wxWidgets\lib\vc_x64_lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>comctl32.lib;rpcrt4.lib;winmm.lib;advapi32.lib;wsock32.lib;wxmsw31ud_core.lib;wxbase31ud.lib;wxpngd.lib;wxzlibd.lib;wxjpegd.lib;wxtiffd.lib;glew32sd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
+xcopy "$(SolutionDir)\7DaysWorldEngine\resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
@@ -154,21 +143,21 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine;$(SolutionDir)\7DaysWorldEngine\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\Win32;$(ProjectDir)dependencies\wxWidgets\lib\vc_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\7DaysWorldEngine\lib\Win32;$(ProjectDir)dependencies\wxWidgets\lib\vc_lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>comctl32.lib;rpcrt4.lib;winmm.lib;advapi32.lib;wsock32.lib;wxmsw31u_core.lib;wxbase31u.lib;wxpng.lib;wxzlib.lib;wxjpeg.lib;wxtiff.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
+xcopy "$(SolutionDir)\7DaysWorldEngine\resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
@@ -181,21 +170,21 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine;$(SolutionDir)\7DaysWorldEngine\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\x64;$(ProjectDir)dependencies\wxWidgets\lib\vc_x64_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\7DaysWorldEngine\lib\x64;$(ProjectDir)dependencies\wxWidgets\lib\vc_x64_lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>comctl32.lib;rpcrt4.lib;winmm.lib;advapi32.lib;wsock32.lib;wxmsw31u_core.lib;wxbase31u.lib;wxpng.lib;wxzlib.lib;wxjpeg.lib;wxtiff.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\" /Y /E
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
+xcopy "$(SolutionDir)\7DaysWorldEngine\resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformName)\resources\" /Y /E</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
@@ -207,35 +196,22 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(PlatformNa
     <ClCompile Include="SaveDeflater.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="ConfigFile.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Transformation.h" />
-    <ClInclude Include="Loader.h" />
     <ClInclude Include="LogFormatter.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainFrame.h" />
-    <ClInclude Include="Mesh.h" />
     <ClInclude Include="OpenGLCanvas.h" />
     <ClInclude Include="PreprocessorConfig.h" />
-    <ClInclude Include="Renderer.h" />
     <ClInclude Include="SaveDeflater.h" />
-    <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="StaticShader.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TexturedMesh.h" />
     <ClInclude Include="wxWidgets.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cfg\currentVersion.ini" />
-    <None Include="resources\shaders\fragmentShader.frag" />
-    <None Include="resources\shaders\vertexShader.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\textures\texture.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\7DaysWorldEngine\7DaysWorldEngine.vcxproj">
+      <Project>{d4605140-44df-4c0f-bf0e-815c334de449}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\7DaysWorldSaveManipulator\7DaysWorldSaveManipulator.vcxproj">
       <Project>{1c79076d-70a9-4dfe-9905-993a2d41fc49}</Project>
     </ProjectReference>

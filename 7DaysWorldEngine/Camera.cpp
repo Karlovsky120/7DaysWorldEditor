@@ -1,12 +1,9 @@
 #include "Camera.h"
 
 #include "glm\gtx\transform.hpp"
-#include "glm\gtx\quaternion.hpp"
 
 Camera::Camera(glm::vec3 position, glm::quat rotation, float FOV, float aspectRatio, float nearPlane, float farPlane) :
 	projectionMatrix(glm::perspective(FOV, aspectRatio, nearPlane, farPlane)) {}
-
-Camera::Camera() {}
 
 glm::mat4x4 Camera::getViewMatrix() {
 	glm::mat4x4 viewMatrix = glm::mat4_cast(getRotation());

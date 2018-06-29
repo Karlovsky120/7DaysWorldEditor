@@ -3,7 +3,6 @@
 #include "GL\glew.h"
 #include "glm\glm.hpp"
 #include "glm\gtc\type_ptr.hpp"
-#include "wx\log.h"
 
 #include <fstream>
 
@@ -28,7 +27,7 @@ GLuint ShaderProgram::loadShader(std::string shaderFile, GLenum type) {
 	if (!success) {
 		glGetShaderInfoLog(shader, 512, NULL, infoLog);
 		std::string error = "GLEW Error: " + std::string(infoLog);
-		wxLog(wxT(error));
+		//wxLog(wxT(error));
 	}
 
 	return shader;
@@ -87,13 +86,13 @@ ShaderProgram::ShaderProgram(std::string vertexShader, std::string fragmentShade
 
 		glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &infoLogLength);
 
-		wxLogError(wxT("Shader Error!"));
+		//wxLogError(wxT("Shader Error!"));
 
 		if (infoLogLength > 0) {
 			infoLog = (char *)malloc(infoLogLength);
 			glGetProgramInfoLog(programID, infoLogLength, &charsWritten, infoLog);
 
-			wxLogError(infoLog);
+			//wxLogError(infoLog);
 			free(infoLog);
 		}
 	}

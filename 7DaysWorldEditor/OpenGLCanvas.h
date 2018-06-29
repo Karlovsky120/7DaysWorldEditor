@@ -1,11 +1,9 @@
 #pragma once
 
-#include "wxWidgets.h"
-#define GLEW_STATIC
-#include "GL\glew.h"
-#include "wx\glcanvas.h"
-
 #include "Scene.h"
+
+#include "wxWidgets.h"
+#include "wx\glcanvas.h"
 
 #include <memory>
 

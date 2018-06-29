@@ -1,5 +1,7 @@
 #include "openGLCanvas.h"
 
+#include "OpenGLInitializer.h"
+
 OpenGLCanvas::OpenGLCanvas(wxFrame* parent, int* args) :
 	wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE) {
 	context = new wxGLContext(this);
@@ -7,19 +9,17 @@ OpenGLCanvas::OpenGLCanvas(wxFrame* parent, int* args) :
 	while (!IsShown()) {};  // Force the Shown
 	wxGLCanvas::SetCurrent(*context);
 
-	/// Init OpenGL
-	GLenum err = glewInit();
-	if (err != GL_NO_ERROR) {
+	std::string error;
+	if (!OpenGLInitializer::InitializeOpenGL(&error)) {
 		wxMessageBox(
 			wxString("GLEW Error: ") +
-			wxString(glewGetErrorString(err)),
+			wxString(error),
 			_("OpenGl ERROR"),
 			wxOK | wxICON_EXCLAMATION
 		);
 		exit(4001);
 	}
 
-	// To avoid flashing on MSW
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 
 	scene = std::make_unique<Scene>();

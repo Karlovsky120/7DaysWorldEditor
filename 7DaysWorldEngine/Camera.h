@@ -1,11 +1,16 @@
 #pragma once
 
-#include "Transformation.h"
+#include "glm\glm.hpp"
+#include "glm\gtx\quaternion.hpp"
 
 class Camera {
 public:
-	Camera(glm::vec3 position, glm::quat rotation, float FOV, float aspectRatio, float nearPlane, float farPlane);
-	Camera::Camera();
+	Camera(glm::vec3 position = glm::vec3(0.0f),
+		   glm::quat rotation = glm::angleAxis(0.0f, glm::vec3(0.0f, 0.0f, 1.0f)),
+		   float FOV = 90.0f,
+		   float aspectRatio = 16/9,
+		   float nearPlane = 0.001f,
+		   float farPlane = 1000.0f);
 
 	glm::mat4x4 getViewMatrix();
 	glm::mat4x4 &getProjectionMatrix();
