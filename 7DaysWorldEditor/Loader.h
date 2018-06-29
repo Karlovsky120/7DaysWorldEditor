@@ -10,7 +10,7 @@ class Mesh;
 class Loader {
 public:
 	~Loader();
-	void loadToVAO(Mesh &mesh, const float vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCordsCount);
+	void loadToVAO(Mesh &mesh, const GLfloat vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCordsCount);
 	GLuint loadTexture(std::string textureName);
 
 private:
@@ -23,8 +23,8 @@ private:
 	unsigned char defaultTexture[256 * 256 * 4];
 
 	GLuint createVAO();
+	GLuint createVBO();
 	void storeDataInAttributeList(const GLuint attributeNumber, const GLuint coordinateSize, const GLfloat data[], const GLsizeiptr dataCount);
-	void unbindVAO();
 	void bindIndicesBuffer(const int indices[], const int indexCount);
 
 	void generateDefaultTexture();

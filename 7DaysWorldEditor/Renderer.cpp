@@ -25,18 +25,18 @@ void Renderer::render(Entity &entity, StaticShader &shader) {
 	Mesh mesh = texturedMesh.getMesh();
 
 	glBindVertexArray(mesh.getVaoID());
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 1);
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-
+	
 	shader.loadProjectionMatrix(camera.getProjectionMatrix());
 	shader.loadViewMatrix(camera.getViewMatrix());
 	shader.loadTransformationMatrix(entity.getTransformationMatrix());
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texturedMesh.getTexture().getID());
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, texturedMesh.getTexture().getID());
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
 	glDrawElements(GL_TRIANGLES, mesh.getIndexCount(), GL_UNSIGNED_INT, (void*)0);
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

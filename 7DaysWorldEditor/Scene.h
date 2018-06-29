@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "Loader.h"
 #include "Renderer.h"
 #include "StaticShader.h"
 #include "Entity.h"
@@ -13,8 +14,9 @@ public:
 	void render();
 
 	//private:
+	Loader loader;
 	Renderer renderer;
 	StaticShader shader;
 	Entity entity;
-	int p = 0;
+	int c = 0;
 };
