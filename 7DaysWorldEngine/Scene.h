@@ -18,5 +18,5 @@ public:
 	Renderer renderer;
 	StaticShader shader;
 	Entity entity;
-	int c = 0;
+	int c = 1;
 };

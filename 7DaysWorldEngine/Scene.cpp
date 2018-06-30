@@ -90,6 +90,7 @@ Scene::Scene() {
 
 	Camera camera = Camera(glm::vec3(0.0f), glm::angleAxis(0.0f, glm::vec3(0.0f, 0.0f, 1.0f)), glm::radians(45.0f), 16.0f / 9.0f, 0.01f, 1000.0f);
 
+
 	renderer = Renderer(camera);
 
 	Mesh mesh;
@@ -111,11 +112,12 @@ void Scene::render() {
 	renderer.prepare();
 	shader.start();
 
-	for (int i = -5; i < 5; i += 3) {
-		for (int j = -5; j < 5; j += 3) {
-			for (int k = -5; k < 5; k += 3) {
-				entity.getEntityTransformation().setPosition(glm::vec3(i, j, k));
+	for (float i = -10; i < 10; i += 1.8) {
+		for (float j = -10; j < 10; j += 1.8) {
+			for (float k = -100; k < -1; k += 1.8) {
+				entity.getEntityTransformation().setPosition(glm::vec3(i + 2/i*glm::sin(i*k*c / 1000)/10, j + 2/j*glm::sin(j*j*c / 100)/10, k + 2/k*glm::sin(k*i*c / 10)/10));
 				renderer.render(entity, shader);
+				++c;
 			}
 		}
 	}

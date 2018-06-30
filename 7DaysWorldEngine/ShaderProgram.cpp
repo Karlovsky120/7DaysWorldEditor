@@ -91,7 +91,7 @@ ShaderProgram::ShaderProgram(std::string vertexShader, std::string fragmentShade
 		if (infoLogLength > 0) {
 			infoLog = (char *)malloc(infoLogLength);
 			glGetProgramInfoLog(programID, infoLogLength, &charsWritten, infoLog);
-
+			std::string error = std::string(infoLog);
 			//wxLogError(infoLog);
 			free(infoLog);
 		}
