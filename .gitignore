@@ -3,6 +3,15 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#allow needed dlls
+!7DaysWorldEditor/bin/Debug/x64/ILUT.dll
+!7DaysWorldEditor/bin/Debug/x64/ILU.dll
+!7DaysWorldEditor/bin/Debug/x64/DevIL.dll
+
+!7DaysWorldEditor/bin/Debug/x86/ILUT.dll
+!7DaysWorldEditor/bin/Debug/x86/ILU.dll
+!7DaysWorldEditor/bin/Debug/x86/DevIL.dll
+
 # User-specific files
 *.suo
 *.user
