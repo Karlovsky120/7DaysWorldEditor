@@ -2,6 +2,11 @@
 
 #include "Mesh.h"
 
+#undef _UNICODE
+#include "IL\il.h"
+#include "IL\ilu.h"
+#include "IL\ilut.h"
+
 void Loader::loadToVAO(Mesh &mesh, const GLfloat vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCoordsCount) {
 	GLuint vaoID = createVAO();
 	glBindVertexArray(vaoID);
@@ -38,44 +43,61 @@ void inline Loader::setPixelForTexture(unsigned char pixelLocation[], unsigned c
 	pixelLocation[3] = a;
 }
 
-//EDIT TO NOT GENERATE NEW ID FOR MULTIPLE DEFAULT TEXTURES
+//future work
+//better handle various glTexImage2D parameters
 GLuint Loader::loadTexture(std::string textureName) {
-	int width;
-	int height;
+
+	//check if texture is already loaded
+	auto foundTextureIt = textures.find(textureName);
+	if (foundTextureIt != textures.end()) {
+		//texture allready loaded
+		return foundTextureIt->second;
+	}
+
 	int comp;
 
-	/*std::string path = "Resources\\Textures\\" + textureName + ".png";*/
-
-	unsigned char *image;// = stbi_load(path.c_str(), &width, &height, &comp, STBI_rgb_alpha);*/
-
-	bool textureLoadFailed = false;
-
-	//if (image == nullptr) {
-	textureLoadFailed = true;
-	if (!defaultTextureGenerated) {
-		generateDefaultTexture();
+	std::string path = "Resources\\Textures\\" + textureName;
+	ilLoadImage(path.c_str());
+	
+	
+	
+	int imageWidth = ilGetInteger(IL_IMAGE_WIDTH);
+	int imageHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+	int imageComponents = ilGetInteger(IL_IMAGE_BYTES_PER_PIXEL);
+	
+	unsigned char *image = ilGetData(); 
+	
+	ILenum Error;
+	while ((Error = ilGetError()) != IL_NO_ERROR) {
+		std::string errorMessage = iluErrorString(Error);
+		//printf("%d: %s/n", Error, iluErrorString(Error));
+		if (!defaultTextureGenerated) {
+			generateDefaultTexture();
+		}
+		image = defaultTexture;
+		imageWidth = 256;
+		imageHeight = 256;
+		imageComponents = 4;
 	}
-	image = defaultTexture;
-	width = 256;
-	height = 256;
-	comp = 4;
-	//}
+	
+
 
 	GLuint textureID = 0;
 	glGenTextures(1, &textureID);
-	textures.push_back(textureID);
+	textures.insert(std::pair<std::string, GLuint>(textureName, textureID));
 
 	glBindTexture(GL_TEXTURE_2D, textureID);
+	
+	if (imageComponents == 4)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	else if(imageComponents == 3)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	/*if (!textureLoadFailed) {
-	stbi_image_free(image);
-	}*/
 
 	return textureID;
 }
@@ -118,19 +140,20 @@ void Loader::bindIndicesBuffer(const int indices[], const int indexCount) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
+Loader::Loader() {
+	ilInit();
+	iluInit();
+	ilutInit();
+}
+
 Loader::~Loader() {
-	for (GLuint i = 0; i < vaos.size(); ++i) {
-		glDeleteVertexArrays(1, &vaos.back());
-		vaos.pop_back();
-	}
 
-	for (GLuint i = 0; i < vbos.size(); ++i) {
-		glDeleteBuffers(1, &vbos.back());
-		vbos.pop_back();
-	}
+	for (auto it = vaos.begin(); it != vaos.end(); it++)
+		glDeleteVertexArrays(1, &(*it));
 
-	for (GLuint i = 0; i < textures.size(); ++i) {
-		glDeleteTextures(1, &textures.back());
-		textures.pop_back();
-	}
+	for (auto it = vbos.begin(); it != vbos.end(); it++)
+		glDeleteBuffers(1, &(*it));
+
+	for (auto it = textures.begin(); it != textures.end(); it++)
+		glDeleteTextures(1, &(it->second));
 }

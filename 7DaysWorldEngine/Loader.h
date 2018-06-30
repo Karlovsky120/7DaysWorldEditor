@@ -4,11 +4,13 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Mesh;
 
 class Loader {
 public:
+	Loader();
 	~Loader();
 	void loadToVAO(Mesh &mesh, const GLfloat vertices[], const int vertexCount, const int indices[], const int indexCount, const float textureCoords[], const int textureCordsCount);
 	GLuint loadTexture(std::string textureName);
@@ -16,7 +18,7 @@ public:
 private:
 	std::vector<GLuint> vaos;
 	std::vector<GLuint> vbos;
-	std::vector<GLuint> textures;
+	std::map<std::string, GLuint> textures;
 
 	bool defaultTextureGenerated = false;
 
