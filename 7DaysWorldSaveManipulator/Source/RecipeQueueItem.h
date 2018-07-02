@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "ItemValue.h"
 #include "Recipe.h"
@@ -7,7 +6,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API RecipeQueueItem {
+class RecipeQueueItem {
 public:
 	int amountToRepair;
 	float craftingTimeLeft;

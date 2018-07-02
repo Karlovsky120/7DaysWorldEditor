@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <memory>
 
@@ -13,7 +12,7 @@ enum BuffTimerClassId {
 	BuffTimerBase
 };
 
-class SDWSM_API BuffTimer {
+class BuffTimer {
 public:
 	int buffTimerVersion;
 	unsigned char buffTimerClassId;

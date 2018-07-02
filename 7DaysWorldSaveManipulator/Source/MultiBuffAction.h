@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "BuffTimer.h"
 
@@ -24,7 +23,7 @@ enum Command {
 	BuffEnum
 };
 
-class SDWSM_API MultiBuffAction {
+class MultiBuffAction {
 public:
 	int multiBuffActionVersion;
 	unsigned char commandId;

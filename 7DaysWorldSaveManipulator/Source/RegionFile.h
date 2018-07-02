@@ -1,5 +1,5 @@
 #pragma once
-#include "DllHeader.h"
+
 #include "VersionCheck.h"
 
 #include <vector>
@@ -7,7 +7,7 @@
 class BinaryMemoryWriter;
 class Chunk;
 
-class SDWSM_API RegionFile {
+class RegionFile {
 private:
 	// Region file managment
 	void read(const std::string path);

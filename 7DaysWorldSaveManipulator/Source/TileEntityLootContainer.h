@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntity.h"
 
@@ -11,7 +10,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API TileEntityLootContainer : public TileEntity {
+class TileEntityLootContainer : public TileEntity {
 public:
 	unsigned short lootListIndex;
 	Coordinate<unsigned short> ad;

@@ -1,9 +1,8 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <vector>
 
-class SDWSM_API BinaryMemoryWriter {
+class BinaryMemoryWriter {
 private:
 	std::vector<unsigned char> unzippedData;
 

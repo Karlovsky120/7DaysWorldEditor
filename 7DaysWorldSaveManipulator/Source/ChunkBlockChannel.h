@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <map>
 
@@ -7,7 +6,7 @@
 #include "BinaryMemoryWriter.h"
 
 template <int bytesPerValue = 1>
-class SDWSM_API ChunkBlockChannel {
+class ChunkBlockChannel {
 public:
 	std::map<unsigned int, std::array<unsigned char, bytesPerValue * 1024>> cbcLayer;
 	std::map<unsigned int, std::array<unsigned char, bytesPerValue>> jj;

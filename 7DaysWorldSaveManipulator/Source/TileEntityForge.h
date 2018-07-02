@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntity.h"
 
@@ -11,7 +10,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API TileEntityForge : public TileEntity {
+class TileEntityForge : public TileEntity {
 public:
 	unsigned _int64 ib;
 

@@ -1,4 +1,3 @@
-#pragma once
 #include "RegionFile.h"
 
 #include "BinaryFileReader.h"

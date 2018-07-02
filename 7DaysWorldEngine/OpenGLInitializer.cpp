@@ -1,6 +1,5 @@
 #include "OpenGLInitializer.h"
 
-#define GLEW_STATIC
 #include "GL\glew.h"
 
 bool OpenGLInitializer::InitializeOpenGL(std::string *error) {

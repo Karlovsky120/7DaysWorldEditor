@@ -102,9 +102,6 @@
     <ClInclude Include="Source\BinaryMemoryWriter.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DllHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MemoryLeakManager.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>

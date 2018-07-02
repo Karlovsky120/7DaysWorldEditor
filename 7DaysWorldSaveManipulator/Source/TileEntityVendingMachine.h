@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntityTrader.h"
 
@@ -11,7 +10,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API TileEntityVendingMachine : public TileEntityTrader {
+class TileEntityVendingMachine : public TileEntityTrader {
 public:
 	int version;
 	bool vd;

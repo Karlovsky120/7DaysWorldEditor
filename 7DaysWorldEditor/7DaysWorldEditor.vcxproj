@@ -105,13 +105,13 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E /q
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E
 xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E</Command>
+      <Message>Copies all necessary files for the project to function within the solution.</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,13 +129,13 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E /q
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E
 xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E</Command>
+      <Message>Copies all necessary files for the project to function within the solution.</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -157,13 +157,14 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E /q
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E
-xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E</Command>
+xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E</Command>
+      <Message>Copies all necessary files for the project to function independently.</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -185,13 +186,14 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+      <Command>xcopy "$(SolutionDir)Test Data\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E /q
 xcopy "$(ProjectDir)cfg\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\cfg\" /Y /E
-xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E
-xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E</Command>
+xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$(Platform)\" /Y /E
+xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\resources\" /Y /E</Command>
+      <Message>Copies all necessary files for the project to function independently.</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion)</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

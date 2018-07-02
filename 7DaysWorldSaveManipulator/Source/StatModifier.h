@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "BuffTimer.h"
 #include "Stat.h"
@@ -19,7 +18,7 @@ enum StatModifierClassId {
 	StatModifierBase
 };
 
-class SDWSM_API StatModifier {
+class StatModifier {
 public:
 	int statModifierVersion;
 	unsigned char enumId;

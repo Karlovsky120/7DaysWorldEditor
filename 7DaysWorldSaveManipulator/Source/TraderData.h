@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "ItemStack.h"
 
@@ -10,7 +9,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API TraderData {
+class TraderData {
 public:
 	int traderID;
 	unsigned _int64 lastInventoryUpdate;

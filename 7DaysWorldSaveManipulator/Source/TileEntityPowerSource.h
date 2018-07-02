@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntityPowered.h"
 
@@ -9,7 +8,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class ItemStack;
 
-class SDWSM_API TileEntityPowerSource : public TileEntityPowered {
+class TileEntityPowerSource : public TileEntityPowered {
 public:
 	TileEntityClassId getType() override;
 	int read(BinaryMemoryReader &reader) override;

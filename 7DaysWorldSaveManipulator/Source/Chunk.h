@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "ChunkBlockChannel.h"
 #include "Coordinate.h"
@@ -7,7 +6,6 @@
 #include "ChunkBlockLayer.h"
 #include "ChunkCustomData.h"
 #include "EntityCreationData.h"
-//#include "TileEntity.h"
 
 #include <array>
 #include <map>
@@ -18,7 +16,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class TileEntity;
 
-class SDWSM_API Chunk {
+class Chunk {
 public:
 	unsigned char header[4];
 	unsigned int version;

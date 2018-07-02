@@ -1,8 +1,7 @@
 #pragma once
-#include "DllHeader.h"
 
 template <class T>
-class SDWSM_API Coordinate {
+class Coordinate {
 public:
 	T x;
 	T y;

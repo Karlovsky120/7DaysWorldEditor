@@ -1,9 +1,8 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "BuffTimer.h"
 
-class SDWSM_API BuffTimerNull : public BuffTimer {
+class BuffTimerNull : public BuffTimer {
 public:
 	BuffTimerClassId getType() override;
 

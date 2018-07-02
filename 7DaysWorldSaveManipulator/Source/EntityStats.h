@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "Buff.h"
 #include "MultiBuffVariable.h"
@@ -34,7 +33,7 @@ enum BuffCategoryFlags {
 	Health = 192
 };
 
-class SDWSM_API EntityStats {
+class EntityStats {
 public:
 	int statsVersion;
 	int buffCategoryFlags;

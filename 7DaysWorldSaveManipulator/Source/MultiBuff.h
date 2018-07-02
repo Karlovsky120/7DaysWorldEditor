@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "Buff.h"
 
@@ -13,7 +12,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API MultiBuff : public Buff {
+class MultiBuff : public Buff {
 public:
 	int multiBuffVersion;
 	std::string multiBuffClassId;

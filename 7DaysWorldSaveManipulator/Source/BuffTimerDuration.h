@@ -1,12 +1,11 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "BuffTimer.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API BuffTimerDuration : public BuffTimer {
+class BuffTimerDuration : public BuffTimer {
 public:
 	float duration;
 	float elapsed;

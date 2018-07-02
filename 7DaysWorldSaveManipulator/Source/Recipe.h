@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <string>
 #include <tuple>
@@ -8,7 +7,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API Recipe {
+class Recipe {
 public:
 	int count;
 	std::string craftingArea;

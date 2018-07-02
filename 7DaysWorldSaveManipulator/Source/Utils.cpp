@@ -1,7 +1,6 @@
 #include "Utils.h"
 
-int Utils::getMonoHash(std::string str)
-{
+int Utils::getMonoHash(std::string str) {
 	char* src = &str[0];
 	char* chPtr2 = src; // + offset; // RuntimeHelpers.OffsetToStringData;
 	char* chPtr3 = (chPtr2 + str.length()) - 1;

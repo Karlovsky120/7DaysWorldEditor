@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <utility>
 #include <array>
@@ -7,7 +6,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API ChunkBlockLayer {
+class ChunkBlockLayer {
 public:
 	std::pair<bool, std::array<unsigned char, 1024>> oh;
 	std::pair<bool, unsigned char> jh;

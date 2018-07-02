@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntityPoweredBlock.h"
 
@@ -7,7 +6,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class ItemStack;
 
-class SDWSM_API TileEntityPoweredRangedTrap : public TileEntityPoweredBlock {
+class TileEntityPoweredRangedTrap : public TileEntityPoweredBlock {
 public:
 	std::string lrz;
 

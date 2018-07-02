@@ -1,12 +1,11 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "VersionCheck.h"
 
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API MultiBuffVariable {
+class MultiBuffVariable {
 public:
 	int multiBuffVariableVersion;
 	float unknownQ;

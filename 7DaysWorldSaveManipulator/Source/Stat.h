@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <map>
 #include <memory>
@@ -9,7 +8,7 @@ class BinaryMemoryReader;
 class BinaryMemoryWriter;
 class StatModifier;
 
-class SDWSM_API Stat {
+class Stat {
 public:
 	int statVersion;
 	float value;

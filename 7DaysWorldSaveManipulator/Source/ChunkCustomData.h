@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include <string>
 #include <vector>
@@ -7,7 +6,7 @@
 class BinaryMemoryReader;
 class BinaryMemoryWriter;
 
-class SDWSM_API ChunkCustomData {
+class ChunkCustomData {
 public:
 	std::string key;
 	unsigned _int64 expiresInWorldTime;

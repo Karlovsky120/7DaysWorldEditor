@@ -1,4 +1,3 @@
-#pragma once
 #include "Chunk.h"
 
 #include "BinaryMemoryReader.h"

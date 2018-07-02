@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "TileEntity.h"
 
@@ -25,7 +24,7 @@ enum PowerItemTypes {
 	PressurePlate
 };
 
-class SDWSM_API TileEntityPowered : public TileEntity {
+class TileEntityPowered : public TileEntity {
 public:
 	int tileEntityPoweredVersion;
 	bool isPlayerPlaced;

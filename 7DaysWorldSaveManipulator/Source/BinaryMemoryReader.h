@@ -1,12 +1,11 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "VersionCheck.h"
 #include "Unzip.h"
 
 #include <vector>
 
-class SDWSM_API BinaryMemoryReader {
+class BinaryMemoryReader {
 private:
 	HZIP hz;
 	long length = 0;

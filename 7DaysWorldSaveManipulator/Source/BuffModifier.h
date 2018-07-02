@@ -1,5 +1,4 @@
 #pragma once
-#include "DllHeader.h"
 
 #include "VersionCheck.h"
 
@@ -13,7 +12,7 @@ enum BuffModifierClassId {
 	BuffModifierBase
 };
 
-class SDWSM_API BuffModifier {
+class BuffModifier {
 public:
 	int gh;
 
