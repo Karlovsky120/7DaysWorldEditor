@@ -4,76 +4,76 @@
 #include "BinaryMemoryWriter.h"
 #include "VersionCheck.h"
 
+ItemValue::ItemValue() {}
+ItemValue::~ItemValue() {}
+
 int ItemValue::read(BinaryMemoryReader &reader) {
-	reader.read<unsigned char>(itemValueVersion);
-	VersionCheck::checkVersion(itemValueVersion, ITEM_VALUE_VER, ITEM_VALUE);
+    reader.read<unsigned char>(itemValueVersion);
+    VersionCheck::checkVersion(itemValueVersion, ITEM_VALUE_VER, ITEM_VALUE);
 
-	reader.read<unsigned short>(type);
-	reader.read<unsigned short>(useTimes);
-	reader.read<unsigned short>(quality);
-	reader.read<unsigned short>(meta);
+    reader.read<unsigned short>(type);
+    reader.read<unsigned short>(useTimes);
+    reader.read<unsigned short>(quality);
+    reader.read<unsigned short>(meta);
 
-	unsigned char partNumber;
-	reader.read<unsigned char>(partNumber);
+    unsigned char partNumber;
+    reader.read<unsigned char>(partNumber);
 
-	if (partNumber != 0) {
-		for (int i = 0; i < partNumber; ++i) {
-			bool exists;
-			reader.read<bool>(exists);
+    if (partNumber != 0) {
+        for (int i = 0; i < partNumber; ++i) {
+            bool exists;
+            reader.read<bool>(exists);
 
-			if (exists) {
-				ItemValue part;
-				part.read(reader);
-				parts[i] = part;
-			}
-		}
-	}
+            if (exists) {
+                ItemValue part;
+                part.read(reader);
+                parts[i] = part;
+            }
+        }
+    }
 
-	bool hasAttachments;
-	reader.read<bool>(hasAttachments);
+    bool hasAttachments;
+    reader.read<bool>(hasAttachments);
 
-	if (hasAttachments) {
-		reader.readMultipleComplex<ItemValue, unsigned char>(attachments);
-	}
+    if (hasAttachments) {
+        reader.readMultipleComplex<ItemValue, unsigned char>(attachments);
+    }
 
-	reader.read<bool>(activated);
-	reader.read<unsigned char>(selectedAmmoTypeIndex);
+    reader.read<bool>(activated);
+    reader.read<unsigned char>(selectedAmmoTypeIndex);
 
-	return 0;
+    return 0;
 }
 
 void ItemValue::write(BinaryMemoryWriter &writer) const {
-	writer.write<unsigned char>(itemValueVersion);
-	writer.write<unsigned short>(type);
-	writer.write<unsigned short>(useTimes);
-	writer.write<unsigned short>(quality);
-	writer.write<unsigned short>(meta);
+    writer.write<unsigned char>(itemValueVersion);
+    writer.write<unsigned short>(type);
+    writer.write<unsigned short>(useTimes);
+    writer.write<unsigned short>(quality);
+    writer.write<unsigned short>(meta);
 
 #pragma warning (suppress: 4267)
-	writer.writeConst<unsigned char>(parts.size());
+    writer.writeConst<unsigned char>(parts.size());
 
-	if (0 != parts.size()) {
-		for (unsigned int i = 0; i < parts.size(); ++i) {
-			bool exists = parts.find(i) != parts.end();
-			writer.write<bool>(exists);
+    if (0 != parts.size()) {
+        for (unsigned int i = 0; i < parts.size(); ++i) {
+            bool exists = parts.find(i) != parts.end();
+            writer.write<bool>(exists);
 
-			if (exists) {
-				ItemValue part;
-				part.write(writer);
-			}
-		}
-	}
+            if (exists) {
+                ItemValue part;
+                part.write(writer);
+            }
+        }
+    }
 
-	bool hasAttachments = attachments.size() > 0;
-	writer.write<bool>(hasAttachments);
+    bool hasAttachments = attachments.size() > 0;
+    writer.write<bool>(hasAttachments);
 
-	if (hasAttachments) {
-		writer.writeMultipleComplex<ItemValue, unsigned char>(attachments);
-	}
+    if (hasAttachments) {
+        writer.writeMultipleComplex<ItemValue, unsigned char>(attachments);
+    }
 
-	writer.write<bool>(activated);
-	writer.write<unsigned char>(selectedAmmoTypeIndex);
+    writer.write<bool>(activated);
+    writer.write<unsigned char>(selectedAmmoTypeIndex);
 }
-
-ItemValue::ItemValue() {}
-ItemValue::~ItemValue() {}

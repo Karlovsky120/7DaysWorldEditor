@@ -10,11 +10,11 @@ public:
 	float unknownV;
 	float unknownF;
 
-	StatModifierClassId getType() override;
-	void write(BinaryMemoryWriter &writer) const override;
-
 	StatModifierSetValue();
 	~StatModifierSetValue();
+
+	StatModifierClassId getType() const override;
+	void write(BinaryMemoryWriter &writer) const override;
 
 private:
 	int readMore(BinaryMemoryReader &reader) override;

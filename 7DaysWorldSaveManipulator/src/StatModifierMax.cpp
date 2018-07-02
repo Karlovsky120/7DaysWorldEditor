@@ -3,25 +3,25 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-StatModifierClassId StatModifierMax::getType() {
-	return Max;
+StatModifierMax::StatModifierMax() {}
+StatModifierMax::~StatModifierMax() {}
+
+StatModifierClassId StatModifierMax::getType() const {
+    return Max;
 }
 
 void StatModifierMax::write(BinaryMemoryWriter &writer) const {
-	StatModifier::write(writer);
+    StatModifier::write(writer);
 
-	writer.write<float>(unknownV);
-	writer.write<float>(unknownF);
+    writer.write<float>(unknownV);
+    writer.write<float>(unknownF);
 }
 
 int StatModifierMax::readMore(BinaryMemoryReader &reader) {
-	StatModifier::readMore(reader);
+    StatModifier::readMore(reader);
 
-	reader.read<float>(unknownV);
-	reader.read<float>(unknownF);
+    reader.read<float>(unknownV);
+    reader.read<float>(unknownF);
 
-	return 0;
+    return 0;
 }
-
-StatModifierMax::StatModifierMax() {}
-StatModifierMax::~StatModifierMax() {}

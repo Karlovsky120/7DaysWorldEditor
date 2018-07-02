@@ -12,20 +12,20 @@ class BinaryMemoryWriter;
 
 class TileEntityLootContainer : public TileEntity {
 public:
-	unsigned short lootListIndex;
-	Coordinate<unsigned short> ad;
-	bool bTouched;
-	unsigned int worldTimeTouched;
-	bool bPlayerBackpack;
+    unsigned short lootListIndex;
+    Coordinate<unsigned short> ad;
+    bool bTouched;
+    unsigned int worldTimeTouched;
+    bool bPlayerBackpack;
 
-	std::vector<ItemStack> items;
+    std::vector<ItemStack> items;
 
-	bool bPlayerStorage;
+    bool bPlayerStorage;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityLootContainer();
+    ~TileEntityLootContainer();
 
-	TileEntityLootContainer();
-	~TileEntityLootContainer();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

@@ -12,23 +12,23 @@ class BinaryMemoryWriter;
 
 class TileEntityForge : public TileEntity {
 public:
-	unsigned _int64 ib;
+    unsigned _int64 ib;
 
-	std::vector<ItemStack> gb;
-	std::vector<ItemStack> kb;
+    std::vector<ItemStack> gb;
+    std::vector<ItemStack> kb;
 
-	ItemStack fd;
-	ItemStack mb;
+    ItemStack fd;
+    ItemStack mb;
 
-	int hb;
-	short qd;
-	short yd;
-	ItemValue tb;
+    int hb;
+    short qd;
+    short yd;
+    ItemValue tb;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityForge();
+    ~TileEntityForge();
 
-	TileEntityForge();
-	~TileEntityForge();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

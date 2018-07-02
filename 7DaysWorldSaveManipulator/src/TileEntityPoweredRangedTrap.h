@@ -8,18 +8,16 @@ class ItemStack;
 
 class TileEntityPoweredRangedTrap : public TileEntityPoweredBlock {
 public:
-	std::string lrz;
+    std::string lrz;
+    bool flag;
+    bool isLocked;
+    std::vector<ItemStack> itemSlots;
+    int targetType;
 
-	bool flag;
+    TileEntityPoweredRangedTrap();
+    ~TileEntityPoweredRangedTrap();
 
-	bool isLocked;
-	std::vector<ItemStack> itemSlots;
-	int targetType;
-
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
-
-	TileEntityPoweredRangedTrap();
-	~TileEntityPoweredRangedTrap();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

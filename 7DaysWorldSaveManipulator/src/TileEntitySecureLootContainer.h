@@ -15,13 +15,12 @@ public:
 	bool vd;
 	std::string gd;
 	std::string xd;
-
 	std::vector<std::string> kd;
-
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
 
 	TileEntitySecureLootContainer();
 	~TileEntitySecureLootContainer();
+
+	TileEntityClassId getType() const override;
+	int read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) const override;
 };

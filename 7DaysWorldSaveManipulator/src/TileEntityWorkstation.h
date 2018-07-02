@@ -12,26 +12,26 @@ class BinaryMemoryWriter;
 
 class TileEntityWorkstation : public TileEntity {
 public:
-	unsigned char version;
-	unsigned _int64 ib;
+    unsigned char version;
+    unsigned _int64 ib;
 
-	std::vector<ItemStack> gb;
-	std::vector<ItemStack> kb;
-	std::vector<ItemStack> eg;
-	std::vector<ItemStack> mb;
+    std::vector<ItemStack> gb;
+    std::vector<ItemStack> kb;
+    std::vector<ItemStack> eg;
+    std::vector<ItemStack> mb;
 
-	std::vector<RecipeQueueItem> oe;
+    std::vector<RecipeQueueItem> oe;
 
-	bool ye;
-	float fe;
-	std::vector<float> qe;
+    bool ye;
+    float fe;
+    std::vector<float> qe;
 
-	bool yhh;
+    bool yhh;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityWorkstation();
+    ~TileEntityWorkstation();
 
-	TileEntityWorkstation();
-	~TileEntityWorkstation();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

@@ -10,17 +10,17 @@ class BinaryMemoryWriter;
 
 class TileEntitySecure : public TileEntityLootContainer {
 public:
-	int version;
-	bool md;
-	bool vd;
-	std::string gd;
-	std::vector<std::string> kd;
-	std::string xd;
+    int version;
+    bool md;
+    bool vd;
+    std::string gd;
+    std::vector<std::string> kd;
+    std::string xd;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntitySecure();
+    ~TileEntitySecure();
 
-	TileEntitySecure();
-	~TileEntitySecure();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

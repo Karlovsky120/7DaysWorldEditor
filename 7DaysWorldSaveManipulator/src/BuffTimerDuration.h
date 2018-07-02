@@ -7,15 +7,15 @@ class BinaryMemoryWriter;
 
 class BuffTimerDuration : public BuffTimer {
 public:
-	float duration;
-	float elapsed;
+    float duration;
+    float elapsed;
 
-	BuffTimerClassId getType() override;
-	void write(BinaryMemoryWriter &writer) const override;
+    BuffTimerDuration();
+    ~BuffTimerDuration();
 
-	BuffTimerDuration();
-	~BuffTimerDuration();
+    BuffTimerClassId getType() override;
+    void write(BinaryMemoryWriter &writer) const override;
 
 protected:
-	int readMore(BinaryMemoryReader &reader) override;
+    int readMore(BinaryMemoryReader &reader) override;
 };

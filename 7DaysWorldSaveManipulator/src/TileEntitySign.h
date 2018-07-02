@@ -20,10 +20,10 @@ public:
 
 	std::string signText;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
-
 	TileEntitySign();
 	~TileEntitySign();
+
+	TileEntityClassId getType() const override;
+	int read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) const override;
 };

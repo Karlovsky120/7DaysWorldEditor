@@ -7,18 +7,18 @@ class BinaryMemoryWriter;
 
 class BuffTimerScheduled : public BuffTimer {
 public:
-	int buffTimerScheduledVersion;
-	unsigned _int64 unknownG;
-	int duration;
-	float unknownE;
-	int elapsed;
+    int buffTimerScheduledVersion;
+    unsigned _int64 unknownG;
+    int duration;
+    float unknownE;
+    int elapsed;
 
-	BuffTimerClassId getType() override;
-	void write(BinaryMemoryWriter &writer) const override;
+    BuffTimerScheduled();
+    ~BuffTimerScheduled();
 
-	BuffTimerScheduled();
-	~BuffTimerScheduled();
+    BuffTimerClassId getType() override;
+    void write(BinaryMemoryWriter &writer) const override;
 
 protected:
-	int readMore(BinaryMemoryReader &reader) override;
+    int readMore(BinaryMemoryReader &reader) override;
 };

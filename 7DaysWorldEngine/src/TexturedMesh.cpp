@@ -6,10 +6,10 @@ TexturedMesh::TexturedMesh(Mesh mesh, Texture texture) :
 
 TexturedMesh::TexturedMesh() {}
 
-Mesh &TexturedMesh::getMesh() {
-	return mesh;
-}
-
 Texture &TexturedMesh::getTexture() {
 	return texture;
+}
+
+Mesh &TexturedMesh::getMesh() {
+	return mesh;
 }

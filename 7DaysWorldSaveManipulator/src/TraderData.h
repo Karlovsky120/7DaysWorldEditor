@@ -11,19 +11,19 @@ class BinaryMemoryWriter;
 
 class TraderData {
 public:
-	int traderID;
-	unsigned _int64 lastInventoryUpdate;
-	unsigned char fileVersion;
+    int traderID;
+    unsigned _int64 lastInventoryUpdate;
+    unsigned char fileVersion;
 
-	std::vector<ItemStack> primaryInventory;
-	std::vector<std::vector<ItemStack>> tierItemGroups;
+    std::vector<ItemStack> primaryInventory;
+    std::vector<std::vector<ItemStack>> tierItemGroups;
 
-	int availableMoney;
-	std::vector<char> jj;
+    int availableMoney;
+    std::vector<char> jj;
 
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
+    TraderData();
+    ~TraderData();
 
-	TraderData();
-	~TraderData();
+    int read(BinaryMemoryReader &reader);
+    void write(BinaryMemoryWriter &writer) const;
 };

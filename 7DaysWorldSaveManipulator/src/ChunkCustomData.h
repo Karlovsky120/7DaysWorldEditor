@@ -8,15 +8,15 @@ class BinaryMemoryWriter;
 
 class ChunkCustomData {
 public:
-	std::string key;
-	unsigned _int64 expiresInWorldTime;
-	bool isSavedToNetwork;
+    std::string key;
+    unsigned _int64 expiresInWorldTime;
+    bool isSavedToNetwork;
 
-	std::vector<unsigned char> data;
+    std::vector<unsigned char> data;
 
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
+    ChunkCustomData();
+    ~ChunkCustomData();
 
-	ChunkCustomData();
-	~ChunkCustomData();
+    int read(BinaryMemoryReader &reader);
+    void write(BinaryMemoryWriter &writer) const;
 };

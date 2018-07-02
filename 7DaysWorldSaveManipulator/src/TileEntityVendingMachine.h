@@ -12,23 +12,23 @@ class BinaryMemoryWriter;
 
 class TileEntityVendingMachine : public TileEntityTrader {
 public:
-	int version;
-	bool vd;
-	std::string gd;
-	std::string xd;
+    int version;
+    bool vd;
+    std::string gd;
+    std::string xd;
 
-	std::vector<std::string> kd;
+    std::vector<std::string> kd;
 
-	unsigned _int64 bd;
+    unsigned _int64 bd;
 
-	TraderData traderData;
+    TraderData traderData;
 
-	unsigned _int64 dd;
+    unsigned _int64 dd;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityVendingMachine();
+    ~TileEntityVendingMachine();
 
-	TileEntityVendingMachine();
-	~TileEntityVendingMachine();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

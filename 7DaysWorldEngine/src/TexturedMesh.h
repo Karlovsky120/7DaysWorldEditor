@@ -5,13 +5,13 @@
 
 class TexturedMesh {
 public:
-	TexturedMesh(Mesh mesh, Texture texture);
-	TexturedMesh();
+    TexturedMesh(Mesh mesh, Texture texture);
+    TexturedMesh();
 
-	Texture &getTexture();
-	Mesh &getMesh();
+    Texture &getTexture();
+    Mesh &getMesh();
 
 private:
-	Texture texture;
-	Mesh mesh;
+    Texture texture;
+    Mesh mesh;
 };

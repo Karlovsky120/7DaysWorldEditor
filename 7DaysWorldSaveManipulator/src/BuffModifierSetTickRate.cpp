@@ -3,23 +3,23 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
+BuffModifierSetTickRate::BuffModifierSetTickRate() {}
+BuffModifierSetTickRate::~BuffModifierSetTickRate() {}
+
 BuffModifierClassId BuffModifierSetTickRate::getType() {
-	return SetTickRate;
+    return SetTickRate;
 }
 
 void BuffModifierSetTickRate::write(BinaryMemoryWriter &writer) const {
-	BuffModifier::write(writer);
+    BuffModifier::write(writer);
 
-	writer.write<float>(tickRate);
+    writer.write<float>(tickRate);
 }
 
 int BuffModifierSetTickRate::readMore(BinaryMemoryReader &reader) {
-	BuffModifier::readMore(reader);
+    BuffModifier::readMore(reader);
 
-	reader.read<float>(tickRate);
+    reader.read<float>(tickRate);
 
-	return 0;
+    return 0;
 }
-
-BuffModifierSetTickRate::BuffModifierSetTickRate() {}
-BuffModifierSetTickRate::~BuffModifierSetTickRate() {}

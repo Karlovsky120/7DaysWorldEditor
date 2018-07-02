@@ -4,7 +4,10 @@
 #include "BinaryMemoryWriter.h"
 #include "VersionCheck.h"
 
-TileEntityClassId TileEntityVendingMachine::getType() {
+TileEntityVendingMachine::TileEntityVendingMachine() {}
+TileEntityVendingMachine::~TileEntityVendingMachine() {}
+
+TileEntityClassId TileEntityVendingMachine::getType() const {
 	return VendingMachine;
 }
 
@@ -56,6 +59,3 @@ void TileEntityVendingMachine::write(BinaryMemoryWriter &writer) const {
 		writer.write<unsigned _int64>(dd);
 	}
 }
-
-TileEntityVendingMachine::TileEntityVendingMachine() {}
-TileEntityVendingMachine::~TileEntityVendingMachine() {}

@@ -8,6 +8,7 @@ Not working yet. Far far from it.
 #### Header (.h) files
 
 ##### Include order:
+0. pragma once
 1. Base class
 2. Internal files (within the project)
 3. External files (libraries, etc)
@@ -38,7 +39,7 @@ No source files should EVER be included.
 
 Ordering within a set should be such that it makes most logical sense.
 Logically cohesive members within a set can be separated by an empty line.
-Each group should be separated by two empty lines.
+Each group should be separated by an empty line.
 
 Const keyword should be applied wherever applicable to improve code separation (i.e. prevent methods that shouldn't mutate the state of the object to do just that).
 

@@ -18,51 +18,51 @@ class TileEntity;
 
 class Chunk {
 public:
-	unsigned char header[4];
-	unsigned int version;
+    unsigned char header[4];
+    unsigned int version;
 
-	int xm;
-	int mm;
-	int rm;
+    int xm;
+    int mm;
+    int rm;
 
-	unsigned _int64 savedInWorldTicks;
+    unsigned _int64 savedInWorldTicks;
 
-	std::map<unsigned int, ChunkBlockLayer> cbl;
+    std::map<unsigned int, ChunkBlockLayer> cbl;
 
-	ChunkBlockChannel<1> cbc;
+    ChunkBlockChannel<1> cbc;
 
-	unsigned char im[256];
-	unsigned char terrainHeight[256];
-	unsigned char biomeID[256];
-	unsigned char biomeIntentsity[1536];
+    unsigned char im[256];
+    unsigned char terrainHeight[256];
+    unsigned char biomeID[256];
+    unsigned char biomeIntentsity[1536];
 
-	unsigned char dominantBiome;
-	unsigned char areaMasterDominantBiome;
+    unsigned char dominantBiome;
+    unsigned char areaMasterDominantBiome;
 
-	std::map<std::string, ChunkCustomData> chunkCustomDataMap;
+    std::map<std::string, ChunkCustomData> chunkCustomDataMap;
 
-	unsigned char pr[256];
-	unsigned char jr[256];
-	unsigned char fr[256];
+    unsigned char pr[256];
+    unsigned char jr[256];
+    unsigned char fr[256];
 
-	ChunkBlockChannel<1> cm;
-	ChunkBlockChannel<1> vm;
-	ChunkBlockChannel<2> gm;
-	ChunkBlockChannel<6> km;
+    ChunkBlockChannel<1> cm;
+    ChunkBlockChannel<1> vm;
+    ChunkBlockChannel<2> gm;
+    ChunkBlockChannel<6> km;
 
-	bool needsLightCalculation;
+    bool needsLightCalculation;
 
-	std::vector<EntityCreationData> entityCreationDataList;	std::map<Coordinate<int>, std::shared_ptr<TileEntity>> tileEntityDictionary;
+    std::vector<EntityCreationData> entityCreationDataList;	std::map<Coordinate<int>, std::shared_ptr<TileEntity>> tileEntityDictionary;
 
-	unsigned char entitySpawnerListSaveVersion;
-	std::vector<EntitySpawner> entitySpawnerList;
-	std::pair<bool, std::array<unsigned short, 16>> ur;
+    unsigned char entitySpawnerListSaveVersion;
+    std::vector<EntitySpawner> entitySpawnerList;
+    std::pair<bool, std::array<unsigned short, 16>> ur;
 
-	std::vector<int> hk;
+    std::vector<int> hk;
 
-	int read(BinaryMemoryReader &reader, bool &isValidRead);
-	void write(BinaryMemoryWriter &writer) const;
+    Chunk();
+    ~Chunk();
 
-	Chunk();
-	~Chunk();
+    int read(BinaryMemoryReader &reader, bool &isValidRead);
+    void write(BinaryMemoryWriter &writer) const;
 };

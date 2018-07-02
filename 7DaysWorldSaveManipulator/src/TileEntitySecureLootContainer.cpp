@@ -4,7 +4,10 @@
 #include "BinaryMemoryWriter.h"
 #include "VersionCheck.h"
 
-TileEntityClassId TileEntitySecureLootContainer::getType() {
+TileEntitySecureLootContainer::TileEntitySecureLootContainer() {}
+TileEntitySecureLootContainer::~TileEntitySecureLootContainer() {}
+
+TileEntityClassId TileEntitySecureLootContainer::getType() const {
 	return SecureLoot;
 }
 
@@ -35,6 +38,3 @@ void TileEntitySecureLootContainer::write(BinaryMemoryWriter &writer) const {
 
 	writer.writeMultipleSimple<std::string, int>(kd);
 }
-
-TileEntitySecureLootContainer::TileEntitySecureLootContainer() {}
-TileEntitySecureLootContainer::~TileEntitySecureLootContainer() {}

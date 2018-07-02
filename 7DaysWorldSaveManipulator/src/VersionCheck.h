@@ -60,8 +60,8 @@
 
 class VersionCheck {
 public:
-	static void checkVersion(int readVersion, int expectedVersion, std::string objectName);
+    VersionCheck();
+    ~VersionCheck();
 
-	VersionCheck();
-	~VersionCheck();
+    static void checkVersion(int readVersion, int expectedVersion, std::string objectName);
 };

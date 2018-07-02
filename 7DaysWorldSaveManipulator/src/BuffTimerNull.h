@@ -4,8 +4,8 @@
 
 class BuffTimerNull : public BuffTimer {
 public:
-	BuffTimerClassId getType() override;
+    BuffTimerNull();
+    ~BuffTimerNull();
 
-	BuffTimerNull();
-	~BuffTimerNull();
+    BuffTimerClassId getType() override;
 };

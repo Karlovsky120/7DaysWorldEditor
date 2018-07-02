@@ -8,15 +8,15 @@
 
 class Scene {
 public:
-	Scene();
-	~Scene();
+    Scene();
+    ~Scene();
 
-	void render();
+    void render();
 
-	//private:
-	Loader loader;
-	Renderer renderer;
-	StaticShader shader;
-	Entity entity;
-	float c = 1;
+    //private:
+    Loader loader;
+    Renderer renderer;
+    StaticShader shader;
+    Entity entity;
+    float c = 1;
 };

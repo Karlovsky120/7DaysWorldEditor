@@ -2,12 +2,12 @@
 
 #include <string>
 
-class OpenGLInitializer
-{
+class OpenGLInitializer {
 public:
-	bool static InitializeOpenGL(std::string *error);
+    bool static InitializeOpenGL(std::string *error);
+
 private:
-	OpenGLInitializer();
-	~OpenGLInitializer();
+    OpenGLInitializer();
+    ~OpenGLInitializer();
 };
 

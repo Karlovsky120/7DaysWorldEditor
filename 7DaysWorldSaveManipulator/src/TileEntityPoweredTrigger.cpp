@@ -3,7 +3,10 @@
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 
-TileEntityClassId TileEntityPoweredTrigger::getType() {
+TileEntityPoweredTrigger::TileEntityPoweredTrigger() {}
+TileEntityPoweredTrigger::~TileEntityPoweredTrigger() {}
+
+TileEntityClassId TileEntityPoweredTrigger::getType() const {
 	return Trigger;
 }
 
@@ -28,6 +31,3 @@ void TileEntityPoweredTrigger::write(BinaryMemoryWriter &writer) const {
 		writer.write<std::string>(lrz);
 	}
 }
-
-TileEntityPoweredTrigger::TileEntityPoweredTrigger() {}
-TileEntityPoweredTrigger::~TileEntityPoweredTrigger() {}

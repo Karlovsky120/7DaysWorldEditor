@@ -12,24 +12,24 @@ class BinaryMemoryWriter;
 
 class TileEntityCampfire : public TileEntity {
 public:
-	unsigned _int64 ib;
+    unsigned _int64 ib;
 
-	std::vector<ItemStack> gb;
-	std::vector<ItemStack> kb;
+    std::vector<ItemStack> gb;
+    std::vector<ItemStack> kb;
 
-	ItemStack xb;
-	ItemStack mb;
+    ItemStack xb;
+    ItemStack mb;
 
-	int hb;
-	ItemValue tb;
+    int hb;
+    ItemValue tb;
 
-	bool isCooking;
-	float db;
+    bool isCooking;
+    float db;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityCampfire();
+    ~TileEntityCampfire();
 
-	TileEntityCampfire();
-	~TileEntityCampfire();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

@@ -4,10 +4,10 @@
 
 class MainFrame : public wxFrame {
 public:
-	MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
+    MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
 
 private:
-	void OnExit(wxCommandEvent &event);
+    void OnExit(wxCommandEvent &event);
 
-	wxDECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
 };

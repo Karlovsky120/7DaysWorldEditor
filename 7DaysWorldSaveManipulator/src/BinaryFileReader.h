@@ -4,47 +4,47 @@
 #include <fstream>
 
 class BinaryFileReader {
-private:
-	std::ifstream baseStream;
-
 public:
-	template <typename T>
-	inline void read(T &data) {
-		baseStream.read((char *)&data, sizeof(T));
-	}
+    BinaryFileReader(std::string const path) {
+        baseStream.open(path, std::ios::binary | std::ios::in);
 
-	template <>
-	inline void read(std::string &data) {
-		char length;
-		baseStream.read(&length, 1);
+        if (!baseStream.good()) {
+            throw std::ios_base::failure("Failed to open file at " + path);
+        }
+    }
 
-		unsigned char *characters = new unsigned char[length];
-		baseStream.read((char*)characters, length);
+    ~BinaryFileReader() {
+        baseStream.close();
+    }
 
-		data = std::string((char*)characters, length);
-		delete[] characters;
-	}
+    BinaryFileReader(const BinaryFileReader&) = delete;
+    BinaryFileReader& operator=(const BinaryFileReader&) = delete;
 
-	inline void readBytes(unsigned char data[], int count) {
-		baseStream.read((char*)data, count);
-	}
+    template <typename T>
+    inline void read(T &data) {
+        baseStream.read((char *)&data, sizeof(T));
+    }
 
-	inline void seek(int amount, std::ios_base::seekdir seekStart) {
-		baseStream.seekg(amount, seekStart);
-	}
+    template <>
+    inline void read(std::string &data) {
+        char length;
+        baseStream.read(&length, 1);
 
-	BinaryFileReader(std::string const path) {
-		baseStream.open(path, std::ios::binary | std::ios::in);
+        unsigned char *characters = new unsigned char[length];
+        baseStream.read((char*)characters, length);
 
-		if (!baseStream.good()) {
-			throw std::ios_base::failure("Failed to open file at " + path);
-		}
-	}
+        data = std::string((char*)characters, length);
+        delete[] characters;
+    }
 
-	~BinaryFileReader() {
-		baseStream.close();
-	}
+    inline void readBytes(unsigned char data[], int count) {
+        baseStream.read((char*)data, count);
+    }
 
-	BinaryFileReader(const BinaryFileReader&) = delete;
-	BinaryFileReader& operator=(const BinaryFileReader&) = delete;
+    inline void seek(int amount, std::ios_base::seekdir seekStart) {
+        baseStream.seekg(amount, seekStart);
+    }
+
+private:
+    std::ifstream baseStream;
 };

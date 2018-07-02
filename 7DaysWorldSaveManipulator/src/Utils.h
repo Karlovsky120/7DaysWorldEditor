@@ -4,8 +4,8 @@
 
 class Utils {
 public:
-	static int getMonoHash(std::string str);
+    Utils();
+    ~Utils();
 
-	Utils();
-	~Utils();
+    static int getMonoHash(std::string str);
 };

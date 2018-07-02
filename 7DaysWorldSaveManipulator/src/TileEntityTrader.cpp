@@ -4,27 +4,27 @@
 #include "BinaryMemoryWriter.h"
 #include "VersionCheck.h"
 
-TileEntityClassId TileEntityTrader::getType() {
-	return Trader;
+TileEntityTrader::TileEntityTrader() {}
+TileEntityTrader::~TileEntityTrader() {}
+
+TileEntityClassId TileEntityTrader::getType() const {
+    return Trader;
 }
 
 int TileEntityTrader::read(BinaryMemoryReader &reader) {
-	TileEntity::read(reader);
+    TileEntity::read(reader);
 
-	reader.read<int>(version);
-	VersionCheck::checkVersion(version, TILE_ENTITY_TRADER_VER, TILE_ENTITY_TRADER);
+    reader.read<int>(version);
+    VersionCheck::checkVersion(version, TILE_ENTITY_TRADER_VER, TILE_ENTITY_TRADER);
 
-	traderData.read(reader);
+    traderData.read(reader);
 
-	return 0;
+    return 0;
 }
 
 void TileEntityTrader::write(BinaryMemoryWriter &writer) const {
-	TileEntity::write(writer);
+    TileEntity::write(writer);
 
-	writer.write<int>(version);
-	traderData.write(writer);
+    writer.write<int>(version);
+    traderData.write(writer);
 }
-
-TileEntityTrader::TileEntityTrader() {}
-TileEntityTrader::~TileEntityTrader() {}

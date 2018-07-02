@@ -4,22 +4,22 @@
 
 class StaticShader : public ShaderProgram {
 public:
-	StaticShader();
-	virtual ~StaticShader();
+    StaticShader();
+    virtual ~StaticShader();
 
-	void loadTransformationMatrix(glm::mat4x4 transformationMatrix);
-	void loadProjectionMatrix(glm::mat4x4 projectionMatrix);
-	void loadViewMatrix(glm::mat4x4 viewMatrix);
+    void loadTransformationMatrix(glm::mat4x4 transformationMatrix);
+    void loadProjectionMatrix(glm::mat4x4 projectionMatrix);
+    void loadViewMatrix(glm::mat4x4 viewMatrix);
 
 protected:
-	void bindAttributes();
-	void getAllUniformLocations();
+    static std::string vertexShaderSource;
+    static std::string fragmentShaderSource;
 
-	static std::string vertexShaderSource;
-	static std::string fragmentShaderSource;
+    void bindAttributes();
+    void getAllUniformLocations();
 
-public:
-	GLuint tranformationMatrixLocation;
-	GLuint viewMatrixLocation;
-	GLuint projectionMatrixLocation;
+private:
+    GLuint tranformationMatrixLocation;
+    GLuint viewMatrixLocation;
+    GLuint projectionMatrixLocation;
 };

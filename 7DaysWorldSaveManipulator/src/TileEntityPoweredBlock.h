@@ -9,10 +9,10 @@ class TileEntityPoweredBlock : public TileEntityPowered {
 public:
 	bool uzz;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
-
 	TileEntityPoweredBlock();
 	~TileEntityPoweredBlock();
+
+	TileEntityClassId getType() const override;
+	int read(BinaryMemoryReader &reader) override;
+	void write(BinaryMemoryWriter &writer) const override;
 };

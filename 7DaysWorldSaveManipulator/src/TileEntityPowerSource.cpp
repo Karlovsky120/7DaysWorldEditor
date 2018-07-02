@@ -4,7 +4,10 @@
 #include "BinaryMemoryWriter.h"
 #include "ItemStack.h"
 
-TileEntityClassId TileEntityPowerSource::getType() {
+TileEntityPowerSource::TileEntityPowerSource() {}
+TileEntityPowerSource::~TileEntityPowerSource() {}
+
+TileEntityClassId TileEntityPowerSource::getType() const {
 	return PowerSource;
 }
 
@@ -17,6 +20,3 @@ int TileEntityPowerSource::read(BinaryMemoryReader &reader) {
 void TileEntityPowerSource::write(BinaryMemoryWriter &writer) const {
 	TileEntityPowered::write(writer);
 }
-
-TileEntityPowerSource::TileEntityPowerSource() {}
-TileEntityPowerSource::~TileEntityPowerSource() {}

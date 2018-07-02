@@ -10,30 +10,30 @@ class BinaryMemoryWriter;
 
 class EntitySpawner {
 public:
-	unsigned char version;
-	Coordinate<int> position;
-	Coordinate<short> size;
-	unsigned short triggerDiameter;
-	std::string entitySpawnerClassName;
+    unsigned char version;
+    Coordinate<int> position;
+    Coordinate<short> size;
+    unsigned short triggerDiameter;
+    std::string entitySpawnerClassName;
 
-	short totalSpawnedThisWave;
-	float timeDelayToNextWave;
-	float timeDelayBetweenSpawns;
+    short totalSpawnedThisWave;
+    float timeDelayToNextWave;
+    float timeDelayBetweenSpawns;
 
-	unsigned char idVersion;
+    unsigned char idVersion;
 
-	std::vector<int> entitySpawnedIdList;
+    std::vector<int> entitySpawnedIdList;
 
-	short currentWave;
-	int lastDaySpawnCalled;
-	int numberToSpawnThisWave;
+    short currentWave;
+    int lastDaySpawnCalled;
+    int numberToSpawnThisWave;
 
-	unsigned _int64 worldTimeNextToWave;
-	bool bCaveSpawn;
+    unsigned _int64 worldTimeNextToWave;
+    bool bCaveSpawn;
 
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
+    EntitySpawner();
+    ~EntitySpawner();
 
-	EntitySpawner();
-	~EntitySpawner();
+    int read(BinaryMemoryReader &reader);
+    void write(BinaryMemoryWriter &writer) const;
 };

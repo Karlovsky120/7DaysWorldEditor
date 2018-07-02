@@ -6,6 +6,7 @@
 #include "StatModifier.h"
 
 #include <map>
+#include <memory>
 #include <vector>
 
 class BinaryMemoryReader;
@@ -28,10 +29,8 @@ public:
     std::vector<std::shared_ptr<BuffModifier>> buffModifierList;
     int instigatorId;
 
-
     Buff();
     virtual ~Buff();
-
 
     virtual BuffClassId getType();
     static std::shared_ptr<Buff> instantiate(BuffClassId type);

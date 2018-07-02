@@ -9,13 +9,13 @@ class BinaryMemoryWriter;
 
 class TileEntityTrader : public TileEntity {
 public:
-	int version;
-	TraderData traderData;
+    int version;
+    TraderData traderData;
 
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityTrader();
+    ~TileEntityTrader();
 
-	TileEntityTrader();
-	~TileEntityTrader();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };

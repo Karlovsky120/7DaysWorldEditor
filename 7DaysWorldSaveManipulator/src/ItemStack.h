@@ -9,12 +9,12 @@ class BinaryMemoryWriter;
 
 class ItemStack {
 public:
-	short count;
-	ItemValue itemValue;
+    short count;
+    ItemValue itemValue;
 
-	int read(BinaryMemoryReader &reader);
-	void write(BinaryMemoryWriter &writer) const;
+    ItemStack();
+    ~ItemStack();
 
-	ItemStack();
-	~ItemStack();
+    int read(BinaryMemoryReader &reader);
+    void write(BinaryMemoryWriter &writer) const;
 };

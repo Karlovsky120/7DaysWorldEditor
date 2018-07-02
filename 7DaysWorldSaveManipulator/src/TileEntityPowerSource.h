@@ -10,10 +10,10 @@ class ItemStack;
 
 class TileEntityPowerSource : public TileEntityPowered {
 public:
-	TileEntityClassId getType() override;
-	int read(BinaryMemoryReader &reader) override;
-	void write(BinaryMemoryWriter &writer) const override;
+    TileEntityPowerSource();
+    ~TileEntityPowerSource();
 
-	TileEntityPowerSource();
-	~TileEntityPowerSource();
+    TileEntityClassId getType() const override;
+    int read(BinaryMemoryReader &reader) override;
+    void write(BinaryMemoryWriter &writer) const override;
 };
