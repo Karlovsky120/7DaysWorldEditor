@@ -150,40 +150,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Loader.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="OpenGLInitializer.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="ShaderProgram.cpp" />
-    <ClCompile Include="StaticShader.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TexturedMesh.cpp" />
-    <ClCompile Include="Transformation.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Loader.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="OpenGLInitializer.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="StaticShader.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TexturedMesh.h" />
-    <ClInclude Include="Transformation.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\7DaysWorldEditor\resources\shaders\fragmentShader.frag" />
     <None Include="..\7DaysWorldEditor\resources\shaders\vertexShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\7DaysWorldEditor\resources\textures\testing.png" />
     <Image Include="..\7DaysWorldEditor\resources\textures\texture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\Loader.h" />
+    <ClInclude Include="src\Mesh.h" />
+    <ClInclude Include="src\OpenGLInitializer.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\Scene.h" />
+    <ClInclude Include="src\ShaderProgram.h" />
+    <ClInclude Include="src\StaticShader.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\TexturedMesh.h" />
+    <ClInclude Include="src\Transformation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\Loader.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\OpenGLInitializer.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\StaticShader.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\TexturedMesh.cpp" />
+    <ClCompile Include="src\Transformation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

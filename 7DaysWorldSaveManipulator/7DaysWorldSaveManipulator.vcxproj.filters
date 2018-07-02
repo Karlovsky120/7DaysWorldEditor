@@ -79,363 +79,357 @@
     <Filter Include="Source Files\RegionIO">
       <UniqueIdentifier>{57b21ed8-38f7-42d2-bc76-7c6d02ce41be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\External">
-      <UniqueIdentifier>{e663178a-007c-4c96-9c48-8144f098b56a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\External">
-      <UniqueIdentifier>{7b5a47a9-78fc-4e4e-8dff-ddcf7942c82c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Utils.h">
+    <ClInclude Include="src\Chunk.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChunkBlockLayer.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChunkCustomData.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RegionFile.h">
+      <Filter>Header Files\RegionFile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffModifierSetTickRate.h">
+      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffModifier.h">
+      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Buff.h">
+      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultiBuff.h">
+      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffTimer.h">
+      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffTimerDuration.h">
+      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffTimerNull.h">
+      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffTimerScheduled.h">
+      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifier.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifierMax.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifierModifyValue.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifierMulValue.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifierSetValue.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StatModifierValueOT.h">
+      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntity.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityCampfire.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityForge.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntitySign.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityTrader.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityVendingMachine.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityWorkstation.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TraderData.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BodyDamage.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuffDescriptor.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChunkBlockChannel.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Coordinate.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityCreationData.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntitySpawner.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityStats.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ItemStack.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ItemValue.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultiBuffAction.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultiBuffPrefabAttachmentDescriptor.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultiBuffVariable.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Recipe.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RecipeQueueItem.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stat.h">
+      <Filter>Header Files\RegionFile\EntityData</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntitySecure.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntitySecureDoor.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntitySecureLootContainer.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityLootContainer.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityGoreBlock.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityPowered.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityPoweredBlock.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityPoweredRangedTrap.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityPoweredTrigger.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileEntityPowerSource.h">
+      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryFileReader.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryFileWriter.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryMemoryReader.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryMemoryWriter.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MemoryLeakManager.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VersionCheck.h">
+      <Filter>Header Files\RegionIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Zip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BinaryFileReader.h">
-      <Filter>Header Files\RegionIO</Filter>
+    <ClInclude Include="src\Unzip.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BinaryFileWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BinaryMemoryReader.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BinaryMemoryWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MemoryLeakManager.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VersionCheck.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntitySecureDoor.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntitySecure.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntitySecureLootContainer.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityGoreBlock.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityLootContainer.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityPowered.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityPoweredBlock.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityPoweredRangedTrap.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityPoweredTrigger.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityPowerSource.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntity.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityCampfire.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityForge.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntitySign.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityTrader.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityVendingMachine.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TileEntityWorkstation.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TraderData.h">
-      <Filter>Header Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifier.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifierMax.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifierModifyValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifierMulValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifierSetValue.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StatModifierValueOT.h">
-      <Filter>Header Files\RegionFile\EntityData\StatModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffModifier.h">
-      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffModifierSetTickRate.h">
-      <Filter>Header Files\RegionFile\EntityData\BufModifier</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffTimer.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffTimerDuration.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffTimerNull.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffTimerScheduled.h">
-      <Filter>Header Files\RegionFile\EntityData\BuffTimer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buff.h">
-      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MultiBuff.h">
-      <Filter>Header Files\RegionFile\EntityData\Buff</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Chunk.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ChunkBlockChannel.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ChunkBlockLayer.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ChunkCustomData.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RegionFile.h">
-      <Filter>Header Files\RegionFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BodyDamage.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BuffDescriptor.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Coordinate.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EntityCreationData.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EntitySpawner.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EntityStats.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ItemStack.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ItemValue.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MultiBuffAction.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MultiBuffPrefabAttachmentDescriptor.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MultiBuffVariable.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Recipe.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RecipeQueueItem.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Stat.h">
-      <Filter>Header Files\RegionFile\EntityData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Unzip.h">
-      <Filter>Header Files\External</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Zip.h">
-      <Filter>Header Files\External</Filter>
+    <ClInclude Include="src\Utils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Utils.cpp">
+    <ClCompile Include="src\VersionCheck.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemoryLeakManager.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryMemoryWriter.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryMemoryReader.cpp">
+      <Filter>Source Files\RegionIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Zip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BinaryMemoryReader.cpp">
-      <Filter>Source Files\RegionIO</Filter>
+    <ClCompile Include="src\Utils.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BinaryMemoryWriter.cpp">
-      <Filter>Source Files\RegionIO</Filter>
+    <ClCompile Include="src\Unzip.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MemoryLeakManager.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VersionCheck.cpp">
-      <Filter>Source Files\RegionIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Chunk.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ChunkBlockLayer.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ChunkCustomData.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\RegionFile.cpp">
-      <Filter>Source Files\RegionFile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BodyDamage.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BuffDescriptor.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntityCreationData.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntitySpawner.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntityStats.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ItemStack.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ItemValue.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MultiBuffAction.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MultiBuffPrefabAttachmentDescriptor.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MultiBuffVariable.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Recipe.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\RecipeQueueItem.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Stat.cpp">
-      <Filter>Source Files\RegionFile\EntityData</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntity.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityCampfire.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityForge.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntitySign.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityTrader.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityVendingMachine.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityWorkstation.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TraderData.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TileEntityPowered.cpp">
+    <ClCompile Include="src\TileEntityPowered.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityPoweredBlock.cpp">
+    <ClCompile Include="src\TileEntityPoweredBlock.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityPoweredRangedTrap.cpp">
+    <ClCompile Include="src\TileEntityPoweredRangedTrap.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityPoweredTrigger.cpp">
+    <ClCompile Include="src\TileEntityPoweredTrigger.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityPowerSource.cpp">
+    <ClCompile Include="src\TileEntityPowerSource.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityGoreBlock.cpp">
+    <ClCompile Include="src\TileEntitySecureLootContainer.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntitySecure.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntitySecureDoor.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntityLootContainer.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntityLootContainer.cpp">
+    <ClCompile Include="src\TileEntityGoreBlock.cpp">
       <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntitySecure.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    <ClCompile Include="src\TraderData.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntitySecureDoor.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    <ClCompile Include="src\TileEntity.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TileEntitySecureLootContainer.cpp">
-      <Filter>Source Files\RegionFile\EntityData\TileEntity\TileEntityLootContainer\TileEntitySecure</Filter>
+    <ClCompile Include="src\TileEntityCampfire.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifier.cpp">
+    <ClCompile Include="src\TileEntityForge.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntitySign.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntityTrader.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntityVendingMachine.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileEntityWorkstation.cpp">
+      <Filter>Source Files\RegionFile\EntityData\TileEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatModifierValueOT.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifierMax.cpp">
+    <ClCompile Include="src\StatModifier.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifierModifyValue.cpp">
+    <ClCompile Include="src\StatModifierMax.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifierMulValue.cpp">
+    <ClCompile Include="src\StatModifierModifyValue.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifierSetValue.cpp">
+    <ClCompile Include="src\StatModifierMulValue.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StatModifierValueOT.cpp">
+    <ClCompile Include="src\StatModifierSetValue.cpp">
       <Filter>Source Files\RegionFile\EntityData\StatModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffTimer.cpp">
+    <ClCompile Include="src\BuffTimerScheduled.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffTimerDuration.cpp">
+    <ClCompile Include="src\BuffTimer.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffTimerNull.cpp">
+    <ClCompile Include="src\BuffTimerDuration.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffTimerScheduled.cpp">
+    <ClCompile Include="src\BuffTimerNull.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffTimer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffModifier.cpp">
+    <ClCompile Include="src\BuffModifierSetTickRate.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuffModifierSetTickRate.cpp">
+    <ClCompile Include="src\BuffModifier.cpp">
       <Filter>Source Files\RegionFile\EntityData\BuffModifier</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Buff.cpp">
+    <ClCompile Include="src\Buff.cpp">
       <Filter>Source Files\RegionFile\EntityData\Buff</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MultiBuff.cpp">
+    <ClCompile Include="src\MultiBuff.cpp">
       <Filter>Source Files\RegionFile\EntityData\Buff</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Unzip.cpp">
-      <Filter>Source Files\External</Filter>
+    <ClCompile Include="src\Chunk.cpp">
+      <Filter>Source Files\RegionFile</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Zip.cpp">
-      <Filter>Source Files\External</Filter>
+    <ClCompile Include="src\ChunkBlockLayer.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChunkCustomData.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RegionFile.cpp">
+      <Filter>Source Files\RegionFile</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BodyDamage.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BuffDescriptor.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityCreationData.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntitySpawner.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityStats.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ItemStack.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ItemValue.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultiBuffAction.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultiBuffPrefabAttachmentDescriptor.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultiBuffVariable.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Recipe.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RecipeQueueItem.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stat.cpp">
+      <Filter>Source Files\RegionFile\EntityData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

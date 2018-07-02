@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Base.h"
 #include "ShaderProgram.h"
 
 class StaticShader : public ShaderProgram {

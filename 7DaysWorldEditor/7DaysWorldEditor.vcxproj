@@ -18,11 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="LogFormatter.cpp" />
-    <ClCompile Include="MainFrame.cpp" />
-    <ClCompile Include="OpenGLCanvas.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6B654982-769A-4C77-AA96-AA2229EBA918}</ProjectGuid>
@@ -95,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -119,7 +114,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -145,7 +140,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -174,7 +169,7 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -197,21 +192,6 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigFile.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SaveDeflater.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ConfigFile.h" />
-    <ClInclude Include="LogFormatter.h" />
-    <ClInclude Include="Main.h" />
-    <ClInclude Include="MainFrame.h" />
-    <ClInclude Include="OpenGLCanvas.h" />
-    <ClInclude Include="PreprocessorConfig.h" />
-    <ClInclude Include="SaveDeflater.h" />
-    <ClInclude Include="wxWidgets.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cfg\currentVersion.ini" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +201,24 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
     <ProjectReference Include="..\7DaysWorldSaveManipulator\7DaysWorldSaveManipulator.vcxproj">
       <Project>{1c79076d-70a9-4dfe-9905-993a2d41fc49}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ConfigFile.h" />
+    <ClInclude Include="src\LogFormatter.h" />
+    <ClInclude Include="src\Main.h" />
+    <ClInclude Include="src\MainFrame.h" />
+    <ClInclude Include="src\OpenGLCanvas.h" />
+    <ClInclude Include="src\PreprocessorConfig.h" />
+    <ClInclude Include="src\SaveDeflater.h" />
+    <ClInclude Include="src\wxWidgets.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ConfigFile.cpp" />
+    <ClCompile Include="src\LogFormatter.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MainFrame.cpp" />
+    <ClCompile Include="src\OpenGLCanvas.cpp" />
+    <ClCompile Include="src\SaveDeflater.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
