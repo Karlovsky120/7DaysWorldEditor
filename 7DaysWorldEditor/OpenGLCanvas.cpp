@@ -42,9 +42,11 @@ void OpenGLCanvas::render(wxPaintEvent& evt) {
 	wxGLCanvas::SetCurrent(*context);
 	wxPaintDC(this); // only to be used in paint events. use wxClientDC to paint outside the paint event
 
-	scene->render();
+	while (true) {
+		scene->render();
 
-	SwapBuffers();
+		SwapBuffers();
+	}
 }
 
 BEGIN_EVENT_TABLE(OpenGLCanvas, wxGLCanvas)

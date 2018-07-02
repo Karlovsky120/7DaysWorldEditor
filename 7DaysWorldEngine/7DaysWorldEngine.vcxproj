@@ -71,19 +71,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</IntDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</IntDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</IntDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</IntDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -105,7 +105,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -178,11 +178,12 @@
     <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\textures\texture.png" />
+    <None Include="..\7DaysWorldEditor\resources\shaders\fragmentShader.frag" />
+    <None Include="..\7DaysWorldEditor\resources\shaders\vertexShader.vert" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\fragmentShader.frag" />
-    <None Include="resources\shaders\vertexShader.vert" />
+    <Image Include="..\7DaysWorldEditor\resources\textures\testing.png" />
+    <Image Include="..\7DaysWorldEditor\resources\textures\texture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

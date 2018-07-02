@@ -97,16 +97,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\textures\texture.png">
-      <Filter>Resource Files\textures</Filter>
-    </Image>
+    <None Include="..\7DaysWorldEditor\resources\shaders\fragmentShader.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="..\7DaysWorldEditor\resources\shaders\vertexShader.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\fragmentShader.frag">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
-    <None Include="resources\shaders\vertexShader.vert">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
+    <Image Include="..\7DaysWorldEditor\resources\textures\testing.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="..\7DaysWorldEditor\resources\textures\texture.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
