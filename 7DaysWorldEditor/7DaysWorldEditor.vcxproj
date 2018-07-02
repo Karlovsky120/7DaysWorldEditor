@@ -220,6 +220,9 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
     <ClCompile Include="src\OpenGLCanvas.cpp" />
     <ClCompile Include="src\SaveDeflater.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="logs\main.log" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

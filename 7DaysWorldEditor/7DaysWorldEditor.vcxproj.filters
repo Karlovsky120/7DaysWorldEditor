@@ -18,6 +18,9 @@
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{61c1a953-438a-4e48-8ee8-47d017fcd092}</UniqueIdentifier>
     </Filter>
+    <Filter Include="logs">
+      <UniqueIdentifier>{11e8ff90-5a9d-4993-8c93-6f8c2ef6b420}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cfg\currentVersion.ini">
@@ -69,5 +72,10 @@
     <ClCompile Include="src\LogFormatter.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="logs\main.log">
+      <Filter>logs</Filter>
+    </Text>
   </ItemGroup>
 </Project>

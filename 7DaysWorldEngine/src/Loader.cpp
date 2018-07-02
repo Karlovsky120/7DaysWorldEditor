@@ -26,7 +26,6 @@ void Loader::generateDefaultTexture() {
 			if ((i / 32) % 2 == (j / 32) % 2) {
 				setPixelForTexture(&defaultTexture[counter], (unsigned char)0, (unsigned char)0, (unsigned char)0, (unsigned char)0);
 			}
-
 			else {
 				setPixelForTexture(&defaultTexture[counter], (unsigned char)255, (unsigned char)0, (unsigned char)128, (unsigned char)0);
 			}
@@ -54,12 +53,8 @@ GLuint Loader::loadTexture(std::string textureName) {
 		return foundTextureIt->second;
 	}
 
-	int comp;
-
 	std::string path = "Resources\\Textures\\" + textureName;
 	ilLoadImage(path.c_str());
-	
-	
 	
 	int imageWidth = ilGetInteger(IL_IMAGE_WIDTH);
 	int imageHeight = ilGetInteger(IL_IMAGE_HEIGHT);
@@ -80,24 +75,23 @@ GLuint Loader::loadTexture(std::string textureName) {
 		imageComponents = 4;
 	}
 	
-
-
 	GLuint textureID = 0;
 	glGenTextures(1, &textureID);
 	textures.insert(std::pair<std::string, GLuint>(textureName, textureID));
 
 	glBindTexture(GL_TEXTURE_2D, textureID);
 	
-	if (imageComponents == 4)
+	if (imageComponents == 4) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	else if(imageComponents == 3)
+	}
+	else if (imageComponents == 3) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	}
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-
 
 	return textureID;
 }
@@ -148,12 +142,15 @@ Loader::Loader() {
 
 Loader::~Loader() {
 
-	for (auto it = vaos.begin(); it != vaos.end(); it++)
+	for (auto it = vaos.begin(); it != vaos.end(); it++) {
 		glDeleteVertexArrays(1, &(*it));
+	}
 
-	for (auto it = vbos.begin(); it != vbos.end(); it++)
+	for (auto it = vbos.begin(); it != vbos.end(); it++) {
 		glDeleteBuffers(1, &(*it));
+	}
 
-	for (auto it = textures.begin(); it != textures.end(); it++)
+	for (auto it = textures.begin(); it != textures.end(); it++) {
 		glDeleteTextures(1, &(it->second));
+	}
 }

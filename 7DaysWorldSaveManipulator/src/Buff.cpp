@@ -5,6 +5,10 @@
 #include "MultiBuff.h"
 #include "VersionCheck.h"
 
+
+Buff::Buff() {}
+Buff::~Buff() {}
+
 BuffClassId Buff::getType() {
 	return BuffBase;
 }
@@ -92,6 +96,3 @@ int Buff::readMore(BinaryMemoryReader &reader, std::map<unsigned short, std::sha
 
 	return 0;
 }
-
-Buff::Buff() {}
-Buff::~Buff() {}
