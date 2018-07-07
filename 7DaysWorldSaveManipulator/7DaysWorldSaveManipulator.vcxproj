@@ -23,7 +23,7 @@
     <ProjectGuid>{1C79076D-70A9-4DFE-9905-993A2D41FC49}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My7DaysWorldSaveManipulator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -98,6 +98,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -112,6 +114,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -128,6 +132,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,6 +152,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;SDWSM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,8 +163,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\BinaryFileReader.h" />
-    <ClInclude Include="src\BinaryFileWriter.h" />
     <ClInclude Include="src\BinaryMemoryReader.h" />
     <ClInclude Include="src\BinaryMemoryWriter.h" />
     <ClInclude Include="src\BodyDamage.h" />
@@ -211,10 +217,8 @@
     <ClInclude Include="src\TileEntityVendingMachine.h" />
     <ClInclude Include="src\TileEntityWorkstation.h" />
     <ClInclude Include="src\TraderData.h" />
-    <ClInclude Include="src\Unzip.h" />
     <ClInclude Include="src\Utils.h" />
     <ClInclude Include="src\VersionCheck.h" />
-    <ClInclude Include="src\Zip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BinaryMemoryReader.cpp" />
@@ -269,10 +273,8 @@
     <ClCompile Include="src\TileEntityVendingMachine.cpp" />
     <ClCompile Include="src\TileEntityWorkstation.cpp" />
     <ClCompile Include="src\TraderData.cpp" />
-    <ClCompile Include="src\Unzip.cpp" />
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\VersionCheck.cpp" />
-    <ClCompile Include="src\Zip.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

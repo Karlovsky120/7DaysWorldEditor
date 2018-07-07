@@ -1,6 +1,6 @@
 #include "BinaryMemoryWriter.h"
 
-#include "Zip.h"
+#include "zipUnzip\Zip.h"
 
 #include <fstream>
 

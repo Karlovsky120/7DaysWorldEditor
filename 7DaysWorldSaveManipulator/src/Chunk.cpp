@@ -5,8 +5,8 @@
 #include "TileEntity.h"
 #include "VersionCheck.h"
 
-#include "Unzip.h"
-#include "Zip.h"
+#include "zipUnzip\Unzip.h"
+#include "zipUnzip\Zip.h"
 
 Chunk::Chunk() {}
 Chunk::~Chunk() {}

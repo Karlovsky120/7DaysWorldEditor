@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6B654982-769A-4C77-AA96-AA2229EBA918}</ProjectGuid>
     <RootNamespace>My7DaysWorldEditor</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -93,6 +93,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Platform);$(ProjectDir)dependencies\wxWidgets\lib\vc_lib</AdditionalLibraryDirectories>
@@ -106,7 +107,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <Message>Copying all necessary files for the project to function within the solution</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /maxcpucount</Command>
       <Message>Building wxWidgets if not already built</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -118,6 +119,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_DEBUG;__WXDEBUG__;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Platform);$(ProjectDir)dependencies\wxWidgets\lib\vc_x64_lib</AdditionalLibraryDirectories>
@@ -131,7 +133,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <Message>Copying all necessary files for the project to function within the solution</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /maxcpucount</Command>
       <Message>Building wxWidgets if not already built</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -145,6 +147,7 @@ xcopy "$(SolutionDir)lib\$(Platform)\*.dll" "$(ProjectDir)bin\$(Configuration)\$
       <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -161,7 +164,7 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
       <Message>Copying all necessary files for the project to function independently</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /maxcpucount</Command>
       <Message>Building wxWidgets if not already built</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -175,6 +178,7 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
       <AdditionalIncludeDirectories>$(SolutionDir)include;$(ProjectDir)dependencies\wxWidgets\include\msvc;$(ProjectDir)dependencies\wxWidgets\include;$(SolutionDir)\7DaysWorldEngine\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;WINVER=0x0500;__WXMSW__;wxUSE_GUI=1;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -191,7 +195,7 @@ xcopy "$(ProjectDir)resources\*" "$(ProjectDir)bin\$(Configuration)\$(Platform)\
       <Message>Copying all necessary files for the project to function independently</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /verbosity:quiet</Command>
+      <Command>msbuild.exe "$(ProjectDir)dependencies\wxWidgets\build\msw\wx_vc15.sln" /t:Build /p:Configuration=$(Configuration);Platform=$(Platform);WindowsTargetPlatformVersion=$(WindowsTargetPlatformVersion) /maxcpucount</Command>
       <Message>Building wxWidgets if not already built</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>

@@ -1,12 +1,13 @@
 #include "RegionFile.h"
 
-#include "BinaryFileReader.h"
-#include "BinaryFileWriter.h"
 #include "BinaryMemoryReader.h"
 #include "BinaryMemoryWriter.h"
 #include "Chunk.h"
 #include "MemoryLeakManager.h"
 #include "VersionCheck.h"
+
+#include "binaryIO\BinaryFileReader.h"
+#include "binaryIO\BinaryFileWriter.h"
 
 RegionFile::RegionFile(std::string path, const int rX, const int rZ) :
     rX(rX),

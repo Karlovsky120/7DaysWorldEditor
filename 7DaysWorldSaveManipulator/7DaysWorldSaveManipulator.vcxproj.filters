@@ -234,12 +234,6 @@
     <ClInclude Include="src\TileEntityPowerSource.h">
       <Filter>Header Files\RegionFile\EntityData\TileEntity\TileEntityPowered</Filter>
     </ClInclude>
-    <ClInclude Include="src\BinaryFileReader.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BinaryFileWriter.h">
-      <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
     <ClInclude Include="src\BinaryMemoryReader.h">
       <Filter>Header Files\RegionIO</Filter>
     </ClInclude>
@@ -251,12 +245,6 @@
     </ClInclude>
     <ClInclude Include="src\VersionCheck.h">
       <Filter>Header Files\RegionIO</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Zip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Unzip.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils.h">
       <Filter>Header Files</Filter>
@@ -275,13 +263,7 @@
     <ClCompile Include="src\BinaryMemoryReader.cpp">
       <Filter>Source Files\RegionIO</Filter>
     </ClCompile>
-    <ClCompile Include="src\Zip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Unzip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TileEntityPowered.cpp">
