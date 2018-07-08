@@ -1,7 +1,13 @@
 #pragma once
 
-#include <string>
 #include <fstream>
+#include <string>
+
+enum seekPoint {
+    beg = std::ios_base::beg,
+    cur = std::ios_base::cur,
+    end = std::ios_base::end
+};
 
 class BinaryFileReader {
 public:
@@ -20,28 +26,50 @@ public:
     BinaryFileReader(const BinaryFileReader&) = delete;
     BinaryFileReader& operator=(const BinaryFileReader&) = delete;
 
+    int getPosition() {
+        return baseStream.tellg();
+    }
+
     template <typename T>
     inline void read(T &data) {
         baseStream.read((char *)&data, sizeof(T));
     }
 
     template <>
-    inline void read(std::string &data) {
+    void read(std::string &data) {
         char length;
         baseStream.read(&length, 1);
 
         unsigned char *characters = new unsigned char[length];
-        baseStream.read((char*)characters, length);
+        baseStream.read((char *)characters, length);
 
-        data = std::string((char*)characters, length);
+        data = std::string((char *)characters, length);
         delete[] characters;
     }
 
-    inline void readBytes(unsigned char data[], int count) {
-        baseStream.read((char*)data, count);
+    void readCString(std::string &data) {
+        char cString[25];
+        char current;
+        int offset = -1;
+
+        do {
+            baseStream.read(&current, 1);
+            cString[++offset] = current;
+        } while (current != '\0');
+
+        data = std::string(cString);
     }
 
-    inline void seek(int amount, std::ios_base::seekdir seekStart) {
+    inline void readBigEndian(unsigned int &data) {
+        baseStream.read((char *)&data, sizeof(unsigned int));
+        data = _byteswap_ulong(data);
+    }
+
+    inline void readBytes(unsigned char data[], int count) {
+        baseStream.read((char *)data, count);
+    }
+
+    inline void seek(int amount, seekPoint seekStart) {
         baseStream.seekg(amount, seekStart);
     }
 

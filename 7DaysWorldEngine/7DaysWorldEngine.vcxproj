@@ -162,11 +162,12 @@
     <Image Include="..\7DaysWorldEditor\resources\textures\texture.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetExtractor.h" />
+    <ClInclude Include="src\AssetExtractor.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Loader.h" />
     <ClInclude Include="src\Mesh.h" />
+    <ClInclude Include="src\ObjectInfo.h" />
     <ClInclude Include="src\OpenGLInitializer.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Scene.h" />
@@ -177,11 +178,12 @@
     <ClInclude Include="src\Transformation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssetExtractor.cpp" />
+    <ClCompile Include="src\AssetExtractor.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Loader.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\ObjectInfo.cpp" />
     <ClCompile Include="src\OpenGLInitializer.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Scene.cpp" />

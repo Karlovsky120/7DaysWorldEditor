@@ -4,7 +4,12 @@
 
 #include "GL\glew.h"
 
+#include "AssetExtractor.h"
+
 Scene::Scene() {
+
+    AssetExtractor assetExtractor;
+    assetExtractor.extract();
 
     GLfloat vertices[] = {
         -0.5f,0.5f,-0.5f,

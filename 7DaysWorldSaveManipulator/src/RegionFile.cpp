@@ -90,24 +90,24 @@ void RegionFile::read(const std::string path) {
     zippedChunks.reserve(1024);
 
     for (int i = 0; i < 1024; ++i) {
-        reader.seek(4 + 4 * i, std::ios_base::beg);
+        reader.seek(4 + 4 * i, beg);
 
         unsigned short offset;
         reader.read<unsigned short>(offset);
 
         if (offset != 0) {
-            reader.seek(4100 + 4 * i, std::ios_base::beg);
+            reader.seek(4100 + 4 * i, beg);
 
             int timeStamp;
             reader.read<int>(timeStamp);
             timeStamps.push_back(timeStamp);
 
-            reader.seek(offset * 4096 + 4, std::ios_base::beg);
+            reader.seek(offset * 4096 + 4, beg);
 
             int length;
             reader.read<int>(length);
 
-            reader.seek(1, std::ios_base::cur);
+            reader.seek(1, cur);
 
             std::vector<unsigned char> chunkData;
             chunkData.resize(length);

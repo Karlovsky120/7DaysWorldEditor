@@ -73,7 +73,10 @@
     <ClInclude Include="src\Transformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssetExtractor.h">
+    <ClInclude Include="src\AssetExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObjectInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,7 +117,10 @@
     <ClCompile Include="src\Transformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AssetExtractor.cpp">
+    <ClCompile Include="src\AssetExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
