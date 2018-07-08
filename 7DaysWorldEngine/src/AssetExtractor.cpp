@@ -79,15 +79,68 @@ void AssetExtractor::extract() {
         // align to 4 bytes
         reader->seek((4 - (reader->getPosition() % 4)) % 4, cur);
 
-        ObjectInfo info;
+        AssetObject asset;
 
-        reader->read<unsigned _int64>(info.index);
-        reader->read<unsigned int>(info.offset);
-        reader->read<unsigned int>(info.size);
-        reader->read<unsigned int>(info.type);
-        reader->read<unsigned short>(info.inheritedUnityClass);
-        reader->read<unsigned short>(info.scriptIndex);
-        reader->read<unsigned char>(info.unknown);
+        reader->read<unsigned _int64>(asset.index);
+        reader->read<unsigned int>(asset.offset);
+        reader->read<unsigned int>(asset.size);
+        reader->read<unsigned int>(asset.type);
+        reader->read<unsigned short>(asset.inheritedUnityClass);
+        reader->read<unsigned short>(asset.scriptIndex);
+        reader->read<unsigned char>(asset.unknown);
+
+        int currentIndexOffset = reader->getPosition();
+
+        int absoluteOffset = offsetToFirstFile + asset.offset;
+
+        reader->seek(absoluteOffset, beg);
+
+        reader->readStringAlternate(asset.name);
+        //align to 4 bytes
+        reader->seek((4 - (reader->getPosition() % 4)) % 4, cur);
+
+        if (asset.type == Mesh) {
+            //4 bytes
+            //uint first byte
+            //uint index count
+            //(u?)int topology
+            //uint first vertex
+            //uint vertex count
+
+
+
+            //local AABB
+            //float center.x
+            //float center.y
+            //float center.z
+            //float extend.x
+            //float extend.y
+            //float extend.z
+
+            //8 bytes of data, should be mostly constant, perhaps few array I doubt 7dtd uses
+
+            //uint index buffer length
+            //indices as shorts for buffer length bytes
+
+            //byte (skin array is zero?)
+            //uint current channels
+            //uint vertex count
+            //uint channel count
+            //4 bytes per channel 1 byte each parameter: stream, offset, format, dimension
+
+            //uint length of data
+            //data consists of vertices, normals and texture coordinates
+
+        }
+
+        
+
+        //read asset data
+
+        reader->seek(currentIndexOffset);
     }
+
+    int pos = reader->getPosition();
+    int y = 4;
 }
 

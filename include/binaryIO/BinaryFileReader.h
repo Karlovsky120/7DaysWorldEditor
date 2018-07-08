@@ -47,6 +47,19 @@ public:
         delete[] characters;
     }
 
+    void readStringAlternate(std::string &data) {
+        int length;
+        baseStream.read(&length, 4);
+
+        char cString[255];
+
+        for (i = 0; i < length; ++i) {
+            baseStream.read(cString[i]);
+        }
+
+        data = std::string(cString);
+    }
+
     void readCString(std::string &data) {
         char cString[25];
         char current;

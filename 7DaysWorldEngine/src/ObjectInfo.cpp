@@ -1,4 +1,4 @@
 #include "ObjectInfo.h"
 
-ObjectInfo::ObjectInfo() {};
-ObjectInfo::~ObjectInfo() {};
+AssetObject::AssetObject() {};
+AssetObject::~AssetObject() {};
