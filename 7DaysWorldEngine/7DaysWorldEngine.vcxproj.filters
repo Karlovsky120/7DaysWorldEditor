@@ -82,9 +82,6 @@
     <ClInclude Include="src\Asset.h">
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="src\AssetExtractor.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
     <ClInclude Include="src\MeshAsset.h">
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
@@ -99,6 +96,9 @@
     </ClInclude>
     <ClInclude Include="src\Transformation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AssetLoader.h">
+      <Filter>Header Files\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,9 +141,6 @@
     <ClCompile Include="src\Asset.cpp">
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\AssetExtractor.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
@@ -158,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="src\Transformation.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AssetLoader.cpp">
+      <Filter>Source Files\Assets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -36,6 +36,21 @@ public:
     }
 
     template <>
+    void read(std::string &data) = delete;
+
+    template <typename T>
+    void readString(std::string &data) {
+        T length;
+        read<T>(length);
+
+        unsigned char *characters = new unsigned char[length];
+        baseStream.read((char *)characters, length);
+
+        data = std::string((char *)characters, length);
+        delete[] characters;
+    }
+
+    /*template <>
     void read(std::string &data) {
         char length;
         baseStream.read(&length, 1);
@@ -58,10 +73,10 @@ public:
         }
 
         data = std::string(cString);
-    }
+    }*/
 
     void readCString(std::string &data) {
-        char cString[25];
+        char cString[255];
         char current;
         int offset = -1;
 
@@ -78,8 +93,13 @@ public:
         data = _byteswap_ulong(data);
     }
 
-    inline void readBytes(unsigned char data[], int count) {
+    inline void readBytes(unsigned char data[], unsigned int count) {
         baseStream.read((char *)data, count);
+    }
+
+    inline void readBytes(std::vector<unsigned char> data, unsigned int count) {
+        data.resize(count);
+        baseStream.read((char*)&data[0], count);
     }
 
     inline void seek(int amount, seekEnum::seekPoint seekStart) {

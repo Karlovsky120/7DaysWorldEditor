@@ -2,6 +2,7 @@
 
 #include "Asset.h"
 
+#include <map>
 #include <string>
 #include <unordered_map>
 
@@ -12,10 +13,17 @@ struct AssetInfo {
     unsigned int type;
 };
 
-class AssetExtractor {
+struct AfterLoadEntry {
+    unsigned int size;
+    std::vector<unsigned char> *dest;
+};
+
+class AssetLoader {
 public:
-	AssetExtractor();
-	~AssetExtractor();
+    static std::unordered_map<std::string, std::map<unsigned int, AfterLoadEntry>*>  afterLoadMap;
+
+	AssetLoader();
+	~AssetLoader();
 
     void constructAssetTree();
 	void extractAssetInfo();

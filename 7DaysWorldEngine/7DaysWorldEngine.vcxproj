@@ -163,7 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Asset.h" />
-    <ClInclude Include="src\AssetExtractor.h" />
+    <ClInclude Include="src\AssetLoader.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\GameObject.h" />
@@ -184,7 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Asset.cpp" />
-    <ClCompile Include="src\AssetExtractor.cpp" />
+    <ClCompile Include="src\AssetLoader.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\GameObject.cpp" />

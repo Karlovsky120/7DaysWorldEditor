@@ -5,7 +5,7 @@ MeshAsset::~MeshAsset() {}
 MeshAsset *MeshAsset::extractMesh(BinaryFileReader &reader) {
     //MeshAsset *meshAsset = new MeshAsset();
 
-    reader.readStringAlternate(name);
+    reader.readString<unsigned int>(name);
 
     reader.alignTo4Bytes();
 

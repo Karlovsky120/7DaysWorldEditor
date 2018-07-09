@@ -26,7 +26,7 @@ void GameObject::readAsset(BinaryFileReader &reader) {
     //unsigned int layer
     reader.seek(4, seekEnum::cur);
 
-    reader.readStringAlternate(name);
+    reader.readString<unsigned int>(name);
     reader.alignTo4Bytes();
 
     //aligned to 4 bytes (unsigned?) short tag

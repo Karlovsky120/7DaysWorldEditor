@@ -1,14 +1,14 @@
-#include "AssetExtractor.h"
+#include "AssetLoader.h"
 
 #include "ObjectInfo.h"
 
 #include "binaryIO/BinaryFileReader.h"
 
-AssetExtractor::AssetExtractor() {}
+AssetLoader::AssetLoader() {}
 
-AssetExtractor::~AssetExtractor() {}
+AssetLoader::~AssetLoader() {}
 
-void AssetExtractor::constructAssetTree() {
+void AssetLoader::constructAssetTree() {
 
     for (auto it = assetMap.begin(); it != assetMap.end(); ++it) {
 
@@ -17,7 +17,7 @@ void AssetExtractor::constructAssetTree() {
 
 }
 
-void AssetExtractor::extractAssetInfo() {
+void AssetLoader::extractAssetInfo() {
     std::string address = "C:\\Programs\\Steam\\steamapps\\common\\7 Days To Die\\7DaysToDie_Data\\resources.assets";
 
     BinaryFileReader *reader = new BinaryFileReader(address);
