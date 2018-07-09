@@ -2,13 +2,13 @@
 
 #include <fstream>
 #include <string>
-
-enum seekPoint {
-    beg = std::ios_base::beg,
-    cur = std::ios_base::cur,
-    end = std::ios_base::end
+struct seekEnum {
+    enum seekPoint {
+        beg = std::ios_base::beg,
+        cur = std::ios_base::cur,
+        end = std::ios_base::end
+    };
 };
-
 class BinaryFileReader {
 public:
     BinaryFileReader(std::string const path) {
@@ -49,12 +49,12 @@ public:
 
     void readStringAlternate(std::string &data) {
         int length;
-        baseStream.read(&length, 4);
+        read<int>(length);
 
         char cString[255];
 
-        for (i = 0; i < length; ++i) {
-            baseStream.read(cString[i]);
+        for (int i = 0; i < length; ++i) {
+            read<char>(cString[i]);
         }
 
         data = std::string(cString);
@@ -82,8 +82,12 @@ public:
         baseStream.read((char *)data, count);
     }
 
-    inline void seek(int amount, seekPoint seekStart) {
+    inline void seek(int amount, seekEnum::seekPoint seekStart) {
         baseStream.seekg(amount, seekStart);
+    }
+
+    inline void alignTo4Bytes() {
+        seek((4 - (getPosition() % 4)) % 4, seekEnum::cur);
     }
 
 private:

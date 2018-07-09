@@ -9,7 +9,7 @@
 Scene::Scene() {
 
     AssetExtractor assetExtractor;
-    assetExtractor.extract();
+    assetExtractor.extractAssetInfo();
 
     GLfloat vertices[] = {
         -0.5f,0.5f,-0.5f,

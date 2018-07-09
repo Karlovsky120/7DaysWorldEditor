@@ -162,11 +162,14 @@
     <Image Include="..\7DaysWorldEditor\resources\textures\texture.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Asset.h" />
     <ClInclude Include="src\AssetExtractor.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Entity.h" />
+    <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Loader.h" />
     <ClInclude Include="src\Mesh.h" />
+    <ClInclude Include="src\MeshAsset.h" />
     <ClInclude Include="src\ObjectInfo.h" />
     <ClInclude Include="src\OpenGLInitializer.h" />
     <ClInclude Include="src\Renderer.h" />
@@ -174,15 +177,20 @@
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\StaticShader.h" />
     <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Texture2D.h" />
     <ClInclude Include="src\TexturedMesh.h" />
+    <ClInclude Include="src\Transform.h" />
     <ClInclude Include="src\Transformation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Asset.cpp" />
     <ClCompile Include="src\AssetExtractor.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Loader.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\MeshAsset.cpp" />
     <ClCompile Include="src\ObjectInfo.cpp" />
     <ClCompile Include="src\OpenGLInitializer.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -190,7 +198,9 @@
     <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\StaticShader.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Texture2D.cpp" />
     <ClCompile Include="src\TexturedMesh.cpp" />
+    <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\Transformation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

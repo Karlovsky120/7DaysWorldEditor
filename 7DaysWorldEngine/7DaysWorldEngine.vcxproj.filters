@@ -19,6 +19,12 @@
     <Filter Include="Resource Files\textures">
       <UniqueIdentifier>{f8f7d797-2ac2-4a87-8add-a114b1018f26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Assets">
+      <UniqueIdentifier>{96c6d5ea-c3ec-4d8e-9ebe-666c1cc6fd43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Assets">
+      <UniqueIdentifier>{b126e2e3-eb9d-4823-93d3-d3e106e81fad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\7DaysWorldEditor\resources\shaders\fragmentShader.frag">
@@ -70,13 +76,28 @@
     <ClInclude Include="src\TexturedMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Transformation.h">
+    <ClInclude Include="src\GameObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Asset.h">
+      <Filter>Header Files\Assets</Filter>
     </ClInclude>
     <ClInclude Include="src\AssetExtractor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeshAsset.h">
+      <Filter>Header Files\Assets</Filter>
     </ClInclude>
     <ClInclude Include="src\ObjectInfo.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture2D.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,13 +135,28 @@
     <ClCompile Include="src\TexturedMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Transformation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\MeshAsset.cpp">
+      <Filter>Header Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Asset.cpp">
+      <Filter>Source Files\Assets</Filter>
     </ClCompile>
     <ClCompile Include="src\AssetExtractor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Source Files\Assets</Filter>
     </ClCompile>
     <ClCompile Include="src\ObjectInfo.cpp">
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture2D.cpp">
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
