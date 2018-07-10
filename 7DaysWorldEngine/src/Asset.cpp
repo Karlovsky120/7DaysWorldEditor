@@ -23,7 +23,7 @@ Asset *Asset::generateAsset(AssetType::AssetTypeEnum type, unsigned _int64 index
         asset = new Transform();
         break;
     case AssetType::Material:
-        //asset = new Material();
+        asset = new Material();
         break;
     case AssetType::MeshRenderer:
         //asset = new MeshRenderer();
