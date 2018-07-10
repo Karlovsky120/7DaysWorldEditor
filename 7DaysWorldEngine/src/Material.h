@@ -3,7 +3,9 @@
 
 #include "glm/glm.hpp"
 
+#include <string>
 #include <unordered_map>
+#include <utility>
 
 struct TextureTypes {
     enum TextureTypeEnum {
@@ -38,7 +40,7 @@ public:
     Material();
     ~Material();
 
-    static void initializeTextureStringEnumMapping();
+    static void initializeTextureStringEnumMap();
 
     void readAsset(BinaryFileReader &reader) override;
 };

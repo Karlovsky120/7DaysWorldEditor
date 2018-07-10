@@ -4,6 +4,8 @@
 
 #include "binaryIO/BinaryFileReader.h"
 
+#include <utility>
+
 Texture2D::Texture2D() {}
 
 Texture2D::~Texture2D() {}

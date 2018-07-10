@@ -2,11 +2,13 @@
 
 #include "binaryIO/BinaryFileReader.h"
 
+std::unordered_map<std::string, TextureTypes::TextureTypeEnum>  Material::stringEnumMap;
+
 Material::Material() {}
 
 Material::~Material() {}
 
-void Material::initializeTextureStringEnumMapping() {
+void Material::initializeTextureStringEnumMap() {
     stringEnumMap.emplace("_MainTex", TextureTypes::MainTex);
     stringEnumMap.emplace("_BumpMap", TextureTypes::BumpMap);
     stringEnumMap.emplace("_BumpSpecMap", TextureTypes::BumpSpecMap);
@@ -41,7 +43,7 @@ void Material::readAsset(BinaryFileReader &reader) {
     unsigned int textureCount;
     reader.read<unsigned int>(textureCount);
 
-    for (int i = 0; i < textureCount; ++i) {
+    for (unsigned int i = 0; i < textureCount; ++i) {
         std::string textureName;
         reader.readString<unsigned int>(textureName);
 

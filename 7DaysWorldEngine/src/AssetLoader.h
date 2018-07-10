@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 struct AssetInfo {
     unsigned _int64 index;
@@ -20,7 +21,7 @@ struct AfterLoadEntry {
 
 class AssetLoader {
 public:
-    static std::unordered_map<std::string, std::map<unsigned int, AfterLoadEntry>*>  afterLoadMap;
+    static std::unordered_map<std::string, std::map<unsigned int, AfterLoadEntry>*> afterLoadMap;
     unsigned int offsetToFirstFile;
 
 	AssetLoader();

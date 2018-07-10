@@ -127,7 +127,7 @@ void Scene::render() {
             for (float k = -50; k < -1; k += 2) {
                 entity.getEntityTransformation().setPosition(glm::vec3(i + glm::sin(c / 100) / 50, j + glm::sin(c / 10000) / 50, k + glm::sin(c / 10) / 50));
                 renderer.render(entity, shader);
-                c += 0.1;
+                c += (float)0.1;
             }
         }
     }

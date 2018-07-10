@@ -34,5 +34,5 @@ Asset *Asset::generateAsset(AssetType::AssetTypeEnum type) {
 }
 
 void Asset::initializeAssets() {
-    Material::initializeTextureStringEnumMapping();
+    Material::initializeTextureStringEnumMap();
 }

@@ -2,6 +2,8 @@
 
 #include "binaryIO/BinaryFileReader.h"
 
+std::unordered_map<std::string, std::map<unsigned int, AfterLoadEntry>*> AssetLoader::afterLoadMap;
+
 AssetLoader::AssetLoader() {}
 
 AssetLoader::~AssetLoader() {}
