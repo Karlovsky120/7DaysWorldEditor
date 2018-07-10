@@ -41,7 +41,7 @@ struct AssetType {
 class Asset {
 public:
     std::string name = "";
-    int parentID = -1;
+    unsigned int parentID = 0;
     std::vector<unsigned int> childrenVector;
 
     Asset();

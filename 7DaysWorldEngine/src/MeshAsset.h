@@ -6,19 +6,19 @@
 
 #include <string>
 
-struct SubMesh {
-    std::vector<unsigned char> perVertexData;
-    SubMeshMetadata subMeshMetadata;
-
-    std::vector<unsigned short> indices;
-};
-
 struct SubMeshMetadata {
     unsigned int firstByte;
     unsigned int indexCount;
     //unsigned int topology
     unsigned int firstVertex;
     unsigned int vetexCount;
+};
+
+struct SubMesh {
+    std::vector<unsigned char> perVertexData;
+    SubMeshMetadata subMeshMetadata;
+
+    std::vector<unsigned short> indices;
 };
 
 class MeshAsset : public Asset {
@@ -36,6 +36,6 @@ public:
     MeshAsset();
     ~MeshAsset();
 
-    void readAsset(BinaryFileReader &reader);
+    void readAsset(BinaryFileReader &reader) override;
 };
 

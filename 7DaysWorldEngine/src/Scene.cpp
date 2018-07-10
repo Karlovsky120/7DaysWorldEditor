@@ -13,7 +13,7 @@ Scene::Scene() {
 
     std::string address = "C:\\Programs\\Steam\\steamapps\\common\\7 Days To Die\\7DaysToDie_Data\\resources.assets";
 
-    BinaryFileReader reader = BinaryFileReader(address);
+    BinaryFileReader reader(address);
     assetLoader.extractAssetInfo(reader);
 
     GLfloat vertices[] = {
