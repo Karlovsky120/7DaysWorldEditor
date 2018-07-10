@@ -16,6 +16,8 @@ Scene::Scene() {
     BinaryFileReader reader(address);
     assetLoader.extractAssetInfo(reader);
 
+    int a = 4;
+
     GLfloat vertices[] = {
         -0.5f,0.5f,-0.5f,
                 -0.5f,-0.5f,-0.5f,

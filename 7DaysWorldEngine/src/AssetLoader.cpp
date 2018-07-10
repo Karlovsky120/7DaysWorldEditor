@@ -88,9 +88,9 @@ void AssetLoader::extractAssetInfo(BinaryFileReader &reader) {
     unsigned int sizeFiles;
     reader.read<unsigned int>(sizeFiles);
 
-    for (unsigned int i = 0; i < sizeFiles; ++i) {
-        reader.alignTo4Bytes();
+    reader.alignTo4Bytes();
 
+    for (unsigned int i = 0; i < sizeFiles; ++i) {
         AssetInfo *assetInfo = new AssetInfo();
 
         unsigned _int64 key;
@@ -98,24 +98,14 @@ void AssetLoader::extractAssetInfo(BinaryFileReader &reader) {
 
         reader.read<unsigned int>(assetInfo->offset);
         reader.read<unsigned int>(assetInfo->size);
-        reader.read<unsigned int>(assetInfo->type);
-        // haven't read:
-        // unsigned short inheritedUnityClass
-        // unsigned short scriptIndex
-        // unsigned char unknown
+        reader.read<int>(assetInfo->type);
+        //unsigned short inheritedUnityClass
+        //unsigned short scriptIndex
+        //unsigned char unknown
+        //align to 4 bytes
+        reader.seek(8);
 
         assetMap.emplace(key, std::pair<AssetInfo*, Asset*>(assetInfo, nullptr));
     }
-    /*
-        int currentIndexOffset = reader.getPosition();
-
-        //int absoluteOffset = offsetToFirstFile + asset.offset;
-
-        //reader.seek(absoluteOffset, beg);
-
-        //reader.readStringAlternate(asset.name);
-        //align to 4 bytes
-        reader.alignTo4Bytes();
-        //}*/
 }
 

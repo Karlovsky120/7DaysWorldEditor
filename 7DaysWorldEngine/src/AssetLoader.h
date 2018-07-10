@@ -11,7 +11,7 @@ struct AssetInfo {
     unsigned _int64 index;
     unsigned int offset;
     unsigned int size;
-    unsigned int type;
+    int type;
 };
 
 struct AfterLoadEntry {
@@ -30,7 +30,7 @@ public:
     void constructAssetTree(BinaryFileReader &reader);
 	void extractAssetInfo(BinaryFileReader &reader);
 
-private:
+//private:
     std::unordered_map<unsigned _int64, std::pair<AssetInfo*, Asset*>> assetMap;
 };
 
