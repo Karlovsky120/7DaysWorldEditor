@@ -20,7 +20,7 @@ Asset *Asset::generateAsset(AssetType::AssetTypeEnum type, unsigned _int64 index
         asset = new GameObject();
         break;
     case AssetType::Transform:
-        //asset = new Transform();
+        asset = new Transform();
         break;
     case AssetType::Material:
         //asset = new Material();

@@ -13,6 +13,7 @@ void AssetLoader::constructAssetTree(BinaryFileReader &reader) {
 
     int count = 0;
     for (auto it = assetMap.begin(); it != assetMap.end();/* ++it*/) {
+        ++count; //used for breakpoints during debugging
         std::pair<AssetInfo *, Asset*> *assetPackage = &it->second;
         AssetInfo *info = assetPackage->first;
 
@@ -20,7 +21,6 @@ void AssetLoader::constructAssetTree(BinaryFileReader &reader) {
         Asset *asset = Asset::generateAsset(type, info->index);
 
         if (asset != nullptr) {
-            ++count; //used for breakpoints during debugging
             reader.seek(offsetToFirstFile + info->offset, SeekPoint::beg);
             asset->readAsset(reader);
             assetPackage->second = asset;

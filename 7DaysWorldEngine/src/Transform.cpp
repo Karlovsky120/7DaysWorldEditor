@@ -7,13 +7,7 @@ Transform::Transform() {}
 Transform::~Transform() {}
 
 void Transform::readAsset(BinaryFileReader &reader) {
-    //unsigned int fileID - 0 is current file; It seems that I don't need it, so far
-    reader.seek(4);
-
-    reader.read<unsigned int>(parentID);
-
-    //unsigned int name, seems to always be 0
-    reader.seek(4);
+    readAssetInfo(reader, parentID);
 
     float coords[4];
 
@@ -22,7 +16,7 @@ void Transform::readAsset(BinaryFileReader &reader) {
         reader.read<float>(coords[i]);
     }
 
-    transformation.setRotation(glm::angleAxis(coords[3], glm::vec3(coords[0], coords[1], coords[2])));
+    transformation.setRotation(glm::quat(coords[3], coords[0], coords[1], coords[2]));
 
     //position
     for (int i = 0; i < 3; ++i) {
@@ -42,15 +36,9 @@ void Transform::readAsset(BinaryFileReader &reader) {
     reader.read<unsigned int>(childrenCount);
 
     for (unsigned int i = 0; i < childrenCount; ++i) {
-        //unsigned int fileID - 0 is current file; It seems that I don't need it, so far
-        reader.seek(4);
-
-        unsigned int childIndex;
-        reader.read<unsigned int>(childIndex);
-        childrenVector.push_back(childIndex);
-
-        //unsigned int name, seems to always be 0
-        reader.seek(4);
+        unsigned int childID;
+        readAssetInfo(reader, childID);
+        childrenVector.push_back(childID);
     }
 
     //a few more bytes of unknown data
