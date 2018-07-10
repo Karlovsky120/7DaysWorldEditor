@@ -33,6 +33,10 @@ public:
     template <typename T>
     inline void read(T &data) {
         baseStream.read((char *)&data, sizeof(T));
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     template <>
@@ -48,6 +52,10 @@ public:
 
         data = std::string((char *)characters, length);
         delete[] characters;
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     /*template <>
@@ -83,31 +91,55 @@ public:
         do {
             baseStream.read(&current, 1);
             cString[++offset] = current;
-        } while (current != '\0');
+        } while (current != '\0' && offset < 256);
 
         data = std::string(cString);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     inline void readBigEndian(unsigned int &data) {
         baseStream.read((char *)&data, sizeof(unsigned int));
         data = _byteswap_ulong(data);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     inline void readBytes(unsigned char data[], unsigned int count) {
         baseStream.read((char *)data, count);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     inline void readBytes(std::vector<unsigned char> data, unsigned int count) {
         data.reserve(count);
         baseStream.read((char*)&data[0], count);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     inline void seek(int amount, SeekEnum::SeekPoint seekStart = SeekEnum::cur) {
         baseStream.seekg(amount, seekStart);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
 
     inline void alignTo4Bytes() {
         seek((4 - (getPosition() % 4)) % 4);
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
     }
     /*
     template<typename T>
@@ -130,4 +162,7 @@ public:
 
 private:
     std::ifstream baseStream;
+#ifdef DEBUG
+    std::streampos position;
+#endif
 };
