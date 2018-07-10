@@ -168,9 +168,12 @@
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Loader.h" />
+    <ClInclude Include="src\Material.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\MeshAsset.h" />
-    <ClInclude Include="src\ObjectInfo.h" />
+    <ClInclude Include="src\MeshFilter.h" />
+    <ClInclude Include="src\MeshRenderer.h" />
+    <ClInclude Include="src\UnimportantAsset.h" />
     <ClInclude Include="src\OpenGLInitializer.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Scene.h" />
@@ -189,9 +192,12 @@
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Loader.cpp" />
+    <ClCompile Include="src\Material.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\MeshAsset.cpp" />
-    <ClCompile Include="src\ObjectInfo.cpp" />
+    <ClCompile Include="src\MeshFilter.cpp" />
+    <ClCompile Include="src\MeshRenderer.cpp" />
+    <ClCompile Include="src\UnimportantAsset.cpp" />
     <ClCompile Include="src\OpenGLInitializer.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Scene.cpp" />

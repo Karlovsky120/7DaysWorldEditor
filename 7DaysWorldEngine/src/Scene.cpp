@@ -1,15 +1,20 @@
 #include "Scene.h"
 
+#include "AssetLoader.h"
 #include "Loader.h"
 
+#include "binaryIO/BinaryFileReader.h"
 #include "GL\glew.h"
 
-#include "AssetLoader.h"
 
 Scene::Scene() {
 
     AssetLoader assetLoader;
-    assetLoader.extractAssetInfo();
+
+    std::string address = "C:\\Programs\\Steam\\steamapps\\common\\7 Days To Die\\7DaysToDie_Data\\resources.assets";
+
+    BinaryFileReader reader = BinaryFileReader(address);
+    assetLoader.extractAssetInfo(reader);
 
     GLfloat vertices[] = {
         -0.5f,0.5f,-0.5f,

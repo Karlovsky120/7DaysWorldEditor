@@ -5,8 +5,8 @@
 
 class BinaryFileReader;
 
-struct AssetEnum {
-    enum assetType {
+struct AssetType {
+    enum AssetTypeEnum {
         GameObject = 1,
         Transform = 4,
         Material = 21,
@@ -29,19 +29,26 @@ struct AssetEnum {
         SkinnedMeshRendered = 137,
         AssetBundle = 142,
         CharacterJoint = 144,
-        LODGroup = 205
+        Tree = 193,
+        ParticleSystem = 198,
+        ParticleSystemRenderer = 199,
+        LODGroup = 205,
+        BillboardAsset = 226,
+        BillboardRenderer = 227
     };
 };
 
 class Asset {
 public:
-    std::string name;
+    std::string name = "";
+    int parentID = -1;
     std::vector<unsigned int> childrenVector;
 
     Asset();
     ~Asset();
 
-    Asset *generateAsset(AssetEnum::assetType type);
+    Asset static *generateAsset(AssetType::AssetTypeEnum type);
+    void static initializeAssets();
 
     virtual void readAsset(BinaryFileReader &reader) = 0;
 };

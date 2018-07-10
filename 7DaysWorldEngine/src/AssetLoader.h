@@ -21,12 +21,13 @@ struct AfterLoadEntry {
 class AssetLoader {
 public:
     static std::unordered_map<std::string, std::map<unsigned int, AfterLoadEntry>*>  afterLoadMap;
+    unsigned int offsetToFirstFile;
 
 	AssetLoader();
 	~AssetLoader();
 
-    void constructAssetTree();
-	void extractAssetInfo();
+    void constructAssetTree(BinaryFileReader &reader);
+	void extractAssetInfo(BinaryFileReader &reader);
 
 private:
     std::unordered_map<unsigned _int64, std::pair<AssetInfo*, Asset*>> assetMap;

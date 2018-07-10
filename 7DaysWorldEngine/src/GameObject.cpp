@@ -10,21 +10,21 @@ void GameObject::readAsset(BinaryFileReader &reader) {
     unsigned int childrenCount;
     reader.read<unsigned int>(childrenCount);
 
-    for (int i = 0; i < childrenCount; ++i) {
+    for (unsigned int i = 0; i < childrenCount; ++i) {
         //unsigned int child asset type - no need to read it again   
         //unsigned int fileID - 0 is current file; It seems that I don't need it, so far
-        reader.seek(8, seekEnum::cur);
+        reader.seek(8);
 
-        unsigned int childIndex;
-        reader.read<unsigned int>(childIndex);
-        childrenVector.push_back(childIndex);
+        unsigned int childID;
+        reader.read<unsigned int>(childID);
+        childrenVector.push_back(childID);
 
         //unsigned int name, seems to always be 0
-        reader.seek(4, seekEnum::cur);
+        reader.seek(4);
     }
 
     //unsigned int layer
-    reader.seek(4, seekEnum::cur);
+    reader.seek(4);
 
     reader.readString<unsigned int>(name);
     reader.alignTo4Bytes();

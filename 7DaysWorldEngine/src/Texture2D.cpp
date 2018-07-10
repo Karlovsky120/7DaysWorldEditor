@@ -21,7 +21,7 @@ void Texture2D::readAsset(BinaryFileReader &reader) {
     //bool isReadAllowed
     //align to 4 bytes
     //unsigned int imageCount
-    reader.seek(20, seekEnum::cur);
+    reader.seek(20);
 
     reader.read<unsigned int>(textureDimension);
 
@@ -32,7 +32,7 @@ void Texture2D::readAsset(BinaryFileReader &reader) {
 
     //unsigned int lightMapFormat
     //unsigned int colourSpace
-    reader.seek(24, seekEnum::cur);
+    reader.seek(24);
 
     unsigned int dataLength;
     reader.read<unsigned int>(dataLength);

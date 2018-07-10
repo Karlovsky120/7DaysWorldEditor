@@ -6,14 +6,36 @@
 
 #include <string>
 
+struct SubMesh {
+    std::vector<unsigned char> perVertexData;
+    SubMeshMetadata subMeshMetadata;
+
+    std::vector<unsigned short> indices;
+};
+
+struct SubMeshMetadata {
+    unsigned int firstByte;
+    unsigned int indexCount;
+    //unsigned int topology
+    unsigned int firstVertex;
+    unsigned int vetexCount;
+};
+
 class MeshAsset : public Asset {
 public:
-    std::string name;
+    std::vector<SubMesh> subMeshes;
 
+    //0 vertices
+    //1 normals
+    //2 usually empty
+    //3 uv coords
+    //4-6 usually empty
+    //7 4-dimensional unknown data
+    std::vector<std::pair<unsigned char, unsigned char>> channelStructureData;
+
+    MeshAsset();
     ~MeshAsset();
 
-    MeshAsset *extractMesh(BinaryFileReader &reader);
-private:
-    MeshAsset();
+    void readAsset(BinaryFileReader &reader);
 };
 

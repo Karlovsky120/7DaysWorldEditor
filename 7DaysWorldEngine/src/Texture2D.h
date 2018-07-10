@@ -11,6 +11,6 @@ public:
     Texture2D();
     ~Texture2D();
 
-    void readAsset(BinaryFileReader &reader);
+    void readAsset(BinaryFileReader &reader) override;
 };
 

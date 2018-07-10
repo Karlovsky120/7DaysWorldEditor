@@ -5,12 +5,11 @@
 
 class Transform : public Asset {
 public:
-    unsigned int parentID;
     Transformation transformation;
 
     Transform();
     ~Transform();
 
-    void readAsset(BinaryFileReader &reader);
+    void readAsset(BinaryFileReader &reader) override;
 };
 

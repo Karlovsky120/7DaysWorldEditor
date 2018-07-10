@@ -1,49 +1,97 @@
 #include "MeshAsset.h"
 
+#include "binaryIO/BinaryFileReader.h"
+
+MeshAsset::MeshAsset() {}
+
 MeshAsset::~MeshAsset() {}
 
-MeshAsset *MeshAsset::extractMesh(BinaryFileReader &reader) {
-    //MeshAsset *meshAsset = new MeshAsset();
-
+void MeshAsset::readAsset(BinaryFileReader &reader) {
     reader.readString<unsigned int>(name);
 
     reader.alignTo4Bytes();
 
+    unsigned int subMeshCount;
+    reader.read<unsigned int>(subMeshCount);
 
+    SubMesh subMesh;
 
-    //4 bytes
-    //uint first byte
-    //uint index count
-    //(u?)int topology
-    //uint first vertex
-    //uint vertex count
+    for (unsigned int i = 0; i < subMeshCount; ++i) {
+        reader.read<unsigned int>(subMesh.subMeshMetadata.firstByte);
+        reader.read<unsigned int>(subMesh.subMeshMetadata.indexCount);
+        //unsigned int topology
+        reader.seek(4);
+        reader.read<unsigned int>(subMesh.subMeshMetadata.firstVertex);
+        reader.read<unsigned int>(subMesh.subMeshMetadata.vetexCount);
 
+        //local AABB, unsigned int vec3 for positon and extend = 6*unsigned int
+        reader.seek(24);
+    }
 
+    subMeshes.push_back(subMesh);
 
-    //local AABB
-    //float center.x
-    //float center.y
-    //float center.z
-    //float extend.x
-    //float extend.y
-    //float extend.z
+    //shapes
+    //unsigned int vertices
+    //unsigned int shapes
+    //unsigend int channels
+    //unsigned int fullWeights
 
-    //8 bytes of data, should be mostly constant, perhaps few array I doubt 7dtd uses
+    //unsigned int bindPose
+    //unsigned int boneNameHashes
+    //unsigned int rootBoneNameHash
 
-    //uint index buffer length
-    //indices as shorts for buffer length bytes
+    //char meshCompression 
+    //bool isReadable
+    //bool keepVertices
+    //bool keepIndices
 
-    //byte (skin array is zero?)
-    //uint current channels
-    //uint vertex count
-    //uint channel count
-    //4 bytes per channel 1 byte each parameter: stream, offset, format, dimension
+    //unsigned int indicesDataLength - can reconstruct from metadata
+    reader.seek(40);
 
-    //uint length of data
-    //data consists of vertices, normals and texture coordinates
+    for (int i = 0; i < subMeshCount; ++i) {
+        std::vector<unsigned char> temp;
+        reader.readBytes(temp, subMeshes[i].subMeshMetadata.indexCount * 2);
+        subMeshes[i].indices = std::vector<unsigned short>(temp.begin(), temp.end());
+    }
 
+    //unsigned int skin
+    //unsigned int currentChannels
 
-    return nullptr;
+    //unsigned int vertexCount
+    reader.seek(12);
+
+    unsigned int channelCount;
+    reader.read<unsigned int>(channelCount);
+
+    for (unsigned int i = 0; i < channelCount; ++i) {
+        //unsigned char stream
+        reader.seek(1);
+
+        unsigned char offset;
+        reader.read<unsigned char>(offset);
+
+        //unsigned char format
+        reader.seek(1);
+
+        unsigned char dimension;
+        reader.read<unsigned char>(dimension);
+
+        if (dimension != 0) {
+            channelStructureData.push_back(std::pair<unsigned char, unsigned char>(offset, dimension));
+        }
+    }
+
+    //unsigned int vertexDataLength
+    reader.seek(4);
+
+    unsigned int vertexSize = 0;
+    for (auto it = channelStructureData.begin(); it != channelStructureData.end(); ++it) {
+        vertexSize += it->second;
+    }
+
+    for (auto it = subMeshes.begin(); it != subMeshes.end(); ++it) {
+        reader.readBytes(it->perVertexData, vertexSize);
+    }
+
+    //more info I don't care about at this point
 }
-
-MeshAsset::MeshAsset() {}

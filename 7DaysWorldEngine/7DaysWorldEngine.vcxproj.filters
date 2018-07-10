@@ -19,11 +19,17 @@
     <Filter Include="Resource Files\textures">
       <UniqueIdentifier>{f8f7d797-2ac2-4a87-8add-a114b1018f26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Assets">
+    <Filter Include="Header Files\Asset Managment">
       <UniqueIdentifier>{96c6d5ea-c3ec-4d8e-9ebe-666c1cc6fd43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Assets">
+    <Filter Include="Source Files\Asset Managment">
       <UniqueIdentifier>{b126e2e3-eb9d-4823-93d3-d3e106e81fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset Managment\Assets">
+      <UniqueIdentifier>{18e4643e-0c7d-4e74-9d05-cb0c75c1204f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset Managment\Assets">
+      <UniqueIdentifier>{a879a428-93e8-4eb5-9044-476602e0c745}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,26 +85,35 @@
     <ClInclude Include="src\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Asset.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MeshAsset.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObjectInfo.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Transform.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Texture2D.h">
-      <Filter>Header Files\Assets</Filter>
-    </ClInclude>
     <ClInclude Include="src\Transformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\AssetLoader.h">
-      <Filter>Header Files\Assets</Filter>
+      <Filter>Header Files\Asset Managment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Asset.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeshAsset.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture2D.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UnimportantAsset.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeshFilter.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MeshRenderer.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Material.h">
+      <Filter>Header Files\Asset Managment\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,29 +150,38 @@
     <ClCompile Include="src\TexturedMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\MeshAsset.cpp">
-      <Filter>Header Files\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Asset.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObjectInfo.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Transform.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Texture2D.cpp">
-      <Filter>Source Files\Assets</Filter>
-    </ClCompile>
     <ClCompile Include="src\Transformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AssetLoader.cpp">
-      <Filter>Source Files\Assets</Filter>
+      <Filter>Source Files\Asset Managment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Asset.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshAsset.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture2D.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnimportantAsset.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshFilter.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshRenderer.cpp">
+      <Filter>Source Files\Asset Managment\Assets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

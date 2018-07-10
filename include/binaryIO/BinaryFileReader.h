@@ -2,8 +2,8 @@
 
 #include <fstream>
 #include <string>
-struct seekEnum {
-    enum seekPoint {
+struct SeekEnum {
+    enum SeekPoint {
         beg = std::ios_base::beg,
         cur = std::ios_base::cur,
         end = std::ios_base::end
@@ -26,8 +26,8 @@ public:
     BinaryFileReader(const BinaryFileReader&) = delete;
     BinaryFileReader& operator=(const BinaryFileReader&) = delete;
 
-    int getPosition() {
-        return baseStream.tellg();
+    unsigned int getPosition() {
+        return (unsigned int)baseStream.tellg();
     }
 
     template <typename T>
@@ -98,17 +98,35 @@ public:
     }
 
     inline void readBytes(std::vector<unsigned char> data, unsigned int count) {
-        data.resize(count);
+        data.reserve(count);
         baseStream.read((char*)&data[0], count);
     }
 
-    inline void seek(int amount, seekEnum::seekPoint seekStart) {
+    inline void seek(int amount, SeekEnum::SeekPoint seekStart = SeekEnum::cur) {
         baseStream.seekg(amount, seekStart);
     }
 
     inline void alignTo4Bytes() {
-        seek((4 - (getPosition() % 4)) % 4, seekEnum::cur);
+        seek((4 - (getPosition() % 4)) % 4);
     }
+    /*
+    template<typename T>
+    void charToTVector(std::vector<unsigned char> src, std::vector<T> dest) {
+        dest = std::vector<T>(src.begin(), src.end());
+
+        It's late, this all might be unnecessary
+        //Small endian is assume, so bytes need to be flipped
+
+        unsigned int charLength = src.size();
+
+        //For every element T
+        for (int i = 0; i < src.size() / sizeof(T); ++i) {
+            //Flip byte pairs
+            for (int j = 0; j < sizeof(T); ++j) {
+
+            }
+        }
+    }*/
 
 private:
     std::ifstream baseStream;
