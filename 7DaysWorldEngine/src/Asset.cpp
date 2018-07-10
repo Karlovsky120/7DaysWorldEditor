@@ -12,27 +12,50 @@ Asset::Asset() {}
 
 Asset::~Asset() {}
 
-Asset *Asset::generateAsset(AssetType::AssetTypeEnum type) {
+Asset *Asset::generateAsset(AssetType::AssetTypeEnum type, unsigned _int64 index) {
+    Asset *asset = nullptr;
+
     switch (type) {
     case AssetType::GameObject:
-        return new GameObject();
+        asset = new GameObject();
+        break;
     case AssetType::Transform:
-        return new Transform();
+        //asset = new Transform();
+        break;
     case AssetType::Material:
-        return new Material();
+        //asset = new Material();
+        break;
     case AssetType::MeshRenderer:
-        return new MeshRenderer();
+        //asset = new MeshRenderer();
+        break;
     case AssetType::Texture2D:
-        return new Texture2D();
+        //asset = new Texture2D();
+        break;
     case AssetType::MeshFilter:
-        return new MeshFilter();
+        //asset = new MeshFilter();
+        break;
     case AssetType::Mesh:
-        return new MeshAsset();
+        //asset = new MeshAsset();
+        break;
     default:
-        return nullptr;
+        break;
     }
+
+    if (asset != nullptr) {
+        asset->index = index;
+    }
+
+    return asset;
 }
 
 void Asset::initializeAssets() {
     Material::initializeTextureStringEnumMap();
+}
+
+void Asset::readAssetInfo(BinaryFileReader &reader, unsigned int &data) {
+    //unsigned int fileID
+    reader.seek(4);
+    reader.read<unsigned int>(data);
+    //unsigned int unknown
+    reader.seek(4);
 }

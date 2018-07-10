@@ -15,7 +15,7 @@ void Transform::readAsset(BinaryFileReader &reader) {
     //unsigned int name, seems to always be 0
     reader.seek(4);
 
-    float coords[3];
+    float coords[4];
 
     //rotation
     for (int i = 0; i < 4; ++i) {
@@ -53,5 +53,5 @@ void Transform::readAsset(BinaryFileReader &reader) {
         reader.seek(4);
     }
 
-    //3 more bytes of unknown data
+    //a few more bytes of unknown data
 }

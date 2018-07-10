@@ -40,6 +40,7 @@ struct AssetType {
 
 class Asset {
 public:
+    unsigned _int64 index = 0;
     std::string name = "";
     unsigned int parentID = 0;
     std::vector<unsigned int> childrenVector;
@@ -47,8 +48,9 @@ public:
     Asset();
     ~Asset();
 
-    Asset static *generateAsset(AssetType::AssetTypeEnum type);
+    Asset static *generateAsset(AssetType::AssetTypeEnum type, unsigned _int64 index);
     void static initializeAssets();
 
     virtual void readAsset(BinaryFileReader &reader) = 0;
+    void readAssetInfo(BinaryFileReader &reader, unsigned int &data);
 };

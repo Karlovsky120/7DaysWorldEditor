@@ -21,7 +21,9 @@ struct TextureTypes {
         EmissionMap,
         OcclusionMap,
         ParallaxMap,
-        SpecGlossMap
+        SpecGlossMap,
+        MetallicGlossMap,
+        Diffuse,
     };
 };
 

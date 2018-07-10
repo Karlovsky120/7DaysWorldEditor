@@ -30,7 +30,7 @@ void MeshRenderer::readAsset(BinaryFileReader &reader) {
     unsigned int materialCount;
     reader.read<unsigned int>(materialCount);
 
-    for (int i = 0; i < materialCount; ++i) {
+    for (unsigned int i = 0; i < materialCount; ++i) {
         //unsigned int fileID
         reader.seek(4);
 

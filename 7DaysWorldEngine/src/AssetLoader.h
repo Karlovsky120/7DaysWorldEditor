@@ -31,6 +31,6 @@ public:
 	void extractAssetInfo(BinaryFileReader &reader);
 
 //private:
-    std::unordered_map<unsigned _int64, std::pair<AssetInfo*, Asset*>> assetMap;
+    std::/*unordered_*/map<unsigned _int64, std::pair<AssetInfo*, Asset*>> assetMap;
 };
 

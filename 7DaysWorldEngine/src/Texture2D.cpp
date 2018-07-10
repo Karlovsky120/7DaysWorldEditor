@@ -11,7 +11,7 @@ Texture2D::Texture2D() {}
 Texture2D::~Texture2D() {}
 
 void Texture2D::readAsset(BinaryFileReader &reader) {
-    reader.readString<unsigned int>(name);
+    reader.readString<unsigned int>(name, true);
 
     reader.read<unsigned int>(width);
     reader.read<unsigned int>(height);
@@ -53,7 +53,7 @@ void Texture2D::readAsset(BinaryFileReader &reader) {
         entry.dest = &textureData;
 
         std::string srcName;
-        reader.readString<unsigned int>(srcName);
+        reader.readString<unsigned int>(srcName, true);
 
         //See if there already is an asset to be loaded from that file
         auto it = AssetLoader::afterLoadMap.find(srcName);

@@ -2,13 +2,15 @@
 
 #include <fstream>
 #include <string>
-struct SeekEnum {
-    enum SeekPoint {
+
+struct SeekPoint {
+    enum SeekPointEnum {
         beg = std::ios_base::beg,
         cur = std::ios_base::cur,
         end = std::ios_base::end
     };
 };
+
 class BinaryFileReader {
 public:
     BinaryFileReader(std::string const path) {
@@ -43,7 +45,7 @@ public:
     void read(std::string &data) = delete;
 
     template <typename T>
-    void readString(std::string &data) {
+    void readString(std::string &data, bool alignTo4Bytes = false) {
         T length;
         read<T>(length);
 
@@ -52,6 +54,10 @@ public:
 
         data = std::string((char *)characters, length);
         delete[] characters;
+
+        if (alignTo4Bytes) {
+            seekToAlignTo4Bytes();
+        }
 
 #ifdef DEBUG
         position = baseStream.tellg();
@@ -118,7 +124,7 @@ public:
     }
 
     inline void readBytes(std::vector<unsigned char> data, unsigned int count) {
-        data.reserve(count);
+        data.resize(count);
         baseStream.read((char*)&data[0], count);
 
 #ifdef DEBUG
@@ -126,7 +132,7 @@ public:
 #endif
     }
 
-    inline void seek(int amount, SeekEnum::SeekPoint seekStart = SeekEnum::cur) {
+    inline void seek(int amount, SeekPoint::SeekPointEnum seekStart = SeekPoint::cur) {
         baseStream.seekg(amount, seekStart);
 
 #ifdef DEBUG
@@ -134,31 +140,29 @@ public:
 #endif
     }
 
-    inline void alignTo4Bytes() {
+    inline void seekToAlignTo4Bytes() {
         seek((4 - (getPosition() % 4)) % 4);
 
 #ifdef DEBUG
         position = baseStream.tellg();
 #endif
     }
-    /*
-    template<typename T>
-    void charToTVector(std::vector<unsigned char> src, std::vector<T> dest) {
-        dest = std::vector<T>(src.begin(), src.end());
 
-        It's late, this all might be unnecessary
-        //Small endian is assume, so bytes need to be flipped
+    template <typename L, typename S>
+    void seekOverArray(bool alignTo4Bytes = false) {
+        L length;
+        read<L>(length);
 
-        unsigned int charLength = src.size();
+        seek(length * sizeof(S));
 
-        //For every element T
-        for (int i = 0; i < src.size() / sizeof(T); ++i) {
-            //Flip byte pairs
-            for (int j = 0; j < sizeof(T); ++j) {
-
-            }
+        if (alignTo4Bytes) {
+            seekToAlignTo4Bytes();
         }
-    }*/
+
+#ifdef DEBUG
+        position = baseStream.tellg();
+#endif
+    }
 
 private:
     std::ifstream baseStream;

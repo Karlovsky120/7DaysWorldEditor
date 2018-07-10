@@ -7,9 +7,7 @@ MeshAsset::MeshAsset() {}
 MeshAsset::~MeshAsset() {}
 
 void MeshAsset::readAsset(BinaryFileReader &reader) {
-    reader.readString<unsigned int>(name);
-
-    reader.alignTo4Bytes();
+    reader.readString<unsigned int>(name, true);
 
     unsigned int subMeshCount;
     reader.read<unsigned int>(subMeshCount);
@@ -46,9 +44,9 @@ void MeshAsset::readAsset(BinaryFileReader &reader) {
     //bool keepIndices
 
     //unsigned int indicesDataLength - can reconstruct from metadata
-    reader.seek(40);
+    reader.seek(36);
 
-    for (int i = 0; i < subMeshCount; ++i) {
+    for (unsigned int i = 0; i < subMeshCount; ++i) {
         std::vector<unsigned char> temp;
         reader.readBytes(temp, subMeshes[i].subMeshMetadata.indexCount * 2);
         subMeshes[i].indices = std::vector<unsigned short>(temp.begin(), temp.end());
@@ -89,8 +87,10 @@ void MeshAsset::readAsset(BinaryFileReader &reader) {
         vertexSize += it->second;
     }
 
+    vertexSize *= 4;
+
     for (auto it = subMeshes.begin(); it != subMeshes.end(); ++it) {
-        reader.readBytes(it->perVertexData, vertexSize);
+        reader.readBytes(it->perVertexData, vertexSize * it->subMeshMetadata.vetexCount);
     }
 
     //more info I don't care about at this point

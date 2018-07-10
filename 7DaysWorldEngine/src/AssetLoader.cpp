@@ -11,18 +11,25 @@ AssetLoader::~AssetLoader() {}
 void AssetLoader::constructAssetTree(BinaryFileReader &reader) {
     Asset::initializeAssets();
 
-    for (auto it = assetMap.begin(); it != assetMap.end(); ++it) {
-        auto assetPackage = it->second;
-        AssetInfo *info = assetPackage.first;
+    int count = 0;
+    for (auto it = assetMap.begin(); it != assetMap.end();/* ++it*/) {
+        std::pair<AssetInfo *, Asset*> *assetPackage = &it->second;
+        AssetInfo *info = assetPackage->first;
 
         AssetType::AssetTypeEnum type = (AssetType::AssetTypeEnum)info->type;
-        Asset *asset = Asset::generateAsset(type);
+        Asset *asset = Asset::generateAsset(type, info->index);
 
         if (asset != nullptr) {
-            reader.seek(offsetToFirstFile + info->offset);
+            ++count; //used for breakpoints during debugging
+            reader.seek(offsetToFirstFile + info->offset, SeekPoint::beg);
             asset->readAsset(reader);
-            assetPackage.second = asset;
+            assetPackage->second = asset;
+            ++it;
+        } else {
+            it = assetMap.erase(it);
         }
+
+        int p = 0;
     }
 }
 
@@ -88,14 +95,12 @@ void AssetLoader::extractAssetInfo(BinaryFileReader &reader) {
     unsigned int sizeFiles;
     reader.read<unsigned int>(sizeFiles);
 
-    reader.alignTo4Bytes();
+    reader.seekToAlignTo4Bytes();
 
     for (unsigned int i = 0; i < sizeFiles; ++i) {
         AssetInfo *assetInfo = new AssetInfo();
 
-        unsigned _int64 key;
-        reader.read<unsigned _int64>(key);
-
+        reader.read<unsigned _int64>(assetInfo->index);
         reader.read<unsigned int>(assetInfo->offset);
         reader.read<unsigned int>(assetInfo->size);
         reader.read<int>(assetInfo->type);
@@ -105,7 +110,7 @@ void AssetLoader::extractAssetInfo(BinaryFileReader &reader) {
         //align to 4 bytes
         reader.seek(8);
 
-        assetMap.emplace(key, std::pair<AssetInfo*, Asset*>(assetInfo, nullptr));
+        assetMap.emplace(assetInfo->index, std::pair<AssetInfo*, Asset*>(assetInfo, nullptr));
     }
 }
 

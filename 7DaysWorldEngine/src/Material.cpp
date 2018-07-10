@@ -22,30 +22,29 @@ void Material::initializeTextureStringEnumMap() {
     stringEnumMap.emplace("_OcclusionMap", TextureTypes::OcclusionMap);
     stringEnumMap.emplace("_ParallaxMap", TextureTypes::ParallaxMap);
     stringEnumMap.emplace("_SpecGlossMap", TextureTypes::SpecGlossMap);
+    stringEnumMap.emplace("_MetallicGlossMap", TextureTypes::MetallicGlossMap);
+    stringEnumMap.emplace("_Diffuse", TextureTypes::Diffuse);
 }
 
 void Material::readAsset(BinaryFileReader &reader) {
-    reader.readString<unsigned int>(name);
+    reader.readString<unsigned int>(name, true);
 
-    //unsigned int shader fileID
-    //unsigned int shaderID
-    //unsigned int unknown
-    reader.seek(12);
+    unsigned int temp;
+    readAssetInfo(reader, temp);
 
-    //don't want it, it's a cleaner way to skip over the bytes
-    std::string shaderKeywords;
-    reader.readString<unsigned int>(shaderKeywords);
+    reader.seekOverArray<unsigned int, unsigned char>(true);
 
     //unsigned int lightmap flags
     //int custom render queue
     //empty array stringTagMap
+    reader.seek(12);
 
     unsigned int textureCount;
     reader.read<unsigned int>(textureCount);
 
     for (unsigned int i = 0; i < textureCount; ++i) {
         std::string textureName;
-        reader.readString<unsigned int>(textureName);
+        reader.readString<unsigned int>(textureName, true);
 
         //unsigned int fileID
         reader.seek(4);
@@ -66,12 +65,18 @@ void Material::readAsset(BinaryFileReader &reader) {
             reader.read<float>(textureInfo.offset.x);
             reader.read<float>(textureInfo.offset.y);
 
+            if (stringEnumMap.find(textureName) == stringEnumMap.end()) {
+                int breakp = 0;
+            }
+
             TextureTypes::TextureTypeEnum type = stringEnumMap.find(textureName)->second;
             textureVector.push_back(std::pair<TextureTypes::TextureTypeEnum, TextureInfo>(type, textureInfo));
         } else {
-            reader.seek(20);
+            reader.seek(16);
         }
 
-        //more info I currently don't care about, mostly shader parameters
+        reader.seekToAlignTo4Bytes();
     }
+
+    //more info I currently don't care about, mostly shader parameters
 }
