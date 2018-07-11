@@ -82,7 +82,7 @@ void Material::readAsset(BinaryFileReader &reader) {
     unsigned int temp;
     readAssetInfo(reader, temp);
 
-    reader.seekOverArray<unsigned int, unsigned char>(true);
+    reader.seekOverArray<unsigned int>(sizeof(unsigned char), true);
 
     //unsigned int lightmap flags
     //int custom render queue
@@ -93,7 +93,7 @@ void Material::readAsset(BinaryFileReader &reader) {
     reader.read<unsigned int>(arraySize);
 
     for (unsigned int i = 0; i < arraySize * 2; ++i) {
-        reader.seekOverArray<unsigned int, unsigned char>(true);
+        reader.seekOverArray<unsigned int>(sizeof(unsigned char), true);
     }
 
     unsigned int textureCount;

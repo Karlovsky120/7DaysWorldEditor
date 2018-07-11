@@ -27,7 +27,7 @@ public:
 	AssetLoader();
 	~AssetLoader();
 
-    void constructAssetTree(BinaryFileReader &reader);
+    void loadRelevantAssets(BinaryFileReader &reader);
 	void extractAssetInfo(BinaryFileReader &reader);
 
 //private:

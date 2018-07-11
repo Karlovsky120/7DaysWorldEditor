@@ -12,86 +12,88 @@ void MeshAsset::readAsset(BinaryFileReader &reader) {
     unsigned int subMeshCount;
     reader.read<unsigned int>(subMeshCount);
 
-    SubMesh subMesh;
-
     for (unsigned int i = 0; i < subMeshCount; ++i) {
-        reader.read<unsigned int>(subMesh.subMeshMetadata.firstByte);
-        reader.read<unsigned int>(subMesh.subMeshMetadata.indexCount);
+        SubMesh *subMesh = new SubMesh();
+
+        reader.read<unsigned int>(subMesh->subMeshMetadata.firstByte);
+        reader.read<unsigned int>(subMesh->subMeshMetadata.indexCount);
         //unsigned int topology
         reader.seek(4);
-        reader.read<unsigned int>(subMesh.subMeshMetadata.firstVertex);
-        reader.read<unsigned int>(subMesh.subMeshMetadata.vetexCount);
+        reader.read<unsigned int>(subMesh->subMeshMetadata.firstVertex);
+        reader.read<unsigned int>(subMesh->subMeshMetadata.vertexCount);
+
+        subMeshes.push_back(subMesh);
 
         //local AABB, unsigned int vec3 for positon and extend = 6*unsigned int
         reader.seek(24);
     }
 
-    subMeshes.push_back(subMesh);
-
     //shapes
-    //unsigned int vertices
-    //unsigned int shapes
-    //unsigend int channels
-    //unsigned int fullWeights
+    //vertices array
+    reader.seekOverArray<unsigned int>(sizeof(unsigned int));
+    //shapes array
+    reader.seekOverArray<unsigned int>(sizeof(unsigned int));
+    //channels array
+    reader.seekOverArray<unsigned int>(sizeof(unsigned int));
 
-    //unsigned int bindPose
-    //unsigned int boneNameHashes
+    //unsigned int fullWeights
+    reader.seek(4);
+
+    //array bind poses
+    reader.seekOverArray<unsigned int>(16 * sizeof(unsigned int), true);
+
+    //array boneNameHashes
+    reader.seekOverArray<unsigned int>(sizeof(unsigned int));
+
     //unsigned int rootBoneNameHash
 
     //char meshCompression 
     //bool isReadable
     //bool keepVertices
     //bool keepIndices
+    reader.seek(8);
 
-    //unsigned int indicesDataLength - can reconstruct from metadata
-    reader.seek(36);
+    unsigned int indicesDataLength;
+    reader.read<unsigned int>(indicesDataLength);
 
-    for (unsigned int i = 0; i < subMeshCount; ++i) {
-        std::vector<unsigned char> temp;
-        reader.readBytes(temp, subMeshes[i].subMeshMetadata.indexCount * 2);
-        subMeshes[i].indices = std::vector<unsigned short>(temp.begin(), temp.end());
+    if (indicesDataLength != 0) {
+        for (unsigned int i = 0; i < subMeshCount; ++i) {
+            std::vector<unsigned char> temp;
+            reader.readBytes(temp, subMeshes[i]->subMeshMetadata.indexCount * 2);
+            subMeshes[i]->indices = std::vector<unsigned short>(temp.begin(), temp.end());
+        }
+
+        reader.seekToAlignTo4Bytes();
     }
 
-    //unsigned int skin
-    //unsigned int currentChannels
+    //array skin
+    reader.seekOverArray<unsigned int>(8 * sizeof(unsigned int), true);
 
-    //unsigned int vertexCount
-    reader.seek(12);
+    //unsigned int currentChannels
+    //unsigned int uncompressedVertexCount
+    reader.seek(8);
 
     unsigned int channelCount;
     reader.read<unsigned int>(channelCount);
 
-    for (unsigned int i = 0; i < channelCount; ++i) {
-        //unsigned char stream
-        reader.seek(1);
-
-        unsigned char offset;
-        reader.read<unsigned char>(offset);
-
-        //unsigned char format
-        reader.seek(1);
-
-        unsigned char dimension;
-        reader.read<unsigned char>(dimension);
-
-        if (dimension != 0) {
-            channelStructureData.push_back(std::pair<unsigned char, unsigned char>(offset, dimension));
-        }
-    }
-
-    //unsigned int vertexDataLength
-    reader.seek(4);
+    reader.readBytes(channelStructureData, channelCount * 4);
 
     unsigned int vertexSize = 0;
-    for (auto it = channelStructureData.begin(); it != channelStructureData.end(); ++it) {
-        vertexSize += it->second;
+    for (int i = 3; i < channelStructureData.size(); i += 4) {
+        vertexSize += channelStructureData[i];
     }
 
     vertexSize *= 4;
 
-    for (auto it = subMeshes.begin(); it != subMeshes.end(); ++it) {
-        reader.readBytes(it->perVertexData, vertexSize * it->subMeshMetadata.vetexCount);
-    }
+    unsigned int vertexDataLength;
+    reader.read<unsigned int>(vertexDataLength);
 
-    //more info I don't care about at this point
+    if (vertexDataLength != 0) {
+        for (auto it = subMeshes.begin(); it != subMeshes.end(); ++it) {
+            reader.readBytes((*it)->perVertexData, vertexSize * (*it)->subMeshMetadata.vertexCount);
+        }
+    } else {
+        //compressed mesh
+        //this here is pain in the ass, and is only used by a single mesh I can do without, so, srew it, I'm not doing it
+    }
 }

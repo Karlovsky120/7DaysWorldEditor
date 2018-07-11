@@ -11,7 +11,7 @@ struct SubMeshMetadata {
     unsigned int indexCount;
     //unsigned int topology
     unsigned int firstVertex;
-    unsigned int vetexCount;
+    unsigned int vertexCount;
 };
 
 struct SubMesh {
@@ -23,7 +23,7 @@ struct SubMesh {
 
 class MeshAsset : public Asset {
 public:
-    std::vector<SubMesh> subMeshes;
+    std::vector<SubMesh*> subMeshes;
 
     //0 vertices
     //1 normals
@@ -31,7 +31,8 @@ public:
     //3 uv coords
     //4-6 usually empty
     //7 4-dimensional unknown data
-    std::vector<std::pair<unsigned char, unsigned char>> channelStructureData;
+    std::vector<unsigned char> channelStructureData;
+    //std::vector<char[4]> channelStructureData;
 
     MeshAsset();
     ~MeshAsset();

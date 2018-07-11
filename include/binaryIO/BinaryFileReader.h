@@ -123,7 +123,7 @@ public:
 #endif
     }
 
-    inline void readBytes(std::vector<unsigned char> data, unsigned int count) {
+    inline void readBytes(std::vector<unsigned char> &data, unsigned int count) {
         data.resize(count);
         baseStream.read((char*)&data[0], count);
 
@@ -148,12 +148,12 @@ public:
 #endif
     }
 
-    template <typename L, typename S>
-    void seekOverArray(bool alignTo4Bytes = false) {
+    template <typename L>
+    void seekOverArray(unsigned int dataWidth, bool alignTo4Bytes = false) {
         L length;
         read<L>(length);
 
-        seek(length * sizeof(S));
+        seek(length * dataWidth);
 
         if (alignTo4Bytes) {
             seekToAlignTo4Bytes();

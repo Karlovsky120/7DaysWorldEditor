@@ -15,7 +15,7 @@ Scene::Scene() {
 
     BinaryFileReader reader(address);
     assetLoader.extractAssetInfo(reader);
-    assetLoader.constructAssetTree(reader);
+    assetLoader.loadRelevantAssets(reader);
 
     int a = 4;
 

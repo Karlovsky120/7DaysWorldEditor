@@ -8,12 +8,11 @@ AssetLoader::AssetLoader() {}
 
 AssetLoader::~AssetLoader() {}
 
-void AssetLoader::constructAssetTree(BinaryFileReader &reader) {
+void AssetLoader::loadRelevantAssets(BinaryFileReader &reader) {
     Asset::initializeAssets();
 
     int count = 0;
-    for (auto it = assetMap.begin(); it != assetMap.end();/* ++it*/) {
-        ++count; //used for breakpoints during debugging
+    for (auto it = assetMap.begin(); it != assetMap.end();) {
         std::pair<AssetInfo *, Asset*> *assetPackage = &it->second;
         AssetInfo *info = assetPackage->first;
 
@@ -21,11 +20,13 @@ void AssetLoader::constructAssetTree(BinaryFileReader &reader) {
         Asset *asset = Asset::generateAsset(type, info->index);
 
         if (asset != nullptr) {
+            ++count; //used for breakpoints during debugging
             reader.seek(offsetToFirstFile + info->offset, SeekPoint::beg);
             asset->readAsset(reader);
             assetPackage->second = asset;
             ++it;
         } else {
+            //assets I have no need of
             it = assetMap.erase(it);
         }
 

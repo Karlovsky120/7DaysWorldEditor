@@ -26,16 +26,16 @@ Asset *Asset::generateAsset(AssetType::AssetTypeEnum type, unsigned _int64 index
         asset = new Material();
         break;
     case AssetType::MeshRenderer:
-        //asset = new MeshRenderer();
+        asset = new MeshRenderer();
         break;
     case AssetType::Texture2D:
-        //asset = new Texture2D();
+        asset = new Texture2D();
         break;
     case AssetType::MeshFilter:
-        //asset = new MeshFilter();
+        asset = new MeshFilter();
         break;
     case AssetType::Mesh:
-        //asset = new MeshAsset();
+        asset = new MeshAsset();
         break;
     default:
         break;

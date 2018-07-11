@@ -19,21 +19,24 @@ void Texture2D::readAsset(BinaryFileReader &reader) {
     //unsigned int imageSize
     //unsigned int textureFormat
     //unsigned int mipCount
+
     //bool isReadable
     //bool isReadAllowed
     //align to 4 bytes
+
     //unsigned int imageCount
     reader.seek(20);
 
     reader.read<unsigned int>(textureDimension);
 
-    //unsigned int filterMode
+    //texture settings
+    //unsigned int FilterMode
     //unsigned int Aniso
     //unsigned int MipBias
     //unsigned int WrapMode
 
-    //unsigned int lightMapFormat
-    //unsigned int colourSpace
+    //unsigned int LightmapFormat
+    //unsigned int ColourSpace
     reader.seek(24);
 
     unsigned int dataLength;
@@ -59,6 +62,7 @@ void Texture2D::readAsset(BinaryFileReader &reader) {
         auto it = AssetLoader::afterLoadMap.find(srcName);
 
         std::map<unsigned int, AfterLoadEntry> *fileEntries;
+
         if (it != AssetLoader::afterLoadMap.end()) {
             fileEntries = it->second;
         } else {
